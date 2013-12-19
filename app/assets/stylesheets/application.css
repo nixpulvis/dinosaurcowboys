@@ -9,5 +9,69 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require normalize-rails
  *= require_tree .
  */
+
+a {
+  color: #fece2f;
+  text-decoration: none;
+}
+
+body {
+  background: #000;
+}
+
+/* HEADER */
+
+header.logo {
+
+}
+
+header.logo h1 {
+  margin: 0;
+  padding: 25px;
+  font-size: 45px;
+  text-align: center;
+}
+
+header.logo h1 a {
+  color: #eee;
+}
+
+/* NAVIGATION */
+
+nav.global {
+  margin: 0 0 10px;
+}
+
+nav.global ul {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0;
+  background: #383838;
+  border: solid 1px #484848;
+  border-radius: 3px;
+}
+
+nav.global ul li {
+  margin-left: 15px;
+  display: inline-block;
+}
+
+nav.global ul li a {
+  display: block;
+  padding: 10px;
+  font-weight: bold;
+}
+
+nav.global ul li a:hover {
+  background: #484848;
+}
+
+/* CONTAINER */
+
+.container {
+  margin: 0 auto;
+  max-width: 980px;
+}

@@ -1,0 +1,60 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.pages\#home {
+
+  .banner {
+    margin: 5px 0;
+    padding: 15px;
+    background: #242424;
+    border: 1px solid #404040;
+    border-radius: 3px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .posts {
+    margin: 5px 0;
+    padding: 15px;
+    background: #242424;
+    border: 1px solid #404040;
+    border-radius: 3px;
+
+    float: left;
+    width: 616px;
+    margin-right: 10px;
+
+    color: #ccc;
+
+    ol {
+      padding: 0;
+      list-style: none;
+    }
+  }
+
+  .recruitment {
+    margin: 5px 0;
+    padding: 15px;
+    background: #242424;
+    border: 1px solid #404040;
+    border-radius: 3px;
+
+    float: left;
+    width: 290px;
+
+    color: #ccc;
+
+    table {
+      font-size: 10px;
+
+      tr {
+        float: left;
+        margin: 0 5px 5px 0;
+      }
+    }
+  }
+
+}

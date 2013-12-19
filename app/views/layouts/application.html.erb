@@ -6,9 +6,29 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class='<%= "#{params[:controller]}##{params[:action]}" %>'>
 
-<%= yield %>
+<header class="logo">
+  <h1><%= link_to "Party Shark", root_path %></h1>
+</header>
+
+<nav class="global">
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">World of Logs</a></li>
+    <li><a href="#">Recruitment</a></li>
+    <li><a href="#">Forums</a></li>
+    <li><a href="#">Roster</a></li>
+    <li><a href="#">Guild Charter</a></li>
+    <li><a href="#">Photos</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <%= yield %>
+</div>
+
+<footer></footer>
 
 </body>
 </html>
