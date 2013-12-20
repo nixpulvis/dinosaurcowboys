@@ -4,48 +4,45 @@
 
 .pages\#home {
 
-  .banner {
-    margin: 5px 0;
-    padding: 15px;
-    background: #242424;
-    border: 1px solid #404040;
-    border-radius: 3px;
-
-    img {
-      width: 100%;
-    }
+  .banner img {
+    width: 980px;
+    margin-bottom: 10px;
   }
 
   .posts {
-    margin: 5px 0;
-    padding: 15px;
     background: #242424;
     border: 1px solid #404040;
     border-radius: 3px;
 
+    padding: 10px;
+    width: 650px;
     float: left;
-    width: 616px;
-    margin-right: 10px;
 
     color: #ccc;
 
     ol {
+      margin: 0;
       padding: 0;
       list-style: none;
+    }
+
+    header h2 {
+      margin-top: 0;
     }
   }
 
   .recruitment {
-    margin: 5px 0;
     padding: 15px;
     background: #242424;
     border: 1px solid #404040;
     border-radius: 3px;
-
-    float: left;
-    width: 290px;
-
+    margin-left: 685px;
+    width: 265px;
     color: #ccc;
+
+    h2 {
+      margin-top: 0;
+    }
 
     table {
       font-size: 10px;
