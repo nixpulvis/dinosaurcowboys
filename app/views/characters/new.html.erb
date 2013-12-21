@@ -1,0 +1,11 @@
+<h2>New character</h2>
+
+<%= form_for(Character.new) do |f| %>
+  <div><%= f.label :name %></div>
+  <%= f.text_field :name, :autofocus => true %>
+
+  <div><%= f.label :name %></div>
+  <%= f.text_field :name %>
+
+  <div><%= f.submit "Create" %></div>
+<% end %>

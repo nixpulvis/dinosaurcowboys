@@ -12,14 +12,25 @@
   <h1><%= link_to "Party Shark", root_path %></h1>
 </header>
 
-<nav class="global">
-  <ul>
-    <li><a href="#">World of Logs</a></li>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<nav class="topbar">
+  <ul class="main-links">
+    <li><a href="#">Logs</a></li>
     <li><a href="#">Recruitment</a></li>
     <li><a href="#">Forums</a></li>
     <li><a href="#">Roster</a></li>
     <li><a href="#">Guild Charter</a></li>
     <li><a href="#">Photos</a></li>
+  </ul>
+
+  <ul class="user-links">
+    <% if user_signed_in? %>
+      <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+    <% else %>
+      <li><%= link_to "Sign In", new_user_session_path %></li>
+    <% end %>
   </ul>
 </nav>
 

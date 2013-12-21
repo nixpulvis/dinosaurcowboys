@@ -19,7 +19,8 @@ a {
 }
 
 body {
-  background: #000;
+  background-image: url('/images/water_bg.jpg');
+  color: #ccc;
 }
 
 /* HEADER */
@@ -39,37 +40,34 @@ header.logo h1 a {
   color: #eee;
 }
 
-/* NAVIGATION */
+/* NAVBAR */
 
-nav.global {
-  margin: 0 0 10px;
-}
-
-nav.global ul {
+nav.topbar {
   width: 980px;
-  margin: 0 auto;
+  margin: 0 auto 10px;
+}
+
+nav.topbar ul {
+  margin: 0;
   padding: 0;
-}
-
-nav.global ul li {
-  margin-right: 5px;
   display: inline-block;
 }
 
-nav.global ul li a {
+nav.topbar ul li {
   display: inline-block;
+}
+
+nav.topbar ul.user-links {
+  float: right;
+}
+
+nav.topbar ul li a {
+  display: block;
   padding: 10px;
-  background: #383838;
-  border: solid 1px #484848;
-  border-radius: 3px;
-  font-weight: bold;
-  font-family: Arial, sans-serif;
-  text-transform: uppercase;
-  font-size: 14px;
 }
 
-nav.global ul li a:hover {
-  background: #484848;
+nav.topbar ul li a:hover {
+  background: #122939;
 }
 
 /* CONTAINER */
