@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :characters, dependent: :destroy
-  has_one :rank
+  belongs_to :rank
 
-  accepts_nested_attributes_for :characters, :allow_destroy => true
+  def name
+    "#{self.first_name} #{self.last_name}"
+  end
 end

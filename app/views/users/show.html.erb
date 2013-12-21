@@ -1,0 +1,16 @@
+<h1><%= @user.name %></h1>
+Birthday <%= @user.birthday %><br />
+Member since <%= @user.created_at %><br />
+
+<% if @user.rank %>
+  Current rank <%= @user.rank.name %><br />
+<% end %>
+
+<%= link_to "Edit", edit_user_path(@user) %>
+
+<h2>Charaters</h2>
+<% @user.characters.each do |character| %>
+  <h3><%= character.name %> - <%= character.server %></h3>
+<% end %>
+<%= link_to "Add character", new_user_character_path(@user) %>
+

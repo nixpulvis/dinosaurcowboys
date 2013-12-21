@@ -1,0 +1,23 @@
+<h2>Sign up</h2>
+
+<%= form_for(User.new) do |f| %>
+  <%= f.label :first_name %><br />
+  <%= f.text_field :first_name, :autofocus => true %><br />
+
+  <%= f.label :last_name %><br />
+  <%= f.text_field :last_name %><br />
+
+  <%= f.label :birthday %><br />
+  <%= f.date_select(:birthday, :start_year => 1980) %><br />
+
+  <%= f.label :email %><br />
+  <%= f.email_field :email %><br />
+
+  <%= f.label :password %><br />
+  <%= f.password_field :password %><br />
+
+  <%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %><br />
+
+  <%= f.submit "Sign up" %>
+<% end %>

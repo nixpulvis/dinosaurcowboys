@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20131220083047) do
 
   create_table "ranks", force: true do |t|
     t.string   "name"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,6 +35,7 @@ ActiveRecord::Schema.define(version: 20131220083047) do
     t.string   "first_name"
     t.string   "last_name"
     t.date     "birthday"
+    t.integer  "rank_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "", null: false

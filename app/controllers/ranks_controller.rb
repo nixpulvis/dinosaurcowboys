@@ -1,5 +1,9 @@
 class RanksController < ApplicationController
 
+  def show
+    @rank = Rank.find(params[:id])
+  end
+
   def create
     @rank = Rank.new(rank_params)
     if @rank.save

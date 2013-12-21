@@ -1,11 +1,14 @@
 <h2>New character</h2>
 
-<%= form_for(Character.new) do |f| %>
-  <div><%= f.label :name %></div>
-  <%= f.text_field :name, :autofocus => true %>
+<%= form_for(@character, url: { action: "create" }) do |f| %>
+  <%= f.label :name %><br />
+  <%= f.text_field :name, :autofocus => true %><br />
 
-  <div><%= f.label :name %></div>
-  <%= f.text_field :name %>
+  <%= f.label :server %><br />
+  <%= f.text_field :server %><br />
+
+  <%= f.label :main? %><br />
+  <%= f.check_box :main? %><br />
 
   <div><%= f.submit "Create" %></div>
 <% end %>
