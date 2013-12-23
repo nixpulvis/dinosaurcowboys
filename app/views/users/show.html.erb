@@ -9,8 +9,14 @@ Member since <%= @user.created_at %><br />
 <%= link_to "Edit", edit_user_path(@user) %>
 
 <h2>Charaters</h2>
+<ul>
 <% @user.characters.each do |character| %>
-  <h3><%= character.name %> - <%= character.server %></h3>
+  <li>
+    <%= character.name %> - <%= character.server %>
+    <% if character.main? %>
+      (main)
+    <% end %>
+  </li>
 <% end %>
+</ul>
 <%= link_to "Add character", new_user_character_path(@user) %>
-

@@ -5,8 +5,10 @@ PartyShark::Application.routes.draw do
   devise_for :users, :skip => :registration
 
   resources :users do
-    resources :characters
+    resources :characters, :only => [:new, :create, :update, :destroy]
   end
   resources :ranks
+
+  get '/roster', :to => 'characters#roster'
 
 end
