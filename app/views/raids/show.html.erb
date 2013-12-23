@@ -1,0 +1,9 @@
+<h1><%= @raid.name %> [t<%= @raid.tier %>]</h1>
+
+<h2>Bosses</h2>
+<ul>
+  <% @raid.bosses.each do |boss| %>
+  <li><%= link_to boss.name, raid_boss_path(@raid, boss) %></li>
+  <% end %>
+</ul>
+<%= link_to "Add boss", new_raid_boss_path(@raid) %>

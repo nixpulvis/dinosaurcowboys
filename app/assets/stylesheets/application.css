@@ -57,7 +57,7 @@ nav.topbar ul li {
   display: inline-block;
 }
 
-nav.topbar ul.user-links {
+nav.topbar ul.session-links {
   float: right;
 }
 

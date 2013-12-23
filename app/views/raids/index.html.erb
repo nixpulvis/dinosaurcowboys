@@ -1,0 +1,7 @@
+<h1>Raids</h1>
+
+<ul>
+<% @raids.each do |raid| %>
+  <li><%= link_to raid.name, raid %></li>
+<% end %>
+</ul>

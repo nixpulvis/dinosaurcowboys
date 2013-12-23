@@ -1,0 +1,11 @@
+<h2>New raid</h2>
+
+<%= form_for @raid, url: { :action => "create" } do |f| %>
+  <%= f.label :name %><br />
+  <%= f.text_field :name, :autofocus => true %><br />
+
+  <%= f.label :tier %><br />
+  <%= f.number_field :tier %><br />
+
+  <div><%= f.submit "Create" %></div>
+<% end %>

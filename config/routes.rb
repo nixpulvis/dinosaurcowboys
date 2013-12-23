@@ -11,4 +11,8 @@ PartyShark::Application.routes.draw do
 
   get '/roster', :to => 'characters#roster'
 
+  resources :raids do
+    resources :bosses
+  end
+
 end
