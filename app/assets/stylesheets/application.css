@@ -25,10 +25,6 @@ body {
 
 /* HEADER */
 
-header.logo {
-
-}
-
 header.logo h1 {
   margin: 0;
   padding: 25px;
@@ -38,6 +34,25 @@ header.logo h1 {
 
 header.logo h1 a {
   color: #eee;
+}
+
+/* FLASH */
+
+div.flash {
+  width: 980px;
+  margin: 0 auto 10px;
+}
+
+div.flash p.notice {
+  padding: 10px;
+  background: yellow;
+  color: #222;
+}
+
+div.flash p.alert {
+  padding: 10px;
+  background: red;
+  color: white;
 }
 
 /* NAVBAR */

@@ -12,8 +12,14 @@
   <h1><%= link_to "Party Shark", root_path %></h1>
 </header>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<div class="flash">
+  <% if notice %>
+  <p class="notice"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+  <p class="alert"><%= alert %></p>
+  <% end %>
+</div>
 
 <nav class="topbar">
   <ul class="main-links">
