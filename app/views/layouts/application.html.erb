@@ -23,10 +23,10 @@
 
 <nav class="topbar">
   <ul class="main-links">
-    <li><a href="#">Logs</a></li>
     <li><a href="#">Recruitment</a></li>
     <li><%= link_to "Roster", roster_path %></li>
-    <li><a href="#">Guild Charter</a></li>
+    <li><%= link_to "Charter", charter_path %></li>
+    <li><%= link_to "Logs", logs_path %></li>
   </ul>
 
   <% if user_signed_in? %>
