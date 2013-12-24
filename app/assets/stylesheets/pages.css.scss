@@ -82,3 +82,18 @@
   }
 
 }
+
+.pages\#recruitment {
+
+  div.content {
+    padding: 15px;
+    background: #242424;
+    border: 1px solid #404040;
+    border-radius: 3px;
+
+    &:first-child h1 {
+      margin-top: 0;
+    }
+  }
+
+}
