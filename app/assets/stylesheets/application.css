@@ -25,15 +25,9 @@ body {
 
 /* HEADER */
 
-header.logo h1 {
-  margin: 0;
-  padding: 25px;
-  font-size: 45px;
-  text-align: center;
-}
-
-header.logo h1 a {
-  color: #eee;
+header.logo {
+  width: 980px;
+  margin: 0 auto;
 }
 
 /* FLASH */

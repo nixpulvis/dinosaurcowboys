@@ -9,7 +9,9 @@
 <body class='<%= "#{params[:controller]}##{params[:action]}" %>'>
 
 <header class="logo">
-  <h1><%= link_to "Party Shark", root_path %></h1>
+  <%= link_to root_path do %>
+  <img src="/images/banner_logo.png">
+  <% end %>
 </header>
 
 <div class="flash">
