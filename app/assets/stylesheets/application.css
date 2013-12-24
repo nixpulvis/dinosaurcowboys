@@ -87,9 +87,16 @@ nav.topbar ul li a:hover {
 
 /* CONTAINER */
 
-.container {
+div.container {
   margin: 0 auto;
+  padding-bottom: 20px;
   max-width: 980px;
+}
+
+/* CLEARFIX */
+
+.clearfix {
+  clear: both;
 }
 
 /* FOOTER */
