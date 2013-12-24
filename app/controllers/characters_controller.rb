@@ -22,9 +22,21 @@ class CharactersController < ApplicationController
   end
 
   def roster
-    @roster = []
+    core_ranks = [
+      "Guild Master",
+      "Officer",
+      "Loot Council",
+      "Raider"
+    ]
+
+    @core = []
+    @applicants = []
     User.all.each do |user|
-      @roster << user.main_character
+      if core_ranks.include?(user.rank.name)
+        @core << user.main_character
+      elsif user.rank.name == "Applicant"
+        @applicants << user.main_character
+      end
     end
   end
 

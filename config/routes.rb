@@ -7,12 +7,10 @@ PartyShark::Application.routes.draw do
 
   devise_for :users, :skip => :registration
 
+  get '/roster', :to => 'characters#roster'
   resources :users do
     resources :characters, :only => [:new, :create, :update, :destroy]
   end
-  resources :ranks
-
-  get '/roster', :to => 'characters#roster'
 
   resources :raids do
     resources :bosses

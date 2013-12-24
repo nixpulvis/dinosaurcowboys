@@ -1,7 +1,15 @@
 <h1>Roster</h1>
 
+<h2>Core</h2>
 <ul>
-  <% @roster.each do |character| %>
+  <% @core.each do |character| %>
+  <li><%= character.name %></li>
+  <% end %>
+</ul>
+
+<h2>Applicants</h2>
+<ul>
+  <% @applicants.each do |character| %>
   <li><%= character.name %></li>
   <% end %>
 </ul>
