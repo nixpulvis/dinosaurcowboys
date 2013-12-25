@@ -10,15 +10,8 @@
   }
 
   .posts {
-    background: #242424;
-    border: 1px solid #404040;
-    border-radius: 3px;
-
-    padding: 10px;
     width: 650px;
     float: left;
-
-    color: #ccc;
 
     ol {
       margin: 0;
@@ -32,13 +25,8 @@
   }
 
   .recruitment {
-    padding: 15px;
-    background: #242424;
-    border: 1px solid #404040;
-    border-radius: 3px;
     margin-left: 685px;
     width: 265px;
-    color: #ccc;
 
     h2 {
       margin-top: 0;
@@ -64,36 +52,6 @@
     background: #242424;
     border: 2px solid #404040;
     border-radius: 3px;
-  }
-
-}
-
-.pages\#charter {
-
-  div.content {
-    padding: 15px;
-    background: #242424;
-    border: 1px solid #404040;
-    border-radius: 3px;
-
-    &:first-child h1 {
-      margin-top: 0;
-    }
-  }
-
-}
-
-.pages\#recruitment {
-
-  div.content {
-    padding: 15px;
-    background: #242424;
-    border: 1px solid #404040;
-    border-radius: 3px;
-
-    &:first-child h1 {
-      margin-top: 0;
-    }
   }
 
 }

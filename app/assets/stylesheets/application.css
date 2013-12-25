@@ -83,8 +83,22 @@ nav.topbar ul li a:hover {
 
 div.container {
   margin: 0 auto;
-  padding-bottom: 20px;
   max-width: 980px;
+}
+
+/* CONTENT */
+
+.panel {
+  padding: 15px;
+  background: #242424;
+  border: 1px solid #404040;
+  border-radius: 3px;
+}
+
+.panel:first-child h1,
+.panel:first-child h2,
+.panel:first-child h3, {
+  margin-top: 0;
 }
 
 /* CLEARFIX */
