@@ -1,12 +1,12 @@
 class BossesController < ApplicationController
 
   def new
-    @raid = Raid.find(params[:raid_id])
+    @raid = Raid.find_by_param(params[:raid_id])
     @boss = @raid.bosses.build
   end
 
   def create
-    @raid = Raid.find(params[:raid_id])
+    @raid = Raid.find_by_param(params[:raid_id])
     @boss = @raid.bosses.build(boss_params)
 
     if @boss.save
@@ -17,8 +17,8 @@ class BossesController < ApplicationController
   end
 
   def show
-    @raid = Raid.find(params[:raid_id])
-    @boss = @raid.bosses.find(params[:id])
+    @raid = Raid.find_by_param(params[:raid_id])
+    @boss = @raid.bosses.find_by_param(params[:id])
   end
 
   protected

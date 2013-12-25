@@ -19,7 +19,7 @@ class RaidsController < ApplicationController
   end
 
   def show
-    @raid = Raid.find(params[:id])
+    @raid = Raid.find_by_param(params[:id])
   end
 
   protected
