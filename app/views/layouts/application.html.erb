@@ -8,12 +8,6 @@
 </head>
 <body class='<%= "#{params[:controller]}##{params[:action]}" %>'>
 
-<header class="logo">
-  <%= link_to root_path do %>
-  <img src="/images/banner_logo.png">
-  <% end %>
-</header>
-
 <div class="flash">
   <% if notice %>
   <p class="notice"><%= notice %></p>
@@ -22,6 +16,12 @@
   <p class="alert"><%= alert %></p>
   <% end %>
 </div>
+
+<header class="logo">
+  <%= link_to root_path do %>
+  <img src="/images/banner_logo.png">
+  <% end %>
+</header>
 
 <nav class="topbar">
   <ul class="main-links">

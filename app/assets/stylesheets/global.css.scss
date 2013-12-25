@@ -1,0 +1,87 @@
+/* Variables */
+$border-color: #404040;
+$background-color: #242424;
+$topbar-hover-color: #122939;
+$link-color: #fece2f;
+$text-color: #ccc;
+
+$border-size: 2px;
+$border-radius-size: 3px;
+
+$page-width: 980px;
+
+/* General styles */
+
+body {
+  color: $text-color;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+}
+
+form {
+
+  label {
+    display: inline-block;
+    margin-bottom: 2px;
+  }
+
+  input {
+    margin-bottom: 10px;
+    padding: 5px;
+    background: $border-color;
+    border: $border-size solid $border-color;
+    border-radius: 3px;
+    color: $text-color;
+
+    &:focus {
+      padding: -2px;
+      outline: none;
+      border: $border-size solid $link-color;
+    }
+  }
+
+  input[type="submit"] {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: $border-color;
+    border: none;
+
+    &:hover {
+      background: $link-color;
+      color: $background-color;
+    }
+  }
+
+  select {
+    margin-bottom: 7px;
+  }
+
+}
+
+/* Custom classes */
+
+.border {
+  margin: -$border-size;
+  border: $border-size solid $border-color;
+  border-radius: $border-radius-size;
+}
+
+.panel {
+  padding: 15px;
+  background: $background-color;
+  border: $border-size solid $border-color;
+  border-radius: $border-radius-size;
+
+  &:first-child {
+    h1, h2, h3 {
+      margin-top: 0;
+    }
+  }
+}
+
+.clearfix {
+  clear: both;
+}

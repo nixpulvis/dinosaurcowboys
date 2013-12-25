@@ -1,22 +1,24 @@
-<h1><%= @user.name %></h1>
-Birthday <%= @user.birthday %><br />
-Member since <%= @user.created_at %><br />
+<div class="panel">
+  <h1><%= @user.name %></h1>
+  Birthday <%= @user.birthday %><br />
+  Member since <%= @user.created_at %><br />
 
-<% if @user.rank %>
-  Current rank <%= @user.rank.name %><br />
-<% end %>
+  <% if @user.rank %>
+    Current rank <%= @user.rank.name %><br />
+  <% end %>
 
-<%= link_to "Edit", edit_user_path(@user) %>
+  <%= link_to "Edit", edit_user_path(@user) %>
 
-<h2>Charaters</h2>
-<ul>
-<% @user.characters.each do |character| %>
-  <li>
-    <%= character.name %> - <%= character.server %>
-    <% if character.main? %>
-      (main)
-    <% end %>
-  </li>
-<% end %>
-</ul>
-<%= link_to "Add character", new_user_character_path(@user) %>
+  <h2>Charaters</h2>
+  <ul>
+  <% @user.characters.each do |character| %>
+    <li>
+      <%= character.name %> - <%= character.server %>
+      <% if character.main? %>
+        (main)
+      <% end %>
+    </li>
+  <% end %>
+  </ul>
+  <%= link_to "Add character", new_user_character_path(@user) %>
+</div>

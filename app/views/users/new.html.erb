@@ -1,25 +1,46 @@
 <div class="panel">
-  <h1 class="temp">Sign up</h1>
+  <h1>Sign up</h1>
 
   <%= form_for(User.new) do |f| %>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, :autofocus => true %>
+    <div>
+      <%= f.label :first_name %><br />
+      <%= f.text_field :first_name, :autofocus => true %>
+    </div>
 
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
+    <div>
+      <%= f.label :last_name %><br />
+      <%= f.text_field :last_name %>
+    </div>
 
-    <%= f.label :birthday %>
-    <%= f.date_select(:birthday, :start_year => 1980) %>
+    <div>
+      <%= f.label :birthday %><br />
+      <%= f.date_select(:birthday,
+                        :start_year => 1980,
+                        order: [:month, :day, :year],
+                        prompt: {
+                          day: 'Select day',
+                          month: 'Select month',
+                          year: 'Select year'
+                        }) %>
+    </div>
 
-    <%= f.label :email %>
-    <%= f.email_field :email %>
+    <div>
+      <%= f.label :email %><br />
+      <%= f.email_field :email %>
+    </div>
 
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+    <div>
+      <%= f.label :password %><br />
+      <%= f.password_field :password %>
+    </div>
 
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
+    <div>
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation %>
+    </div>
 
-    <%= f.submit "Sign up", :class => "button" %>
+    <div>
+      <%= f.submit "Sign up" %>
+    </div>
   <% end %>
 </div>
