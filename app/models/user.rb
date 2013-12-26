@@ -5,6 +5,10 @@ class User < ActiveRecord::Base
   has_many :characters, dependent: :destroy
   belongs_to :rank
 
+  validates :email, :presence => true
+
+  accepts_nested_attributes_for :characters
+
   def main_character
     self.characters.select { |c| c.main? }[0]
   end

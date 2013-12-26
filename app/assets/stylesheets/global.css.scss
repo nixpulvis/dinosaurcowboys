@@ -59,6 +59,18 @@ form {
     margin-bottom: 7px;
   }
 
+  .errors {
+    color: red;
+  }
+
+  .field_with_errors {
+    display: inline-block;
+
+    & > input {
+      border: $border-size solid red;
+    }
+  }
+
 }
 
 /* Custom classes */

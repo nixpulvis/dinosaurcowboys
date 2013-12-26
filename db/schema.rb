@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(version: 20131223055800) do
   end
 
   create_table "characters", force: true do |t|
-    t.string   "name"
-    t.string   "server"
-    t.boolean  "main?"
+    t.string   "name",                      null: false
+    t.string   "server",                    null: false
+    t.boolean  "main?",      default: true
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20131223055800) do
   end
 
   create_table "ranks", force: true do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

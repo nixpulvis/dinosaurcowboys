@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
-  def show
-    @user = User.find(params[:id])
+  def new
+    @user = User.new
+    @user.characters.build
   end
 
   def create
@@ -13,6 +14,10 @@ class UsersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   def edit
@@ -40,7 +45,7 @@ class UsersController < ApplicationController
   protected
 
   def user_params(password: false)
-    permit = [:first_name, :last_name, :email, :birthday, :rank_id]
+    permit = [:email, :rank_id, :characters_attributes => [:name, :server]]
 
     if password
       permit << [:password, :password_confirmation]

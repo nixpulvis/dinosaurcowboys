@@ -1,7 +1,27 @@
 <div class="panel">
   <h1>Sign up</h1>
 
-  <%= form_for(User.new) do |f| %>
+  <%= form_for(@user) do |f| %>
+    <% if @user.errors %>
+    <ul class="errors">
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+    <% end %>
+
+    <%= f.fields_for :characters do |c| %>
+      <div>
+        <%= c.label :name, "Character Name" %><br />
+        <%= c.text_field :name %>
+      </div>
+
+      <div>
+        <%= c.label :server, "Character Server" %><br />
+        <%= c.text_field :server %>
+      </div>
+    <% end %>
+
     <div>
       <%= f.label :email %><br />
       <%= f.email_field :email %>

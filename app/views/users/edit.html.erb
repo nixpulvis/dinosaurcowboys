@@ -2,6 +2,14 @@
   <h2>Edit user</h2>
 
   <%= form_for(@user) do |f| %>
+    <% if @user.errors %>
+    <ul class="errors">
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+    <% end %>
+
     <%= f.label :email %><br />
     <%= f.email_field :email %><br />
 

@@ -2,6 +2,14 @@
   <h2>New character</h2>
 
   <%= form_for(@character, url: { action: "create" }) do |f| %>
+    <% if @character.errors %>
+    <ul class="errors">
+    <% @character.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+    <% end %>
+
     <%= f.label :name %><br />
     <%= f.text_field :name, :autofocus => true %><br />
 

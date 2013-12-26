@@ -12,6 +12,8 @@ class CharactersController < ApplicationController
     # First character should be the main.
     if @user.characters.count == 0
       @character.send(:"main?=", true)
+    else
+      @character.send(:"main?=", false)
     end
 
     if @character.save
@@ -32,10 +34,10 @@ class CharactersController < ApplicationController
     @core = []
     @applicants = []
     User.all.each do |user|
-      if core_ranks.include?(user.rank.name)
-        @core << user.main_character
-      elsif user.rank.name == "Applicant"
-        @applicants << user.main_character
+      if user.rank && core_ranks.include?(user.rank.name)
+        @core << user.main_character if user.main_character
+      elsif user.rank && user.rank.name == "Applicant"
+        @applicants << user.main_character if user.main_character
       end
     end
   end
