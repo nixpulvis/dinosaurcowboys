@@ -13,7 +13,11 @@ PartyShark::Application.routes.draw do
   end
 
   resources :raids do
-    resources :bosses
+    resources :posts
+
+    resources :bosses do
+      resources :posts
+    end
   end
 
 end

@@ -1,4 +1,18 @@
 <div class="panel">
   <h1><%= @boss.name %></h1>
   <p>From <%= @raid.name %></p>
+
+  <% @posts.each do |post| %>
+  <div class="panel">
+    <%= post.body %><br />
+    <%= post.user.email %>
+  </div>
+  <% end %>
+
+  <%= form_for([@raid, @boss, @boss.posts.build]) do |f| %>
+    <div>
+      <%= f.text_field :body %>
+      <%= f.submit "Post" %>
+    </div>
+  <% end %>
 </div>
