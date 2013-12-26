@@ -25,7 +25,7 @@ class BossesController < ApplicationController
   protected
 
   def boss_params
-    params.require(:boss).permit(:name)
+    params.require(:boss).permit(:name, :content)
   end
 
 end

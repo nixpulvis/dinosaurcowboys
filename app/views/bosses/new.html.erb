@@ -2,9 +2,18 @@
   <h2>New boss</h2>
 
   <%= form_for @boss, url: { :action => "create" } do |f| %>
-    <%= f.label :name %><br />
-    <%= f.text_field :name, :autofocus => true %><br />
+    <div>
+      <%= f.label :name %><br />
+      <%= f.text_field :name, :autofocus => true %>
+    </div>
 
-    <div><%= f.submit "Create" %></div>
+    <div>
+      <%= f.label :content %><br />
+      <%= f.text_area :content %>
+    </div>
+
+    <div>
+      <%= f.submit "Create" %>
+    </div>
   <% end %>
 </div>

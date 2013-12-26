@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20131226053243) do
 
   create_table "bosses", force: true do |t|
     t.string   "name"
+    t.text     "content"
     t.integer  "raid_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(version: 20131226053243) do
   create_table "raids", force: true do |t|
     t.string   "name"
     t.integer  "tier"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

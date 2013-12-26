@@ -26,7 +26,7 @@ class RaidsController < ApplicationController
   protected
 
   def raid_params
-    params.require(:raid).permit(:name, :tier)
+    params.require(:raid).permit(:name, :tier, :content)
   end
 
 end
