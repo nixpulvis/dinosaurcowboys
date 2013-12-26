@@ -3,28 +3,6 @@
 
   <%= form_for(User.new) do |f| %>
     <div>
-      <%= f.label :first_name %><br />
-      <%= f.text_field :first_name, :autofocus => true %>
-    </div>
-
-    <div>
-      <%= f.label :last_name %><br />
-      <%= f.text_field :last_name %>
-    </div>
-
-    <div>
-      <%= f.label :birthday %><br />
-      <%= f.date_select(:birthday,
-                        :start_year => 1980,
-                        order: [:month, :day, :year],
-                        prompt: {
-                          day: 'Select day',
-                          month: 'Select month',
-                          year: 'Select year'
-                        }) %>
-    </div>
-
-    <div>
       <%= f.label :email %><br />
       <%= f.email_field :email %>
     </div>

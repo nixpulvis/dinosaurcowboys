@@ -2,15 +2,6 @@
   <h2>Edit user</h2>
 
   <%= form_for(@user) do |f| %>
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, :autofocus => true %><br />
-
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %><br />
-
-    <%= f.label :birthday %><br />
-    <%= f.date_select(:birthday, :start_year => 1980) %><br />
-
     <%= f.label :email %><br />
     <%= f.email_field :email %><br />
 

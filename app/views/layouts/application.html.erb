@@ -40,7 +40,7 @@
 
   <ul class="session-links">
     <% if user_signed_in? %>
-      <li><%= link_to current_user.name, user_path(current_user) %></li>
+      <li><%= link_to "Account", user_path(current_user) %></li>
       <% unless current_user.rank %>
       <li><a href="#">Apply</a></li>
       <% end %>
