@@ -3,12 +3,12 @@
   <p>From <%= @raid.name %></p>
 
   <div>
-    <%= simple_format @boss.content %>
+    <%= raw @boss.markdown(:content) %>
   </div>
 
   <% @posts.each do |post| %>
     <div class="panel">
-      <%= post.body %><br />
+      <%= raw post.markdown(:body) %><br />
       <%= post.user.email %>
     </div>
   <% end %>

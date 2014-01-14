@@ -1,4 +1,6 @@
 class Boss < ActiveRecord::Base
+  include PartyShark::Markdownable
+
   belongs_to :raid
   has_many :posts, :as => :postable, :dependent => :destroy
 

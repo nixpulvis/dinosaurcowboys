@@ -10,12 +10,12 @@
   <%= link_to "Add boss", new_raid_boss_path(@raid) %>
 
   <div>
-    <%= simple_format @raid.content %>
+    <%= raw @raid.markdown(:content) %>
   </div>
 
   <% @posts.each do |post| %>
     <div class="panel">
-      <%= post.body %><br />
+      <%= raw post.markdown(:body) %><br />
       <%= post.user.email %>
     </div>
   <% end %>

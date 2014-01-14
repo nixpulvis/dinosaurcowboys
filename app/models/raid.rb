@@ -1,4 +1,6 @@
 class Raid < ActiveRecord::Base
+  include PartyShark::Markdownable
+
   has_many :bosses, :dependent => :destroy
   has_many :posts, :as => :postable, :dependent => :destroy
 

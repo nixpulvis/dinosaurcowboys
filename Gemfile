@@ -10,6 +10,12 @@ gem 'pg'
 # Use devise for user authentication.
 gem 'devise'
 
+# Redcarpet for markdown parsing.
+gem 'redcarpet'
+
+# Sanitize for peace of mind from mean users.
+gem 'sanitize'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
