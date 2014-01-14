@@ -1,10 +1,20 @@
 class CharactersController < ApplicationController
 
+  # TODO: Access control for all needed actions.
+  # TODO: Add destroy action.
+
+  # GET /users/:id/character/new
+  # Get the given user, and build it a character for it.
+  #
   def new
     @user = User.find(params[:user_id])
     @character = @user.characters.build
   end
 
+  # POST /users/:id/character
+  # Creates a new Character with the passed in parameters. Redisplays the
+  # new page when there are errors.
+  #
   def create
     @user = User.find(params[:user_id])
     @character = @user.characters.build(character_params)
@@ -23,6 +33,9 @@ class CharactersController < ApplicationController
     end
   end
 
+  # GET /roster
+  # Provides the users that are part of the core, and applicants.
+  #
   def roster
     core_ranks = [
       "Guild Master",
@@ -31,6 +44,7 @@ class CharactersController < ApplicationController
       "Raider"
     ]
 
+    # TODO: Use one instance variable, and clean this up.
     @core = []
     @applicants = []
     User.all.each do |user|
@@ -44,6 +58,9 @@ class CharactersController < ApplicationController
 
   protected
 
+  # character_params: -> Hash
+  # Permits the character fields for assignment.
+  #
   def character_params
     params.require(:character).permit(:name, :server, :main?)
   end
