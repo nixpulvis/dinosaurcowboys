@@ -10,5 +10,13 @@
  *
  *= require_self
  *= require normalize-rails
- *= require_tree .
  */
+@import "global";
+
+@import "bosses";
+@import "characters";
+@import "layout";
+@import "pages";
+@import "posts";
+@import "raids";
+@import "users";

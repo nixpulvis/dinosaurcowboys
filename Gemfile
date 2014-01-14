@@ -13,6 +13,9 @@ gem 'devise'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
+# Use bourbon for our lightweight CSS framework.
+gem 'bourbon'
+
 # Normalize CSS.
 gem 'normalize-rails'
 
