@@ -19,11 +19,15 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %><br />
 
-    <%= f.label :rank %><br />
-    <%= f.collection_select(:rank_id, Rank.all, :id, :name, include_blank: 'None') %><br />
+    <% if current_user.admin? %>
+    <div class="admin">
+      <%= f.label :rank %><br />
+      <%= f.collection_select(:rank_id, Rank.all, :id, :name, include_blank: 'None') %><br />
 
-    <%= f.check_box :admin? %>
-    <%= f.label :admin? %><br />
+      <%= f.check_box :admin? %>
+      <%= f.label :admin? %><br />
+    </div>
+    <% end %>
 
     <%= f.submit "Edit user" %>
   <% end %>

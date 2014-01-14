@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
 
-  # TODO: Access control for all needed actions.
-
   # GET /users
   # As admin, provides all the users.
   # As non-admin, redirects with access error.
   #
   def index
+    unauthorized unless current_user.admin?
     @users = User.all
   end
 
@@ -40,6 +39,7 @@ class UsersController < ApplicationController
   #
   def show
     @user = User.find(params[:id])
+    unauthorized unless current_user.admin? || current_user == @user
   end
 
   # GET /users/:id/edit
@@ -49,6 +49,7 @@ class UsersController < ApplicationController
   #
   def edit
     @user = User.find(params[:id])
+    unauthorized unless current_user.admin? || current_user == @user
   end
 
   # PATCH or PUT /users/:id
@@ -58,6 +59,7 @@ class UsersController < ApplicationController
   #
   def update
     @user = User.find(params[:id])
+    unauthorized unless current_user.admin? || current_user == @user
 
     # Assume user is trying to update password if either field is not blank.
     password = params[:user][:password].present? ||
