@@ -28,19 +28,48 @@ form {
     margin-bottom: 2px;
   }
 
-  input, textarea {
+  input, textarea, select {
     margin-bottom: 10px;
     padding: 5px;
     background: $border-color;
     border: $border-size solid $border-color;
     border-radius: 3px;
     color: $text-color;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 
     &:focus {
       padding: -2px;
       outline: none;
       border: $border-size solid $link-color;
     }
+  }
+
+  select {
+    &:focus {
+      padding: 7px;
+      border: none;
+    }
+  }
+
+  input[type=checkbox], input[type=radio] {
+    display: inline-block;
+    font-size: 15px;
+    line-height: 1em;
+    margin: 0 0.25em 0 0;
+    padding: 0;
+    width: 1.25em;
+    height: 1.25em;
+    -webkit-border-radius: 0.25em;
+    vertical-align: text-top;
+  }
+
+  input[type=checkbox]:checked {
+    background-color: $link-color;
+  }
+
+  input[type=radio] {
+    -webkit-border-radius: 2em; /* Make radios round */
   }
 
   input[type="submit"] {
@@ -53,10 +82,6 @@ form {
       background: $link-color;
       color: $background-color;
     }
-  }
-
-  select {
-    margin-bottom: 7px;
   }
 
   .errors {
