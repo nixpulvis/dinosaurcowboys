@@ -4,7 +4,7 @@
   <h2>Core</h2>
   <ul>
     <% @core.each do |character| %>
-    <li><%= character.name %></li>
+    <li><%= link_to character.name, user_character_path(character.user, character) %></li>
     <% end %>
   </ul>
 

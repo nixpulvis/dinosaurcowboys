@@ -1,21 +1,25 @@
-<div class="panel">
-  <h1>Account</h1>
-  <% if @user.rank %>
-    Current rank <%= @user.rank.name %><br />
-  <% end %>
+<div class="panel clearfix">
+  <div class="account">
+    <h1>Account</h1>
 
-  <%= link_to "Edit", edit_user_path(@user) %>
+    Email: <%= @user.email %><br />
 
-  <h2>Charaters</h2>
-  <ul>
-  <% @user.characters.each do |character| %>
-    <li>
-      <%= character.name %> - <%= character.server %>
-      <% if character.main? %>
-        (main)
-      <% end %>
-    </li>
-  <% end %>
-  </ul>
-  <%= link_to "Add character", new_user_character_path(@user) %>
+    <% if @user.rank %>
+      Rank: <%= @user.rank.name %><br />
+    <% end %>
+
+    <%= link_to "Edit", edit_user_path(@user) %>
+  </div>
+
+  <div class="character">
+    <h1>Charaters</h1>
+    <ul>
+    <% @user.characters.each do |character| %>
+      <li class="<%= character.main? ? "main" : "alt" %>">
+        <%= link_to character, user_character_path(@user, character) %>
+      </li>
+    <% end %>
+    </ul>
+    <%= link_to "Add", new_user_character_path(@user) %>
+  </div>
 </div>

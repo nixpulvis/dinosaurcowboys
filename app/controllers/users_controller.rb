@@ -68,6 +68,14 @@ class UsersController < ApplicationController
     # You can't make yourself not an admin.
     admin = current_user.admin? && current_user != @user
 
+    # Append an error for the admin field.
+    if params[:user][:admin] == "0" && !admin
+      puts "\n\n\nasdasda\n\n\n"
+      @user.errors.add(:admin, "can't be disabled by the same user")
+      render :edit
+      return
+    end
+
     if @user.update_attributes(user_params(password: password, admin: admin))
       redirect_to @user
     else

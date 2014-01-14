@@ -11,6 +11,8 @@
  *= require_self
  *= require normalize-rails
  */
+@import "bourbon";
+
 @import "global";
 
 @import "bosses";

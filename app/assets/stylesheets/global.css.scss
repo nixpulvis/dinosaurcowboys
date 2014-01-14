@@ -3,7 +3,7 @@ $border-color: #404040;
 $background-color: #242424;
 $topbar-hover-color: #122939;
 $link-color: #fece2f;
-$text-color: #ccc;
+$text-color: #eee;
 
 $border-size: 2px;
 $border-radius-size: 3px;
@@ -121,5 +121,5 @@ form {
 }
 
 .clearfix {
-  clear: both;
+  @include clearfix;
 }

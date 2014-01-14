@@ -1,0 +1,8 @@
+<div class="panel">
+  <h1><%= @character %></h1>
+
+  <% if has_access(@user) %>
+  <%= link_to "Edit", edit_user_character_path(@user, @character) %>
+  <%= link_to "Delete", user_character_path(@user, @character), method: :delete %>
+  <% end %>
+</div>

@@ -1,0 +1,27 @@
+$fg-column: 60px;             // Column Width
+$fg-gutter: 25px;             // Gutter Width
+$fg-max-columns: 12;          // Total Columns For Main Container
+
+.users.show {
+  .account {
+    float: left;
+    width: flex-grid(4);
+    margin-left: flex-gutter();
+  }
+
+  .character {
+    float: left;
+    width: flex-grid(4);
+    margin-left: flex-gutter();
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li.main {
+      font-weight: bold;
+    }
+  }
+}
