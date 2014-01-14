@@ -1,0 +1,13 @@
+<div class="panel">
+  <h1>Users</h1>
+  <ul>
+  <% @users.each do |user| %>
+    <li>
+      <%= link_to user, user %>
+      <% if user.rank %>
+        - <%= user.rank %>
+      <% end %>
+    </li>
+  <% end %>
+  </ul>
+</div>
