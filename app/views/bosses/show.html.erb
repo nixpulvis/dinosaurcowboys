@@ -11,7 +11,7 @@
   <% end %>
   <%= paginate @posts %>
 
-  <%= form_for([@raid, @boss, @boss.posts.build]) do |f| %>
+  <%= form_for([@boss, @boss.posts.build]) do |f| %>
     <%= render "shared/posts/new", f: f %>
   <% end %>
 </div>

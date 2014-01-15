@@ -1,8 +1,7 @@
 class PostsController < ApplicationController
-  before_filter :load_postable
 
   def create
-    @post = @postable.posts.build(post_params)
+    @post = postable.posts.build(post_params)
     @post.user = current_user
 
     if @post.save
@@ -18,9 +17,9 @@ class PostsController < ApplicationController
     params.require(:post).permit(:body)
   end
 
-  def load_postable
+  def postable
     id, resource = request.path.split('/').reverse[1,2]
-    @postable = resource.singularize.classify.constantize.find(id)
+    resource.singularize.classify.constantize.find(id)
   end
 
 end

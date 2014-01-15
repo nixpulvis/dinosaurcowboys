@@ -13,11 +13,14 @@ PartyShark::Application.routes.draw do
   end
 
   resources :raids do
-    resources :posts
+    resources :bosses
+  end
 
-    resources :bosses do
-      resources :posts
-    end
+  scope 'raids/:raid_id', :as => :raid do
+    resources :posts
+  end
+  scope 'bosses/:boss_id', :as => :boss do
+    resources :posts
   end
 
 end
