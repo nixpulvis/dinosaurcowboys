@@ -93,9 +93,9 @@ class CharactersController < ApplicationController
     @applicants = []
     User.all.each do |user|
       if user.rank && core_ranks.include?(user.rank.name)
-        @core << user.main_character if user.main_character
+        @core << user.main if user.main
       elsif user.rank && user.rank.name == "Applicant"
-        @applicants << user.main_character if user.main_character
+        @applicants << user.main if user.main
       end
     end
   end
