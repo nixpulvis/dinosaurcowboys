@@ -1,0 +1,15 @@
+<div class="post">
+  <div class="user">
+    <%= post.user %>
+    <%= post.created_at %>
+
+    <% if has_access(post.user) %>
+    edit
+    delete
+    <% end %>
+  </div>
+
+  <div class="content">
+    <%= raw post.markdown(:body) %><br />
+  </div>
+</div>

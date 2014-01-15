@@ -19,7 +19,7 @@ class BossesController < ApplicationController
   def show
     @raid = Raid.find(params[:raid_id])
     @boss = @raid.bosses.find_by_param(params[:id])
-    @posts = @boss.posts
+    @posts = @boss.posts.page(params[:page])
   end
 
   protected

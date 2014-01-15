@@ -20,7 +20,7 @@ class RaidsController < ApplicationController
 
   def show
     @raid = Raid.find(params[:id])
-    @posts = @raid.posts
+    @posts = @raid.posts.page(params[:page])
   end
 
   protected

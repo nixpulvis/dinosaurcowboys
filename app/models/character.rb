@@ -5,6 +5,6 @@ class Character < ActiveRecord::Base
   validates :server, :presence => true
 
   def to_s
-    "#{self.name}-#{self.server}"
+    self.name
   end
 end

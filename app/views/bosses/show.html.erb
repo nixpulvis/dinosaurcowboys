@@ -7,16 +7,10 @@
   </div>
 
   <% @posts.each do |post| %>
-    <div class="panel">
-      <%= raw post.markdown(:body) %><br />
-      <%= post.user.email %>
-    </div>
+    <%= render "shared/posts/show", post: post %>
   <% end %>
 
   <%= form_for([@raid, @boss, @boss.posts.build]) do |f| %>
-    <div>
-      <%= f.text_field :body %>
-      <%= f.submit "Post" %>
-    </div>
+    <%= render "shared/posts/new", f: f %>
   <% end %>
 </div>

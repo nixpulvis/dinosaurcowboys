@@ -16,6 +16,9 @@ gem 'redcarpet'
 # Sanitize for peace of mind from mean users.
 gem 'sanitize'
 
+# Pagination support.
+gem 'kaminari'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
