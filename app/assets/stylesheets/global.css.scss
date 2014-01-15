@@ -5,7 +5,7 @@ $topbar-hover-color: #122939;
 $link-color: #fece2f;
 $text-color: #eee;
 
-$post-background-color: #111;
+$post-background-color: #1b1b1b;
 
 $border-size: 2px;
 $border-radius-size: 3px;
@@ -138,17 +138,9 @@ nav.pagination {
 
 .post {
   margin-bottom: 10px;
+  padding: 10px;
   background-color: $post-background-color;
   border-radius: $border-radius-size;
-
-  .user {
-    padding: 10px;
-    border-bottom: 1px solid $border-color;
-  }
-
-  .content {
-    padding: 10px;
-  }
 }
 
 .button {
