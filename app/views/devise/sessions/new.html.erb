@@ -23,5 +23,6 @@
     </div>
   <% end %>
 
-  <%= render "devise/shared/links" %>
+  Not a member yet? <%= link_to "Sign up", new_user_path %><br />
+  <%= link_to "Forgot your password?", new_user_password_path %>
 </div>
