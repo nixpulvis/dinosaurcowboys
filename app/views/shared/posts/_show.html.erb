@@ -4,12 +4,18 @@
     <%= post.created_at %>
 
     <% if has_access(post.user) %>
-    edit
-    delete
+    <%= link_to "edit", "#", class: "edit-button" %>
+    <%= link_to "delete", polymorphic_path([post.postable, post]), method: :delete %>
     <% end %>
   </div>
 
-  <div class="content">
+  <div class="content noedit">
     <%= raw post.markdown(:body) %><br />
   </div>
+
+  <%= form_for([post.postable, post]) do |f| %>
+    <div class="content edit">
+      <%= render "shared/posts/edit", f: f %>
+    </div>
+  <% end %>
 </div>

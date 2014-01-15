@@ -1,3 +1,10 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+# Our namespace.
+N = window.Nixpulvis = window.Nixpulvis || {'functions' : []}
+
+$ ->
+  $('.post form').hide()
+
+  $('.post .edit-button').click (e) ->
+    e.preventDefault()
+    $(e.target).parent().siblings('.content.noedit').toggle()
+    $(e.target).parent().siblings('form').toggle()

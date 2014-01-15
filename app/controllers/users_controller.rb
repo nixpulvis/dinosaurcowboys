@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 
+  before_filter only: [:update, :destory] do
+    @user = User.find(params[:id])
+    unauthorized unless current_user.admin? || current_user == @user
+  end
+
   # GET /users
   # As admin, provides all the users.
   # As non-admin, redirects with access error.
@@ -58,9 +63,6 @@ class UsersController < ApplicationController
   # As non-admin, redirects with access error.
   #
   def update
-    @user = User.find(params[:id])
-    unauthorized unless current_user.admin? || current_user == @user
-
     # Assume user is trying to update password if either field is not blank.
     password = params[:user][:password].present? ||
                params[:user][:password_confirmation].present?

@@ -35,6 +35,8 @@ form {
   }
 
   input, textarea, select {
+    @include box-sizing(border-box);
+
     margin-bottom: 10px;
     padding: 5px;
     background: $border-color;
@@ -89,7 +91,7 @@ form {
   .field_with_errors {
     display: inline-block;
 
-    & > input {
+    & > input, textarea, select {
       border: $border-size solid red;
     }
   }
@@ -141,6 +143,13 @@ nav.pagination {
   padding: 10px;
   background-color: $post-background-color;
   border-radius: $border-radius-size;
+}
+
+.post-editor {
+  textarea {
+    width: 100%;
+    height: 200px;
+  }
 }
 
 .button {

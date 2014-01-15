@@ -17,10 +17,10 @@ PartyShark::Application.routes.draw do
   end
 
   scope 'raids/:raid_id', :as => :raid do
-    resources :posts
+    resources :posts, :only => [:create, :update, :destroy]
   end
   scope 'bosses/:boss_id', :as => :boss do
-    resources :posts
+    resources :posts, :only => [:create, :update, :destroy]
   end
 
 end

@@ -1,5 +1,10 @@
 class PostsController < ApplicationController
 
+  before_filter except: :create do
+    @post = Post.find(params[:id])
+    unauthorized unless current_user.admin? || current_user == @post.user
+  end
+
   def create
     @post = postable.posts.build(post_params)
     @post.user = current_user
@@ -9,6 +14,19 @@ class PostsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def update
+    if @post.update_attributes(post_params)
+      redirect_to polymorphic_path(@post.postable)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @post.destroy
+    redirect_to polymorphic_path(@post.postable)
   end
 
   private
