@@ -9,6 +9,7 @@
   <% @posts.each do |post| %>
     <%= render "shared/posts/show", post: post %>
   <% end %>
+  <%= paginate @posts %>
 
   <%= form_for([@raid, @boss, @boss.posts.build]) do |f| %>
     <%= render "shared/posts/new", f: f %>
