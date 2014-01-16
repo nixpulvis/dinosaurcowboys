@@ -1,6 +1,3 @@
-# Our namespace.
-N = window.Nixpulvis = window.Nixpulvis || {'functions' : []}
-
 $ ->
   $('.post form').hide()
 

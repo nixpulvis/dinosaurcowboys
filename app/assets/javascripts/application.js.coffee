@@ -1,8 +1,6 @@
 #= require jquery
 #= require jquery_ujs
-#= require turbolinks
+#= require jquery.turbolinks
 #= require power
 #= require_tree .
-
-# Our namespace.
-N = window.Nixpulvis = window.Nixpulvis || {'functions' : []}
+#= require turbolinks
