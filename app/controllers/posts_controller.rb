@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     @post.user = current_user
 
     if @post.save
-      redirect_to :back
+      redirect_to postable_path(@post.postable)
     else
       render :new
     end
@@ -18,7 +18,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update_attributes(post_params)
-      redirect_to polymorphic_path(@post.postable)
+      redirect_to postable_path(@post.postable)
     else
       render :edit
     end
@@ -26,7 +26,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to polymorphic_path(@post.postable)
+    redirect_to postable_path(@post.postable)
   end
 
   private
@@ -38,6 +38,16 @@ class PostsController < ApplicationController
   def postable
     id, resource = request.path.split('/').reverse[1,2]
     resource.singularize.classify.constantize.find(id)
+  end
+
+
+  def postable_path(postable)
+    if postable.is_a? Raid
+      raid_path(postable)
+    elsif postable.is_a? Boss
+      raid = postable.raid
+      raid_boss_path(raid, postable)
+    end
   end
 
 end
