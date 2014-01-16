@@ -1,0 +1,19 @@
+<div class="panel">
+  <h1>
+    <%= @topic %>
+    <span class="breadcrumbs">
+      <%= link_to "Forums", forums_path %> /
+      <%= link_to @topic.forum, forum_path(@topic.forum) %>
+    </span>
+  </h1>
+
+  <% @posts.each do |post| %>
+    <%= render "shared/posts/show", post: post %>
+  <% end %>
+  <%= paginate @posts %>
+
+  <h3>New Post</h3>
+  <%= form_for([@topic, @topic.posts.build]) do |f| %>
+    <%= render "shared/posts/edit", f: f %>
+  <% end %>
+</div>

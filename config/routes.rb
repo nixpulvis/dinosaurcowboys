@@ -23,4 +23,12 @@ PartyShark::Application.routes.draw do
     resources :posts, :only => [:create, :update, :destroy]
   end
 
+  resources :forums do
+    resources :topics, :except => :index
+  end
+
+  scope 'topics/:topic_id', :as => :topic do
+    resources :posts, :only => [:create, :update, :destroy]
+  end
+
 end

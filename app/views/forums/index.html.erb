@@ -1,0 +1,11 @@
+<div class="panel">
+  <h1>Forums</h1>
+
+  <%= link_to "New Forum", new_forum_path %>
+
+  <ul>
+    <% @forums.each do |forum| %>
+    <li><%= link_to forum, forum_path(forum) %></li>
+    <% end %>
+  </ul>
+</div>

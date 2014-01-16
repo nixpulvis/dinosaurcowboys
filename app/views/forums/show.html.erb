@@ -1,0 +1,11 @@
+<div class="panel">
+  <h1><%= @forum %></h1>
+
+  <%= link_to "New Topic", new_forum_topic_path(@forum) %>
+
+  <ul>
+    <% @topics.each do |topic| %>
+    <li><%= link_to topic, forum_topic_path(@forum, topic) %></li>
+    <% end %>
+  </ul>
+</div>

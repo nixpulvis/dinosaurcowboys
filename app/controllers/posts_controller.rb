@@ -45,8 +45,9 @@ class PostsController < ApplicationController
     if postable.is_a? Raid
       raid_path(postable)
     elsif postable.is_a? Boss
-      raid = postable.raid
-      raid_boss_path(raid, postable)
+      raid_boss_path(postable.raid, postable)
+    elsif postable.is_a? Topic
+      forum_topic_path(postable.forum, postable)
     end
   end
 

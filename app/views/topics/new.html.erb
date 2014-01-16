@@ -1,0 +1,22 @@
+<div class="panel">
+  <h1>New Topic</h1>
+
+  <%= form_for([@forum, @topic], url: forum_topics_path(@forum)) do |f| %>
+    <% if @topic.errors %>
+    <ul class="errors">
+    <% @topic.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+    <% end %>
+
+    <div>
+      <%= f.label :title %><br />
+      <%= f.text_field :title %>
+    </div>
+
+    <div>
+      <%= f.submit "Create" %>
+    </div>
+  <% end %>
+</div>
