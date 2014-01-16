@@ -1,6 +1,8 @@
 <div class="panel">
-  <h1><%= @boss.name %></h1>
-  <p>From <%= @raid.name %></p>
+  <h1>
+    <%= @boss.name %>
+    <span class="sub"><%= link_to @raid.name, raid_path(@raid) %></span>
+  </h1>
 
   <div>
     <%= raw @boss.markdown(:content) %>

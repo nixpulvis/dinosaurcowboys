@@ -1,7 +1,9 @@
 <div class="panel">
-  <h1><%= @raid.name %></h1>
+  <h1>
+    <%= @raid.name %>
+    <span class="sub"><%= link_to "All Raids", raids_path %></span>
+  </h1>
 
-  <h2>Bosses</h2>
   <ul>
     <% @raid.bosses.each do |boss| %>
     <li><%= link_to boss.name, raid_boss_path(@raid, boss) %></li>
