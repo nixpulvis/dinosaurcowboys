@@ -22,6 +22,8 @@ class CharactersController < ApplicationController
     # First character should be the main.
     if @user.characters.count == 0
       @character.main = true
+    else
+      @character.main = false
     end
 
     if @character.save
