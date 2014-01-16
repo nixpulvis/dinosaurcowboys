@@ -1,7 +1,7 @@
 <div class="post">
   <div class="user">
     <%= post.user %>
-    <span class="datetime"><%= post.created_at %></span>
+    <abbr class="datetime" title="<%= post.created_at %>"><%= post.created_at.iso8601 %></abbr>
 
     <ul class="actions">
       <% if has_access(post.user) %>

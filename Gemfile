@@ -25,6 +25,9 @@ gem 'sass-rails', '~> 4.0.0'
 # Use bourbon for our lightweight CSS framework.
 gem 'bourbon'
 
+# Use moment for client side time handling.
+gem 'momentjs-rails'
+
 # Normalize CSS.
 gem 'normalize-rails'
 

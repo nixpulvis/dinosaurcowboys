@@ -75,6 +75,8 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.2)
     minitest (4.7.5)
+    momentjs-rails (2.5.0)
+      railties (>= 3.1)
     multi_json (1.8.2)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
@@ -155,6 +157,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   kaminari
+  momentjs-rails
   normalize-rails
   pg
   rails (= 4.0.2)
