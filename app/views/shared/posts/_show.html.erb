@@ -1,12 +1,15 @@
 <div class="post">
   <div class="user">
     <%= post.user %>
-    <%= post.created_at %>
+    <span class="datetime"><%= post.created_at %></span>
 
-    <% if has_access(post.user) %>
-    <%= link_to "edit", "#", class: "edit-button" %>
-    <%= link_to "delete", polymorphic_path([post.postable, post]), method: :delete %>
-    <% end %>
+    <ul class="actions">
+      <% if has_access(post.user) %>
+      <%= link_to "Edit", "#", class: "edit-button" %>
+      <%= link_to "Delete", polymorphic_path([post.postable, post]),
+        method: :delete, confirm: "Are you sure?" %>
+      <% end %>
+    </ul>
   </div>
 
   <div class="content noedit">
