@@ -6,11 +6,27 @@
     </span>
   </h1>
 
-  <%= link_to "New Topic", new_forum_topic_path(@forum) %>
-
-  <ul>
+  <table class="topic list">
+    <tr>
+      <th>Topics</th>
+      <th>Posts</th>
+      <th>Views</th>
+      <th>Last Poster</th>
+      <th>Freshness</th>
+    </tr>
     <% @topics.each do |topic| %>
-    <li><%= link_to topic, forum_topic_path(@forum, topic) %></li>
+    <% last_post = topic.posts.last %>
+    <tr>
+      <td><%= link_to topic, forum_topic_path(@forum, topic) %></td>
+      <td class="count"><%= topic.posts.count %></td>
+      <td class="views"><%= rand(100) %></td>
+      <td class="last-poster"><%= last_post.user %></td>
+      <td class="freshness">
+        <abbr class="datetime" title="<%= last_post.created_at %>"><%= last_post.created_at.iso8601 %></abbr>
+      </td>
+    </tr>
     <% end %>
-  </ul>
+  </table>
+
+  <%= link_to "New Topic", new_forum_topic_path(@forum) %>
 </div>

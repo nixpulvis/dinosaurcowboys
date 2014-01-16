@@ -1,3 +1,32 @@
-// Place all the styles related to the forums controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+table.list {
+  width: 100%;
+  margin-bottom: 20px;
+  border: $border-size solid $border-color;
+
+  tr {
+
+    &:nth-child(even) {
+      background: darken($background-color, 5%);
+    }
+    &:nth-child(odd) {
+      background: darken($background-color, 2%);
+    }
+    &:first-child {
+      background: none;
+    }
+
+    th {
+      padding: 5px 0 3px 5px;
+      text-align: left;
+    }
+
+    td {
+      padding: 10px;
+      border-right: $border-size solid $border-color;
+    }
+
+    td:last-child {
+      border-right: none;
+    }
+  }
+}
