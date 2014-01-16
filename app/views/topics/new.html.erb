@@ -15,8 +15,8 @@
       <%= f.text_field :title %>
     </div>
 
-    <div>
-      <%= f.submit "Create" %>
-    </div>
+    <%= f.fields_for :posts do |p| %>
+      <%= render "shared/posts/edit", f: p %>
+    <% end %>
   <% end %>
 </div>

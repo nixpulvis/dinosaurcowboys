@@ -1,5 +1,10 @@
 <div class="panel">
-  <h1><%= @forum %></h1>
+  <h1>
+    <%= @forum %>
+    <span class="sub">
+      <%= link_to "Forums", forums_path %>
+    </span>
+  </h1>
 
   <%= link_to "New Topic", new_forum_topic_path(@forum) %>
 

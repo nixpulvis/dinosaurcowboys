@@ -1,7 +1,7 @@
 <div class="panel">
   <h1>
     <%= @topic %>
-    <span class="breadcrumbs">
+    <span class="sub">
       <%= link_to "Forums", forums_path %> /
       <%= link_to @topic.forum, forum_path(@topic.forum) %>
     </span>
