@@ -8,5 +8,5 @@ $ ->
 
   $('.datetime').each ->
     utc_time = $(this).html()
-    display_time = moment(utc_time).fromNow()
-    $(this).html(display_time)
+    $.setIntervalAndExecute 1000, =>
+      $(this).updateTimeFromNow(utc_time)
