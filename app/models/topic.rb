@@ -12,4 +12,8 @@ class Topic < ActiveRecord::Base
   def to_s
     self.title
   end
+
+  def posts_updated_at
+    posts.maximum(:updated_at)
+  end
 end

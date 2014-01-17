@@ -1,11 +1,28 @@
 <div class="panel">
   <h1>Forums</h1>
 
-  <%= link_to "New Forum", new_forum_path %>
-
-  <ul>
+  <ul class="forums">
     <% @forums.each do |forum| %>
-    <li><%= link_to forum, forum_path(forum) %></li>
+    <% freshest_topic = forum.freshest %>
+
+    <li class="forum">
+      <%= link_to forum, forum_path(forum), class: "title" %>
+      <div class="info">
+        <p><%= forum.topics.count %> topics total</p>
+        <% if freshest_topic %>
+        <p>
+          <%= link_to freshest_topic, forum_topic_path(forum, freshest_topic) %>
+          <abbr class="datetime" title="<%= freshest_topic.posts_updated_at %>"><%= freshest_topic.posts_updated_at.iso8601 %></abbr>
+        </p>
+        <% end %>
+      </div>
+    </li>
     <% end %>
   </ul>
+
+  <% if has_access(@forums) %>
+  <%= link_to "New Forum", new_forum_path, class: "button" %>
+  <% end %>
+
+  <%= render "forums/table", topics: @topics, topics_label: "Recent Topics" %>
 </div>

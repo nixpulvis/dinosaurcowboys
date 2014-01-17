@@ -1,0 +1,48 @@
+<table class="topic list">
+  <tr>
+    <th>
+      <%= defined?(topics_label) ? topics_label : "Topics" %>
+    </th>
+
+    <% if params[:action] == "index" %>
+      <th>Forum</th>
+    <% end %>
+
+    <th>Posts</th>
+    <th>Views</th>
+    <th>Last Poster</th>
+    <th>Freshness</th>
+  </tr>
+  <% topics.each do |topic| %>
+  <% last_post = topic.posts.last %>
+  <tr>
+    <td>
+      <%= link_to topic, forum_topic_path(topic.forum, topic) %>
+    </td>
+
+    <% if params[:action] == "index" %>
+    <td class="forum">
+    <%= topic.forum %>
+    </td>
+    <% end %>
+
+    <td class="count">
+      <%= topic.posts.count %>
+    </td>
+
+    <td class="views">
+      <%= rand(100) %>
+    </td>
+    <td class="last-poster">
+      <% if last_post %>
+      <%= link_to last_post.user, user_path(last_post.user) %>
+      <% end %>
+    </td>
+    <td class="freshness">
+      <% if topic.posts.any? %>
+      <abbr class="datetime" title="<%= topic.posts_updated_at %>"><%= topic.posts_updated_at.iso8601 %></abbr>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+</table>

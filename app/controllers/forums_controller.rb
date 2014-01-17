@@ -2,6 +2,7 @@ class ForumsController < ApplicationController
 
   def index
     @forums = Forum.all
+    @topics = Topic.first(5)
   end
 
   def new

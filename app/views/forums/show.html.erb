@@ -6,37 +6,7 @@
     </span>
   </h1>
 
-  <table class="topic list">
-    <tr>
-      <th>Topics</th>
-      <th>Posts</th>
-      <th>Views</th>
-      <th>Last Poster</th>
-      <th>Freshness</th>
-    </tr>
-    <% @topics.each do |topic| %>
-    <% last_post = topic.posts.last %>
-    <tr>
-      <td><%= link_to topic, forum_topic_path(@forum, topic) %></td>
-      <td class="count">
-        <%= topic.posts.count %>
-      </td>
-      <td class="views">
-        <%= rand(100) %>
-      </td>
-      <td class="last-poster">
-        <% if last_post %>
-        <%= link_to last_post.user, user_path(last_post.user) %>
-        <% end %>
-      </td>
-      <td class="freshness">
-        <% if last_post %>
-        <abbr class="datetime" title="<%= last_post.try(:created_at) %>"><%= last_post.try(:created_at).iso8601 %></abbr>
-        <% end %>
-      </td>
-    </tr>
-    <% end %>
-  </table>
+  <%= render "forums/table", topics: @topics %>
 
   <%= link_to "New Topic", new_forum_topic_path(@forum), class: "button" %>
 </div>

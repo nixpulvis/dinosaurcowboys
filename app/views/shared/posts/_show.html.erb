@@ -4,6 +4,12 @@
     <p class="info">
       <span class="name"><%= post.user %></span>
       <abbr class="datetime" title="<%= post.created_at %>"><%= post.created_at.iso8601 %></abbr>
+
+      <% if post.created_at != post.updated_at %>
+      <br />
+      <span class="small">updated</span>
+      <abbr class="datetime" title="<%= post.updated_at %>"><%= post.updated_at.iso8601 %></abbr>
+      <% end %>
     </p>
 
     <ul class="actions">

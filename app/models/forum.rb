@@ -3,6 +3,10 @@ class Forum < ActiveRecord::Base
 
   validates :name, :presence => true
 
+  def freshest
+    topics.select(&:posts_updated_at).max_by(&:posts_updated_at)
+  end
+
   def to_s
     self.name
   end

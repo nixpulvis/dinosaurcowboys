@@ -1,3 +1,38 @@
+ul.forums {
+  display: block;
+  margin: 10px 0;
+  padding: 0;
+  list-style: none;
+
+  .forum {
+    display: inline-block;
+    width: 49%;
+    margin-bottom: 10px;
+    vertical-align: top;
+    border: $border-size solid $border-color;
+    border-radius: $border-radius-size;
+
+    .title {
+      display: block;
+      padding: 10px;
+      background-color: $border-color;
+
+      &:hover {
+        background-color: $link-color;
+        color: $background-color;
+      }
+    }
+
+    .info {
+      padding: 10px;
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
+
 table.list {
   width: 100%;
   margin-bottom: 20px;
