@@ -126,6 +126,15 @@ nav.pagination {
 
 /* Custom classes */
 
+.content {
+  font: 16px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  @include prefixer(font-smoothing, antialiased, webkit moz);
+
+  p {
+    line-height: 1.6em;
+  }
+}
+
 .border {
   margin: -$border-size;
   border: $border-size solid $border-color;
