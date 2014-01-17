@@ -1,6 +1,6 @@
 <div class="post">
   <div class="user">
-    <img class="avatar" src="http://www.gravatar.com/avatar/9f3821f6a6ab7930c9cd7466a6a62faa.png">
+    <%= avatar_tag post.user, class: "avatar" %>
     <p class="info">
       <span class="name"><%= post.user %></span>
       <abbr class="datetime" title="<%= post.created_at %>"><%= post.created_at.iso8601 %></abbr>
