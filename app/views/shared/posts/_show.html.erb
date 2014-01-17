@@ -3,12 +3,12 @@
     <%= avatar_tag post.user, class: "avatar" %>
     <p class="info">
       <span class="name"><%= post.user %></span>
-      <abbr class="datetime" title="<%= post.created_at %>"><%= post.created_at.iso8601 %></abbr>
+      <%= from_now_tag post.created_at %>
 
-      <% if post.created_at != post.updated_at %>
+      <% unless (post.updated_at - post.created_at).between?(-1, 60) %>
       <br />
       <span class="small">updated</span>
-      <abbr class="datetime" title="<%= post.updated_at %>"><%= post.updated_at.iso8601 %></abbr>
+      <%= from_now_tag post.updated_at %>
       <% end %>
     </p>
 

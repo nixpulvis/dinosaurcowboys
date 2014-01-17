@@ -12,7 +12,7 @@
         <% if freshest_topic %>
         <p>
           <%= link_to freshest_topic, forum_topic_path(forum, freshest_topic) %>
-          <abbr class="datetime" title="<%= freshest_topic.posts_updated_at %>"><%= freshest_topic.posts_updated_at.iso8601 %></abbr>
+          <%= from_now_tag freshest_topic.posts_updated_at %>
         </p>
         <% end %>
       </div>

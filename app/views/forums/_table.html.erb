@@ -40,7 +40,7 @@
     </td>
     <td class="freshness">
       <% if topic.posts.any? %>
-      <abbr class="datetime" title="<%= topic.posts_updated_at %>"><%= topic.posts_updated_at.iso8601 %></abbr>
+      <%= from_now_tag topic.posts_updated_at %>
       <% end %>
     </td>
   </tr>
