@@ -1,24 +1,28 @@
 <div class="post">
   <div class="user">
-    <%= post.user %>
-    <abbr class="datetime" title="<%= post.created_at %>"><%= post.created_at.iso8601 %></abbr>
+    <img class="avatar" src="http://www.gravatar.com/avatar/9f3821f6a6ab7930c9cd7466a6a62faa.png">
+    <p class="info">
+      <%= post.user %>
+      <abbr class="datetime" title="<%= post.created_at %>"><%= post.created_at.iso8601 %></abbr>
+    </p>
 
     <ul class="actions">
       <% if has_access(post.user) %>
-      <%= link_to "Edit", "#", class: "edit-button" %>
-      <%= link_to "Delete", polymorphic_path([post.postable, post]),
-        method: :delete, confirm: "Are you sure?" %>
+      <li><%= link_to "Edit", "#", class: "edit-button" %></li>
+      <li><%= link_to "Delete", polymorphic_path([post.postable, post]),
+        method: :delete, confirm: "Are you sure?" %></li>
       <% end %>
     </ul>
   </div>
 
   <div class="content noedit">
-    <%= raw post.markdown(:body) %><br />
+    <%= raw post.markdown(:body) %>
   </div>
 
-  <%= form_for([post.postable, post]) do |f| %>
-    <div class="content edit">
-      <%= render "shared/posts/edit", f: f %>
-    </div>
+  <%= form_for([post.postable, post], html: {class: "content edit"}) do |f| %>
+    <%= render "shared/posts/edit", f: f, submit: "Update" %>
   <% end %>
+
+  <hr />
+
 </div>

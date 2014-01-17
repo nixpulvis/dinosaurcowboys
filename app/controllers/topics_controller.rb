@@ -27,16 +27,23 @@ class TopicsController < ApplicationController
     @posts = @topic.posts.page(params[:page])
   end
 
-  def edit
-
-  end
-
   def update
+    @topic = Topic.find(params[:id])
+    unauthorized unless current_user.admin? || current_user == @topic.user
 
+    if @topic.update_attributes(topic_params)
+      redirect_to forum_topic_path(@topic.forum, @topic)
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @topic = Topic.find(params[:id])
+    unauthorized unless current_user.admin? || current_user == @topic.user
 
+    @topic.destroy
+    redirect_to forum_path(@topic.forum)
   end
 
   private

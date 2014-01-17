@@ -16,7 +16,7 @@
     </div>
 
     <%= f.fields_for :posts do |p| %>
-      <%= render "shared/posts/edit", f: p %>
+      <%= render "shared/posts/edit", f: p, submit: "Create Topic" %>
     <% end %>
   <% end %>
 </div>

@@ -13,8 +13,7 @@
   <% end %>
   <%= paginate @posts %>
 
-  <h3>New Post</h3>
   <%= form_for([@boss, @boss.posts.build]) do |f| %>
-    <%= render "shared/posts/edit", f: f %>
+    <%= render "shared/posts/edit", f: f, submit: "Reply" %>
   <% end %>
 </div>

@@ -15,13 +15,14 @@
     <%= raw @raid.markdown(:content) %>
   </div>
 
+  <hr/>
+
   <% @posts.each do |post| %>
     <%= render "shared/posts/show", post: post %>
   <% end %>
   <%= paginate @posts %>
 
-  <h3>New Post</h3>
   <%= form_for([@raid, @raid.posts.build]) do |f| %>
-    <%= render "shared/posts/edit", f: f %>
+    <%= render "shared/posts/edit", f: f, submit: "Reply" %>
   <% end %>
 </div>

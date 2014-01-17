@@ -2,31 +2,67 @@
   margin-bottom: 10px;
 
   .user {
-    margin-bottom: 3px;
+    display: inline-block;
+    width: 18%;
+    vertical-align: top;
+    margin-right: 10px;
 
-    .datetime {
-      font-size: 11px;
+    img.avatar {
+      @extend .border;
+
+      display: block;
+      height: 50px;
+      margin-bottom: 4px;
+    }
+
+    .info {
+      margin: 0 0 6px 0;
+
+      .datetime {
+        font-size: 11px;
+      }
     }
 
     .actions {
-      display: inline-block;
+      display: block;
       margin: 0;
       padding: 0;
-      float: right;
+      list-style: none;
+
+      li {
+        display: inline-block;
+
+        a {
+          @extend .button-small;
+
+          margin-bottom: 0;
+        }
+      }
     }
   }
 
   .content {
-    padding: 10px;
-    background-color: $post-background-color;
-    border-radius: $border-radius-size;
+    display: inline-block;
+    width: 80%;
+
+    *:first-child {
+      margin-top: 0;
+    }
+
+    *:last-child {
+      margin-bottom: 0;
+    }
+
+    img {
+      width: 100%;
+    }
   }
 }
 
 .post-editor {
   textarea {
     width: 100%;
-    height: 200px;
+    height: 100px;
   }
 
   input[type="submit"] {

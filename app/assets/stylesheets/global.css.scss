@@ -5,8 +5,6 @@ $topbar-hover-color: #122939;
 $link-color: #fece2f;
 $text-color: #eee;
 
-$post-background-color: #1b1b1b;
-
 $border-size: 2px;
 $border-radius-size: 3px;
 
@@ -25,6 +23,11 @@ body {
 a {
   color: $link-color;
   text-decoration: none;
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px dashed $border-color;
 }
 
 form {
@@ -86,6 +89,7 @@ form {
 
   input[type="submit"] {
     @extend .button;
+    color: $link-color;
   }
 
   .errors {
@@ -154,6 +158,11 @@ nav.pagination {
     background: $link-color;
     color: $background-color;
   }
+}
+
+.button-small {
+  @extend .button;
+  padding: 3px 6px;
 }
 
 h1 .sub {
