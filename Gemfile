@@ -49,6 +49,9 @@ gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+# Real time error watch.
+gem 'rollbar'
+
 group :production do
   gem 'rails_12factor'
 end
