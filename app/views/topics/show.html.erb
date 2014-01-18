@@ -10,13 +10,15 @@
       <%= link_to @topic.forum, forum_path(@topic.forum) %>
     </span>
 
-    <% if has_access(@topic.user) %>
     <ul class="actions">
+      <% if can? :update, @topic %>
       <li><%= link_to "Edit", "#", class: "edit-button" %></li>
+      <% end %>
+      <% if can? :destroy, @topic %>
       <li><%= link_to "Delete", forum_topic_path(@topic.forum, @topic),
         method: :delete, confirm: "Are you sure?" %></li>
+      <% end %>
     </ul>
-    <% end %>
   </h1>
 
   <% @posts.each do |post| %>

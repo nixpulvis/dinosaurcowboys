@@ -1,11 +1,11 @@
 class TopicsController < ApplicationController
+  load_and_authorize_resource
 
   before_filter do
     @forum = Forum.find(params[:forum_id])
   end
 
   def create
-    @topic = @forum.topics.build(topic_params)
     @topic.user = current_user
     @topic.posts.first.user = current_user
 
@@ -18,14 +18,10 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.find(params[:id])
     @posts = @topic.posts.page(params[:page])
   end
 
   def update
-    @topic = Topic.find(params[:id])
-    unauthorized unless current_user.admin? || current_user == @topic.user
-
     if @topic.update_attributes(topic_params)
       redirect_to forum_topic_path(@topic.forum, @topic)
     else
@@ -34,9 +30,6 @@ class TopicsController < ApplicationController
   end
 
   def destroy
-    @topic = Topic.find(params[:id])
-    unauthorized unless current_user.admin? || current_user == @topic.user
-
     @topic.destroy
     redirect_to forum_path(@topic.forum)
   end

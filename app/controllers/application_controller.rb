@@ -3,15 +3,18 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  protected
+  # Apply strong_parameters filtering before CanCan authorization
+  # See https://github.com/ryanb/cancan/issues/571#issuecomment-10753675
+  before_filter do
+    resource = controller_name.singularize.to_sym
+    method = "#{resource}_params"
+    params[resource] &&= send(method) if respond_to?(method, true)
+  end
 
-  # unauthorized
-  # Set the flash, and redirect to home page. This is how to handle
-  # people hitting pages they shouldn't.
-  #
-  def unauthorized
-    flash[:alert] = "You do not have access to that."
-    redirect_to root_path
+  # Don't error 500 when people try to access bad things,
+  # simply redirect with flash.
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
   end
 
 end

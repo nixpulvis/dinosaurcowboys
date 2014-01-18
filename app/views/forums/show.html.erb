@@ -4,11 +4,17 @@
     <span class="sub">
       <%= link_to "Forums", forums_path %>
     </span>
+
+    <% if can? :update, @forum %>
+    <ul class="actions">
+      <li><%= link_to "Edit Forum", edit_forum_path, class: "button" %></li>
+    </ul>
+    <% end %>
   </h1>
 
   <%= render "forums/table", topics: @topics %>
 
-  <% if has_access(@forum) %>
+  <% if can? :create, @forum.topics.build %>
   <h3>New Topic</h3>
   <%= form_for([@forum, @topic], url: forum_topics_path(@forum)) do |f| %>
     <% if @topic.errors %>

@@ -13,8 +13,10 @@
     </p>
 
     <ul class="actions">
-      <% if has_access(post.user) %>
+      <% if can? :update, post %>
       <li><%= link_to "Edit", "#", class: "edit-button" %></li>
+      <% end %>
+      <% if can? :destroy, post %>
       <li><%= link_to "Delete", polymorphic_path([post.postable, post]),
         method: :delete, confirm: "Are you sure?" %></li>
       <% end %>
@@ -25,8 +27,10 @@
     <%= raw post.markdown(:body) %>
   </div>
 
+  <% if can? :update, post %>
   <%= form_for([post.postable, post], html: {class: "content edit"}) do |f| %>
     <%= render "shared/posts/edit", f: f, submit: "Update" %>
+  <% end %>
   <% end %>
 
   <hr />

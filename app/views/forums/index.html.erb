@@ -2,7 +2,7 @@
   <h1 class="forum-title">
     Forums
 
-    <% if has_access(@forums) %>
+    <% if can? :create, Forum %>
     <ul class="actions">
       <li><%= link_to "New Forum", new_forum_path, class: "button" %></li>
     </ul>
