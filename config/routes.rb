@@ -24,7 +24,7 @@ PartyShark::Application.routes.draw do
   end
 
   resources :forums do
-    resources :topics, :except => :index
+    resources :topics, :except => [:index, :new]
   end
 
   scope 'topics/:topic_id', :as => :topic do

@@ -1,5 +1,5 @@
 <div class="panel">
-  <h1>
+  <h1 class="forum-title">
     <%= @forum %>
     <span class="sub">
       <%= link_to "Forums", forums_path %>
@@ -8,5 +8,25 @@
 
   <%= render "forums/table", topics: @topics %>
 
-  <%= link_to "New Topic", new_forum_topic_path(@forum), class: "button" %>
+  <% if has_access(@forum) %>
+  <h3>New Topic</h3>
+  <%= form_for([@forum, @topic], url: forum_topics_path(@forum)) do |f| %>
+    <% if @topic.errors %>
+    <ul class="errors">
+    <% @topic.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+    <% end %>
+
+    <div>
+      <%= f.label :title %><br />
+      <%= f.text_field :title %>
+    </div>
+
+    <%= f.fields_for :posts do |p| %>
+      <%= render "shared/posts/edit", f: p, submit: "Create Topic" %>
+    <% end %>
+  <% end %>
+  <% end %>
 </div>

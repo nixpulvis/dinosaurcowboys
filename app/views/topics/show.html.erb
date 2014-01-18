@@ -1,5 +1,5 @@
 <div class="panel">
-  <h1>
+  <h1 class="forum-title">
     <span class="noedit"><%= @topic %></span>
     <%= form_for([@topic.forum, @topic], html: {class: "edit"}) do |f| %>
       <%= f.text_field :title %>
@@ -10,13 +10,13 @@
       <%= link_to @topic.forum, forum_path(@topic.forum) %>
     </span>
 
+    <% if has_access(@topic.user) %>
     <ul class="actions">
-      <% if has_access(@topic.user) %>
       <li><%= link_to "Edit", "#", class: "edit-button" %></li>
       <li><%= link_to "Delete", forum_topic_path(@topic.forum, @topic),
         method: :delete, confirm: "Are you sure?" %></li>
-      <% end %>
     </ul>
+    <% end %>
   </h1>
 
   <% @posts.each do |post| %>

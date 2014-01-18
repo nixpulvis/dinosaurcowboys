@@ -46,3 +46,7 @@
   </tr>
   <% end %>
 </table>
+
+<% unless params[:action] == "index" %>
+<%= paginate topics %>
+<% end %>

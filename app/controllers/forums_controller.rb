@@ -2,7 +2,7 @@ class ForumsController < ApplicationController
 
   def index
     @forums = Forum.all
-    @topics = Topic.first(5)
+    @topics = Topic.first(8)
   end
 
   def new
@@ -22,6 +22,8 @@ class ForumsController < ApplicationController
   def show
     @forum = Forum.find(params[:id])
     @topics = @forum.topics.page(params[:page])
+    @topic = Topic.new
+    @post  = @topic.posts.build
   end
 
   def edit

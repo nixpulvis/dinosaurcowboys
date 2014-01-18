@@ -1,14 +1,24 @@
 <div class="panel">
-  <h1>Forums</h1>
+  <h1 class="forum-title">
+    Forums
+
+    <% if has_access(@forums) %>
+    <ul class="actions">
+      <li><%= link_to "New Forum", new_forum_path, class: "button" %></li>
+    </ul>
+    <% end %>
+  </h1>
 
   <ul class="forums">
     <% @forums.each do |forum| %>
     <% freshest_topic = forum.freshest %>
 
     <li class="forum">
-      <%= link_to forum, forum_path(forum), class: "title" %>
+      <%= link_to forum_path(forum), class: "title" do %>
+        <%= forum %>
+        <span class="count"><%= pluralize(forum.topics.count, "topic") %></span>
+      <% end %>
       <div class="info">
-        <p><%= forum.topics.count %> topics total</p>
         <% if freshest_topic %>
         <p>
           <%= link_to freshest_topic, forum_topic_path(forum, freshest_topic) %>
@@ -19,10 +29,6 @@
     </li>
     <% end %>
   </ul>
-
-  <% if has_access(@forums) %>
-  <%= link_to "New Forum", new_forum_path, class: "button" %>
-  <% end %>
 
   <%= render "forums/table", topics: @topics, topics_label: "Recent Topics" %>
 </div>

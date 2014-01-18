@@ -90,6 +90,11 @@ form {
   input[type="submit"] {
     @extend .button;
     color: $link-color;
+
+    &:focus {
+      background-color: $link-color;
+      color: $background-color;
+    }
   }
 
   .errors {
@@ -98,8 +103,9 @@ form {
 
   .field_with_errors {
     display: inline-block;
+    width: 100%;
 
-    & > input, textarea, select {
+    input, textarea, select {
       border: $border-size solid red;
     }
   }

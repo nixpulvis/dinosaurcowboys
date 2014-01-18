@@ -4,21 +4,16 @@ class TopicsController < ApplicationController
     @forum = Forum.find(params[:forum_id])
   end
 
-  def new
-    @topic = Topic.new
-    @post  = @topic.posts.build
-  end
-
   def create
-    @topic = Topic.new(topic_params)
+    @topic = @forum.topics.build(topic_params)
     @topic.user = current_user
-    @topic.forum = @forum
     @topic.posts.first.user = current_user
 
     if @topic.save
       redirect_to forum_topic_path(@forum, @topic)
     else
-      render :new
+      @topics = @forum.topics.page(params[:page])
+      render "forums/show"
     end
   end
 

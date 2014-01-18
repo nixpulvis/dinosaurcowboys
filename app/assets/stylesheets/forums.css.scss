@@ -17,6 +17,10 @@ ul.forums {
       padding: 10px;
       background-color: $border-color;
 
+      .count {
+        float: right;
+      }
+
       &:hover {
         background-color: $link-color;
         color: $background-color;
@@ -54,5 +58,30 @@ table.list {
       @extend hr;
       padding: 10px 0 10px 10px;
     }
+  }
+}
+
+.forum-title {
+  .actions {
+    display: inline-block;
+    float: right;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 16px;
+    font-weight: normal;
+
+    li {
+      display: inline-block;
+    }
+
+    li a {
+      @extend .button-small;
+    }
+
+  }
+
+  form { /* TODO: We are going to be getting rid of this */
+    display: inline-block;
   }
 }
