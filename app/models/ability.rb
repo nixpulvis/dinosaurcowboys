@@ -17,6 +17,10 @@ class Ability
     can :create, User
     can [:read, :update, :destroy], User, id: user.id
 
+    # Character permissions.
+    can :read, Character
+    can [:create, :update, :destroy], Character, user_id: user.id
+
     # Raids / Bosses
     can :read, Raid if user.persisted?
     can :read, Boss if user.persisted?
