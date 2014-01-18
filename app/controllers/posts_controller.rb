@@ -1,9 +1,5 @@
 class PostsController < ApplicationController
-
-  before_filter except: :create do
-    @post = Post.find(params[:id])
-    unauthorized unless current_user.admin? || current_user == @post.user
-  end
+  load_and_authorize_resource
 
   def create
     @post = postable.posts.build(post_params)
@@ -39,7 +35,6 @@ class PostsController < ApplicationController
     id, resource = request.path.split('/').reverse[1,2]
     resource.singularize.classify.constantize.find(id)
   end
-
 
   def postable_path(postable)
     if postable.is_a? Raid
