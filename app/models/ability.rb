@@ -17,6 +17,10 @@ class Ability
     can :create, User
     can [:read, :update, :destroy], User, id: user.id
 
+    # Raids / Bosses
+    can :read, Raid if user.persisted?
+    can :read, Boss if user.persisted?
+
     can :read, Forum, name: "General Discussion"
 
     Forum.accessible_by(self).each do |forum|
