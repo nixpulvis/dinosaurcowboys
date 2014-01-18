@@ -63,44 +63,38 @@ class UsersController < ApplicationController
   # As non-admin, redirects with access error.
   #
   def update
-    # Assume user is trying to update password if either field is not blank.
-    password = params[:user][:password].present? ||
-               params[:user][:password_confirmation].present?
+    # Assume user is not trying to update password if the password is blank.
+    if params[:user][:password].blank?
+       params[:user].delete(:password)
+       params[:user].delete(:password_confirmation)
+    end
 
     # You can't make yourself not an admin.
     admin = current_user.admin? && current_user != @user
 
     # Append an error for the admin field.
     if params[:user][:admin] == "0" && !admin
-      puts "\n\n\nasdasda\n\n\n"
       @user.errors.add(:admin, "can't be disabled by the same user")
       render :edit
       return
     end
 
-    if @user.update_attributes(user_params(password: password, admin: admin))
+    if @user.update_attributes(user_params)
+      sign_in @user, :bypass => true if @user == current_user
       redirect_to @user
     else
       render :edit
     end
   end
 
-  protected
+  private
 
-  # user_params: {password: false} -> Hash
-  # Permits the user fields for assignment, only allowing password fields
-  # when passed {password: true}.
+  # user_params: -> Hash
+  # Permits the user fields for assignment.
   #
-  def user_params(password: false, admin: false)
-    permit = [:email, :rank_id, :characters_attributes => [:name, :server]]
-
-    if password
-      permit << [:password, :password_confirmation]
-    end
-
-    if admin
-      permit << :admin
-    end
+  def user_params
+    permit = [:email, :rank_id, :password, :password_confirmation, :admin,
+      :characters_attributes => [:name, :server]]
 
     params.require(:user).permit(*permit)
   end

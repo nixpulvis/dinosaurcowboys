@@ -22,7 +22,9 @@
   <% end %>
   <%= paginate @posts %>
 
+  <% if can? :create, Post %>
   <%= form_for([@raid, @raid.posts.build]) do |f| %>
     <%= render "shared/posts/edit", f: f, submit: "Reply" %>
+  <% end %>
   <% end %>
 </div>
