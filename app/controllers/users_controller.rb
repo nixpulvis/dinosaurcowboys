@@ -1,24 +1,18 @@
 class UsersController < ApplicationController
-
-  before_filter only: [:update, :destory] do
-    @user = User.find(params[:id])
-    unauthorized unless current_user.admin? || current_user == @user
-  end
+  load_and_authorize_resource
 
   # GET /users
   # As admin, provides all the users.
   # As non-admin, redirects with access error.
   #
   def index
-    unauthorized unless current_user.admin?
-    @users = User.all
+    raise CanCan::AccessDenied unless current_user.admin?
   end
 
   # GET /users/new
   # Builds a User and a Character for the user to create an account.
   #
   def new
-    @user = User.new
     @user.characters.build
   end
 
@@ -27,8 +21,6 @@ class UsersController < ApplicationController
   # character parameters. Redisplays the new page when there are errors.
   #
   def create
-    @user = User.new(user_params(password: true))
-
     if @user.save
       sign_in(@user)
       redirect_to(@user)
@@ -43,8 +35,7 @@ class UsersController < ApplicationController
   # As non-admin, redirects with access error.
   #
   def show
-    @user = User.find(params[:id])
-    unauthorized unless current_user.admin? || current_user == @user
+    @posts = @user.posts.page(params[:page])
   end
 
   # GET /users/:id/edit
@@ -53,8 +44,6 @@ class UsersController < ApplicationController
   # As non-admin, redirects with access error.
   #
   def edit
-    @user = User.find(params[:id])
-    unauthorized unless current_user.admin? || current_user == @user
   end
 
   # PATCH or PUT /users/:id
@@ -85,6 +74,12 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @user.destroy
+    sign_out
+    redirect_to root_path, notice: "User deleted :("
   end
 
   private

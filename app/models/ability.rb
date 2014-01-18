@@ -4,7 +4,12 @@ class Ability
   def initialize(user)
     user ||= User.new
 
+    # Fear the admin.
     can :manage, :all if user.admin?
+
+    # User permissions.
+    can :create, User
+    can [:read, :update, :destroy], User, id: user.id
 
     can :read, Forum, name: "General Discussion"
 

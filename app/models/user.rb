@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :characters, dependent: :destroy
+  has_many :posts, dependent: :destroy
   belongs_to :rank
 
   validates :email, :presence => true
