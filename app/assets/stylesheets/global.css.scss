@@ -119,7 +119,7 @@ nav.pagination {
   }
 
   span a, .current, .gap {
-    @extend .button;
+    @extend .button-small;
   }
 
   span.current, span.gap {

@@ -5,6 +5,8 @@ class Topic < ActiveRecord::Base
 
   validates :title, :presence => true
 
+  default_scope -> { order('updated_at DESC') }
+
   paginates_per 10
 
   accepts_nested_attributes_for :posts
