@@ -6,6 +6,7 @@ class TopicsController < ApplicationController
   end
 
   def create
+    @topic.forum = @forum
     @topic.user = current_user
     @topic.posts.first.user = current_user
 
