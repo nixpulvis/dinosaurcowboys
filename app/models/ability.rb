@@ -7,6 +7,12 @@ class Ability
     # Fear the admin.
     can :manage, :all if user.admin?
 
+    # Page permissions.
+    can :charter, :page
+    can :home, :page
+    can :logs, :page
+    can :recruitment, :page
+
     # User permissions.
     can :create, User
     can [:read, :update, :destroy], User, id: user.id

@@ -1,7 +1,7 @@
 class CharactersController < ApplicationController
-
-  # TODO: Access control for all needed actions.
-  # TODO: Add destroy action.
+  load_and_authorize_resource :user, except: :roster
+  load_and_authorize_resource :character, :through => :user, except: :roster
+  skip_authorization_check only: :roster
 
   # GET /users/:user_id/character/new
   # Get the given user, and build it a character for it.
@@ -102,7 +102,7 @@ class CharactersController < ApplicationController
     end
   end
 
-  protected
+  private
 
   # character_params: -> Hash
   # Permits the character fields for assignment.

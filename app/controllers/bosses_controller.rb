@@ -1,14 +1,11 @@
 class BossesController < ApplicationController
+  load_and_authorize_resource :raid
+  load_and_authorize_resource :boss, :through => :raid, :find_by => :param, :id_param => :id
 
   def new
-    @raid = Raid.find(params[:raid_id])
-    @boss = @raid.bosses.build
   end
 
   def create
-    @raid = Raid.find(params[:raid_id])
-    @boss = @raid.bosses.build(boss_params)
-
     if @boss.save
       redirect_to raid_boss_path(@raid, @boss)
     else
@@ -17,8 +14,6 @@ class BossesController < ApplicationController
   end
 
   def show
-    @raid = Raid.find(params[:raid_id])
-    @boss = @raid.bosses.find_by_param(params[:id])
     @posts = @boss.posts.page(params[:page])
   end
 

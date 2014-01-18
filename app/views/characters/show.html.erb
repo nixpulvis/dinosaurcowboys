@@ -1,8 +1,10 @@
 <div class="panel">
   <h1><%= @character %></h1>
 
-  <% if has_access(@user) %>
+  <% if can? :update, @character %>
   <%= link_to "Edit", edit_user_character_path(@user, @character) %>
+  <% end %>
+  <% if can? :destroy, @character %>
   <%= link_to "Delete", user_character_path(@user, @character), method: :delete %>
   <% end %>
 </div>

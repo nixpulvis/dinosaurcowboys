@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  # Lock it down.
+  check_authorization :unless => :devise_controller?
+
   # Apply strong_parameters filtering before CanCan authorization
   # See https://github.com/ryanb/cancan/issues/571#issuecomment-10753675
   before_filter do

@@ -9,6 +9,12 @@ class Raid < ActiveRecord::Base
       where('lower(name) = ?', string.gsub("_", " ")).first
     end
     alias_method :find, :find_by_param
+
+    def find_by_param!(string)
+      find_by_param(string).tap do |obj|
+        raise ActiveRecord::RecordNotFound unless obj
+      end
+    end
   end
 
   def to_param
