@@ -14,18 +14,16 @@
     <% freshest_topic = forum.freshest %>
 
     <li class="forum">
-      <%= link_to forum_path(forum), class: "title" do %>
+      <%= link_to forum_path(forum), class: "button" do %>
         <%= forum %>
-        <span class="count"><%= pluralize(forum.topics.count, "topic") %></span>
-      <% end %>
-      <div class="info">
-        <% if freshest_topic %>
-        <p>
-          <%= link_to freshest_topic, forum_topic_path(forum, freshest_topic) %>
+        <span class="info">
+          <%= pluralize(forum.topics.count, "topic") %>
+          <% if freshest_topic %>
+          |
           <%= from_now_tag freshest_topic.posts_updated_at %>
-        </p>
-        <% end %>
-      </div>
+          <% end %>
+        </span>
+      <% end %>
     </li>
     <% end %>
   </ul>

@@ -9,29 +9,13 @@ ul.forums {
     width: 49%;
     margin-bottom: 10px;
     vertical-align: top;
-    border: $border-size solid $border-color;
-    border-radius: $border-radius-size;
 
-    .title {
+    a {
       display: block;
       padding: 10px;
-      background-color: $border-color;
 
-      .count {
+      .info {
         float: right;
-      }
-
-      &:hover {
-        background-color: $link-color;
-        color: $background-color;
-      }
-    }
-
-    .info {
-      padding: 10px;
-
-      p {
-        margin: 0;
       }
     }
   }
