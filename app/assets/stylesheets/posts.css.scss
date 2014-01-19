@@ -50,20 +50,25 @@
       }
     }
 
-    .actions {
-      display: inline-block;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      float: right;
+    .info {
+      font-size: 11px;
 
-      li {
+      .actions {
         display: inline-block;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        float: right;
+        font-size: 16px;
 
-        a {
-          @extend .button-small;
+        li {
+          display: inline-block;
 
-          margin-bottom: 0;
+          a {
+            @extend .button-small;
+
+            margin-bottom: 0;
+          }
         }
       }
     }
