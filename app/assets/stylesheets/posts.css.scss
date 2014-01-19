@@ -1,38 +1,61 @@
 .post {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 
   .user {
+    width: 12%;
     display: inline-block;
-    width: 18%;
-    vertical-align: top;
+    text-align: center;
     margin-right: 10px;
 
     img.avatar {
       @extend .border;
-
-      display: block;
       height: 50px;
       width: 50px;
-      margin-bottom: 4px;
     }
 
-    .info {
-      margin: 0 0 6px 0;
+    p {
+      margin: 0;
+    }
 
-      .name {
-        display: block;
+    .name {
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis
+    }
+
+    .count {
+      font-size: 11px;
+    }
+  }
+
+  .body {
+    display: inline-block;
+    width: 84%;
+    float: right;
+    padding: 10px;
+    border: $border-size solid $border-color;
+    border-radius: $border-radius-size;
+
+    .content {
+      *:first-child {
+        margin-top: 0;
       }
 
-      .datetime, .small {
-        font-size: 11px;
+      *:last-child {
+        margin-bottom: 0;
+      }
+
+      img {
+        width: 100%;
       }
     }
 
     .actions {
-      display: block;
+      display: inline-block;
       margin: 0;
       padding: 0;
       list-style: none;
+      float: right;
 
       li {
         display: inline-block;
@@ -45,26 +68,15 @@
       }
     }
   }
-
-  .content {
-    display: inline-block;
-    width: 80%;
-
-    *:first-child {
-      margin-top: 0;
-    }
-
-    *:last-child {
-      margin-bottom: 0;
-    }
-
-    img {
-      width: 100%;
-    }
-  }
 }
 
 .post-editor {
+
+  &.right {
+    width: 86%;
+    float: right;
+  }
+
   textarea {
     width: 100%;
     height: 100px;

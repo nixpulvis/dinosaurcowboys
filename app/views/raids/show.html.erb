@@ -15,8 +15,6 @@
     <%= raw @raid.markdown(:content) %>
   </div>
 
-  <hr/>
-
   <% @posts.each do |post| %>
     <%= render "shared/posts/show", post: post %>
   <% end %>

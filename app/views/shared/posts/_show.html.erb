@@ -1,38 +1,41 @@
 <div class="post">
   <div class="user">
     <%= avatar_tag post.user, class: "avatar" %>
-    <p class="info">
-      <span class="name"><%= post.user %></span>
-      <%= from_now_tag post.created_at %>
+    <p class="name"><%= post.user %></p>
+    <p class="count"><%= pluralize(post.user.posts.count, "posts") %></p>
+  </div>
 
+  <div class="body">
+    <div class="content noedit">
+      <%= raw post.markdown(:body) %>
+    </div>
+
+    <% if can? :update, post %>
+    <%= form_for([post.postable, post], html: {class: "content edit"}) do |f| %>
+      <%= render "shared/posts/edit", f: f, submit: "Update" %>
+    <% end %>
+    <% end %>
+
+    <hr />
+
+    <div class="info">
+      Posted
+      <%= from_now_tag post.created_at %>
       <% unless (post.updated_at - post.created_at).between?(-1, 60) %>
-      <br />
-      <span class="small">updated</span>
+      updated
       <%= from_now_tag post.updated_at %>
       <% end %>
-    </p>
 
-    <ul class="actions">
-      <% if can? :update, post %>
-      <li><%= link_to "Edit", "#", class: "edit-button" %></li>
-      <% end %>
-      <% if can? :destroy, post %>
-      <li><%= link_to "Delete", polymorphic_path([post.postable, post]),
-        method: :delete, confirm: "Are you sure?" %></li>
-      <% end %>
-    </ul>
+      <ul class="actions">
+        <% if can? :update, post %>
+        <li><%= link_to "Edit", "#", class: "edit-button" %></li>
+        <% end %>
+        <% if can? :destroy, post %>
+        <li><%= link_to "Delete", polymorphic_path([post.postable, post]),
+          method: :delete, confirm: "Are you sure?" %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-
-  <div class="content noedit">
-    <%= raw post.markdown(:body) %>
-  </div>
-
-  <% if can? :update, post %>
-  <%= form_for([post.postable, post], html: {class: "content edit"}) do |f| %>
-    <%= render "shared/posts/edit", f: f, submit: "Update" %>
-  <% end %>
-  <% end %>
-
-  <hr />
-
+  <div class="clearfix"></div>
 </div>
