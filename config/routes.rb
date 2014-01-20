@@ -9,7 +9,7 @@ PartyShark::Application.routes.draw do
 
   get '/roster', :to => 'characters#roster'
   resources :users do
-    resources :characters
+    resources :characters, :except => :index
   end
 
   resources :raids do
