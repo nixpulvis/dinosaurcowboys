@@ -19,7 +19,6 @@
         <span class="info">
           <%= pluralize(forum.topics.count, "topic") %>
           <% if freshest_topic %>
-          |
           <%= from_now_tag freshest_topic.posts_updated_at %>
           <% end %>
         </span>
