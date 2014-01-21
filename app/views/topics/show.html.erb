@@ -1,9 +1,11 @@
 <div class="panel">
   <h1 class="forum-title">
     <span class="noedit"><%= @topic %></span>
+    <% if can? :update, @topic %>
     <%= form_for([@topic.forum, @topic], html: {class: "edit"}) do |f| %>
       <%= f.text_field :title %>
       <%= f.submit "Update" %>
+    <% end %>
     <% end %>
     <span class="sub">
       <%= link_to "Forums", forums_path %> /

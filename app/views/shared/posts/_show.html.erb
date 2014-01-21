@@ -2,7 +2,7 @@
   <div class="user">
     <%= avatar_tag post.user, class: "avatar" %>
     <p class="name"><%= post.user %></p>
-    <p class="count"><%= pluralize(post.user.posts.count, "posts") %></p>
+    <p class="count"><%= user_post_count(post.user) %></p>
   </div>
 
   <div class="body">

@@ -35,9 +35,13 @@ class Ability
     forum_read_ids    = Forum.accessible_by(self, :read).pluck(:id)
     forum_comment_ids = Forum.accessible_by(self, :comment).pluck(:id)
     can :read,    Topic, forum_id: forum_read_ids
-    can :create,  Topic, forum_id: forum_comment_ids if user.persisted?
     can :comment, Topic, forum_id: forum_comment_ids if user.persisted?
-    can :manage,  Topic, forum_id: forum_comment_ids, user_id: user.id
+    if user.persisted?
+      can :create, Topic do |topic|
+        forum_comment_ids.include?(topic.forum_id)
+      end
+    end
+    can :manage, Topic, user_id: user.id
 
     postable_read_ids = {
       "Raid"  => Raid.accessible_by(self, :read).pluck(:id),
@@ -53,7 +57,12 @@ class Ability
       "Topic" => Topic.accessible_by(self, :comment).pluck(:id),
     }
     postable_comment_ids.each do |type, ids|
-      can :create, Post, postable_id: ids, postable_type: type if user.persisted?
+      if user.persisted?
+        can :create, Post do |post|
+          ids.include?(post.postable_id) &&
+          type == post.postable_type
+        end
+      end
     end
     can :manage, Post, user_id: user.id
   end

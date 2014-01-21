@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :load_postable
-  load_and_authorize_resource :post, through: [:raid, :boss, :topic]
+  load_and_authorize_resource :post, through: :postable
 
   # POST /postable/:postable_id/posts
   # Creates a post on the postable, as the current user.
@@ -57,7 +57,7 @@ class PostsController < ApplicationController
   # See postable for the value of this variable.
   #
   def load_postable
-    instance_variable_set("@#{postable.class.to_s.underscore}", postable)
+    instance_variable_set("@postable", postable)
   end
 
   # postable_path (Instance of Model) -> String
