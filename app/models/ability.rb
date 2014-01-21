@@ -29,11 +29,11 @@ class Ability
     can :comment, Boss if user.persisted?
 
     # Forum access.
-    if user.rank
+    if user.persisted? && user.rank
       can :read,    Forum, id: user.rank.readable_forums.pluck(:id)
       can :comment, Forum, id: user.rank.writable_forums.pluck(:id)
     else
-      # TODO: Rankless user permissions...
+      can :read, Forum, public: true
     end
 
     forum_read_ids    = Forum.accessible_by(self, :read).pluck(:id)

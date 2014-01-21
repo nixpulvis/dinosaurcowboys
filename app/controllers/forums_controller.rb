@@ -65,7 +65,8 @@ class ForumsController < ApplicationController
   private
 
   def forum_params
-    params.require(:forum).permit(:name, readable_rank_ids: [], writable_rank_ids: [])
+    params.require(:forum).permit(:name, :public,
+      readable_rank_ids: [], writable_rank_ids: [])
   end
 
 end
