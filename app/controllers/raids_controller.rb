@@ -30,6 +30,7 @@ class RaidsController < ApplicationController
   #
   def show
     @posts = @raid.posts.page(params[:page])
+    @post  = @raid.posts.build
   end
 
   # GET /raids/:id/edit

@@ -23,6 +23,7 @@ class TopicsController < ApplicationController
   #
   def show
     @posts = @topic.posts.page(params[:page])
+    @post  = @topic.posts.build
   end
 
   # GET /forum/:forum_id/topics/:id/edit

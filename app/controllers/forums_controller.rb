@@ -33,7 +33,7 @@ class ForumsController < ApplicationController
     @topics = @forum.topics.page(params[:page])
 
     # Creating new topics.
-    @topic = Topic.new
+    @topic = @forum.topics.build
     @topic.posts.build
   end
 

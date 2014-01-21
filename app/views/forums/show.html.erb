@@ -14,7 +14,7 @@
 
   <%= render "forums/table", topics: @topics %>
 
-  <% if can? :create, @forum.topics.build %>
+  <% if can? :create, @topic %>
   <h3>New Topic</h3>
   <%= form_for([@forum, @topic], url: forum_topics_path(@forum)) do |f| %>
     <% if @topic.errors %>

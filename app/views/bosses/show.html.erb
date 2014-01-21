@@ -13,7 +13,7 @@
   <% end %>
   <%= paginate @posts %>
 
-  <% if can? :create, Post %>
+  <% if can? :create, @post %>
   <%= form_for([@boss, @boss.posts.build]) do |f| %>
     <%= render "shared/posts/edit", f: f, submit: "Reply" %>
   <% end %>

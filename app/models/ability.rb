@@ -15,23 +15,46 @@ class Ability
 
     # User permissions.
     can :create, User
-    can [:read, :update, :destroy], User, id: user.id
+    can [:read, :update], User, id: user.id
 
     # Character permissions.
     can :read, Character
     can [:create, :update, :destroy], Character, user_id: user.id
 
     # Raids / Bosses
+    # FIXME: Only allow "some" ranks to see/comment this.
     can :read, Raid if user.persisted?
     can :read, Boss if user.persisted?
+    can :comment, Raid if user.persisted?
+    can :comment, Boss if user.persisted?
 
-    can :read, Forum, name: 'General Discussion'
+    # FIXME: Save permissions related to ranks.
+    can :read, Forum, id: [4, 5]
+    can :comment, Forum, id: 5
 
-    can :read, Topic, forum: { name: 'General Discussion' }
-    can :create, Topic, forum: { name: 'General Discussion' } if user.persisted?
-    can :manage, Topic, user_id: user.id
+    forum_read_ids    = Forum.accessible_by(self, :read).pluck(:id)
+    forum_comment_ids = Forum.accessible_by(self, :comment).pluck(:id)
+    can :read,    Topic, forum_id: forum_read_ids
+    can :create,  Topic, forum_id: forum_comment_ids if user.persisted?
+    can :comment, Topic, forum_id: forum_comment_ids if user.persisted?
+    can :manage,  Topic, forum_id: forum_comment_ids, user_id: user.id
 
-    can :create, Post if user.persisted?
+    postable_read_ids = {
+      "Raid"  => Raid.accessible_by(self, :read).pluck(:id),
+      "Boss"  => Boss.accessible_by(self, :read).pluck(:id),
+      "Topic" => Topic.accessible_by(self, :read).pluck(:id),
+    }
+    postable_read_ids.each do |type, ids|
+      can :read, Post, postable_id: ids, postable_type: type
+    end
+    postable_comment_ids = {
+      "Raid"  => Raid.accessible_by(self, :comment).pluck(:id),
+      "Boss"  => Boss.accessible_by(self, :comment).pluck(:id),
+      "Topic" => Topic.accessible_by(self, :comment).pluck(:id),
+    }
+    postable_comment_ids.each do |type, ids|
+      can :create, Post, postable_id: ids, postable_type: type if user.persisted?
+    end
     can :manage, Post, user_id: user.id
   end
 end

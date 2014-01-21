@@ -24,6 +24,7 @@ class BossesController < ApplicationController
   #
   def show
     @posts = @boss.posts.page(params[:page])
+    @post  = @boss.posts.build
   end
 
   # GET /raids/:raid_id/bosses/:id/edit
