@@ -36,7 +36,7 @@
     </td>
     <td class="last-poster">
       <% if last_post %>
-      <%= link_to last_post.user, user_path(last_post.user) %>
+      <%= character_tag(last_post.user.main) %>
       <% end %>
     </td>
     <td class="freshness">

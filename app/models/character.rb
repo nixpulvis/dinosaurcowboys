@@ -11,6 +11,7 @@ class Character < ActiveRecord::Base
   # Validate the two fields needed to look up a character.
   validates :name, presence: true, length: { maximum: 12 }
   validates :server, presence: true
+  validates_with CharacterValidator
 
   # -> String
   # A character is displayed by it's name.

@@ -1,5 +1,13 @@
 <div class="panel">
-  <h1><%= @character %></h1>
+  <h1><%= character_tag(@character) %></h1>
+
+  <dl>
+    <dt>Server</dt>
+    <dd><%= @character.server %></dd>
+
+    <dt>Class</dt>
+    <dd><%= @character.klass.titleize %></dd>
+  </dl>
 
   <% if can? :update, @character %>
   <%= link_to "Edit", edit_user_character_path(@user, @character) %>

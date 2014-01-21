@@ -1,7 +1,7 @@
 <div class="post">
   <div class="user">
     <%= avatar_tag post.user, class: "avatar" %>
-    <p class="name"><%= post.user %></p>
+    <p class="name"><%= character_tag(post.user.main) %></p>
     <p class="count"><%= user_post_count(post.user) %></p>
   </div>
 

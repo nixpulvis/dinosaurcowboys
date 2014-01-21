@@ -16,6 +16,9 @@ gem 'cancan'
 # Redcarpet for markdown parsing.
 gem 'redcarpet'
 
+# Use my wow gem for Blizz API access.
+gem 'wow'
+
 # Sanitize for peace of mind from mean users.
 gem 'sanitize'
 
