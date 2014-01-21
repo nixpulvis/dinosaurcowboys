@@ -6,10 +6,14 @@
 
   <ul>
     <% @raid.bosses.each do |boss| %>
+    <% if can? :read, boss %>
     <li><%= link_to boss.name, raid_boss_path(@raid, boss) %></li>
     <% end %>
+    <% end %>
   </ul>
+  <% if can? :create, Boss %>
   <%= link_to "Add boss", new_raid_boss_path(@raid) %>
+  <% end %>
 
   <div class="content">
     <%= raw @raid.markdown(:content) %>

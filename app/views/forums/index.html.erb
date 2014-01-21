@@ -2,11 +2,11 @@
   <h1 class="forum-title">
     Forums
 
-    <% if can? :create, Forum %>
     <ul class="actions">
+      <% if can? :create, Forum %>
       <li><%= link_to "New Forum", new_forum_path, class: "button" %></li>
+      <% end %>
     </ul>
-    <% end %>
   </h1>
 
   <ul class="forums">
@@ -28,5 +28,4 @@
   </ul>
 
   <%= render "forums/table", topics: @topics, topics_label: "Recent Topics" %>
-  <%= paginate @topics %>
 </div>

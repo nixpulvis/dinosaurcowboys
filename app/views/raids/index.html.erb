@@ -6,5 +6,8 @@
     <li><%= link_to raid.name, raid %></li>
   <% end %>
   </ul>
+
+  <% if can? :create, Raid %>
   <%= link_to "Add raid", new_raid_path %>
+  <% end %>
 </div>

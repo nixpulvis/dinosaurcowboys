@@ -1,3 +1,4 @@
+<% if topics.any? %>
 <table class="topic list">
   <tr>
     <th>
@@ -46,7 +47,7 @@
   </tr>
   <% end %>
 </table>
-
-<% unless params[:action] == "index" %>
 <%= paginate topics %>
+<% else %>
+<p>No Topics Yet.</p>
 <% end %>
