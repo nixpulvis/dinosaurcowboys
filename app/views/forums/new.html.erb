@@ -1,22 +1,8 @@
 <div class="panel">
-  <h1>New Forum</h1>
+  <h1 class="forum-title">
+    <%= link_to "Forums", forums_path %> /
+    New Forum
+  </h1>
 
-  <%= form_for(@forum) do |f| %>
-    <% if @forum.errors %>
-    <ul class="errors">
-    <% @forum.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-    <% end %>
-
-    <div>
-      <%= f.label :name %><br />
-      <%= f.text_field :name %>
-    </div>
-
-    <div>
-      <%= f.submit "Create" %>
-    </div>
-  <% end %>
+  <%= render "forums/form", forum: @forum %>
 </div>

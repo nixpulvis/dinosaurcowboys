@@ -15,9 +15,9 @@ class ApplicationController < ActionController::Base
   end
 
   # Don't error 500 when people try to access bad things,
-  # simply redirect with flash.
+  # pretend like it's just not found.
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, :alert => exception.message
+    raise ActionController::RoutingError.new("Don't have access")
   end
 
 end

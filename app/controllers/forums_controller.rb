@@ -58,7 +58,8 @@ class ForumsController < ApplicationController
   # Destroy the forum and all of it's topics/posts.
   #
   def destroy
-    # TODO: Write action.
+    @forum.destroy
+    redirect_to forums_path
   end
 
   private

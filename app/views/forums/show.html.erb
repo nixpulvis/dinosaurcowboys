@@ -3,11 +3,14 @@
     <%= link_to "Forums", forums_path %> /
     <%= link_to @forum, forum_path(@forum) %>
 
-    <% if can? :update, @forum %>
     <ul class="actions">
-      <li><%= link_to "Edit Forum", edit_forum_path, class: "button" %></li>
+      <% if can? :update, @forum %>
+      <li><%= link_to "Edit Forum", edit_forum_path(@forum) %></li>
+      <% end %>
+      <% if can? :destroy, @forum %>
+      <li><%= link_to "Delete Forum", forum_path(@forum), method: :delete, confirm: "Are you sure?" %></li>
+      <% end %>
     </ul>
-    <% end %>
   </h1>
 
   <%= render "forums/table", topics: @topics %>

@@ -1,0 +1,36 @@
+<%= form_for(forum) do |f| %>
+  <% if forum.errors %>
+  <ul class="errors">
+  <% forum.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+  <% end %>
+
+  <div>
+    <%= f.label(:name) %><br />
+    <%= f.text_field(:name) %>
+  </div>
+
+  <div>
+    <h2>Readable Ranks</h2>
+    <%= hidden_field_tag "forum[readable_rank_ids][]", nil %>
+    <% Rank.all.each do |rank| %>
+      <%= check_box_tag "forum[readable_rank_ids][]", rank.id, forum.readable_rank_ids.include?(rank.id), id: dom_id(rank) %>
+      <%= label_tag dom_id(rank), rank.name %><br>
+    <% end %>
+  </div>
+
+  <div>
+    <h2>Writable Ranks</h2>
+    <%= hidden_field_tag "forum[writable_rank_ids][]", nil %>
+    <% Rank.all.each do |rank| %>
+      <%= check_box_tag "forum[writable_rank_ids][]", rank.id, forum.writable_rank_ids.include?(rank.id), id: dom_id(rank) %>
+      <%= label_tag dom_id(rank), rank.name %><br>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
