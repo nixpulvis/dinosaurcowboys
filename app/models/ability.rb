@@ -28,9 +28,13 @@ class Ability
     can :comment, Raid if user.persisted?
     can :comment, Boss if user.persisted?
 
-    # FIXME: Save permissions related to ranks.
-    can :read, Forum, id: [4, 5]
-    can :comment, Forum, id: 5
+    # Forum access.
+    if user.rank
+      can :read,    Forum, id: user.rank.readable_forums.pluck(:id)
+      can :comment, Forum, id: user.rank.writable_forums.pluck(:id)
+    else
+      # TODO: Rankless user permissions...
+    end
 
     forum_read_ids    = Forum.accessible_by(self, :read).pluck(:id)
     forum_comment_ids = Forum.accessible_by(self, :comment).pluck(:id)
