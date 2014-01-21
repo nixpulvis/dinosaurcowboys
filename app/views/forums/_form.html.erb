@@ -22,8 +22,8 @@
 
       <%= hidden_field_tag "forum[readable_rank_ids][]", nil %>
       <% Rank.all.each do |rank| %>
-        <%= check_box_tag "forum[readable_rank_ids][]", rank.id, forum.readable_rank_ids.include?(rank.id), id: dom_id(rank) %>
-        <%= label_tag dom_id(rank), rank.name %><br />
+        <%= check_box_tag "forum[readable_rank_ids][]", rank.id, forum.readable_rank_ids.include?(rank.id), id: dom_id(rank, "readable") %>
+        <%= label_tag dom_id(rank, "readable"), rank.name %><br />
       <% end %>
     </div>
   </div>
@@ -34,8 +34,8 @@
     <div class="write-permissions">
       <%= hidden_field_tag "forum[writable_rank_ids][]", nil %>
       <% Rank.all.each do |rank| %>
-        <%= check_box_tag "forum[writable_rank_ids][]", rank.id, forum.writable_rank_ids.include?(rank.id), id: dom_id(rank) %>
-        <%= label_tag dom_id(rank), rank.name %><br />
+        <%= check_box_tag "forum[writable_rank_ids][]", rank.id, forum.writable_rank_ids.include?(rank.id), id: dom_id(rank, "writable") %>
+        <%= label_tag dom_id(rank, "writable"), rank.name %><br />
       <% end %>
     </div>
   </div>
