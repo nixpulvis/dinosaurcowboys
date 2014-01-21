@@ -21,6 +21,10 @@ ul.forums {
       .info {
         float: right;
       }
+
+      .datetime {
+        font-size: 11px;
+      }
     }
   }
 }
@@ -50,8 +54,13 @@ table.list {
 }
 
 .forum-title {
-  font-size: 20px;
   margin-bottom: 15px;
+
+  h1 {
+    display: inline-block;
+    font-size: 20px;
+    margin-bottom: 3px;
+  }
 
   .actions {
     display: inline-block;
@@ -59,8 +68,6 @@ table.list {
     margin: 0;
     padding: 0;
     list-style: none;
-    font-size: 16px;
-    font-weight: normal;
 
     li {
       display: inline-block;
@@ -68,7 +75,11 @@ table.list {
 
     li a {
       @extend .button-small;
+      margin-bottom: 0;
     }
+  }
 
+  .info {
+    font-size: 14px;
   }
 }

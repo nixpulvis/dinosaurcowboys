@@ -22,6 +22,9 @@ gem 'sanitize'
 # Pagination support.
 gem 'kaminari'
 
+# Keep track of user hits.
+gem 'impressionist'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

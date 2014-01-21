@@ -1,8 +1,10 @@
 <div class="panel">
-  <h1 class="forum-title">
-    <%= link_to "Forums", forums_path %> /
-    New Forum
-  </h1>
+  <div class="forum-title">
+    <h1>
+      <%= link_to "Forums", forums_path %> /
+      New Forum
+    </h1>
+  </div>
 
   <%= render "forums/form", forum: @forum %>
 </div>

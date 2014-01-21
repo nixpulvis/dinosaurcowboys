@@ -2,6 +2,10 @@ class TopicsController < ApplicationController
   load_and_authorize_resource :forum
   load_and_authorize_resource through: :forum
 
+  # Keep track of views.
+  impressionist actions: [:show],
+    unique: [:impressionable_type, :impressionable_id, :session_hash]
+
   # POST /forum/:forum_id/topics
   # Creates a new topic with the passed in parameters. It then sets
   # the topic's user and it's first post's user to the current user.

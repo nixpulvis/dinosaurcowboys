@@ -1,7 +1,9 @@
 <div class="panel">
-  <h1 class="forum-title">
-    <%= link_to "Forums", forums_path %> /
-    <%= link_to @forum, forum_path(@forum) %>
+  <div class="forum-title">
+    <h1>
+      <%= link_to "Forums", forums_path %> /
+      <%= link_to @forum, forum_path(@forum) %>
+    </h1>
 
     <ul class="actions">
       <% if can? :update, @forum %>
@@ -11,7 +13,7 @@
       <li><%= link_to "Delete Forum", forum_path(@forum), method: :delete, confirm: "Are you sure?" %></li>
       <% end %>
     </ul>
-  </h1>
+  </div>
 
   <%= render "forums/table", topics: @topics %>
 

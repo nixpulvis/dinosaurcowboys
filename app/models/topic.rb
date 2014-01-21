@@ -4,7 +4,7 @@
 # it.
 #
 class Topic < ActiveRecord::Base
-  # TODO: Each topic falls under a forum, and inherits it's permissions.
+  # Each topic falls under a forum, and inherits it's permissions.
   belongs_to :forum
 
   # A user creates a topic, we save this relationship to allow that user
@@ -13,6 +13,9 @@ class Topic < ActiveRecord::Base
 
   # All the posts!
   has_many :posts, :as => :postable, :dependent => :destroy
+
+  # Keeps track of views.
+  is_impressionable
 
   # TODO: A topic must have a title, and at least one post.
   validates :title, :presence => true

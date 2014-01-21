@@ -56,7 +56,11 @@ GEM
     erubis (2.7.0)
     execjs (2.0.2)
     hike (1.2.3)
+    httpclient (2.3.4.1)
     i18n (0.6.9)
+    impressionist (1.5.1)
+      httpclient (~> 2.2)
+      nokogiri (~> 1.5)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
@@ -158,6 +162,7 @@ DEPENDENCIES
   cancan
   coffee-rails (~> 4.0.0)
   devise
+  impressionist
   jbuilder (~> 1.2)
   jquery-rails
   kaminari

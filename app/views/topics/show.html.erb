@@ -1,8 +1,10 @@
 <div class="panel">
-  <h1 class="forum-title">
-    <%= link_to "Forums", forums_path %> /
-    <%= link_to @topic.forum, forum_path(@topic.forum) %> /
-    <%= link_to @topic, forum_topic_path(@topic.forum, @topic) %>
+  <div class="forum-title">
+    <h1>
+      <%= link_to "Forums", forums_path %> /
+      <%= link_to @topic.forum, forum_path(@topic.forum) %> /
+      <%= link_to @topic, forum_topic_path(@topic.forum, @topic) %>
+    </h1>
 
     <ul class="actions">
       <% if can? :update, @topic %>
@@ -13,8 +15,12 @@
         method: :delete, confirm: "Are you sure?" %></li>
       <% end %>
     </ul>
-    <div class="clearfix"></div>
-  </h1>
+
+    <div class="info">
+      <%= pluralize(@topic.impressionist_count, "views") %> overall, with
+      <%= pluralize(@topic.impressionist_count(:start_date => 1.week.ago), "views") %> this week.
+    </div>
+  </div>
 
   <% @posts.each do |post| %>
     <%= render "shared/posts/show", post: post %>
