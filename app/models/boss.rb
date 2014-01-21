@@ -1,9 +1,22 @@
+# Boss
+# A boss is a description of the boss, with comment posts.
+# The description should be our guilds strategy which will
+# be updated like a wiki to allow up to date information
+# located in one place.
+#
+# TODO: Wiki.
+#
 class Boss < ActiveRecord::Base
   include PartyShark::Markdownable
 
+  # A boss is in a raid.
   belongs_to :raid
+
+  # Users can post about bosses.
   has_many :posts, :as => :postable, :dependent => :destroy
 
+  # Setup the routing to be of the form "/.../bosses/name_of_boss".
+  # TODO: Maybe make this functionality into a module.
   class << self
     def find_by_param(string)
       where('lower(name) = ?', string.gsub("_", " ")).first

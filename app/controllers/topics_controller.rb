@@ -1,12 +1,12 @@
 class TopicsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :forum
+  load_and_authorize_resource through: :forum
 
-  before_filter do
-    @forum = Forum.find(params[:forum_id])
-  end
-
+  # POST /forum/:forum_id/topics
+  # Creates a new topic with the passed in parameters. It then sets
+  # the topic's user and it's first post's user to the current user.
+  #
   def create
-    @topic.forum = @forum
     @topic.user = current_user
     @topic.posts.first.user = current_user
 
@@ -18,10 +18,23 @@ class TopicsController < ApplicationController
     end
   end
 
+  # GET /forum/:forum_id/topics/:id
+  # Provides the topic, and it's posts.
+  #
   def show
     @posts = @topic.posts.page(params[:page])
   end
 
+  # GET /forum/:forum_id/topics/:id/edit
+  # Provides the topic for editing.
+  #
+  def edit
+    # TODO: Make view.
+  end
+
+  # PATCH or PUT /forum/:forum_id/topics/:id
+  # Allows for updates to the topic's attributes.
+  #
   def update
     if @topic.update_attributes(topic_params)
       redirect_to forum_topic_path(@topic.forum, @topic)
@@ -30,6 +43,9 @@ class TopicsController < ApplicationController
     end
   end
 
+  # DELETE /forum/:forum_id/topics/:id
+  # Destroys the topic and it's posts.
+  #
   def destroy
     @topic.destroy
     redirect_to forum_path(@topic.forum)
@@ -37,6 +53,9 @@ class TopicsController < ApplicationController
 
   private
 
+  # topic_params: -> Hash
+  # Permits the topic fields for assignment.
+  #
   def topic_params
     params.require(:topic).permit(:title, posts_attributes: [:body])
   end

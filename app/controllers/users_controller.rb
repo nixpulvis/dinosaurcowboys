@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   # As non-admin, redirects with access error.
   #
   def index
+    # FIXME: undefined method `admin?' for nil:NilClass when not logged in.
     raise CanCan::AccessDenied unless current_user.admin?
   end
 
@@ -30,26 +31,20 @@ class UsersController < ApplicationController
   end
 
   # GET /users/:id
-  # As admin, provides the user specified by id.
-  # As specified user, provides the user.
-  # As non-admin, redirects with access error.
+  # Provides the user, and it's posts.
   #
   def show
     @posts = @user.posts.page(params[:page])
   end
 
   # GET /users/:id/edit
-  # As admin, provides the user specified by id.
-  # As specified user, provides the user.
-  # As non-admin, redirects with access error.
+  # Provides the user.
   #
   def edit
   end
 
   # PATCH or PUT /users/:id
-  # As admin, updates the specified user with the given parameters.
-  # As specified user, updates the user with the given parameters.
-  # As non-admin, redirects with access error.
+  # Allows for users to update their attributes.
   #
   def update
     # Assume user is not trying to update password if the password is blank.
@@ -58,11 +53,11 @@ class UsersController < ApplicationController
        params[:user].delete(:password_confirmation)
     end
 
-    # You can't make yourself not an admin.
-    admin = current_user.admin? && current_user != @user
-
-    # Append an error for the admin field.
-    if params[:user][:admin] == "0" && !admin
+    # Append an error for the admin field if you are trying to make yourself
+    # not an admin.
+    if params[:user][:admin] == "0" &&
+       current_user.admin? &&
+       current_user == @user
       @user.errors.add(:admin, "can't be disabled by the same user")
       render :edit
       return
@@ -76,9 +71,12 @@ class UsersController < ApplicationController
     end
   end
 
+  # DELETE /users/:id
+  # Destroy the user, and everything it did.
+  #
   def destroy
     @user.destroy
-    sign_out
+    sign_out if @user == current_user
     redirect_to root_path, notice: "User deleted :("
   end
 

@@ -1,14 +1,13 @@
 class CharactersController < ApplicationController
   load_and_authorize_resource :user, except: :roster
-  load_and_authorize_resource :character, :through => :user, except: :roster
-  skip_authorization_check only: :roster
+  load_and_authorize_resource through: :user, except: :roster
+
+  skip_authorization_check only: :roster  # Everyone can see the roster.
 
   # GET /users/:user_id/character/new
   # Get the given user, and build it a character for it.
   #
   def new
-    @user = User.find(params[:user_id])
-    @character = @user.characters.build
   end
 
   # POST /users/:user_id/character
@@ -16,9 +15,6 @@ class CharactersController < ApplicationController
   # new page when there are errors.
   #
   def create
-    @user = User.find(params[:user_id])
-    @character = @user.characters.build(character_params)
-
     # First character should be the main.
     if @user.characters.count == 0
       @character.main = true
@@ -37,27 +33,18 @@ class CharactersController < ApplicationController
   # Provides the given character of a given user.
   #
   def show
-    @user = User.find(params[:user_id])
-    @character = @user.characters.find(params[:id])
   end
 
   # GET /users/:user_id/character/:id/edit
+  # Provides the user and character for editing.
+  #
   def edit
-    @user = User.find(params[:user_id])
-    @character = @user.characters.find(params[:id])
-    unauthorized unless current_user.admin? || current_user == @user
   end
 
   # PATCH or PUT /users/:user_id/character/:id
-  # As admin, updates the specified character with the given parameters.
-  # As specified user, updates the character with the given parameters.
-  # As non-admin, redirects with access error.
+  # Allows user to update the character.
   #
   def update
-    @user = User.find(params[:user_id])
-    @character = @user.characters.find(params[:id])
-    unauthorized unless current_user.admin? || current_user == @user
-
     if @character.update_attributes(character_params)
       redirect_to user_character_path(@user, @character)
     else
@@ -66,15 +53,9 @@ class CharactersController < ApplicationController
   end
 
   # DELETE /users/:user_id/character/:id
-  # As admin, destroys the specified character.
-  # As specified user, destroys the character.
-  # As non-admin, redirects with access error.
+  # Deletes the character.
   #
   def destroy
-    @user = User.find(params[:user_id])
-    @character = @user.characters.find(params[:id])
-    unauthorized unless current_user.admin? || current_user == @user
-
     @character.destroy
     redirect_to user_path(@user)
   end
