@@ -1,6 +1,14 @@
 .post {
   margin-bottom: 20px;
 
+  &:nth-child(even) .body {
+    background-color: darken($background-color, 2%);
+  }
+
+  &:nth-child(odd) .body {
+    background-color: lighten($background-color, 2%);
+  }
+
   .user {
     width: 12%;
     display: inline-block;
@@ -59,15 +67,13 @@
         padding: 0;
         list-style: none;
         float: right;
-        font-size: 16px;
+        font-size: 11px;
 
         li {
           display: inline-block;
 
           a {
-            @extend .button-small;
-
-            margin-bottom: 0;
+            margin: 0 3px 0 0;
           }
         }
       }

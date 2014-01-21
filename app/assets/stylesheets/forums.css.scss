@@ -6,9 +6,13 @@ ul.forums {
 
   .forum {
     display: inline-block;
-    width: 49%;
+    width: 49.1%;
     margin-bottom: 10px;
     vertical-align: top;
+
+    &:nth-child(even) {
+      float: right;
+    }
 
     a {
       display: block;
