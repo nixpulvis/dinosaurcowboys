@@ -9,8 +9,8 @@ class Character < ActiveRecord::Base
   belongs_to :user
 
   # Validate the two fields needed to look up a character.
-  validates :name, :presence => true
-  validates :server, :presence => true
+  validates :name, presence: true, length: { maximum: 12 }
+  validates :server, presence: true
 
   # -> String
   # A character is displayed by it's name.
