@@ -50,6 +50,9 @@ table.list {
 }
 
 .forum-title {
+  font-size: 20px;
+  margin-bottom: 15px;
+
   .actions {
     display: inline-block;
     float: right;
@@ -67,9 +70,5 @@ table.list {
       @extend .button-small;
     }
 
-  }
-
-  form { /* TODO: We are going to be getting rid of this */
-    display: inline-block;
   }
 }

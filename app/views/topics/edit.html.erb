@@ -5,25 +5,21 @@
     <%= link_to @topic, forum_topic_path(@topic.forum, @topic) %>
 
     <ul class="actions">
-      <% if can? :update, @topic %>
-      <li><%= link_to "Edit", edit_forum_topic_path(@topic.forum, @topic) %></li>
-      <% end %>
       <% if can? :destroy, @topic %>
       <li><%= link_to "Delete", forum_topic_path(@topic.forum, @topic),
         method: :delete, confirm: "Are you sure?" %></li>
       <% end %>
     </ul>
-    <div class="clearfix"></div>
   </h1>
 
-  <% @posts.each do |post| %>
-    <%= render "shared/posts/show", post: post %>
-  <% end %>
-  <%= paginate @posts %>
+  <%= form_for([@topic.forum, @topic]) do |f| %>
+    <div>
+      <%= f.label(:title) %><br />
+      <%= f.text_field(:title) %>
+    </div>
 
-  <% if can? :create, @post %>
-  <%= form_for([@topic, @topic.posts.build]) do |f| %>
-    <%= render "shared/posts/edit", f: f, submit: "Reply" %>
-  <% end %>
+    <div>
+      <%= f.submit "Update" %>
+    </div>
   <% end %>
 </div>

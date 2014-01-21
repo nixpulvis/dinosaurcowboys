@@ -67,7 +67,6 @@
         padding: 0;
         list-style: none;
         float: right;
-        font-size: 11px;
 
         li {
           display: inline-block;
@@ -82,12 +81,6 @@
 }
 
 .post-editor {
-
-  &.right {
-    width: 86%;
-    float: right;
-  }
-
   textarea {
     width: 100%;
     height: 100px;

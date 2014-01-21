@@ -16,6 +16,9 @@ class Forum < ActiveRecord::Base
   has_many :readable_ranks, through: :read_accesses, source: :rank
   has_many :writable_ranks, through: :write_accesses, source: :rank
 
+  # Allow forum to set it's ranks.
+  accepts_nested_attributes_for :readable_ranks, :writable_ranks
+
   # A forum must have a name.
   validates :name, :presence => true
 

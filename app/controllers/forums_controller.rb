@@ -41,14 +41,17 @@ class ForumsController < ApplicationController
   # Provide the forum to edit.
   #
   def edit
-    # TODO: Create view.
   end
 
   # PATCH or PUT /forums/:id
   # Allows for updates to the forum.
   #
   def update
-    # TODO: Write action.
+    if @forum.update_attributes(forum_params)
+      redirect_to forum_path(@forum)
+    else
+      render :edit
+    end
   end
 
   # DELETE /forums/:id
@@ -61,7 +64,7 @@ class ForumsController < ApplicationController
   private
 
   def forum_params
-    params.require(:forum).permit(:name)
+    params.require(:forum).permit(:name, readable_rank_ids: [], writable_rank_ids: [])
   end
 
 end

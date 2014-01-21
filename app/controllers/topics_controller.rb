@@ -30,7 +30,6 @@ class TopicsController < ApplicationController
   # Provides the topic for editing.
   #
   def edit
-    # TODO: Make view.
   end
 
   # PATCH or PUT /forum/:forum_id/topics/:id
