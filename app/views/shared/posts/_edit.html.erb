@@ -1,4 +1,30 @@
 <div class="post-editor">
+  <div class="controls">
+    <%= fa_icon "bold", class: "button-small" %>
+    <%= fa_icon "italic", class: "button-small" %>
+
+    <%= fa_icon "text-height", class: "button-small" %>
+    <%= fa_icon "indent", class: "button-small" %>
+    <%#= fa_icon "list-ol", class: "button-small" %>
+    <%#= fa_icon "list-ul", class: "button-small" %>
+    <%= fa_icon "code", class: "button-small" %>
+
+    <%= fa_icon "link", class: "button-small" %>
+    <div class="popup link">
+      <input type="text" name="text" placeholder="Text">
+      <input type="text" name="url" value="http://">
+      <input type="submit" value="Add">
+    </div>
+    <%= fa_icon "picture-o", class: "button-small" %>
+    <div class="popup picture-o">
+      <input type="text" name="url" value="http://">
+      <input type="submit" value="Add">
+    </div>
+
+    <%= link_to "http://daringfireball.net/projects/markdown/syntax" do %>
+      <%= fa_icon "question-circle", class: "button-small pull-right" %>
+    <% end %>
+  </div>
   <%= f.text_area :body %><br />
   <%= f.submit submit %>
 </div>

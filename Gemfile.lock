@@ -55,6 +55,8 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.0.2)
+    font-awesome-rails (4.0.3.1)
+      railties (>= 3.2, < 5.0)
     hike (1.2.3)
     httparty (0.12.0)
       json (~> 1.8)
@@ -168,6 +170,7 @@ DEPENDENCIES
   cancan
   coffee-rails (~> 4.0.0)
   devise
+  font-awesome-rails
   impressionist
   jbuilder (~> 1.2)
   jquery-rails
