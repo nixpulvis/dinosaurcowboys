@@ -12,13 +12,28 @@
   .user {
     width: 12%;
     display: inline-block;
-    text-align: center;
     margin-right: 10px;
 
     img.avatar {
       @extend .border;
+      float: left;
+      margin: 0 5px 3px 0;
       height: 50px;
       width: 50px;
+    }
+
+    .info {
+      width: 47%;
+      float: left;
+
+      .rank {
+        font-size: 11px;
+      }
+
+      .count {
+        color: #999;
+        font-size: 11px;
+      }
     }
 
     p {
@@ -29,10 +44,6 @@
       width: 100%;
       overflow: hidden;
       text-overflow: ellipsis
-    }
-
-    .count {
-      font-size: 11px;
     }
   }
 
