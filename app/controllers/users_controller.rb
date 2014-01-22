@@ -6,8 +6,7 @@ class UsersController < ApplicationController
   # As non-admin, redirects with access error.
   #
   def index
-    # FIXME: undefined method `admin?' for nil:NilClass when not logged in.
-    raise CanCan::AccessDenied unless current_user.admin?
+    raise CanCan::AccessDenied unless current_user.try(:admin?)
   end
 
   # GET /users/new
