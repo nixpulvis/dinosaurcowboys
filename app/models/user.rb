@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # TODO: Allowed to have many characters, but one **must** be the main.
+  # Allowed to have many characters, but one **must** be the main.
   has_many :characters, dependent: :destroy
 
   # Users make posts.
@@ -18,8 +18,9 @@ class User < ActiveRecord::Base
   # a rank are assumed to be not invited yet.
   belongs_to :rank
 
-  # A user **must** have an email address.
-  validates :email, :presence => true
+  # A user **must** have an email address, and a character.
+  validates :email, presence: true
+  validates :characters, presence: true
 
   # Allow users forms to create characters.
   accepts_nested_attributes_for :characters

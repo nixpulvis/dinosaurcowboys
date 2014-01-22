@@ -2,9 +2,7 @@
 class CharacterValidator < ActiveModel::Validator
   def validate(record)
     begin
-      character = WoW::CharacterProfile.new(record.server, record.name)
-      record.update_attribute(:klass, character.lookup(:class))
-      record.update_attribute(:level, character[:level])
+      record.api = WoW::CharacterProfile.new(record.server, record.name)
     rescue WoW::APIError => e
       case e.message
       when /Realm/

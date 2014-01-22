@@ -3,8 +3,6 @@
 # bunch of topics. Topics in a forum inherit their permissions from
 # the forum.
 #
-# TODO: Permissions per rank.
-#
 class Forum < ActiveRecord::Base
   # The forum's topics.
   has_many :topics, :dependent => :destroy

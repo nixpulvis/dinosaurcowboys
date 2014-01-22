@@ -17,7 +17,7 @@ class Topic < ActiveRecord::Base
   # Keeps track of views.
   is_impressionable
 
-  # TODO: A topic must have a title, and at least one post.
+  # A topic must have a title.
   validates :title, :presence => true
 
   # By default order the topics from newest to oldest. So the

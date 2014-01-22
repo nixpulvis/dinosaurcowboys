@@ -5,7 +5,7 @@ module CharactersHelper
   # colored and all.
   #
   def character_tag(character)
-    content_tag(:span, character.name, class: "character #{character.klass}")
+    content_tag(:span, character, class: "character #{character.klass}")
   end
 
 end

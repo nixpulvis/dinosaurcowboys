@@ -40,9 +40,7 @@
       <% end %>
     </td>
     <td class="freshness">
-      <% if topic.posts.any? %>
-      <%= from_now_tag topic.posts_updated_at %>
-      <% end %>
+      <%= from_now_tag topic.updated_at %>
     </td>
   </tr>
   <% end %>
