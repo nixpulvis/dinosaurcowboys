@@ -9,6 +9,22 @@
     confirm: "Are you sure?" %>
   <% end %>
 
+  <div class="status">
+    <%= @application.status %>
+  </div>
+
+  <% if can? :decide, @application %>
+    <% unless @application.status == :trial %>
+      <%= decide_link "Trial", @user, :trial %>
+    <% end %>
+    <% unless @application.status == :accepted %>
+      <%= decide_link "Accept", @user, :accepted %>
+    <% end %>
+    <% unless @application.status == :rejected %>
+      <%= decide_link "Reject", @user, :rejected %>
+    <% end %>
+  <% end %>
+
   <dl>
     <dt>Name</dt>
     <dd><%= @application.name %></dd>

@@ -4,6 +4,13 @@
 # or not.
 #
 class Application < ActiveRecord::Base
+  STATES = [
+    :pending,
+    :trial,
+    :accepted,
+    :rejected,
+  ]
+
   # The person applying.
   belongs_to :user
 
@@ -21,4 +28,34 @@ class Application < ActiveRecord::Base
   validates :leadership, presence: true
   validates :skill, presence: true
   validates :why, presence: true
+
+  # status -> String
+  # Return the current status of the application.
+  #
+  def status
+    STATES[self.state]
+  end
+
+  # status= Symbol -> Boolean
+  # Sets the status of this application, changes ranks of the user
+  # and sends emails.
+  #
+  # TODO: Email sending.
+  #
+  def status=(value)
+    case value.to_sym
+    when :pending
+      self.update_attribute(:state, 0)
+      self.user.update_attribute(:rank, nil)
+    when :trial
+      self.update_attribute(:state, 1)
+      self.user.update_attribute(:rank, Rank.find_by_name("Trial"))
+    when :accepted
+      self.update_attribute(:state, 2)
+      self.user.update_attribute(:rank, Rank.find_by_name("Raider"))
+    when :rejected
+      self.update_attribute(:state, 3)
+      self.user.update_attribute(:rank, nil)
+    end
+  end
 end

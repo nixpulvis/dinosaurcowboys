@@ -13,7 +13,9 @@ PartyShark::Application.routes.draw do
   get '/roster', :to => 'characters#roster'
   resources :users do
     resources :characters, :except => :index
-    resource :application
+    resource :application do
+      member { match 'decide', via: [:put, :patch] }
+    end
   end
 
   # Raids and bosses.
