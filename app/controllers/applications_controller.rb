@@ -38,21 +38,25 @@ class ApplicationsController < ApplicationController
   # Provides the given application, and a UI to edit it.
   #
   def edit
-    # TODO: Create view.
   end
 
   # PATCH or PUT /applications/:id
   # Allows for applications to be updated.
   #
   def update
-    # TODO: Write this action.
+    if @application.update_attributes(application_params)
+      redirect_to user_application_path(@user, @application)
+    else
+      render :edit
+    end
   end
 
   # DELETE /applications/:id
   # Destroys the given application.
   #
   def destroy
-    # TODO: Write this action.
+    @application.destroy
+    redirect_to root_path
   end
 
   private

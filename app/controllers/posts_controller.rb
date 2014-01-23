@@ -72,7 +72,7 @@ class PostsController < ApplicationController
     elsif postable.is_a? Topic
       forum_topic_path(postable.forum, postable)
     elsif postable.is_a? Application
-      user_application_path(postable.user, postable)
+      user_application_path(postable.user)
     end
   end
 

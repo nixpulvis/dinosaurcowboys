@@ -13,7 +13,7 @@ PartyShark::Application.routes.draw do
   get '/roster', :to => 'characters#roster'
   resources :users do
     resources :characters, :except => :index
-    resources :applications, :except => :index
+    resource :application
   end
 
   # Raids and bosses.

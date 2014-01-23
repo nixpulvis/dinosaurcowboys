@@ -1,6 +1,14 @@
 <div class="panel">
   <h2><%= character_tag @user.main %> Application</h2>
 
+  <% if can? :update, @application %>
+  <%= link_to "Edit", edit_user_application_path(@user) %>
+  <% end %>
+  <% if can? :destroy, @application %>
+  <%= link_to "Delete", user_application_path(@user), method: :delete,
+    confirm: "Are you sure?" %>
+  <% end %>
+
   <dl>
     <dt>Name</dt>
     <dd><%= @application.name %></dd>
