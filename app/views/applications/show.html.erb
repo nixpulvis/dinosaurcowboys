@@ -1,0 +1,64 @@
+<div class="panel">
+  <h2><%= character_tag @user.main %> Application</h2>
+
+  <dl>
+    <dt>Name</dt>
+    <dd><%= @application.name %></dd>
+  </dl>
+
+  <dl>
+    <dt>Age</dt>
+    <dd><%= @application.age %></dd>
+  </dl>
+
+  <dl>
+    <dt>Gender</dt>
+    <dd><%= @application.gender %></dd>
+  </dl>
+
+  <dl>
+    <dt>Battlenet</dt>
+    <dd><%= @application.battlenet %></dd>
+  </dl>
+
+  <dl>
+    <dt>Logs</dt>
+    <dd><%= @application.logs %></dd>
+  </dl>
+
+  <dl>
+    <dt>Computer</dt>
+    <dd><%= @application.computer %></dd>
+  </dl>
+
+  <dl>
+    <dt>History</dt>
+    <dd><%= @application.history %></dd>
+  </dl>
+
+  <dl>
+    <dt>Leadership</dt>
+    <dd><%= @application.leadership %></dd>
+  </dl>
+
+  <dl>
+    <dt>Skill</dt>
+    <dd><%= @application.skill %></dd>
+  </dl>
+
+  <dl>
+    <dt>Why</dt>
+    <dd><%= @application.why %></dd>
+  </dl>
+
+  <% @posts.each do |post| %>
+    <%= render "shared/posts/show", post: post %>
+  <% end %>
+  <%= paginate @posts %>
+
+  <% if can? :create, @post %>
+  <%= form_for([@application, @post]) do |f| %>
+    <%= render "shared/posts/edit", f: f, submit: "Reply" %>
+  <% end %>
+  <% end %>
+</div>

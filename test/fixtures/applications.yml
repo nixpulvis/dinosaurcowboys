@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  logs: MyText
+  computer: MyText
+  history: MyText
+  leadership: MyText
+  skill: MyText
+  why: MyText
+
+two:
+  logs: MyText
+  computer: MyText
+  history: MyText
+  leadership: MyText
+  skill: MyText
+  why: MyText

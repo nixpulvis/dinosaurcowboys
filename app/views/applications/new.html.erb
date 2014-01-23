@@ -1,0 +1,67 @@
+<div class="panel">
+  <h2>New Application</h2>
+
+  <%= form_for [@user, @application] do |f| %>
+    <% if @application.errors %>
+    <ul class="errors">
+    <% @application.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+    <% end %>
+
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div>
+      <%= f.label :age %>
+      <%= f.text_field :age %>
+    </div>
+
+    <div>
+      <%= f.label :gender %>
+      <%= f.text_field :gender %>
+    </div>
+
+    <div>
+      <%= f.label :battlenet %>
+      <%= f.text_field :battlenet %>
+    </div>
+
+    <div>
+      <%= f.label :logs %>
+      <%= f.text_field :logs %>
+    </div>
+
+    <div>
+      <%= f.label :computer %>
+      <%= f.text_field :computer %>
+    </div>
+
+    <div>
+      <%= f.label :history %>
+      <%= f.text_field :history %>
+    </div>
+
+    <div>
+      <%= f.label :leadership %>
+      <%= f.text_field :leadership %>
+    </div>
+
+    <div>
+      <%= f.label :skill %>
+      <%= f.text_field :skill %>
+    </div>
+
+    <div>
+      <%= f.label :why %>
+      <%= f.text_field :why %>
+    </div>
+
+    <div>
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>

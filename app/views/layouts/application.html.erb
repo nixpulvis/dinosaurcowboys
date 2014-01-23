@@ -43,7 +43,7 @@
     <% if user_signed_in? %>
       <li><%= link_to "Account", user_path(current_user) %></li>
       <% unless current_user.rank %>
-      <li><a href="#">Apply</a></li>
+      <li><%= link_to "Apply", new_user_application_path(current_user) %></li>
       <% end %>
       <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
     <% else %>
