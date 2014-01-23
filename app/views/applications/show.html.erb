@@ -14,13 +14,11 @@
   </div>
 
   <% if can? :decide, @application %>
-    <% unless @application.status == :trial %>
+    <% if @application.status == :pending %>
       <%= decide_link "Trial", @user, :trial %>
     <% end %>
-    <% unless @application.status == :accepted %>
+    <% if @application.status == :trial %>
       <%= decide_link "Accept", @user, :accepted %>
-    <% end %>
-    <% unless @application.status == :rejected %>
       <%= decide_link "Reject", @user, :rejected %>
     <% end %>
   <% end %>

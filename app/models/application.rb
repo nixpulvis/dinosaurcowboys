@@ -29,18 +29,19 @@ class Application < ActiveRecord::Base
   validates :skill, presence: true
   validates :why, presence: true
 
+  # Send a creation email.
+  after_create :send_email
+
   # status -> String
   # Return the current status of the application.
   #
   def status
-    STATES[self.state]
+    self.id_changed? ? :created : STATES[self.state]
   end
 
   # status= Symbol -> Boolean
   # Sets the status of this application, changes ranks of the user
   # and sends emails.
-  #
-  # TODO: Email sending.
   #
   def status=(value)
     case value.to_sym
@@ -57,5 +58,10 @@ class Application < ActiveRecord::Base
       self.update_attribute(:state, 3)
       self.user.update_attribute(:rank, nil)
     end
+    self.send_email
+  end
+
+  def send_email
+    ApplicationMailer.send("#{self.status}_email", self).deliver
   end
 end
