@@ -1,10 +1,10 @@
 <div class="panel">
-  <div class="forum-title">
-    <h1>
+  <div class="title">
+    <h3>
       <%= link_to "Forums", forums_path %> /
       <%= link_to @topic.forum, forum_path(@topic.forum) %> /
       <%= link_to @topic, forum_topic_path(@topic.forum, @topic) %>
-    </h1>
+    </h3>
 
     <ul class="actions">
       <% if can? :update, @topic %>

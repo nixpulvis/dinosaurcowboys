@@ -28,6 +28,9 @@ gem 'kaminari'
 # Keep track of user hits.
 gem 'impressionist'
 
+# Simple form for easier better forms.
+gem 'simple_form'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

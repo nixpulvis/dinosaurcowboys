@@ -28,6 +28,10 @@ class Character < ActiveRecord::Base
     self.name.titleize
   end
 
+  def armory_url
+    "http://us.battle.net/wow/en/character/#{server}/#{name}/advanced"
+  end
+
   private
 
   # Sync the data from blizz api with out data model.

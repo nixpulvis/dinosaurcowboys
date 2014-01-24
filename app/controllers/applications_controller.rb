@@ -12,7 +12,11 @@ class ApplicationsController < ApplicationController
   # Build an application to create.
   #
   def new
-
+    if @user.application
+      redirect_to user_application_path(@user)
+    else
+      render :new
+    end
   end
 
   # POST /users/:user_id/application

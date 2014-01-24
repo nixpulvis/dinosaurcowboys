@@ -15,7 +15,8 @@ class Application < ActiveRecord::Base
   belongs_to :user
 
   # An application should have discussion.
-  has_many :posts, as: :postable, dependent: :destroy
+  has_many :posts, as: :postable, dependent: :destroy,
+    after_add: :foo
 
   # The application requires all of it's attributes.
   validates :name, presence: true
@@ -63,5 +64,11 @@ class Application < ActiveRecord::Base
 
   def send_email
     ApplicationMailer.send("#{self.status}_email", self).deliver
+  end
+
+  def foo(post)
+    post.class_eval do
+      set_callback(:create, :after, -> {binding.pry})
+    end
   end
 end

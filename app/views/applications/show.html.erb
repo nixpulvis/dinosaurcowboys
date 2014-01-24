@@ -1,77 +1,86 @@
 <div class="panel">
-  <h2><%= character_tag @user.main %> Application</h2>
+  <div class="title">
+    <h1><%= armory_tag @user.main %></h1>
+    <div class="status <%= @application.status %>">
+      <%= @application.status.to_s.titleize %>
+    </div>
 
-  <% if can? :update, @application %>
-  <%= link_to "Edit", edit_user_application_path(@user) %>
-  <% end %>
-  <% if can? :destroy, @application %>
-  <%= link_to "Delete", user_application_path(@user), method: :delete,
-    confirm: "Are you sure?" %>
-  <% end %>
+    <ul class="actions">
+      <% if can? :decide, @application %>
+        <li><%= decide_link "Pending", @user, :pending %></li>
+        <li><%= decide_link "Trial", @user, :trial %></li>
+        <li><%= decide_link "Accept", @user, :accepted %></li>
+        <li><%= decide_link "Reject", @user, :rejected %></li>
+      <% end %>
 
-  <div class="status">
-    <%= @application.status %>
+      <% if can? :update, @application %>
+      <li><%= link_to "Edit", edit_user_application_path(@user) %></li>
+      <% end %>
+      <% if can? :destroy, @application %>
+      <li><%= link_to "Delete", user_application_path(@user), method: :delete,
+        confirm: "Are you sure?" %></li>
+      <% end %>
+    </ul>
   </div>
 
-  <% if can? :decide, @application %>
-    <% if @application.status == :pending %>
-      <%= decide_link "Trial", @user, :trial %>
-    <% end %>
-    <% if @application.status == :trial %>
-      <%= decide_link "Accept", @user, :accepted %>
-      <%= decide_link "Reject", @user, :rejected %>
-    <% end %>
-  <% end %>
+  <div class="entry">
+    <h3>Name</h3>
+    <p><%= @application.name %></p>
+  </div>
 
-  <dl>
-    <dt>Name</dt>
-    <dd><%= @application.name %></dd>
-  </dl>
 
-  <dl>
-    <dt>Age</dt>
-    <dd><%= @application.age %></dd>
-  </dl>
+  <div class="entry">
+    <h3>Age</h3>
+    <p><%= @application.age %></p>
+  </div>
 
-  <dl>
-    <dt>Gender</dt>
-    <dd><%= @application.gender %></dd>
-  </dl>
 
-  <dl>
-    <dt>Battlenet</dt>
-    <dd><%= @application.battlenet %></dd>
-  </dl>
+  <div class="entry">
+    <h3>Gender</h3>
+    <p><%= @application.gender == 0 ? "Male" : "Female" %></p>
+  </div>
 
-  <dl>
-    <dt>Logs</dt>
-    <dd><%= @application.logs %></dd>
-  </dl>
+  <div class="entry">
+    <h3>Battle.net ID</h3>
+    <p><%= @application.battlenet %></p>
+  </div>
 
-  <dl>
-    <dt>Computer</dt>
-    <dd><%= @application.computer %></dd>
-  </dl>
 
-  <dl>
-    <dt>History</dt>
-    <dd><%= @application.history %></dd>
-  </dl>
+  <div class="entry">
+    <h3>Logs</h3>
+    <p><%= @application.logs %></p>
+  </div>
 
-  <dl>
-    <dt>Leadership</dt>
-    <dd><%= @application.leadership %></dd>
-  </dl>
 
-  <dl>
-    <dt>Skill</dt>
-    <dd><%= @application.skill %></dd>
-  </dl>
+  <div class="entry">
+    <h3>Computer</h3>
+    <%= simple_format @application.computer %>
+  </div>
 
-  <dl>
-    <dt>Why</dt>
-    <dd><%= @application.why %></dd>
-  </dl>
+  <div class="entry">
+    <h3>World of Warcraft History</h3>
+    <%= simple_format @application.history %>
+  </div>
+
+
+  <div class="entry">
+    <h3>Guild Leadership</h3>
+    <%= simple_format @application.leadership %>
+  </div>
+
+
+  <div class="entry">
+    <h3>Skill, Rotation, and Playstyle</h3>
+    <%= simple_format @application.skill %>
+  </div>
+
+
+  <div class="entry">
+    <h3>Why Party Shark?</h3>
+    <%= simple_format @application.why %>
+  </div>
+
+  <hr />
 
   <% @posts.each do |post| %>
     <%= render "shared/posts/show", post: post %>

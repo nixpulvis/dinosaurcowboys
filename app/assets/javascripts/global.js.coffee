@@ -18,3 +18,6 @@ $ ->
     utc_time = $(this).html()
     $.setIntervalAndExecute 1000, =>
       $(this).updateTimeFromNow(utc_time)
+
+  # Automatically resize textareas.
+  $('textarea').autosize()
