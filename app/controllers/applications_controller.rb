@@ -2,6 +2,13 @@ class ApplicationsController < ApplicationController
   load_and_authorize_resource :user
   load_and_authorize_resource :application, through: :user, singleton: true
 
+  before_filter only: [:new, :create] do
+    @application.user = @user
+
+    # Don't let users with ranks apply.
+    redirect_to root_path, alert: "You are already in the guild" if @user.rank
+  end
+
   # GET /users/:user_id/application
   # All of the applications.
   #
@@ -15,7 +22,7 @@ class ApplicationsController < ApplicationController
     if @user.application
       redirect_to user_application_path(@user)
     else
-      render :new
+      render :edit, locals: {header: "Submit Your Application"}
     end
   end
 
@@ -26,7 +33,7 @@ class ApplicationsController < ApplicationController
     if @application.save
       redirect_to user_application_path(@user)
     else
-      render :new
+      render :edit, locals: {header: "Submit Your Application"}
     end
   end
 
