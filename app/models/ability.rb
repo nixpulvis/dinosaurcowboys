@@ -21,8 +21,13 @@ class Ability
     # User applications.
     # TODO: Figure out what the permissions really should be.
     can [:create], Application
-    can [:read, :comment], Application if user.rank
-    can [:manage], Application, user_id: user.id
+    can [:read, :comment, :update], Application, user_id: user.id
+    if user.rank
+      can [:read, :comment], Application
+      if ["Guild Master", "Officer"].include? user.rank.name
+        can [:decide], Application
+      end
+    end
 
     # Character permissions.
     can :read, Character

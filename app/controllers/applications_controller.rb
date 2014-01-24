@@ -1,15 +1,15 @@
 class ApplicationsController < ApplicationController
-  load_and_authorize_resource :user
+  load_resource :user
   load_and_authorize_resource :application, through: :user, singleton: true
 
   before_filter only: [:new, :create] do
-    @application.user = @user
-
     # Don't let users with ranks apply.
     redirect_to root_path, alert: "You are already in the guild" if @user.rank
+
+    @application.user = @user
   end
 
-  # GET /users/:user_id/application
+  # GET /applications
   # All of the applications.
   #
   def index

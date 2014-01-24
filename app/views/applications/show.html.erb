@@ -23,61 +23,63 @@
     </ul>
   </div>
 
-  <div class="entry">
-    <h3>Name</h3>
-    <p><%= @application.name %></p>
-  </div>
+  <div class="content">
+    <div class="entry">
+      <h3>Name</h3>
+      <p><%= @application.name %></p>
+    </div>
 
 
-  <div class="entry">
-    <h3>Age</h3>
-    <p><%= @application.age %></p>
-  </div>
+    <div class="entry">
+      <h3>Age</h3>
+      <p><%= @application.age %></p>
+    </div>
 
 
-  <div class="entry">
-    <h3>Gender</h3>
-    <p><%= @application.gender == 0 ? "Male" : "Female" %></p>
-  </div>
+    <div class="entry">
+      <h3>Gender</h3>
+      <p><%= @application.gender == 0 ? "Male" : "Female" %></p>
+    </div>
 
-  <div class="entry">
-    <h3>Battle.net ID</h3>
-    <p><%= @application.battlenet %></p>
-  </div>
-
-
-  <div class="entry">
-    <h3>Logs</h3>
-    <p><%= @application.logs %></p>
-  </div>
+    <div class="entry">
+      <h3>Battle.net ID</h3>
+      <p><%= @application.battlenet %></p>
+    </div>
 
 
-  <div class="entry">
-    <h3>Computer</h3>
-    <%= simple_format @application.computer %>
-  </div>
-
-  <div class="entry">
-    <h3>World of Warcraft History</h3>
-    <%= simple_format @application.history %>
-  </div>
+    <div class="entry">
+      <h3>Logs</h3>
+      <p><%= @application.logs %></p>
+    </div>
 
 
-  <div class="entry">
-    <h3>Guild Leadership</h3>
-    <%= simple_format @application.leadership %>
-  </div>
+    <div class="entry">
+      <h3>Computer</h3>
+      <%= simple_format @application.computer %>
+    </div>
+
+    <div class="entry">
+      <h3>World of Warcraft History</h3>
+      <%= simple_format @application.history %>
+    </div>
 
 
-  <div class="entry">
-    <h3>Skill, Rotation, and Playstyle</h3>
-    <%= simple_format @application.skill %>
-  </div>
+    <div class="entry">
+      <h3>Guild Leadership</h3>
+      <%= simple_format @application.leadership %>
+    </div>
 
 
-  <div class="entry">
-    <h3>Why Party Shark?</h3>
-    <%= simple_format @application.why %>
+    <div class="entry">
+      <h3>Skill, Rotation, and Playstyle</h3>
+      <%= simple_format @application.skill %>
+    </div>
+
+
+    <div class="entry">
+      <h3>Why Party Shark?</h3>
+      <%= simple_format @application.why %>
+    </div>
   </div>
 
   <hr />
