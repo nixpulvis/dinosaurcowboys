@@ -1,0 +1,13 @@
+.applications {
+  .side {
+    display: inline-block;
+    width: $form-width;
+    vertical-align: top;
+  }
+
+  form.application {
+    display: inline-block;
+    margin-right: 30px;
+  }
+
+}

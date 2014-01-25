@@ -52,34 +52,3 @@ table.list {
     }
   }
 }
-
-.forum-title {
-  margin-bottom: 25px;
-
-  h1 {
-    display: inline-block;
-    font-size: 20px;
-    margin-bottom: 3px;
-  }
-
-  .actions {
-    display: inline-block;
-    float: right;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-
-    li {
-      display: inline-block;
-    }
-
-    li a {
-      @extend .button-small;
-      margin-bottom: 0;
-    }
-  }
-
-  .info {
-    font-size: 14px;
-  }
-}

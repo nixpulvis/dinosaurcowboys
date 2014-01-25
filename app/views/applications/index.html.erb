@@ -1,0 +1,25 @@
+<div class="panel">
+  <% @applications.each do |app| %>
+
+    <div class="title">
+      <h1>
+        <%= link_to user_application_path(app.user) do %>
+          <%= character_tag app.user.main %>
+        <% end %>
+      </h1>
+      <div class="status <%= app.status %>">
+        <%= app.status.to_s.titleize %>
+      </div>
+
+      <ul class="actions">
+        <% if can? :decide, app %>
+          <li><%= decide_link "Pending", app.user, :pending %></li>
+          <li><%= decide_link "Trial", app.user, :trial %></li>
+          <li><%= decide_link "Accept", app.user, :accepted %></li>
+          <li><%= decide_link "Reject", app.user, :rejected %></li>
+        <% end %>
+      </ul>
+    </div>
+
+  <% end %>
+</div>

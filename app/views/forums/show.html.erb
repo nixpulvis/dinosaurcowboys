@@ -1,9 +1,9 @@
 <div class="panel">
-  <div class="forum-title">
-    <h1>
+  <div class="title">
+    <h2>
       <%= link_to "Forums", forums_path %> /
       <%= link_to @forum, forum_path(@forum) %>
-    </h1>
+    </h2>
 
     <ul class="actions">
       <% if can? :update, @forum %>

@@ -3,7 +3,7 @@
   "Officer",
   "Loot Council",
   "Raider",
-  "Applicant",
+  "Trial",
   "Friend"
 ].each do |rank|
   Rank.find_or_create_by(:name => rank)

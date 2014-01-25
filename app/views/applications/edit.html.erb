@@ -1,0 +1,50 @@
+<div class="panel">
+  <h1>Submit Your Application</h1>
+  <p>You are applying as <%= armory_tag @user.main %>.</p>
+
+  <%= simple_form_for @application, url: user_application_path(@user), html: {class: "application"} do |f| %>
+    <%= f.input :name, hint: "This is your actual name" %>
+    <%= f.input :age %>
+    <%= f.input :gender, collection: [[0, "Male"], [1, "Female"]], as: :radio_buttons, label_method: :last, value_method: :first, checked: @application.gender %>
+    <%= f.input :battlenet, label: "Battle.net" %>
+    <%= f.input :logs, hint: "World of Logs, and/or Warcraft Logs" %>
+    <%= f.input :computer, label: "Computer Specs", input_html: {rows: 5} %>
+    <%= f.input :raiding_history, label: "Your Raiding History", input_html: {rows: 5} %>
+    <%= f.input :guild_history, label: "Your Guild History", input_html: {rows: 5} %>
+    <%= f.input :leadership, label: "Guild Leadership" %>
+    <%= f.input :playstyle, label: "Skill, Rotation, and Playstyle", input_html: {rows: 5} %>
+    <%= f.input :why, label: "Why Party Shark?", input_html: {rows: 3} %>
+    <%= f.input :referer, label: "How Did You Hear About Party Shark?", input_html: {rows: 3} %>
+    <%= f.input :animal, label: "What Animal Best Describes You in Raids?", input_html: {rows: 4} %>
+    <%= f.input :additional, label: "Additional Comments/Questions", input_html: {rows: 4} %>
+    <%= f.button :submit %>
+  <% end %>
+
+  <div class="content side">
+    <h2>Raid Schedule</h2>
+    <p>Tuesday and Thursday from 8:45pm to 12:45am EST</p>
+
+    <p>Invites at 8:30, first boss pull at 8:45, 10 min break in the middle and last boss pull at 12:45, we will always end by 1am at the latest.</p>
+
+    <!-- TODO: Dynamic recruitment models. -->
+    <h2>Currently Recruiting</h2>
+    <p>In order of preference</p>
+    <ol>
+      <li>Warlock</li>
+      <li>Mage</li>
+      <li>Hunter</li>
+      <li>Resto/Ele Shaman</li>
+    </ol>
+
+    <h2>Contact Information</h2>
+    <p>Add us on REALID if you're interested in our guild<br />
+      - Partyshark#1727<br />
+      - Mikesumner#1521<br />
+      Or Chat with us in game<br />
+      - Omnomnomms (Gm/recruitment)<br />
+      - Disciplíne (Officer/Logistics/recruitment)<br />
+      - Tencarus (Strats/Raid Lead)<br />
+      - Tahgoe (Call-outs, Performance evaluation)
+    </p>
+  </div>
+</div>

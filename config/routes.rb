@@ -9,11 +9,15 @@ PartyShark::Application.routes.draw do
   # Devise user authentication.
   devise_for :users, :skip => :registration
 
-  # Users and characters.
+  # Users, characters and applications.
   get '/roster', :to => 'characters#roster'
   resources :users do
     resources :characters, :except => :index
+    resource :application do
+      member { match 'decide', via: [:put, :patch] }
+    end
   end
+  get '/applications', :to => 'applications#index'
 
   # Raids and bosses.
   resources :raids do
@@ -33,6 +37,9 @@ PartyShark::Application.routes.draw do
     resources :posts, :only => [:create, :update, :destroy]
   end
   scope 'topics/:topic_id', :as => :topic do
+    resources :posts, :only => [:create, :update, :destroy]
+  end
+  scope 'applications/:application_id', :as => :application do
     resources :posts, :only => [:create, :update, :destroy]
   end
 

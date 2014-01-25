@@ -72,13 +72,13 @@ class CharactersController < ApplicationController
     ]
 
     # TODO: Use one instance variable, and clean this up.
-    @core = []
-    @applicants = []
+    @cores = []
+    @trials = []
     User.all.each do |user|
       if user.rank && core_ranks.include?(user.rank.name)
-        @core << user.main if user.main
-      elsif user.rank && user.rank.name == "Applicant"
-        @applicants << user.main if user.main
+        @cores << user.main if user.main
+      elsif user.rank && user.rank.name == "Trial"
+        @trials << user.main if user.main
       end
     end
   end

@@ -12,10 +12,22 @@ class Ability
     can :home, :page
     can :logs, :page
     can :recruitment, :page
+    can :apply, :page
 
     # User permissions.
     can :create, User
     can [:read, :update], User, id: user.id
+
+    # User applications.
+    # TODO: Figure out what the permissions really should be.
+    can [:create], Application
+    can [:read, :comment, :update], Application, user_id: user.id
+    if user.rank
+      can [:read, :comment], Application
+      if ["Guild Master", "Officer"].include? user.rank.name
+        can [:decide], Application
+      end
+    end
 
     # Character permissions.
     can :read, Character
@@ -48,17 +60,19 @@ class Ability
     can :manage, Topic, user_id: user.id
 
     postable_read_ids = {
-      "Raid"  => Raid.accessible_by(self, :read).pluck(:id),
-      "Boss"  => Boss.accessible_by(self, :read).pluck(:id),
+      "Raid" => Raid.accessible_by(self, :read).pluck(:id),
+      "Boss" => Boss.accessible_by(self, :read).pluck(:id),
       "Topic" => Topic.accessible_by(self, :read).pluck(:id),
+      "Application" => Application.accessible_by(self, :read).pluck(:id),
     }
     postable_read_ids.each do |type, ids|
       can :read, Post, postable_id: ids, postable_type: type
     end
     postable_comment_ids = {
-      "Raid"  => Raid.accessible_by(self, :comment).pluck(:id),
-      "Boss"  => Boss.accessible_by(self, :comment).pluck(:id),
+      "Raid" => Raid.accessible_by(self, :comment).pluck(:id),
+      "Boss" => Boss.accessible_by(self, :comment).pluck(:id),
       "Topic" => Topic.accessible_by(self, :comment).pluck(:id),
+      "Application" => Application.accessible_by(self, :comment).pluck(:id),
     }
     postable_comment_ids.each do |type, ids|
       if user.persisted?

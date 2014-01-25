@@ -5,10 +5,17 @@ $topbar-hover-color: #122939;
 $link-color: #fece2f;
 $text-color: #eee;
 
+$primary-color: #428bca;
+$success-color: #5cb85c;
+$info-color:    #5bc0de;
+$warning-color: #f0ad4e;
+$danger-color:  #d9534f;
+
 $border-size: 2px;
 $border-radius-size: 3px;
 
 $page-width: 980px;
+$form-width: 440px;
 
 $fg-column: 60px;
 $fg-gutter: 25px;
@@ -32,88 +39,6 @@ hr {
 
 iframe {
   @extend .border;
-}
-
-form {
-
-  label {
-    display: inline-block;
-    margin-bottom: 2px;
-  }
-
-  input, textarea, select {
-    @include box-sizing(border-box);
-
-    margin-bottom: 10px;
-    padding: 5px;
-    background: $border-color;
-    border: $border-size solid $border-color;
-    border-radius: 3px;
-    color: $text-color;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-
-    &:focus {
-      padding: -2px;
-      outline: none;
-      border: $border-size solid $link-color;
-    }
-  }
-
-  select {
-    &:focus {
-      padding: 7px;
-      border: none;
-    }
-  }
-
-  textarea {
-    resize: vertical;
-  }
-
-  input[type=checkbox], input[type=radio] {
-    display: inline-block;
-    font-size: 15px;
-    line-height: 1em;
-    margin: 0 0.25em 10px 0;
-    padding: 0;
-    width: 1.25em;
-    height: 1.25em;
-    -webkit-border-radius: 0.25em;
-    vertical-align: text-top;
-  }
-
-  input[type=checkbox]:checked {
-    background-color: $link-color;
-  }
-
-  input[type=radio] {
-    -webkit-border-radius: 2em; /* Make radios round */
-  }
-
-  input[type="submit"] {
-    @extend .button;
-    color: $link-color;
-
-    &:focus {
-      background-color: $link-color;
-      color: $background-color;
-    }
-  }
-
-  .errors {
-    color: red;
-  }
-
-  .field_with_errors {
-    display: inline-block;
-    width: 100%;
-
-    input, textarea, select {
-      border: $border-size solid red;
-    }
-  }
-
 }
 
 nav.pagination {
@@ -169,6 +94,59 @@ nav.pagination {
     h1, h2, h3 {
       margin-top: 0;
     }
+  }
+}
+
+.title {
+  margin-bottom: 20px;
+
+  h1, h2, h3, h4, h5, h6 {
+    display: inline-block;
+    // font-size: 24px;
+    margin-bottom: 3px;
+  }
+
+  .actions {
+    display: inline-block;
+    float: right;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: inline-block;
+    }
+
+    li a {
+      @extend .button-small;
+      margin-bottom: 0;
+    }
+  }
+
+  .info {
+    font-size: 14px;
+  }
+}
+
+.status {
+  display: inline-block;
+  margin: 0 10px;
+  padding: 4px 6px;
+  border-radius: $border-radius-size;
+  vertical-align: 5px;
+  color: $background-color;
+
+  &.pending {
+    background-color: $info-color;
+  }
+  &.trial {
+    background-color: $warning-color;
+  }
+  &.accepted {
+    background-color: $success-color;
+  }
+  &.rejected {
+    background-color: $danger-color;
   }
 }
 

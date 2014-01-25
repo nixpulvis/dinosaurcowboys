@@ -3,15 +3,15 @@
 
   <h2>Core</h2>
   <ul>
-    <% @core.each do |character| %>
-    <li><%= link_to character.name, user_character_path(character.user, character) %></li>
+    <% @cores.each do |character| %>
+    <li><%= character_tag character %></li>
     <% end %>
   </ul>
 
-  <h2>Applicants</h2>
+  <h2>Trials</h2>
   <ul>
-    <% @applicants.each do |character| %>
-    <li><%= character.name %></li>
+    <% @trials.each do |character| %>
+    <li><%= character_tag character %></li>
     <% end %>
   </ul>
 </div>

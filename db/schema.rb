@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140121205552) do
+ActiveRecord::Schema.define(version: 20140123013754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,27 @@ ActiveRecord::Schema.define(version: 20140121205552) do
     t.string   "permission"
     t.integer  "rank_id"
     t.integer  "forum_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "applications", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "state",           default: 0
+    t.string   "name"
+    t.integer  "age",                         null: false
+    t.integer  "gender",                      null: false
+    t.string   "battlenet",                   null: false
+    t.text     "logs"
+    t.text     "computer",                    null: false
+    t.text     "raiding_history",             null: false
+    t.text     "guild_history",               null: false
+    t.text     "leadership",                  null: false
+    t.text     "playstyle",                   null: false
+    t.text     "why",                         null: false
+    t.text     "referer",                     null: false
+    t.text     "animal",                      null: false
+    t.text     "additional"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
