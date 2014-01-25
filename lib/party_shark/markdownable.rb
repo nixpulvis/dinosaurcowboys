@@ -7,7 +7,8 @@ module PartyShark
         'a', 'b', 'blockquote', 'br', 'caption', 'cite', 'code', 'col',
         'colgroup', 'dd', 'dl', 'dt', 'em', 'i', 'img', 'li', 'ol', 'p', 'pre',
         'q', 'small', 'strike', 'strong', 'sub', 'sup', 'table', 'tbody', 'td',
-        'tfoot', 'th', 'thead', 'tr', 'u', 'ul', 'del', 'ins', 'h1', 'h2', 'h3', 'h4', 'h5', 'h5', 'hr', 'kbd'],
+        'tfoot', 'th', 'thead', 'tr', 'u', 'ul', 'del', 'ins', 'h1', 'h2', 'h3',
+        'h4', 'h5', 'h5', 'hr', 'kbd', 'iframe'],
 
       :attributes => {
         'a'          => ['href', 'title'],
@@ -21,7 +22,8 @@ module PartyShark
         'td'         => ['abbr', 'axis', 'colspan', 'rowspan', 'width'],
         'th'         => ['abbr', 'axis', 'colspan', 'rowspan', 'scope',
                          'width'],
-        'ul'         => ['type']
+        'ul'         => ['type'],
+        'iframe'     => ['src', 'width', 'height'],
       },
 
       :protocols => {

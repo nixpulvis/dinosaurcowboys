@@ -30,6 +30,10 @@ hr {
   border-bottom: 1px dashed $border-color;
 }
 
+iframe {
+  @extend .border;
+}
+
 form {
 
   label {

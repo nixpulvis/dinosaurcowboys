@@ -14,6 +14,13 @@ class ApplicationController < ActionController::Base
     params[resource] &&= send(method) if respond_to?(method, true)
   end
 
+  # Allowing things like iframes in content of the site requires this.
+  # The browser by default shits itself if a response comes back with
+  # the same script-like data sent.
+  before_filter do
+    response.headers['X-XSS-Protection'] = "0"
+  end
+
   # Don't error 500 when people try to access bad things,
   # pretend like it's just not found.
   rescue_from CanCan::AccessDenied do |exception|
