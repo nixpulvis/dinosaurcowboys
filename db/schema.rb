@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140123142000) do
+ActiveRecord::Schema.define(version: 20140123013754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,19 +26,23 @@ ActiveRecord::Schema.define(version: 20140123142000) do
 
   create_table "applications", force: true do |t|
     t.integer  "user_id"
+    t.integer  "state",           default: 0
     t.string   "name"
-    t.integer  "age"
-    t.integer  "gender"
-    t.string   "battlenet"
+    t.integer  "age",                         null: false
+    t.integer  "gender",                      null: false
+    t.string   "battlenet",                   null: false
     t.text     "logs"
-    t.text     "computer"
-    t.text     "history"
-    t.text     "leadership"
-    t.text     "skill"
-    t.text     "why"
+    t.text     "computer",                    null: false
+    t.text     "raiding_history",             null: false
+    t.text     "guild_history",               null: false
+    t.text     "leadership",                  null: false
+    t.text     "playstyle",                   null: false
+    t.text     "why",                         null: false
+    t.text     "referer",                     null: false
+    t.text     "animal",                      null: false
+    t.text     "additional"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "state",      default: 0
   end
 
   create_table "bosses", force: true do |t|

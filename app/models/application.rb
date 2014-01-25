@@ -15,20 +15,34 @@ class Application < ActiveRecord::Base
   belongs_to :user
 
   # An application should have discussion.
-  has_many :posts, as: :postable, dependent: :destroy,
-    after_add: :foo
+  has_many :posts, as: :postable, dependent: :destroy
 
-  # The application requires all of it's attributes.
-  validates :name, presence: true
-  validates :age, presence: true
-  validates :gender, presence: true
+  # Validate the fields of the application.
+  validates :state, presence: true
+  validates :name, length: { minimum: 3 },
+                   format: { with: /[0-9a-z ]/i,
+                             message: "only allows alphanumeric characters" },
+                   allow_blank: true
+  validates :age, presence: true,
+                  numericality: { only_integer: true }
+  validates :gender, presence: true,
+                     inclusion: { in: [0, 1] }
+
+  # TODO: Add validation to the format of this field.
   validates :battlenet, presence: true
-  validates :logs, presence: true
+
+  # TODO: Add validation to the format of this URL.
+  # validates :logs, format: { with: URI::regexp(["http", "https", ""]),
+  #                            message: "is not a valid URL" },
+  #                  allow_blank: true
   validates :computer, presence: true
-  validates :history, presence: true
+  validates :raiding_history, presence: true
+  validates :guild_history, presence: true
   validates :leadership, presence: true
-  validates :skill, presence: true
+  validates :playstyle, presence: true
   validates :why, presence: true
+  validates :referer, presence: true
+  validates :animal, presence: true
 
   # Send a creation email.
   after_create :send_email
@@ -64,11 +78,5 @@ class Application < ActiveRecord::Base
 
   def send_email
     ApplicationMailer.send("#{self.status}_email", self).deliver
-  end
-
-  def foo(post)
-    post.class_eval do
-      set_callback(:create, :after, -> {binding.pry})
-    end
   end
 end
