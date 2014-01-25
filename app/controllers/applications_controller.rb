@@ -85,8 +85,9 @@ class ApplicationsController < ApplicationController
   # Permits the application fields for assignment.
   #
   def application_params
-    permit = [:name, :age, :gender, :battlenet, :logs, :computer, :history,
-      :leadership, :skill, :why]
+    permit = [:name, :age, :gender, :battlenet, :logs, :computer,
+      :raiding_history, :guild_history, :leadership, :playstyle, :why,
+      :referer, :animal, :additional]
 
     if self.action_name == "decide"
       permit << :status

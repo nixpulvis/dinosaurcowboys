@@ -29,12 +29,10 @@
       <p><%= @application.name %></p>
     </div>
 
-
     <div class="entry">
       <h3>Age</h3>
       <p><%= @application.age %></p>
     </div>
-
 
     <div class="entry">
       <h3>Gender</h3>
@@ -46,12 +44,10 @@
       <p><%= @application.battlenet %></p>
     </div>
 
-
     <div class="entry">
       <h3>Logs</h3>
       <p><%= @application.logs %></p>
     </div>
-
 
     <div class="entry">
       <h3>Computer</h3>
@@ -59,26 +55,43 @@
     </div>
 
     <div class="entry">
-      <h3>World of Warcraft History</h3>
-      <%= simple_format @application.history %>
+      <h3>Raiding History</h3>
+      <%= simple_format @application.raiding_history %>
     </div>
 
+    <div class="entry">
+      <h3>Guild History</h3>
+      <%= simple_format @application.guild_history %>
+    </div>
 
     <div class="entry">
       <h3>Guild Leadership</h3>
       <%= simple_format @application.leadership %>
     </div>
 
-
     <div class="entry">
       <h3>Skill, Rotation, and Playstyle</h3>
-      <%= simple_format @application.skill %>
+      <%= simple_format @application.playstyle %>
     </div>
-
 
     <div class="entry">
       <h3>Why Party Shark?</h3>
       <%= simple_format @application.why %>
+    </div>
+
+    <div class="entry">
+      <h3>Referer</h3>
+      <%= simple_format @application.referer %>
+    </div>
+
+    <div class="entry">
+      <h3>What Animal?</h3>
+      <%= simple_format @application.animal %>
+    </div>
+
+    <div class="entry">
+      <h3>Additional</h3>
+      <%= simple_format @application.additional %>
     </div>
   </div>
 
