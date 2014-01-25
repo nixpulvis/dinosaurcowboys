@@ -1,6 +1,7 @@
 class ApplicationsController < ApplicationController
-  load_resource :user
-  load_and_authorize_resource :application, through: :user, singleton: true
+  load_resource :user, except: [:index]
+  load_and_authorize_resource :application, through: :user, singleton: true,
+                                            except: [:index]
 
   before_filter only: [:new, :create] do
     # Don't let users with ranks apply.
@@ -13,6 +14,8 @@ class ApplicationsController < ApplicationController
   # All of the applications.
   #
   def index
+    authorize!(:index, Application)
+    @applications = Application.accessible_by(current_ability).page(params[:page])
   end
 
   # GET /users/:user_id/application
@@ -76,10 +79,18 @@ class ApplicationsController < ApplicationController
   #
   def decide
     @application.status = application_params[:status]
-    redirect_to user_application_path(@user)
+    redirect_to :back
   end
 
   private
+
+  # load_all_applications -> ActiveRecord::Relation
+  # Loads all of the applications into @applications,
+  # and paginates them.
+  #
+  def load_all_applications
+
+  end
 
   # application_params: -> Hash
   # Permits the application fields for assignment.

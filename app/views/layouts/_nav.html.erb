@@ -41,7 +41,7 @@ SIGN OUT
       <% if current_user.rank %>
         <li><%= link_to "Raids", raids_path %></li>
         <li><%= link_to "Forums", forums_path %></li>
-        <li><%= link_to "Applications", "#" %></li>
+        <li><%= link_to "Applications", applications_path %></li>
       <% else %>
         <li><%= link_to "Charter", charter_path %></li>
       <% end %>

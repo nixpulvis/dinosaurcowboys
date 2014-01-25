@@ -19,9 +19,7 @@ module CharactersHelper
   #
   def armory_tag(character)
     link_to character.armory_url, class: "armory" do
-      character_tag(character) do |c|
-        "#{c.level} #{c}"
-      end
+      character_tag(character)
     end
   end
 

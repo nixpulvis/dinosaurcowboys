@@ -17,6 +17,7 @@ PartyShark::Application.routes.draw do
       member { match 'decide', via: [:put, :patch] }
     end
   end
+  get '/applications', :to => 'applications#index'
 
   # Raids and bosses.
   resources :raids do
