@@ -4,6 +4,18 @@
 # "Alt". In this way ranks are assigned to users, not to characters.
 #
 class Rank < ActiveRecord::Base
+  include Comparable
+
+  # The default ranks for the guild, order matters.
+  DEFAULTS = [
+    "Guild Master",
+    "Officer",
+    "Loot Council",
+    "Raider",
+    "Trial",
+    "Friend"
+  ]
+
   # A rank has a bunch of users of that rank.
   has_many :users
 
@@ -22,5 +34,21 @@ class Rank < ActiveRecord::Base
   #
   def to_s
     self.name
+  end
+
+  # (Rank | String) -> Boolean
+  # Returning -1, 0, or +1 depending on whether the receiver is
+  # less than, equal to, or greater than the other object.
+  #
+  def <=>(other)
+    other_name = if other.is_a?(String)
+      other
+    elsif other.is_a?(Rank)
+      other.name
+    else
+      raise ArgumentError, "Argument is not a String or Rank"
+    end
+
+    DEFAULTS.index(other_name) <=> DEFAULTS.index(self.name)
   end
 end

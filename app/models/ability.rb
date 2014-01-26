@@ -8,21 +8,20 @@ class Ability
     can :manage, :all if user.admin?
 
     # Page permissions.
-    can :charter, :page
-    can :home, :page
-    can :logs, :page
+    can :charter,     :page
+    can :home,        :page
+    can :logs,        :page
     can :recruitment, :page
-    can :apply, :page
+    can :apply,       :page
 
     # User permissions.
     can :create, User
     can [:read, :update], User, id: user.id
 
     # User applications.
-    # TODO: Figure out what the permissions really should be.
-    can [:create], Application
+    can :create, Application
     can [:read, :comment, :update], Application, user_id: user.id
-    if user.rank
+    if user.rank && user.rank >= "Raider"
       can [:read, :comment], Application
       if ["Guild Master", "Officer"].include? user.rank.name
         can [:decide], Application
@@ -41,11 +40,10 @@ class Ability
     can :comment, Boss if user.persisted?
 
     # Forum access.
-    if user.persisted? && user.rank
+    if user.rank
       can :read,    Forum, id: user.rank.readable_forums.pluck(:id)
       can :comment, Forum, id: user.rank.writable_forums.pluck(:id)
-    else
-      can :read, Forum, public: true
+      can :read,    Forum, public: true
     end
 
     forum_read_ids    = Forum.accessible_by(self, :read).pluck(:id)
