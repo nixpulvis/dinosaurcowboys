@@ -64,6 +64,9 @@ gem 'jbuilder', '~> 1.2'
 # Real time error watch.
 gem 'rollbar'
 
+# Monitor the app with Librato.
+gem 'librato-rails'
+
 group :production do
   gem 'rails_12factor'
 end
