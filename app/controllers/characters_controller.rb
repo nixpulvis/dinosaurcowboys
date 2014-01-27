@@ -4,6 +4,11 @@ class CharactersController < ApplicationController
 
   skip_authorization_check only: :roster  # Everyone can see the roster.
 
+  before_filter only: [:new, :create] do
+    @character.user = @user
+    authorize!(:create, @character)
+  end
+
   # GET /users/:user_id/character/new
   # Get the given user, and build it a character for it.
   #
