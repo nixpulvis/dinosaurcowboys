@@ -31,21 +31,25 @@ class BossesController < ApplicationController
   # Provides the given boss, and a UI to edit it.
   #
   def edit
-    # TODO: Create view.
   end
 
   # PATCH or PUT /raids/:raid_id/bosses/:id
   # Allows for bosses to be updated.
   #
   def update
-    # TODO: Write this action.
+    if @boss.update_attributes(boss_params)
+      redirect_to raid_boss_path(@raid, @boss)
+    else
+      render :edit
+    end
   end
 
   # DELETE /raids/:raid_id/bosses/:id
   # Destroys the given boss.
   #
   def destroy
-    # TODO: Write this action.
+    @boss.destroy
+    redirect_to raid_path(@raid)
   end
 
   private

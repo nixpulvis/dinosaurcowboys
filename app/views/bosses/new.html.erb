@@ -1,10 +1,11 @@
 <div class="panel">
-  <h2>New Boss</h2>
+  <div class="title">
+    <h3>
+      <%= link_to "Raids", raids_path %> /
+      <%= link_to @raid, raid_path(@raid) %> /
+      New Boss
+    </h3>
+  </div>
 
-  <%= simple_form_for @boss, url: { action: "create" } do |f| %>
-    <%= f.input :name %>
-    <%= f.input :content %>
-
-    <%= f.button :submit %>
-  <% end %>
+  <%= render "bosses/form", boss: @boss %>
 </div>
