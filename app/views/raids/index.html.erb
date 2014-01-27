@@ -2,12 +2,12 @@
   <h1>Raids</h1>
 
   <ul>
-  <% @raids.each do |raid| %>
-    <li><%= link_to raid.name, raid %></li>
-  <% end %>
+    <% @raids.each do |raid| %>
+      <li><%= link_to raid.name, raid %></li>
+    <% end %>
   </ul>
 
   <% if can? :create, Raid %>
-  <%= link_to "Add raid", new_raid_path %>
+    <%= link_to "Add Raid", new_raid_path %>
   <% end %>
 </div>

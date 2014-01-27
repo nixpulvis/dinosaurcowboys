@@ -1,24 +1,11 @@
 <div class="panel">
-  <h2>New raid</h2>
+  <h2>New Raid</h2>
 
-  <%= form_for @raid, url: { :action => "create" } do |f| %>
-    <div>
-      <%= f.label :name %><br />
-      <%= f.text_field :name, :autofocus => true %>
-    </div>
+  <%= simple_form_for @raid, url: { action: "create" } do |f| %>
+    <%= f.input :name %>
+    <%= f.input :tier %>
+    <%= f.input :content %>
 
-    <div>
-      <%= f.label :tier %><br />
-      <%= f.number_field :tier %>
-    </div>
-
-    <div>
-      <%= f.label :content %><br />
-      <%= f.text_area :content %>
-    </div>
-
-    <div>
-      <%= f.submit "Create" %>
-    </div>
+    <%= f.button :submit %>
   <% end %>
 </div>

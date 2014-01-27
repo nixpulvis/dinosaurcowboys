@@ -6,11 +6,12 @@ class CharacterValidator < ActiveModel::Validator
     rescue WoW::APIError => e
       case e.message
       when /Realm/
-        record.errors.add(:realm, "is invalid")
+        record.errors.add(:server, "is not a valid realm name")
       when /Character/
-        record.errors.add(:name, "not found")
+        record.errors.add(:name, "not found on Battle.net")
       else
-        record.errors.add(:base, "Error with Blizzard API")
+        record.errors.add(:server, "cannot validate due to error with Blizzard API")
+        record.errors.add(:name, "cannot validate due to error with Blizzard API")
       end
     end
   end

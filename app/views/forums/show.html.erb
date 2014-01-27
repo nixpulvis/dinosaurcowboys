@@ -7,10 +7,10 @@
 
     <ul class="actions">
       <% if can? :update, @forum %>
-      <li><%= link_to "Edit Forum", edit_forum_path(@forum) %></li>
+        <li><%= link_to "Edit Forum", edit_forum_path(@forum) %></li>
       <% end %>
       <% if can? :destroy, @forum %>
-      <li><%= link_to "Delete Forum", forum_path(@forum), method: :delete, confirm: "Are you sure?" %></li>
+        <li><%= link_to "Delete Forum", forum_path(@forum), method: :delete, confirm: "Are you sure?" %></li>
       <% end %>
     </ul>
   </div>
@@ -18,24 +18,14 @@
   <%= render "forums/table", topics: @topics %>
 
   <% if can? :create, @topic %>
-  <h3>New Topic</h3>
-  <%= form_for([@forum, @topic], url: forum_topics_path(@forum)) do |f| %>
-    <% if @topic.errors %>
-    <ul class="errors">
-    <% @topic.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-    <% end %>
+    <h3>New Topic</h3>
 
-    <div>
-      <%= f.label :title %><br />
-      <%= f.text_field :title %>
-    </div>
+    <%= simple_form_for [@forum, @topic], url: forum_topics_path(@forum) do |f| %>
+      <%= f.input :title %>
 
-    <%= f.fields_for :posts do |p| %>
-      <%= render "shared/posts/edit", f: p, submit: "Create Topic" %>
+      <%= f.simple_fields_for :posts do |p| %>
+        <%= render "shared/posts/edit", f: p, submit: "Create Topic" %>
+      <% end %>
     <% end %>
-  <% end %>
   <% end %>
 </div>

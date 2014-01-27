@@ -1,19 +1,10 @@
 <div class="panel">
-  <h2>New boss</h2>
+  <h2>New Boss</h2>
 
-  <%= form_for @boss, url: { :action => "create" } do |f| %>
-    <div>
-      <%= f.label :name %><br />
-      <%= f.text_field :name, :autofocus => true %>
-    </div>
+  <%= simple_form_for @boss, url: { action: "create" } do |f| %>
+    <%= f.input :name %>
+    <%= f.input :content %>
 
-    <div>
-      <%= f.label :content %><br />
-      <%= f.text_area :content %>
-    </div>
-
-    <div>
-      <%= f.submit "Create" %>
-    </div>
+    <%= f.button :submit %>
   <% end %>
 </div>

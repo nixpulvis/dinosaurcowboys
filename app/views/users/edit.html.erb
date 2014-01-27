@@ -1,34 +1,19 @@
 <div class="panel">
-  <h2>Edit user</h2>
+  <h2>Edit User Information</h2>
 
-  <%= form_for(@user) do |f| %>
-    <% if @user.errors %>
-    <ul class="errors">
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+  <%= simple_form_for @user do |f| %>
+    <%= f.input :email %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
+
+    <% if current_user.admin? || current_user.rank >= "Officer" %>
+      <%= f.association :rank, include_blank: "None" %>
     <% end %>
-    </ul>
-    <% end %>
-
-    <%= f.label :email %><br />
-    <%= f.email_field :email %><br />
-
-    <%= f.label :password %><br />
-    <%= f.password_field :password %><br />
-
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %><br />
 
     <% if current_user.admin? %>
-    <div class="admin">
-      <%= f.label :rank %><br />
-      <%= f.collection_select(:rank_id, Rank.all, :id, :name, include_blank: 'None') %><br />
-
-      <%= f.check_box :admin? %>
-      <%= f.label :admin? %><br />
-    </div>
+      <%= f.input :admin?, as: :boolean %>
     <% end %>
 
-    <%= f.submit "Submit" %>
+    <%= f.button :submit %>
   <% end %>
 </div>

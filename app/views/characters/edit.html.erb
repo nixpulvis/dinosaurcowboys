@@ -1,24 +1,11 @@
 <div class="panel">
-  <h2>Edit character</h2>
+  <h2>Edit Character</h2>
 
-  <%= form_for([@user, @character]) do |f| %>
-    <% if @character.errors %>
-    <ul class="errors">
-    <% @character.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-    <% end %>
+  <%= simple_form_for [@user, @character] do |f| %>
+    <%= f.input :name %>
+    <%= f.input :server %>
+    <%= f.input :main?, as: :boolean %>
 
-    <%= f.label :name %><br />
-    <%= f.text_field :name %><br />
-
-    <%= f.label :server %><br />
-    <%= f.text_field :server %><br />
-
-    <%= f.check_box :main? %>
-    <%= f.label :main? %><br />
-
-    <%= f.submit "Submit" %>
+    <%= f.button :submit %>
   <% end %>
 </div>

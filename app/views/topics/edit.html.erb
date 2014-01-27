@@ -8,20 +8,14 @@
 
     <ul class="actions">
       <% if can? :destroy, @topic %>
-      <li><%= link_to "Delete", forum_topic_path(@topic.forum, @topic),
-        method: :delete, confirm: "Are you sure?" %></li>
+        <li><%= link_to "Delete", forum_topic_path(@topic.forum, @topic), method: :delete, confirm: "Are you sure?" %></li>
       <% end %>
     </ul>
   </div>
 
-  <%= form_for([@topic.forum, @topic]) do |f| %>
-    <div>
-      <%= f.label(:title) %><br />
-      <%= f.text_field(:title) %>
-    </div>
+  <%= simple_form_for [@topic.forum, @topic] do |f| %>
+    <%= f.input :title %>
 
-    <div>
-      <%= f.submit "Update" %>
-    </div>
+    <%= f.button :submit, "Update" %>
   <% end %>
 </div>

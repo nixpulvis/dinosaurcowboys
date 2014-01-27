@@ -1,42 +1,7 @@
-<%= form_for(forum) do |f| %>
-  <% if forum.errors %>
-  <ul class="errors">
-  <% forum.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <% end %>
-  </ul>
-  <% end %>
+<%= simple_form_for forum do |f| %>
+  <%= f.input :name %>
+  <%= f.association :readable_ranks, as: :check_boxes %>
+  <%= f.association :writable_ranks, as: :check_boxes %>
 
-  <div>
-    <%= f.label(:name) %><br />
-    <%= f.text_field(:name) %>
-  </div>
-
-  <div>
-    <h2>Read Permissions</h2>
-
-    <div class="read-permissions">
-      <%= hidden_field_tag "forum[readable_rank_ids][]", nil %>
-      <% Rank.all.each do |rank| %>
-        <%= check_box_tag "forum[readable_rank_ids][]", rank.id, forum.readable_rank_ids.include?(rank.id), id: dom_id(rank, "readable") %>
-        <%= label_tag dom_id(rank, "readable"), rank.name %><br />
-      <% end %>
-    </div>
-  </div>
-
-  <div>
-    <h2>Write Permissions</h2>
-
-    <div class="write-permissions">
-      <%= hidden_field_tag "forum[writable_rank_ids][]", nil %>
-      <% Rank.all.each do |rank| %>
-        <%= check_box_tag "forum[writable_rank_ids][]", rank.id, forum.writable_rank_ids.include?(rank.id), id: dom_id(rank, "writable") %>
-        <%= label_tag dom_id(rank, "writable"), rank.name %><br />
-      <% end %>
-    </div>
-  </div>
-
-  <div>
-    <%= f.submit %>
-  </div>
+  <%= f.button :submit %>
 <% end %>

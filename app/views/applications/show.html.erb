@@ -14,11 +14,10 @@
       <% end %>
 
       <% if can? :update, @application %>
-      <li><%= link_to "Edit", edit_user_application_path(@user) %></li>
+        <li><%= link_to "Edit", edit_user_application_path(@user) %></li>
       <% end %>
       <% if can? :destroy, @application %>
-      <li><%= link_to "Delete", user_application_path(@user), method: :delete,
-        confirm: "Are you sure?" %></li>
+        <li><%= link_to "Delete", user_application_path(@user), method: :delete, confirm: "Are you sure?" %></li>
       <% end %>
     </ul>
   </div>
@@ -103,8 +102,8 @@
   <%= paginate @posts %>
 
   <% if can? :create, @post %>
-  <%= form_for([@application, @post]) do |f| %>
-    <%= render "shared/posts/edit", f: f, submit: "Reply" %>
-  <% end %>
+    <%= simple_form_for [@application, @post] do |f| %>
+      <%= render "shared/posts/edit", f: f, submit: "Reply" %>
+    <% end %>
   <% end %>
 </div>

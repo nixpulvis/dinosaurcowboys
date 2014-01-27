@@ -21,6 +21,7 @@ class UsersController < ApplicationController
   # character parameters. Redisplays the new page when there are errors.
   #
   def create
+    @user.characters.build if @user.characters.empty?
     if @user.save
       sign_in(@user)
       redirect_to(@user)
@@ -85,8 +86,16 @@ class UsersController < ApplicationController
   # Permits the user fields for assignment.
   #
   def user_params
-    permit = [:email, :rank_id, :password, :password_confirmation, :admin,
+    permit = [:email, :password, :password_confirmation,
       :characters_attributes => [:name, :server]]
+
+    if current_user.rank >= "Officer"
+      permit << :rank_id
+    end
+
+    if current_user.admin?
+      permit << :admin
+    end
 
     params.require(:user).permit(*permit)
   end

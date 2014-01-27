@@ -6,13 +6,14 @@
 
   <ul>
     <% @raid.bosses.each do |boss| %>
-    <% if can? :read, boss %>
-    <li><%= link_to boss.name, raid_boss_path(@raid, boss) %></li>
-    <% end %>
+      <% if can? :read, boss %>
+        <li><%= link_to boss.name, raid_boss_path(@raid, boss) %></li>
+      <% end %>
     <% end %>
   </ul>
+
   <% if can? :create, Boss %>
-  <%= link_to "Add boss", new_raid_boss_path(@raid) %>
+    <%= link_to "Add Boss", new_raid_boss_path(@raid) %>
   <% end %>
 
   <div class="content">
@@ -25,8 +26,8 @@
   <%= paginate @posts %>
 
   <% if can? :create, @post %>
-  <%= form_for([@raid, @raid.posts.build]) do |f| %>
-    <%= render "shared/posts/edit", f: f, submit: "Reply" %>
-  <% end %>
+    <%= simple_form_for [@raid, @raid.posts.build] do |f| %>
+      <%= render "shared/posts/edit", f: f, submit: "Reply" %>
+    <% end %>
   <% end %>
 </div>

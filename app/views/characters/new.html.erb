@@ -1,21 +1,10 @@
 <div class="panel">
-  <h2>New character</h2>
+  <h2>New Character</h2>
 
-  <%= form_for(@character, url: { action: "create" }) do |f| %>
-    <% if @character.errors %>
-    <ul class="errors">
-    <% @character.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-    <% end %>
+  <%= simple_form_for @character, url: { action: "create" } do |f| %>
+    <%= f.input :name %>
+    <%= f.input :server %>
 
-    <%= f.label :name %><br />
-    <%= f.text_field :name, :autofocus => true %><br />
-
-    <%= f.label :server %><br />
-    <%= f.text_field :server %><br />
-
-    <div><%= f.submit "Create" %></div>
+    <%= f.button :submit %>
   <% end %>
 </div>

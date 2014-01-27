@@ -14,8 +14,8 @@
   <%= paginate @posts %>
 
   <% if can? :create, @post %>
-  <%= form_for([@boss, @boss.posts.build]) do |f| %>
-    <%= render "shared/posts/edit", f: f, submit: "Reply" %>
-  <% end %>
+    <%= simple_form_for [@boss, @boss.posts.build] do |f| %>
+      <%= render "shared/posts/edit", f: f, submit: "Reply" %>
+    <% end %>
   <% end %>
 </div>

@@ -1,46 +1,17 @@
 <div class="panel">
-  <h1>Sign up</h1>
+  <h1>Sign Up</h1>
 
-  <%= form_for(@user) do |f| %>
-    <% if @user.errors %>
-    <ul class="errors">
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
+  <%= simple_form_for @user do |f| %>
+    <%= f.simple_fields_for :characters, @user.characters.first do |c| %>
+      <%= c.input :name, label: "Character Name" %>
+      <%= c.input :server, label: "Character Server" %>
     <% end %>
 
-    <%= f.fields_for :characters do |c| %>
-      <div>
-        <%= c.label :name, "Character Name" %><br />
-        <%= c.text_field :name %>
-      </div>
-
-      <div>
-        <%= c.label :server, "Character Server" %><br />
-        <%= c.text_field :server %>
-      </div>
-    <% end %>
-
-    <div>
-      <%= f.label :email %><br />
-      <%= f.email_field :email %>
-    </div>
-
-    <div>
-      <%= f.label :password %><br />
-      <%= f.password_field :password %>
-    </div>
-
-    <div>
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation %>
-    </div>
-
-    <div>
-      <%= f.submit "Sign up" %>
-    </div>
+    <%= f.input :email %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
+    <%= f.button :submit, "Sign Up" %>
   <% end %>
 
-  Already a member? <%= link_to "Sign in", new_user_session_path %>
+  <p>Already a member? <%= link_to "Sign in", new_user_session_path %></p>
 </div>

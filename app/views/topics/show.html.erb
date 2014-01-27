@@ -8,17 +8,16 @@
 
     <ul class="actions">
       <% if can? :update, @topic %>
-      <li><%= link_to "Edit", edit_forum_topic_path(@topic.forum, @topic) %></li>
+        <li><%= link_to "Edit", edit_forum_topic_path(@topic.forum, @topic) %></li>
       <% end %>
       <% if can? :destroy, @topic %>
-      <li><%= link_to "Delete", forum_topic_path(@topic.forum, @topic),
-        method: :delete, confirm: "Are you sure?" %></li>
+        <li><%= link_to "Delete", forum_topic_path(@topic.forum, @topic), method: :delete, confirm: "Are you sure?" %></li>
       <% end %>
     </ul>
 
     <div class="info">
-      <%= pluralize(@topic.impressionist_count, "views") %> overall, with
-      <%= pluralize(@topic.impressionist_count(:start_date => 1.week.ago), "views") %> this week.
+      <%= pluralize(@topic.impressionist_count, "view") %> overall, with
+      <%= pluralize(@topic.impressionist_count(:start_date => 1.week.ago), "view") %> this week.
     </div>
   </div>
 
@@ -28,8 +27,8 @@
   <%= paginate @posts %>
 
   <% if can? :create, @post %>
-  <%= form_for([@topic, @topic.posts.build]) do |f| %>
-    <%= render "shared/posts/edit", f: f, submit: "Reply" %>
-  <% end %>
+    <%= simple_form_for [@topic, @topic.posts.build] do |f| %>
+      <%= render "shared/posts/edit", f: f, submit: "Reply" %>
+    <% end %>
   <% end %>
 </div>

@@ -14,9 +14,9 @@
     </div>
 
     <% if can? :update, post %>
-    <%= form_for([post.postable, post], html: {class: "content edit"}) do |f| %>
-      <%= render "shared/posts/edit", f: f, submit: "Update" %>
-    <% end %>
+      <%= simple_form_for [post.postable, post], html: {class: "content edit"} do |f| %>
+        <%= render "shared/posts/edit", f: f, submit: "Update" %>
+      <% end %>
     <% end %>
 
     <hr />
@@ -25,17 +25,16 @@
       Posted
       <%= from_now_tag post.created_at %>
       <% unless (post.updated_at - post.created_at).between?(-1, 60) %>
-      updated
-      <%= from_now_tag post.updated_at %>
+        updated
+        <%= from_now_tag post.updated_at %>
       <% end %>
 
       <ul class="actions">
         <% if can? :update, post %>
-        <li><%= link_to "Edit", "#", class: "edit-button" %></li>
+          <li><%= link_to "Edit", "#", class: "edit-button" %></li>
         <% end %>
         <% if can? :destroy, post %>
-        <li><%= link_to "Delete", polymorphic_path([post.postable, post]),
-          method: :delete, confirm: "Are you sure?" %></li>
+          <li><%= link_to "Delete", polymorphic_path([post.postable, post]), method: :delete, confirm: "Are you sure?" %></li>
         <% end %>
       </ul>
     </div>

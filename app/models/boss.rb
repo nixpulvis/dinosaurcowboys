@@ -15,6 +15,9 @@ class Boss < ActiveRecord::Base
   # Users can post about bosses.
   has_many :posts, :as => :postable, :dependent => :destroy
 
+  # Validate that raids have a name and tier.
+  validates :name, presence: true
+
   # Setup the routing to be of the form "/.../bosses/name_of_boss".
   # TODO: Maybe make this functionality into a module.
   class << self

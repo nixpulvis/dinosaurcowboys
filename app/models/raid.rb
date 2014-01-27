@@ -15,6 +15,10 @@ class Raid < ActiveRecord::Base
   # Users can post about raids.
   has_many :posts, :as => :postable, :dependent => :destroy
 
+  # Validate that raids have a name and tier.
+  validates :name, presence: true
+  validates :tier, numericality: true, allow_nil: true
+
   # Setup the routing to be of the form "/raids/name_of_raid".
   # TODO: Maybe make this functionality into a module.
   class << self
