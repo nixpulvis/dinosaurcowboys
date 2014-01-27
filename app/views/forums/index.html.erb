@@ -4,26 +4,25 @@
 
     <ul class="actions">
       <% if can? :create, Forum %>
-      <li><%= link_to "New Forum", new_forum_path, class: "button" %></li>
+        <li><%= link_to "New Forum", new_forum_path, class: "button" %></li>
       <% end %>
     </ul>
   </div>
 
   <ul class="forums">
     <% @forums.each do |forum| %>
-    <% freshest_topic = forum.freshest %>
-
-    <li class="forum">
-      <%= link_to forum_path(forum), class: "button" do %>
-        <%= forum %>
-        <span class="info">
-          <%= pluralize(forum.topics.count, "topic") %>
-          <% if freshest_topic %>
-          <%= from_now_tag freshest_topic.posts_updated_at %>
+      <li class="forum">
+        <%= link_to forum_path(forum), class: "button" do %>
+          <%= forum %>
+          (<%= forum.topics.count %>)
+          <% if forum.freshest %>
+            <span class="freshest">
+              <%= forum.freshest.title %>
+              <%= from_now_tag forum.freshest.posts_updated_at %>
+            </span>
           <% end %>
-        </span>
-      <% end %>
-    </li>
+        <% end %>
+      </li>
     <% end %>
   </ul>
 

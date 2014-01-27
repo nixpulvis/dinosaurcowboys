@@ -1,29 +1,19 @@
 ul.forums {
   display: block;
-  margin: 10px 0;
+  margin: 10px 0 20px 0;
   padding: 0;
   list-style: none;
 
   .forum {
-    display: inline-block;
-    width: 49.1%;
     margin-bottom: 10px;
     vertical-align: top;
-
-    &:nth-child(even) {
-      float: right;
-    }
 
     a {
       display: block;
       padding: 10px;
 
-      .info {
+      .freshest {
         float: right;
-      }
-
-      .datetime {
-        font-size: 11px;
       }
     }
   }
