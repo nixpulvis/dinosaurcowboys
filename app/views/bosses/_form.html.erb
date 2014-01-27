@@ -1,6 +1,6 @@
 <%= simple_form_for [boss.raid, boss] do |f| %>
   <%= f.input :name %>
-  <%= f.input :content %>
+  <%= render "shared/editor", f: f, field: :content %>
 
   <%= f.button :submit %>
 <% end %>
