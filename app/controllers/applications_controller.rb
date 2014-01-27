@@ -17,6 +17,11 @@ class ApplicationsController < ApplicationController
   def index
     authorize!(:index, Application)
     @applications = Application.accessible_by(current_ability).page(params[:page])
+
+    @pendings = @applications.where(state: 0)
+    @trials = @applications.where(state: 1)
+    @accepts = @applications.where(state: 2)
+    @rejects = @applications.where(state: 3)
   end
 
   # GET /users/:user_id/application

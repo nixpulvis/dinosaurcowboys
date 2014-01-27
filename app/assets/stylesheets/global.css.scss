@@ -133,8 +133,9 @@ nav.pagination {
   margin: 0 10px;
   padding: 4px 6px;
   border-radius: $border-radius-size;
-  vertical-align: 5px;
+  vertical-align: 2px;
   color: $background-color;
+  font-weight: normal;
 
   &.pending {
     background-color: $info-color;
@@ -149,6 +150,39 @@ nav.pagination {
     background-color: $danger-color;
   }
 }
+
+h1 .status {
+  font-size: 22px;
+}
+h2 .status {
+  margin: 0 6px;
+  font-size: 16px;
+}
+h3 .status {
+  margin: 0 4px;
+  padding: 3px 5px;
+  font-size: 12px;
+  font-weight: bold;
+}
+h4 .status {
+  margin: 0 4px;
+  padding: 3px 5px;
+  font-size: 10px;
+  font-weight: bold;
+}
+h5 .status {
+  margin: 0 2px;
+  padding: 2px 4px;
+  font-size: 8px;
+  font-weight: bold;
+}
+h6 .status {
+  margin: 0;
+  padding: 1px 2px;
+  font-size: 8px;
+  font-weight: bold;
+}
+
 
 .button {
   display: inline-block;

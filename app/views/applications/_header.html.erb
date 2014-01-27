@@ -1,0 +1,22 @@
+<div class="title">
+  <h2>
+    <%= link_to user_application_path(app.user) do %>
+      <%= character_tag app.user.main %>
+      applied
+      <%= from_now_tag app.created_at %>
+    <% end %>
+
+    <div class="status <%= app.status %>">
+      <%= app.status.to_s.titleize %>
+    </div>
+  </h2>
+
+  <ul class="actions">
+    <% if can? :decide, app %>
+      <li><%= decide_link "Pending", app.user, :pending %></li>
+      <li><%= decide_link "Trial", app.user, :trial %></li>
+      <li><%= decide_link "Accept", app.user, :accepted %></li>
+      <li><%= decide_link "Reject", app.user, :rejected %></li>
+    <% end %>
+  </ul>
+</div>

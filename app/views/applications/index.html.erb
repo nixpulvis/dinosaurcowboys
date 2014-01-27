@@ -1,25 +1,30 @@
 <div class="panel">
-  <% @applications.each do |app| %>
+  <h1>Applications In Progress</h1>
 
-    <div class="title">
-      <h1>
-        <%= link_to user_application_path(app.user) do %>
-          <%= character_tag app.user.main %>
-        <% end %>
-      </h1>
-      <div class="status <%= app.status %>">
-        <%= app.status.to_s.titleize %>
-      </div>
+  <% if @pendings.any? %>
+    <% @pendings.each do |app| %>
+      <%= render "applications/header", app: app %>
+    <% end %>
+  <% end %>
 
-      <ul class="actions">
-        <% if can? :decide, app %>
-          <li><%= decide_link "Pending", app.user, :pending %></li>
-          <li><%= decide_link "Trial", app.user, :trial %></li>
-          <li><%= decide_link "Accept", app.user, :accepted %></li>
-          <li><%= decide_link "Reject", app.user, :rejected %></li>
-        <% end %>
-      </ul>
-    </div>
+  <% if @trials.any? %>
+    <% @trials.each do |app| %>
+      <%= render "applications/header", app: app %>
+    <% end %>
+  <% end %>
 
+  <hr />
+  <h2>Resolved Applications</h2>
+
+  <% if @accepts.any? %>
+    <% @accepts.each do |app| %>
+      <%= render "applications/header", app: app %>
+    <% end %>
+  <% end %>
+
+  <% if @rejects.any? %>
+    <% @rejects.each do |app| %>
+      <%= render "applications/header", app: app %>
+    <% end %>
   <% end %>
 </div>
