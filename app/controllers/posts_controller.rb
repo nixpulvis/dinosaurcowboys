@@ -1,12 +1,15 @@
 class PostsController < ApplicationController
   before_action :load_postable
-  load_and_authorize_resource :post, through: :postable
+  load_resource :post, through: :postable
+  authorize_resource :post, except: [:create]
 
   # POST /postable/:postable_id/posts
   # Creates a post on the postable, as the current user.
   #
   def create
+    @post.postable = @postable
     @post.user = current_user
+    authorize!(:create, @post)
 
     if @post.save
       redirect_to postable_path(@postable, page: last_page(@postable))

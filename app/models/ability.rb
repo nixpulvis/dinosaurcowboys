@@ -4,82 +4,128 @@ class Ability
   def initialize(user)
     user ||= User.new
 
-    # Fear the admin.
+    ### Admin Permissions
+
+    # An admin can access literally everything.
     can :manage, :all if user.admin?
 
-    # Page permissions.
-    can :charter,     :page
-    can :home,        :page
-    can :logs,        :page
-    can :recruitment, :page
-    can :apply,       :page
 
-    # User permissions.
+    ### Page Permissions.
+
+    # Everyone can access the charter page.
+    can :charter, :page
+    # Everyone can access the home page.
+    can :home, :page
+    # Everyone can access the logs page.
+    can :logs, :page
+    # Everyone can access the recruitment page.
+    can :recruitment, :page
+    # Everyone can access the apply page.
+    can :apply, :page
+
+
+    ### User Permissions
+
+    # Anyone can create a user.
     can :create, User
+    # People logged in as a user can see and update themselves.
     can [:read, :update], User, id: user.id
 
-    # User applications.
-    can :create, Application
-    can [:read, :comment, :update], Application, user_id: user.id
-    if user.rank && user.rank >= "Raider"
+
+    ### User Applications Permissions
+
+    # A user can create, and access an application for themselves.
+    can [:create, :read, :comment, :update], Application, user_id: user.id
+
+    # Raiders and above can read and comment on anyones application.
+    if user.rank.try(:>=, "Raider")
       can [:read, :comment], Application
-      if ["Guild Master", "Officer"].include? user.rank.name
+
+      # GMs and Officers can decide on anyones applications.
+      if user.rank >= "Officer"
         can [:decide], Application
       end
     end
 
-    # Character permissions.
+    ### User Character Permissions
+
+    # Anyone can read a users character.
     can :read, Character
+    # Users can access their own characters.
     can [:create, :update, :destroy], Character, user_id: user.id
 
-    # Raids / Bosses
-    # FIXME: Only allow "some" ranks to see/comment this.
+
+    ### Raid Permissions
+
+    # FIXME: Determine the proper permissions for this.
     can :read, Raid if user.persisted?
-    can :read, Boss if user.persisted?
     can :comment, Raid if user.persisted?
+
+
+    ### Boss Permissions
+
+    # FIXME: Determine the proper permissions for this.
+    can :read, Boss if user.persisted?
     can :comment, Boss if user.persisted?
 
-    # Forum access.
+
+    ### Forum Permissions
+
+    # Only users with ranks are even considered when authorizing.
     if user.rank
-      can :read,    Forum, id: user.rank.readable_forums.pluck(:id)
+      # Pull read accessible forum ids from the users rank.
+      can :read, Forum, id: user.rank.readable_forums.pluck(:id)
+      # Pull write accessible forum ids from the users rank.
       can :comment, Forum, id: user.rank.writable_forums.pluck(:id)
-      can :read,    Forum, public: true
     end
 
-    forum_read_ids    = Forum.accessible_by(self, :read).pluck(:id)
-    forum_comment_ids = Forum.accessible_by(self, :comment).pluck(:id)
-    can :read,    Topic, forum_id: forum_read_ids
-    can :comment, Topic, forum_id: forum_comment_ids if user.persisted?
-    if user.persisted?
-      can :create, Topic do |topic|
-        forum_comment_ids.include?(topic.forum_id)
-      end
-    end
-    can :manage, Topic, user_id: user.id
 
+    ### Forum Topic Permissions
+
+    # Only users with ranks are even considered when authorizing.
+    if user.rank
+      # Pull read accessible topics by ids of readable forums from the users
+      # rank.
+      can :read, Topic, forum_id: user.rank.readable_forums.pluck(:id)
+      # A user can create a topic, and comment on topics in a forum if they
+      # have write access to the forum based on their rank.
+      can [:create, :comment], Topic, forum_id: user.rank.writable_forums.pluck(:id)
+      # A user can always update or destroy their own topics.
+      can [:update, :destroy], Topic, user_id: user.id
+    end
+
+    ### Post Permissions
+
+    # Build a hash of postable type to postable ids, where the ids are
+    # ids of entries of the type of postable that this user can read.
     postable_read_ids = {
       "Raid" => Raid.accessible_by(self, :read).pluck(:id),
       "Boss" => Boss.accessible_by(self, :read).pluck(:id),
       "Topic" => Topic.accessible_by(self, :read).pluck(:id),
       "Application" => Application.accessible_by(self, :read).pluck(:id),
     }
-    postable_read_ids.each do |type, ids|
-      can :read, Post, postable_id: ids, postable_type: type
-    end
+
+    # Build a hash of postable type to postable ids, where the ids are
+    # ids of entries of the type of postable that this user can comment.
     postable_comment_ids = {
       "Raid" => Raid.accessible_by(self, :comment).pluck(:id),
       "Boss" => Boss.accessible_by(self, :comment).pluck(:id),
       "Topic" => Topic.accessible_by(self, :comment).pluck(:id),
       "Application" => Application.accessible_by(self, :comment).pluck(:id),
     }
-    postable_comment_ids.each do |type, ids|
-      if user.persisted?
-        can :create, Post do |post|
-          ids.include?(post.postable_id) &&
-          type == post.postable_type
-        end
-      end
+
+    # Iterate over the readable hash, allowing this user to read all the ids.
+    postable_read_ids.each do |type, ids|
+      can :read, Post, postable_id: ids, postable_type: type
     end
-    can :manage, Post, user_id: user.id
+
+    # Iterate over the commentable hash, allowing this user comment on
+    # postables he/she has access to.
+    postable_comment_ids.each do |type, ids|
+      can :create, Post, postable_id: ids, postable_type: type
+    end
+
+    # A user can access his/her own posts.
+    can [:update, :destroy], Post, user_id: user.id
   end
 end

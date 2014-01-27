@@ -4,10 +4,11 @@ class ApplicationsController < ApplicationController
                                             except: [:index]
 
   before_filter only: [:new, :create] do
+    @application.user = @user
+    authorize!(:create, @application)
+
     # Don't let users with ranks apply.
     redirect_to root_path, alert: "You are already in the guild" if @user.rank
-
-    @application.user = @user
   end
 
   # GET /applications

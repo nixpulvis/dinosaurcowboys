@@ -14,12 +14,8 @@
 
   <div>
     <h2>Read Permissions</h2>
-    <%= f.check_box :public %>
-    <%= f.label :public %><br />
 
     <div class="read-permissions">
-      <br />
-
       <%= hidden_field_tag "forum[readable_rank_ids][]", nil %>
       <% Rank.all.each do |rank| %>
         <%= check_box_tag "forum[readable_rank_ids][]", rank.id, forum.readable_rank_ids.include?(rank.id), id: dom_id(rank, "readable") %>
