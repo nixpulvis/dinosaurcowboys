@@ -1,9 +1,9 @@
 <div class="panel">
   <div class="title">
-    <h1>
+    <h2>
       <%= link_to "Forums", forums_path %> /
       <%= link_to @forum, forum_path(@forum) %>
-    </h1>
+    </h2>
 
     <% if can? :destroy, @forum %>
     <ul class="actions">
