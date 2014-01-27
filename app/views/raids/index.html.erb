@@ -1,13 +1,24 @@
 <div class="panel">
-  <h1>Raids</h1>
+  <div class="title">
+    <h1>Raids</h1>
 
-  <ul>
+    <ul class="actions">
+      <% if can? :create, Raid %>
+        <li><%= link_to fa_icon("file-o"), new_raid_path %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <ul class="button-list">
     <% @raids.each do |raid| %>
-      <li><%= link_to raid.name, raid %></li>
+      <li>
+        <%= link_to raid_path(raid) do %>
+          <%= raid %>
+          <span class="pull-right">
+            Tier <%= raid.tier %>
+          </span>
+        <% end %>
+      </li>
     <% end %>
   </ul>
-
-  <% if can? :create, Raid %>
-    <%= link_to "Add Raid", new_raid_path %>
-  <% end %>
 </div>

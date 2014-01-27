@@ -36,4 +36,8 @@ class Boss < ActiveRecord::Base
   def to_param
     name.downcase.gsub(" ", "_")
   end
+
+  def to_s
+    name
+  end
 end

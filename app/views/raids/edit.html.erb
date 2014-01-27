@@ -1,0 +1,16 @@
+<div class="panel">
+  <div class="title">
+    <h2>
+      <%= link_to "Raids", raids_path %> /
+      <%= link_to @raid, raid_path(@raid) %>
+    </h2>
+
+    <ul class="actions">
+      <% if can? :destroy, @raid %>
+        <li><%= link_to fa_icon("trash-o"), raid_path(@raid), method: :delete, confirm: "Are you sure?" %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <%= render "raids/form", raid: @raid %>
+</div>

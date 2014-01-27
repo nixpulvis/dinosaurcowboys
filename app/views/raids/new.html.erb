@@ -1,11 +1,11 @@
 <div class="panel">
-  <h2>New Raid</h2>
+  <div class="title">
+    <h2>
+      <%= link_to "Raids", raids_path %> /
+      New Raid
+    </h2>
+  </div>
 
-  <%= simple_form_for @raid, url: { action: "create" } do |f| %>
-    <%= f.input :name %>
-    <%= f.input :tier %>
-    <%= f.input :content %>
 
-    <%= f.button :submit %>
-  <% end %>
+  <%= render "raids/form", raid: @raid %>
 </div>

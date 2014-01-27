@@ -19,6 +19,9 @@ class Raid < ActiveRecord::Base
   validates :name, presence: true
   validates :tier, numericality: true, allow_nil: true
 
+  # Order by tier.
+  default_scope -> { order('tier DESC') }
+
   # Setup the routing to be of the form "/raids/name_of_raid".
   # TODO: Maybe make this functionality into a module.
   class << self
@@ -36,5 +39,9 @@ class Raid < ActiveRecord::Base
 
   def to_param
     name.downcase.gsub(" ", "_")
+  end
+
+  def to_s
+    name
   end
 end

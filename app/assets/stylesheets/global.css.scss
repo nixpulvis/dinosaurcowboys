@@ -187,7 +187,6 @@ h6 .status {
   font-weight: bold;
 }
 
-
 .button {
   display: inline-block;
   margin-bottom: 10px;
@@ -218,4 +217,46 @@ h1 .sub {
 .hidden {
   display: none;
   visibility: 0;
+}
+
+.button-list {
+  display: block;
+  margin: 10px 0 20px 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin-bottom: 10px;
+    vertical-align: top;
+
+    a {
+      @extend .button;
+      display: block;
+      padding: 10px;
+    }
+  }
+}
+
+table.list {
+  width: 100%;
+  margin-bottom: 20px;
+
+  tr {
+    &:nth-child(odd) {
+      background: darken($background-color, 2%);
+    }
+    &:first-child {
+      background: none;
+    }
+
+    th {
+      text-align: left;
+      padding-left: 10px;
+    }
+
+    td {
+      @extend hr;
+      padding: 10px 0 10px 10px;
+    }
+  }
 }

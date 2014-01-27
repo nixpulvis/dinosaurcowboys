@@ -9,14 +9,14 @@
     </ul>
   </div>
 
-  <ul class="forums">
+  <ul class="button-list">
     <% @forums.each do |forum| %>
-      <li class="forum">
+      <li>
         <%= link_to forum_path(forum), class: "button" do %>
           <%= forum %>
           (<%= forum.topics.count %>)
           <% if forum.freshest %>
-            <span class="freshest">
+            <span class="pull-right">
               <%= forum.freshest.title %>
               <%= from_now_tag forum.freshest.posts_updated_at %>
             </span>

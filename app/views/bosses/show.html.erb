@@ -1,12 +1,28 @@
 <div class="panel">
-  <h1>
-    <%= @boss.name %>
-    <span class="sub"><%= link_to @raid.name, raid_path(@raid) %></span>
-  </h1>
+  <div class="title">
+    <h3>
+      <%= link_to "Raids", raids_path %> /
+      <%= link_to @raid, raid_path(@raid) %> /
+      <%= link_to @boss, raid_boss_path(@raid, @boss) %>
+    </h3>
+
+    <ul class="actions">
+      <% if can? :update, @boss %>
+        <li><%= link_to fa_icon("edit"), edit_raid_boss_path(@raid, @boss) %></li>
+      <% end %>
+      <% if can? :destroy, @boss %>
+        <li>
+          <%= link_to fa_icon("trash-o"), raid_boss_path(@raid, @boss), method: :delete, confirm: "Are you sure?" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
   <div class="content">
     <%= raw @boss.markdown(:content) %>
   </div>
+
+  <hr />
 
   <% @posts.each do |post| %>
     <%= render "shared/posts/show", post: post %>

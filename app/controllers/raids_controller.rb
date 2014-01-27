@@ -37,21 +37,25 @@ class RaidsController < ApplicationController
   # Provides the given raid, and a UI to edit it.
   #
   def edit
-    # TODO: Create view.
   end
 
   # PATCH or PUT /raids/:id
   # Allows for raids to be updated.
   #
   def update
-    # TODO: Write this action.
+    if @raid.update_attributes(raid_params)
+      redirect_to raid_path(@raid)
+    else
+      render :edit
+    end
   end
 
   # DELETE /raids/:id
   # Destroys the given raid, and all it's bosses.
   #
   def destroy
-    # TODO: Write this action.
+    @raid.destroy
+    redirect_to raids_path
   end
 
   private
