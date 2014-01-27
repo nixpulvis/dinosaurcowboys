@@ -6,6 +6,15 @@ $ ->
     $(e.target).closest('.post').find('.content.noedit').toggle()
     $(e.target).closest('.post').find('form').toggle()
 
+  $('.post .reply-button').click (e) ->
+    e.preventDefault()
+    post = $(e.target).closest('.post')
+    name = post.find('.name span').html()
+    body = post.find('.raw').html()
+    qoute = "#{name} said:\n> #{$.trim(body)}".replace(/\n\n/, '\n\n> ')
+    $('.new_post textarea').val(qoute)
+    $('.new_post textarea').trigger('autosize.resize');
+
   # The Editor!
   $('.post-editor .popup').hide()
 

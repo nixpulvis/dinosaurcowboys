@@ -37,6 +37,10 @@ hr {
   border-bottom: 1px dashed $border-color;
 }
 
+blockquote {
+  @extend .panel;
+}
+
 iframe {
   @extend .border;
 }
@@ -209,4 +213,9 @@ h1 .sub {
 
 .clearfix {
   @include clearfix;
+}
+
+.hidden {
+  display: none;
+  visibility: 0;
 }

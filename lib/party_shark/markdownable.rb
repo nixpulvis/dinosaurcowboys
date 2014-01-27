@@ -41,7 +41,7 @@ module PartyShark
       }
       parser = Redcarpet::Markdown.new(Redcarpet::Render::HTML, options)
       dirty = parser.render send(field)
-      Sanitize.clean(dirty, ALLOWED_MARKDOWN)
+      Sanitize.clean(dirty, ALLOWED_MARKDOWN).html_safe
     end
 
   end
