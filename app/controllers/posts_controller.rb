@@ -11,22 +11,16 @@ class PostsController < ApplicationController
     @post.user = current_user
     authorize!(:create, @post)
 
-    if @post.save
-      redirect_to postable_path(@postable, page: last_page(@postable))
-    else
-      render :new
-    end
+    @post.save
+    redirect_to postable_path(@postable, page: last_page(@postable))
   end
 
   # PATCH or PUT /postable/:postable_id/posts/:id
   # Allows for users to update their posts.
   #
   def update
-    if @post.update_attributes(post_params)
-      redirect_to postable_path(@postable, page: last_page(@postable))
-    else
-      render :edit
-    end
+    @post.update_attributes(post_params)
+    redirect_to postable_path(@postable, page: last_page(@postable))
   end
 
   # DELETE /postable/:postable_id/posts/:id
