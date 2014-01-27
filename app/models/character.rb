@@ -9,6 +9,7 @@ class Character < ActiveRecord::Base
   # Validate the two fields needed to look up a character.
   validates :name, presence: true, length: { maximum: 12 }
   validates :server, presence: true
+  validates_uniqueness_of :name, scope: :server
   validates_with CharacterValidator
 
   # Cache API calls.
