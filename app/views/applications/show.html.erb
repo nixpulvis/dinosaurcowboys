@@ -14,10 +14,10 @@
       <% end %>
 
       <% if can? :update, @application %>
-        <li><%= link_to "Edit", edit_user_application_path(@user) %></li>
+        <li><%= link_to fa_icon("edit"), edit_user_application_path(@user) %></li>
       <% end %>
       <% if can? :destroy, @application %>
-        <li><%= link_to "Delete", user_application_path(@user), method: :delete, confirm: "Are you sure?" %></li>
+        <li><%= link_to fa_icon("trash-o"), user_application_path(@user), method: :delete, confirm: "Are you sure?" %></li>
       <% end %>
     </ul>
   </div>

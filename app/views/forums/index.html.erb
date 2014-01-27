@@ -4,7 +4,7 @@
 
     <ul class="actions">
       <% if can? :create, Forum %>
-        <li><%= link_to "New Forum", new_forum_path, class: "button" %></li>
+        <li><%= link_to fa_icon("file-o"), new_forum_path %></li>
       <% end %>
     </ul>
   </div>

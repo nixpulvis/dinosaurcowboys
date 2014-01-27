@@ -7,7 +7,7 @@
 
     <% if can? :destroy, @forum %>
     <ul class="actions">
-      <li><%= link_to "Delete Forum", forum_path(@forum), method: :delete, confirm: "Are you sure?" %></li>
+      <li><%= link_to fa_icon("trash-o"), forum_path(@forum), method: :delete, confirm: "Are you sure?" %></li>
     </ul>
     <% end %>
   </div>

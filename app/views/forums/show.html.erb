@@ -7,10 +7,12 @@
 
     <ul class="actions">
       <% if can? :update, @forum %>
-        <li><%= link_to "Edit Forum", edit_forum_path(@forum) %></li>
+        <li><%= link_to fa_icon("edit"), edit_forum_path(@forum) %></li>
       <% end %>
       <% if can? :destroy, @forum %>
-        <li><%= link_to "Delete Forum", forum_path(@forum), method: :delete, confirm: "Are you sure?" %></li>
+        <li>
+          <%= link_to fa_icon("trash-o"), forum_path(@forum), method: :delete, confirm: "Are you sure?" %>
+        </li>
       <% end %>
     </ul>
   </div>
