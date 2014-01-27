@@ -55,18 +55,18 @@ class Ability
     can [:create, :update, :destroy], Character, user_id: user.id
 
 
-    ### Raid Permissions
+    ### Raid / Boss Permissions
 
-    # FIXME: Determine the proper permissions for this.
-    can :read, Raid if user.persisted?
-    can :comment, Raid if user.persisted?
+    # Trials and higher have access to read and comment.
+    if user.rank.try(:>=, "Trial")
+      can [:read, :comment], Raid
+      can [:read, :comment], Boss
+    end
 
-
-    ### Boss Permissions
-
-    # FIXME: Determine the proper permissions for this.
-    can :read, Boss if user.persisted?
-    can :comment, Boss if user.persisted?
+    if user.rank.try(:>=, "Officer")
+      can [:create, :update, :destroy], Raid
+      can [:create, :update, :destroy], Boss
+    end
 
 
     ### Forum Permissions
