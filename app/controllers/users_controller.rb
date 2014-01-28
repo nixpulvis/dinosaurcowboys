@@ -21,7 +21,6 @@ class UsersController < ApplicationController
   # character parameters. Redisplays the new page when there are errors.
   #
   def create
-    @user.characters.build if @user.characters.empty?
     if @user.save
       sign_in(@user)
       redirect_to(@user)
@@ -87,14 +86,12 @@ class UsersController < ApplicationController
   #
   def user_params
     permit = [:email, :password, :password_confirmation,
-      :characters_attributes => [:name, :server]]
+      characters_attributes: [:name, :server]]
 
-    if current_user.rank.try(:>=, "Officer")
-      permit << :rank_id
-    end
-
-    if current_user.admin?
-      permit << :admin
+    # Add assignable attributes based on rank / admin status.
+    if current_user
+      permit << :rank_id if current_user.rank.try(:>=, "Officer")
+      permit << :admin   if current_user.admin?
     end
 
     params.require(:user).permit(*permit)

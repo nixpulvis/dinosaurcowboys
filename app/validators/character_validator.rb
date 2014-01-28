@@ -2,7 +2,6 @@
 class CharacterValidator < ActiveModel::Validator
   def validate(record)
     begin
-      binding.pry
       record.api
     rescue StandardError => e
       case e.message
