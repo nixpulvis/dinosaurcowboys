@@ -11,3 +11,46 @@
   &.warlock { color: #9482C9; }
   &.warrior { color: #C79C6E; }
 }
+
+.profile {
+
+  img {
+    margin-right: 10px;
+  }
+
+  .title {
+    display: inline-block;
+    width: 840px;
+    vertical-align: top;
+
+    .name {
+      display: block;
+    }
+
+    .info {
+      display: block;
+    }
+
+    .gear {
+      vertical-align: top;
+    }
+  }
+}
+
+.character-list {
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: inline-block;
+    margin: 0 10px 10px 0;
+  }
+
+  .info {
+    display: inline-block;
+  }
+
+  .info span {
+    margin: 0;
+  }
+}

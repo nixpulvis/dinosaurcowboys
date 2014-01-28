@@ -9,10 +9,10 @@
     <% end %>
 
     <% if can? :update, @user %>
-    <%= link_to "Edit", edit_user_path(@user) %>
+      <%= link_to "Edit", edit_user_path(@user) %>
     <% end %>
     <% if can? :manage, @user %>
-    <%= link_to "Delete", user_path(@user), method: :delete, confirm: "Are you sure?" %>
+      <%= link_to "Delete", user_path(@user), method: :delete, confirm: "Are you sure?" %>
     <% end %>
   </div>
 
@@ -26,7 +26,7 @@
     <% end %>
     </ul>
 
-    <% if can? :create, Character %>
+    <% if can? :create, @user.characters.build %>
     <%= link_to "Add", new_user_character_path(@user) %>
     <% end %>
   </div>

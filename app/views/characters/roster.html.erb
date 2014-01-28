@@ -2,9 +2,17 @@
   <h1>Roster</h1>
 
   <h2>Core</h2>
-  <ul>
+  <ul class="character-list">
     <% @cores.each do |character| %>
-    <li><%= character_tag character %></li>
+    <li>
+      <%= link_to user_character_path(character.user, character) do %>
+        <%= image_tag character.thumbnail, class: "border", size: "35x35" %>
+        <div class="info">
+          <p class="name"><%= character_tag character %></p>
+          <p class="role"><%= character.role %></p>
+        </div>
+      <% end %>
+    </li>
     <% end %>
   </ul>
 
