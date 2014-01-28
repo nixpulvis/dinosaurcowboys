@@ -89,7 +89,7 @@ class UsersController < ApplicationController
     permit = [:email, :password, :password_confirmation,
       :characters_attributes => [:name, :server]]
 
-    if current_user.rank >= "Officer"
+    if current_user.rank.try(:>=, "Officer")
       permit << :rank_id
     end
 
