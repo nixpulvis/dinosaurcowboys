@@ -2,6 +2,16 @@
 # A character is defined by it's name and server. We will then pull
 # down information about them from the Blizz API.
 #
+# Fields we want from Blizz:
+# - Class
+# - Level
+# - Achievement Points
+# - Average Equiped iLvL
+# - Spec
+# - Role
+# - Thumbnail URL
+# - Guild Name
+#
 class Character < ActiveRecord::Base
   # A user must own the character.
   belongs_to :user
@@ -11,9 +21,6 @@ class Character < ActiveRecord::Base
   validates :server, presence: true
   validates_uniqueness_of :name, scope: :server
   validates_with CharacterValidator
-
-  # Cache API calls.
-  attr_accessor :api
 
   # FIXME: This should be rethought.
   after_save :reconcile
@@ -33,13 +40,27 @@ class Character < ActiveRecord::Base
     "http://us.battle.net/wow/en/character/#{server}/#{name}/advanced"
   end
 
-  private
+  # -> WoW::Character
+  # Returns the result of the wow gems call to the blizz API.
+  #
+  def api
+    fields = [:items, :talents, :guild]
+    @api ||= WoW::Character.new(self.server, self.name, fields)
+  end
 
   # Sync the data from blizz api with out data model.
   def sync!
-    self.api ||= WoW::CharacterProfile.new(self.server, self.name)
-    self.update_columns(klass: self.api.lookup(:class), level: self.api[:level])
+    self.update_columns klass: api.get("class"),
+      level: api["level"],
+      achievement_points: api["achievementPoints"],
+      average_item_level_equiped: api["items"]["averageItemLevelEquipped"],
+      spec: api.get("active_spec")["spec"]["name"],
+      role: api.get("active_spec")["spec"]["role"],
+      thumbnail: api.get("thumbnail"),
+      guild_name: api["guild"]["name"]
   end
+
+  private
 
   # FIXME: This should be thought through more.
   def reconcile

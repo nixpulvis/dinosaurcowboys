@@ -27,9 +27,9 @@ class Ability
     ### User Permissions
 
     # Anyone can create a user.
-    can :create, User
-    # People logged in as a user can see and update themselves.
-    can [:read, :update], User, id: user.id
+    can [:create, :read], User
+    # People logged in as a user can update themselves.
+    can :update, User, id: user.id
 
 
     ### User Applications Permissions
