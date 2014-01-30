@@ -27,6 +27,7 @@ class BossPolicy < BasePolicy
     read?
   end
 
+  def permitted_attributes
     [:name, :content]
   end
 end
