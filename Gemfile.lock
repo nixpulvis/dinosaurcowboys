@@ -38,7 +38,6 @@ GEM
       sass (>= 3.2.0)
       thor
     builder (3.1.4)
-    cancan (1.6.10)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -110,6 +109,8 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pundit (0.2.1)
+      activesupport (>= 3.0.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -183,7 +184,6 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bourbon
-  cancan
   coffee-rails (~> 4.0.0)
   devise
   font-awesome-rails
@@ -196,6 +196,7 @@ DEPENDENCIES
   normalize-rails
   pg
   pry
+  pundit
   rails (= 4.0.2)
   rails_12factor
   redcarpet

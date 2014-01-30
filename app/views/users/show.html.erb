@@ -8,10 +8,10 @@
       Rank: <%= @user.rank.name %><br />
     <% end %>
 
-    <% if can? :update, @user %>
+    <% if policy(@user).update? %>
       <%= link_to "Edit", edit_user_path(@user) %>
     <% end %>
-    <% if can? :manage, @user %>
+    <% if policy(@user).destroy? %>
       <%= link_to "Delete", user_path(@user), method: :delete, confirm: "Are you sure?" %>
     <% end %>
   </div>
@@ -26,8 +26,8 @@
     <% end %>
     </ul>
 
-    <% if can? :create, @user.characters.build %>
-    <%= link_to "Add", new_user_character_path(@user) %>
+    <% if policy(@user.characters.build).create? %>
+      <%= link_to "Add", new_user_character_path(@user) %>
     <% end %>
   </div>
 </div>

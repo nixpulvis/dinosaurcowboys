@@ -1,16 +1,19 @@
 class RaidsController < ApplicationController
-  load_and_authorize_resource
 
   # GET /raids
   # Provides the raids.
   #
   def index
+    @raids = policy_scope(Raid)
+    authorize @raids
   end
 
   # GET /raids/new
   # Builds a raid to create.
   #
   def new
+    @raid = Raid.new
+    authorize @raid
   end
 
   # POST /raids
@@ -18,6 +21,9 @@ class RaidsController < ApplicationController
   # Redisplays the new page when there are errors.
   #
   def create
+    @raid = Raid.new(raid_params)
+    authorize @raid
+
     if @raid.save
       redirect_to @raid
     else
@@ -29,6 +35,9 @@ class RaidsController < ApplicationController
   # Provides the given raid, and it's posts.
   #
   def show
+    @raid = Raid.find(params[:id])
+    authorize @raid
+
     @posts = @raid.posts.page(params[:page])
     @post  = @raid.posts.build
   end
@@ -37,12 +46,17 @@ class RaidsController < ApplicationController
   # Provides the given raid, and a UI to edit it.
   #
   def edit
+    @raid = Raid.find(params[:id])
+    authorize @raid
   end
 
   # PATCH or PUT /raids/:id
   # Allows for raids to be updated.
   #
   def update
+    @raid = Raid.find(params[:id])
+    authorize @raid
+
     if @raid.update_attributes(raid_params)
       redirect_to raid_path(@raid)
     else
@@ -54,6 +68,9 @@ class RaidsController < ApplicationController
   # Destroys the given raid, and all it's bosses.
   #
   def destroy
+    @raid = Raid.find(params[:id])
+    authorize @raid
+
     @raid.destroy
     redirect_to raids_path
   end
@@ -64,7 +81,7 @@ class RaidsController < ApplicationController
   # Permits the raid fields for assignment.
   #
   def raid_params
-    params.require(:raid).permit(:name, :tier, :content)
+    params.require(:raid).permit(*policy(@raid || Raid).permitted_attributes)
   end
 
 end

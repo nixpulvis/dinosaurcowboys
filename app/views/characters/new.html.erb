@@ -1,7 +1,7 @@
 <div class="panel">
   <h2>New Character</h2>
 
-  <%= simple_form_for @character, url: { action: "create" } do |f| %>
+  <%= simple_form_for [@character.user, @character] do |f| %>
     <%= f.input :name %>
     <%= f.input :server %>
 

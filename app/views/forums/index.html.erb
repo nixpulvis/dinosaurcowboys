@@ -3,7 +3,7 @@
     <h1>Forums</h1>
 
     <ul class="actions">
-      <% if can? :create, Forum %>
+      <% if policy(Forum).create? %>
         <li><%= link_to fa_icon("file-o"), new_forum_path %></li>
       <% end %>
     </ul>

@@ -10,8 +10,8 @@ gem 'pg'
 # Use devise for user authentication.
 gem 'devise'
 
-# Use CanCan for permissions.
-gem 'cancan'
+# Use Pundit for permissions.
+gem 'pundit'
 
 # Redcarpet for markdown parsing.
 gem 'redcarpet'
