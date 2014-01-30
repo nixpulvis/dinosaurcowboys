@@ -29,4 +29,25 @@ class ApplicationPolicy < BasePolicy
     user.rank.try(:>=, "Officer")
   end
 
+  # READ === See the topic, and its posts.
+  def read?
+    user == record.user || user.rank.try(:>=, "Raider") || super
+  end
+
+  # WRITE === Make a new topic, and post on it.
+  def write?
+    read?
+  end
+
+  def permitted_attributes
+    permit = [:name, :age, :gender, :battlenet, :logs, :computer,
+      :raiding_history, :guild_history, :leadership, :playstyle, :why,
+      :referer, :animal, :additional]
+
+    if decide?
+      permit << :status
+    end
+
+    permit
+  end
 end

@@ -14,9 +14,8 @@ class UsersController < ApplicationController
   #
   def new
     @user = User.new
+    @character = @user.characters.build
     authorize @user
-
-    @user.characters.build
   end
 
   # POST /users
@@ -25,6 +24,7 @@ class UsersController < ApplicationController
   #
   def create
     @user = User.new(user_params)
+    @character = @user.characters.first
     authorize @user
 
     if @user.save

@@ -13,6 +13,14 @@ class ForumPolicy < BasePolicy
     user.rank || super
   end
 
+  def create?
+    update?
+  end
+
+  def update?
+    user.rank.try(:>=, "Officer") || super
+  end
+
   def show?
     read? || super
   end
