@@ -17,7 +17,7 @@
       <%= post.body %>
     </div>
 
-    <% if can? :update, post %>
+    <% if policy(post).update? %>
       <%= simple_form_for [post.postable, post], html: {class: "content edit"} do |f| %>
         <%= render "shared/posts/edit", f: f, submit: "Update" %>
       <% end %>
@@ -35,10 +35,10 @@
 
       <ul class="actions">
         <li><a class="reply-button" href="#">Reply</a></li>
-        <% if can? :update, post %>
+        <% if policy(post).update? %>
           <li><a class="edit-button" href="#">Edit</a></li>
         <% end %>
-        <% if can? :destroy, post %>
+        <% if policy(post).destroy? %>
           <li><%= link_to "Delete", polymorphic_path([post.postable, post]), method: :delete, confirm: "Are you sure?" %></li>
         <% end %>
       </ul>

@@ -1,8 +1,8 @@
 <div class="panel">
   <h1>Submit Your Application</h1>
-  <p>You are applying as <%= armory_tag @user.main %>.</p>
+  <p>You are applying as <%= armory_tag @application.user.main %>.</p>
 
-  <%= simple_form_for @application, url: user_application_path(@user), html: {class: "application"} do |f| %>
+  <%= simple_form_for @application, url: user_application_path(@application.user), html: {class: "application"} do |f| %>
     <%= f.input :name, hint: "This is your actual name" %>
     <%= f.input :age %>
     <%= f.input :gender, collection: [[0, "Male"], [1, "Female"]], as: :radio_buttons, label_method: :last, value_method: :first, checked: @application.gender %>

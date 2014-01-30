@@ -1,17 +1,22 @@
 class BossesController < ApplicationController
-  load_and_authorize_resource :raid
-  load_and_authorize_resource through: :raid, find_by: :param
 
   # GET /raids/:raid_id/bosses/new
   # Build a boss to create.
   #
   def new
+    raid = Raid.find(params[:raid_id])
+    @boss = raid.bosses.build
+    authorize @boss
   end
 
   # POST /raids/:raid_id/bosses
   # Creates a new boss with the passed in parameters.
   #
   def create
+    raid = Raid.find(params[:raid_id])
+    @boss = raid.bosses.build(boss_params)
+    authorize @boss
+
     if @boss.save
       redirect_to raid_boss_path(@raid, @boss)
     else
@@ -23,6 +28,9 @@ class BossesController < ApplicationController
   # Provides the given boss, raid, and the bosses posts.
   #
   def show
+    @boss = Boss.find(params[:id])
+    authorize @boss
+
     @posts = @boss.posts.page(params[:page])
     @post  = @boss.posts.build
   end
@@ -31,12 +39,17 @@ class BossesController < ApplicationController
   # Provides the given boss, and a UI to edit it.
   #
   def edit
+    @boss = Boss.find(params[:id])
+    authorize @boss
   end
 
   # PATCH or PUT /raids/:raid_id/bosses/:id
   # Allows for bosses to be updated.
   #
   def update
+    @boss = Boss.find(params[:id])
+    authorize @boss
+
     if @boss.update_attributes(boss_params)
       redirect_to raid_boss_path(@raid, @boss)
     else
@@ -48,6 +61,9 @@ class BossesController < ApplicationController
   # Destroys the given boss.
   #
   def destroy
+    @boss = Boss.find(params[:id])
+    authorize @boss
+
     @boss.destroy
     redirect_to raid_path(@raid)
   end
@@ -58,7 +74,7 @@ class BossesController < ApplicationController
   # Permits the boss fields for assignment.
   #
   def boss_params
-    params.require(:boss).permit(:name, :content)
+    params.require(:boss).permit(*policy(@boss || Boss).permitted_attributes)
   end
 
 end

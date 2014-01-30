@@ -1,18 +1,12 @@
 class CharactersController < ApplicationController
-  load_and_authorize_resource :user, except: :roster
-  load_and_authorize_resource through: :user, except: :roster
-
-  skip_authorization_check only: :roster  # Everyone can see the roster.
-
-  before_filter only: [:new, :create] do
-    @character.user = @user
-    authorize!(:create, @character)
-  end
 
   # GET /users/:user_id/character/new
   # Get the given user, and build it a character for it.
   #
   def new
+    user = User.find(params[:user_id])
+    @character = user.characters.build
+    authorize @character
   end
 
   # POST /users/:user_id/character
@@ -20,15 +14,19 @@ class CharactersController < ApplicationController
   # new page when there are errors.
   #
   def create
+    user = User.find(params[:user_id])
+    @character = user.characters.build(character_params)
+    authorize @character
+
     # First character should be the main.
-    if @user.characters.count == 0
+    if user.characters.count == 0
       @character.main = true
     else
       @character.main = false
     end
 
     if @character.save
-      redirect_to @user
+      redirect_to user
     else
       render :new
     end
@@ -38,20 +36,30 @@ class CharactersController < ApplicationController
   # Provides the given character of a given user.
   #
   def show
+    user = User.find(params[:user_id])
+    @character = user.characters.find(params[:id])
+    authorize @character
   end
 
   # GET /users/:user_id/character/:id/edit
   # Provides the user and character for editing.
   #
   def edit
+    user = User.find(params[:user_id])
+    @character = user.characters.find(params[:id])
+    authorize @character
   end
 
   # PATCH or PUT /users/:user_id/character/:id
   # Allows user to update the character.
   #
   def update
+    user = User.find(params[:user_id])
+    @character = user.characters.find(params[:id])
+    authorize @character
+
     if @character.update_attributes(character_params)
-      redirect_to user_character_path(@user, @character)
+      redirect_to user_character_path(@character.user, @character)
     else
       render :edit
     end
@@ -61,29 +69,30 @@ class CharactersController < ApplicationController
   # Deletes the character.
   #
   def destroy
+    user = User.find(params[:user_id])
+    @character = user.characters.find(params[:id])
+    authorize @character
+
     @character.destroy
-    redirect_to user_path(@user)
+    redirect_to user_path(@character.user)
   end
 
   # GET /roster
   # Provides the users that are part of the core, and applicants.
   #
   def roster
-    core_ranks = [
-      "Guild Master",
-      "Officer",
-      "Loot Council",
-      "Raider"
-    ]
+    @characters = policy_scope(Character).where(main: true)
+    authorize @characters
 
-    # TODO: Use one instance variable, and clean this up.
+    # TODO: Use one instance variable?
     @cores = []
     @trials = []
-    User.all.each do |user|
-      if user.rank && core_ranks.include?(user.rank.name)
-        @cores << user.main if user.main
-      elsif user.rank && user.rank.name == "Trial"
-        @trials << user.main if user.main
+
+    @characters.each do |character|
+      if character.user.rank.try(:>=, "Raider")
+        @cores << character
+      elsif character.user.rank.try(:==, "Trial")
+        @trials << character
       end
     end
   end
@@ -94,7 +103,7 @@ class CharactersController < ApplicationController
   # Permits the character fields for assignment.
   #
   def character_params
-    params.require(:character).permit(:name, :server, :main)
+    params.require(:character).permit(*policy(@character || Character).permitted_attributes)
   end
 
 end

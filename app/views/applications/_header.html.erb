@@ -12,7 +12,7 @@
   </h2>
 
   <ul class="actions">
-    <% if can? :decide, app %>
+    <% if policy(app).decide? %>
       <li><%= decide_link "Pending", app.user, :pending %></li>
       <li><%= decide_link "Trial", app.user, :trial %></li>
       <li><%= decide_link "Accept", app.user, :accepted %></li>
