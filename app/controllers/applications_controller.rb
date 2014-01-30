@@ -56,6 +56,7 @@ class ApplicationsController < ApplicationController
     end
 
     @posts = @application.posts.page(params[:page])
+    @post = @application.posts.build
   end
 
   # GET /users/:user_id/application
@@ -84,7 +85,7 @@ class ApplicationsController < ApplicationController
     end
 
     if @application.update_attributes(application_params)
-      redirect_to user_application_path(@user)
+      redirect_to user_application_path(user)
     else
       render :edit
     end
@@ -125,26 +126,10 @@ class ApplicationsController < ApplicationController
 
   private
 
-  # load_all_applications -> ActiveRecord::Relation
-  # Loads all of the applications into @applications,
-  # and paginates them.
-  #
-  def load_all_applications
-
-  end
-
   # application_params: -> Hash
   # Permits the application fields for assignment.
   #
   def application_params
-    permit = [:name, :age, :gender, :battlenet, :logs, :computer,
-      :raiding_history, :guild_history, :leadership, :playstyle, :why,
-      :referer, :animal, :additional]
-
-    if self.action_name == "decide"
-      permit << :status
-    end
-
-    params.require(:application).permit(permit)
+    params.require(:application).permit(*policy(@application || Application).permitted_attributes)
   end
 end
