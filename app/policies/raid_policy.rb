@@ -1,7 +1,7 @@
 class RaidPolicy < BasePolicy
   class Scope < BaseScope
     def resolve
-      if user.rank.try(:>=, "Trial") || user.admin?
+      if Pundit.policy(user, Raid).read? || user.admin?
         scope.all
       else
         scope.none
@@ -27,12 +27,12 @@ class RaidPolicy < BasePolicy
 
   # READ === See the topic, and its posts.
   def read?
-    user.rank.try(:>=, "Trial")
+    true
   end
 
   # WRITE === Make a new topic, and post on it.
   def write?
-    read?
+    user.rank.try(:>=, "Trial")
   end
 
   def permitted_attributes
