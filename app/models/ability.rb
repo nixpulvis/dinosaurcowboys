@@ -57,10 +57,14 @@ class Ability
 
     ### Raid / Boss Permissions
 
+    # For now everyone can read.
+    can :read, Raid
+    can :read, Boss
+
     # Trials and higher have access to read and comment.
     if user.rank.try(:>=, "Trial")
-      can [:read, :comment], Raid
-      can [:read, :comment], Boss
+      can :comment, Raid
+      can :comment, Boss
     end
 
     if user.rank.try(:>=, "Officer")
