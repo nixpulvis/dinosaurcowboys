@@ -26,10 +26,10 @@
     </div>
   </div>
 
-  <% if can? :update, @character %>
-  <%= link_to "Edit", edit_user_character_path(@user, @character) %>
+  <% if policy(@character).update? %>
+    <%= link_to "Edit", edit_user_character_path(@character.user, @character) %>
   <% end %>
-  <% if can? :destroy, @character %>
-  <%= link_to "Delete", user_character_path(@user, @character), method: :delete %>
+  <% if policy(@character).destroy? %>
+    <%= link_to "Delete", user_character_path(@character.user, @character), method: :delete %>
   <% end %>
 </div>

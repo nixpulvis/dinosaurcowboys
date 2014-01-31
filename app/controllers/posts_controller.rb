@@ -1,34 +1,37 @@
 class PostsController < ApplicationController
-  before_action :load_postable
-  load_resource :post, through: :postable
-  authorize_resource :post, except: [:create]
 
   # POST /postable/:postable_id/posts
   # Creates a post on the postable, as the current user.
   #
   def create
-    @post.postable = @postable
+    @post = postable.posts.build(post_params)
     @post.user = current_user
-    authorize!(:create, @post)
+    authorize @post
 
     @post.save
-    redirect_to postable_path(@postable, page: last_page(@postable))
+    redirect_to postable_path(postable, page: last_page(postable))
   end
 
   # PATCH or PUT /postable/:postable_id/posts/:id
   # Allows for users to update their posts.
   #
   def update
+    @post = postable.posts.find(params[:id])
+    authorize @post
+
     @post.update_attributes(post_params)
-    redirect_to postable_path(@postable, page: last_page(@postable))
+    redirect_to postable_path(postable, page: last_page(postable))
   end
 
   # DELETE /postable/:postable_id/posts/:id
   # Destroys the post.
   #
   def destroy
+    @post = postable.posts.find(params[:id])
+    authorize @post
+
     @post.destroy
-    redirect_to postable_path(@postable)
+    redirect_to postable_path(postable)
   end
 
   private
@@ -37,7 +40,7 @@ class PostsController < ApplicationController
   # Permits the post fields for assignment.
   #
   def post_params
-    params.require(:post).permit(:body)
+    params.require(:post).permit(*policy(@post || Post).permitted_attributes)
   end
 
   # postable -> (Instance of Model)
@@ -45,8 +48,12 @@ class PostsController < ApplicationController
   # /raids/12/posts postable would be the Raid with id 12.
   #
   def postable
-    resource, id = request.path.split('/')[1,2]
-    resource.singularize.classify.constantize.find(id)
+    if @postable
+      @postable
+    else
+      resource, id = request.path.split('/')[1,2]
+      @postable = resource.singularize.classify.constantize.find(id)
+    end
   end
 
   # last_page Postable -> Fixnum
@@ -55,14 +62,6 @@ class PostsController < ApplicationController
   #
   def last_page(postable)
     postable.posts.page.total_pages
-  end
-
-  # load_postable -> (Instance of Model)
-  # Loads the postable into an appropriately named instance variable.
-  # See postable for the value of this variable.
-  #
-  def load_postable
-    instance_variable_set("@postable", postable)
   end
 
   # postable_path (Instance of Model) -> String

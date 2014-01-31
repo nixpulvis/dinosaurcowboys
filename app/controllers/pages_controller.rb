@@ -1,3 +1,17 @@
 class PagesController < ApplicationController
-  authorize_resource class: false
+  def home
+    authorize self
+  end
+
+  def charter
+    authorize self
+  end
+
+  def logs
+    authorize self
+  end
+
+  def recruitment
+    authorize self
+  end
 end

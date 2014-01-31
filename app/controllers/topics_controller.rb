@@ -1,6 +1,4 @@
 class TopicsController < ApplicationController
-  load_and_authorize_resource :forum
-  load_and_authorize_resource through: :forum
 
   # Keep track of views.
   impressionist actions: [:show],
@@ -11,11 +9,14 @@ class TopicsController < ApplicationController
   # the topic's user and it's first post's user to the current user.
   #
   def create
+    forum = Forum.find(params[:forum_id])
+    @topic = forum.topics.build(topic_params)
     @topic.user = current_user
     @topic.posts.first.user = current_user
+    authorize @topic
 
     if @topic.save
-      redirect_to forum_topic_path(@forum, @topic)
+      redirect_to forum_topic_path(forum, @topic)
     else
       @topics = @forum.topics.page(params[:page])
       render "forums/show"
@@ -26,6 +27,9 @@ class TopicsController < ApplicationController
   # Provides the topic, and it's posts.
   #
   def show
+    @topic = Topic.find(params[:id])
+    authorize @topic
+
     @posts = @topic.posts.page(params[:page])
     @post  = @topic.posts.build
   end
@@ -34,14 +38,21 @@ class TopicsController < ApplicationController
   # Provides the topic for editing.
   #
   def edit
+    forum = Forum.find(params[:forum_id])
+    @topic = forum.topics.find(params[:id])
+    authorize @topic
   end
 
   # PATCH or PUT /forum/:forum_id/topics/:id
   # Allows for updates to the topic's attributes.
   #
   def update
+    forum = Forum.find(params[:forum_id])
+    @topic = forum.topics.find(params[:id])
+    authorize @topic
+
     if @topic.update_attributes(topic_params)
-      redirect_to forum_topic_path(@topic.forum, @topic)
+      redirect_to forum_topic_path(forum, @topic)
     else
       render :edit
     end
@@ -51,6 +62,10 @@ class TopicsController < ApplicationController
   # Destroys the topic and it's posts.
   #
   def destroy
+    forum = Forum.find(params[:forum_id])
+    @topic = forum.topics.find(params[:id])
+    authorize @topic
+
     @topic.destroy
     redirect_to forum_path(@topic.forum)
   end
@@ -61,7 +76,7 @@ class TopicsController < ApplicationController
   # Permits the topic fields for assignment.
   #
   def topic_params
-    params.require(:topic).permit(:title, posts_attributes: [:body])
+    params.require(:topic).permit(*policy(@topic || Topic).permitted_attributes)
   end
 
 end

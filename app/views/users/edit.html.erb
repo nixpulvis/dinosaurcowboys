@@ -6,11 +6,11 @@
     <%= f.input :password %>
     <%= f.input :password_confirmation %>
 
-    <% if current_user.admin? || current_user.rank >= "Officer" %>
+    <% if policy(@user).allows?(:rank_id) %>
       <%= f.association :rank, include_blank: "None" %>
     <% end %>
 
-    <% if current_user.admin? %>
+    <% if policy(@user).allows?(:admin) %>
       <%= f.input :admin?, as: :boolean %>
     <% end %>
 

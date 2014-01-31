@@ -1,23 +1,23 @@
 <div class="panel">
   <div class="title">
-    <h1><%= armory_tag @user.main %></h1>
+    <h1><%= armory_tag @application.user.main %></h1>
     <div class="status <%= @application.status %>">
       <%= @application.status.to_s.titleize %>
     </div>
 
     <ul class="actions">
-      <% if can? :decide, @application %>
-        <li><%= decide_link "Pending", @user, :pending %></li>
-        <li><%= decide_link "Trial", @user, :trial %></li>
-        <li><%= decide_link "Accept", @user, :accepted %></li>
-        <li><%= decide_link "Reject", @user, :rejected %></li>
+      <% if policy(@application).decide? %>
+        <li><%= decide_link "Pending", @application.user, :pending %></li>
+        <li><%= decide_link "Trial", @application.user, :trial %></li>
+        <li><%= decide_link "Accept", @application.user, :accepted %></li>
+        <li><%= decide_link "Reject", @application.user, :rejected %></li>
       <% end %>
 
-      <% if can? :update, @application %>
-        <li><%= link_to fa_icon("edit"), edit_user_application_path(@user) %></li>
+      <% if policy(@application).update? %>
+        <li><%= link_to fa_icon("edit"), edit_user_application_path(@application.user) %></li>
       <% end %>
-      <% if can? :destroy, @application %>
-        <li><%= link_to fa_icon("trash-o"), user_application_path(@user), method: :delete, confirm: "Are you sure?" %></li>
+      <% if policy(@application).destroy? %>
+        <li><%= link_to fa_icon("trash-o"), user_application_path(@application.user), method: :delete, confirm: "Are you sure?" %></li>
       <% end %>
     </ul>
   </div>
@@ -101,7 +101,7 @@
   <% end %>
   <%= paginate @posts %>
 
-  <% if can? :create, @post %>
+  <% if policy(@post).create? %>
     <%= simple_form_for [@application, @post] do |f| %>
       <%= render "shared/posts/edit", f: f, submit: "Reply" %>
     <% end %>
