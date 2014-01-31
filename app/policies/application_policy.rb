@@ -26,7 +26,7 @@ class ApplicationPolicy < BasePolicy
   end
 
   def decide?
-    user.rank.try(:>=, "Officer")
+    user.rank.try(:>=, "Officer") || user.admin?
   end
 
   # READ === See the topic, and its posts.
