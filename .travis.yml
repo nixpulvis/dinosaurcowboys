@@ -5,5 +5,6 @@ rvm:
 deploy:
   app: party-shark
   provider: heroku
+  run: "rake db:migrate"
   api_key:
     secure: myMx50QiZLJ9NJzKjEubH9M1W2Qllgk6em6d8Ah/GYlEOgzXjFBLCIx+xgZC20NUeNUNu9tieNI28gJJflYFFX6780kjmOZI7gJZbRR4L4T7CE4E3MxjDCDNxF/ToOgnrLRWkvwaRx8WRoMAGvD7N71WHKCVG4ehQZU26UcAJ0k=
