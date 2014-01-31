@@ -24,7 +24,7 @@ class BossPolicy < BasePolicy
 
   # WRITE === Make a new topic, and post on it.
   def write?
-    read?
+    Pundit.policy(user, record.raid).write?
   end
 
   def permitted_attributes
