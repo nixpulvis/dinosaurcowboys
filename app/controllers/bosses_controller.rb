@@ -18,7 +18,7 @@ class BossesController < ApplicationController
     authorize @boss
 
     if @boss.save
-      redirect_to raid_boss_path(@raid, @boss)
+      redirect_to raid_boss_path(@boss.raid, @boss)
     else
       render :new
     end
@@ -51,7 +51,7 @@ class BossesController < ApplicationController
     authorize @boss
 
     if @boss.update_attributes(boss_params)
-      redirect_to raid_boss_path(@raid, @boss)
+      redirect_to raid_boss_path(@boss.raid, @boss)
     else
       render :edit
     end
@@ -65,7 +65,7 @@ class BossesController < ApplicationController
     authorize @boss
 
     @boss.destroy
-    redirect_to raid_path(@raid)
+    redirect_to raid_path(@boss.raid)
   end
 
   private
