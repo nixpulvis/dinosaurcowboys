@@ -98,20 +98,7 @@ class UsersController < ApplicationController
   # Permits the user fields for assignment.
   #
   def user_params
-<<<<<<< HEAD
-    permit = [:email, :password, :password_confirmation,
-      characters_attributes: [:name, :server]]
-
-    # Add assignable attributes based on rank / admin status.
-    if current_user
-      permit << :rank_id if current_user.rank.try(:>=, "Officer")
-      permit << :admin   if current_user.admin?
-    end
-
-    params.require(:user).permit(*permit)
-=======
     params.require(:user).permit(*policy(@user || User).permitted_attributes)
->>>>>>> pundit
   end
 
 end
