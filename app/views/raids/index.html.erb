@@ -3,7 +3,7 @@
     <h1>Raids</h1>
 
     <ul class="actions">
-      <% if can? :create, Raid %>
+      <% if policy(Raid.new).create? %>
         <li><%= link_to fa_icon("file-o"), new_raid_path %></li>
       <% end %>
     </ul>

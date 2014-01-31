@@ -7,10 +7,10 @@
     </h3>
 
     <ul class="actions">
-      <% if can? :update, @topic %>
+      <% if policy(@topic).update? %>
         <li><%= link_to fa_icon("edit"), edit_forum_topic_path(@topic.forum, @topic) %></li>
       <% end %>
-      <% if can? :destroy, @topic %>
+      <% if policy(@topic).destroy? %>
         <li><%= link_to fa_icon("trash-o"), forum_topic_path(@topic.forum, @topic), method: :delete, confirm: "Are you sure?" %></li>
       <% end %>
     </ul>
@@ -26,7 +26,7 @@
   <% end %>
   <%= paginate @posts %>
 
-  <% if can? :create, @post %>
+  <% if policy(@post).create? %>
     <%= simple_form_for [@topic, @topic.posts.build] do |f| %>
       <%= render "shared/posts/edit", f: f, submit: "Reply" %>
     <% end %>

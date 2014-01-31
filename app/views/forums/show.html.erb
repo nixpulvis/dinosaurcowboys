@@ -6,10 +6,10 @@
     </h2>
 
     <ul class="actions">
-      <% if can? :update, @forum %>
+      <% if policy(@forum).update? %>
         <li><%= link_to fa_icon("edit"), edit_forum_path(@forum) %></li>
       <% end %>
-      <% if can? :destroy, @forum %>
+      <% if policy(@forum).destroy? %>
         <li>
           <%= link_to fa_icon("trash-o"), forum_path(@forum), method: :delete, confirm: "Are you sure?" %>
         </li>
@@ -19,7 +19,7 @@
 
   <%= render "forums/table", topics: @topics %>
 
-  <% if can? :create, @topic %>
+  <% if policy(@topic).create? %>
     <h3>New Topic</h3>
 
     <%= simple_form_for [@forum, @topic], url: forum_topics_path(@forum) do |f| %>

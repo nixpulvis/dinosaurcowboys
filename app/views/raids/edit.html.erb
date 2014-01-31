@@ -6,7 +6,7 @@
     </h2>
 
     <ul class="actions">
-      <% if can? :destroy, @raid %>
+      <% if policy(@raid).destroy? %>
         <li><%= link_to fa_icon("trash-o"), raid_path(@raid), method: :delete, confirm: "Are you sure?" %></li>
       <% end %>
     </ul>

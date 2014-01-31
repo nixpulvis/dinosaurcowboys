@@ -2,17 +2,17 @@
   <div class="title">
     <h3>
       <%= link_to "Raids", raids_path %> /
-      <%= link_to @raid, raid_path(@raid) %> /
-      <%= link_to @boss, raid_boss_path(@raid, @boss) %>
+      <%= link_to @boss.raid, raid_path(@boss.raid) %> /
+      <%= link_to @boss, raid_boss_path(@boss.raid, @boss) %>
     </h3>
 
     <ul class="actions">
-      <% if can? :update, @boss %>
-        <li><%= link_to fa_icon("edit"), edit_raid_boss_path(@raid, @boss) %></li>
+      <% if policy(@boss).update? %>
+        <li><%= link_to fa_icon("edit"), edit_raid_boss_path(@boss.raid, @boss) %></li>
       <% end %>
-      <% if can? :destroy, @boss %>
+      <% if policy(@boss).destroy? %>
         <li>
-          <%= link_to fa_icon("trash-o"), raid_boss_path(@raid, @boss), method: :delete, confirm: "Are you sure?" %>
+          <%= link_to fa_icon("trash-o"), raid_boss_path(@boss.raid, @boss), method: :delete, confirm: "Are you sure?" %>
         </li>
       <% end %>
     </ul>
@@ -29,7 +29,7 @@
   <% end %>
   <%= paginate @posts %>
 
-  <% if can? :create, @post %>
+  <% if policy(@post).create? %>
     <%= simple_form_for [@boss, @boss.posts.build] do |f| %>
       <%= render "shared/posts/edit", f: f, submit: "Reply" %>
     <% end %>

@@ -2,7 +2,7 @@
   <h1>Sign Up</h1>
 
   <%= simple_form_for @user do |f| %>
-    <%= f.simple_fields_for :characters, @user.characters.first do |c| %>
+    <%= f.simple_fields_for :characters, @character do |c| %>
       <%= c.input :name, label: "Character Name" %>
       <%= c.input :server, label: "Character Server" %>
     <% end %>
