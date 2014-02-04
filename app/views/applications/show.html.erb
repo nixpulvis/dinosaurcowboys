@@ -17,7 +17,7 @@
         <li><%= link_to fa_icon("edit"), edit_user_application_path(@application.user) %></li>
       <% end %>
       <% if policy(@application).destroy? %>
-        <li><%= link_to fa_icon("trash-o"), user_application_path(@application.user), method: :delete, confirm: "Are you sure?" %></li>
+        <li><%= link_to fa_icon("trash-o"), user_application_path(@application.user), method: :delete, data: { confirm: "Are you sure?" } %></li>
       <% end %>
     </ul>
   </div>

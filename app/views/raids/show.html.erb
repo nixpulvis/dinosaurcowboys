@@ -11,7 +11,7 @@
       <% end %>
       <% if policy(@raid).destroy? %>
         <li>
-          <%= link_to fa_icon("trash-o"), raid_path(@raid), method: :delete, confirm: "Are you sure?" %>
+          <%= link_to fa_icon("trash-o"), raid_path(@raid), method: :delete, data: { confirm: "Are you sure?" } %>
         </li>
       <% end %>
     </ul>
