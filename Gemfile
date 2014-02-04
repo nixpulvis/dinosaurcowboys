@@ -67,6 +67,9 @@ gem 'rollbar'
 # Monitor the app with Librato.
 gem 'librato-rails'
 
+# Environment and server management.
+gem 'foreman'
+
 group :production do
   gem 'rails_12factor'
 end
