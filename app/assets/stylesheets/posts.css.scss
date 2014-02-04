@@ -65,7 +65,8 @@
       }
 
       img {
-        width: 100%;
+        @extend .border;
+        max-width: 100%;
       }
     }
 
