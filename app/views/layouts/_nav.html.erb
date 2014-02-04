@@ -1,18 +1,25 @@
 <nav class="topbar">
   <ul class="main-links">
     <li><%= link_to "Home", root_path %></li>
-    <li><%= link_to "Roster", roster_path %></li>
 
-    <% if user_signed_in? %>
-      <% if current_user.rank %>
-        <li><%= link_to "Raids", raids_path %></li>
-        <li><%= link_to "Forums", forums_path %></li>
-        <li><%= link_to "Applications", applications_path %></li>
-      <% else %>
-        <li><%= link_to "Charter", charter_path %></li>
-      <% end %>
-    <% else %>
+    <% unless current_user.try(:rank) %>
+      <li><%= link_to "Charter", charter_path %></li>
+    <% end %>
 
+    <% if policy(Character).roster? %>
+      <li><%= link_to "Roster", roster_path %></li>
+    <% end %>
+
+    <% if policy(Raid).index? %>
+      <li><%= link_to "Raids", raids_path %></li>
+    <% end %>
+
+    <% if policy(Forum).index? %>
+      <li><%= link_to "Forums", forums_path %></li>
+    <% end %>
+
+    <% if policy(Application).index? %>
+      <li><%= link_to "Applications", applications_path %></li>
     <% end %>
   </ul>
 
