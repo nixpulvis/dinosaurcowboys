@@ -1,18 +1,24 @@
 <div class="panel">
   <h1>Roster</h1>
 
-  <h2>Members</h2>
-  <ul class="character-list">
+  <table class="list">
+    <tr>
+      <th></th>
+      <th>Role</th>
+      <th>Spec</th>
+      <th>Name</th>
+      <th>Rank</th>
+      <th>Join Date</th>
+    </tr>
     <% @characters.each do |character| %>
-    <li>
-      <%= link_to user_character_path(character.user, character) do %>
-        <%= image_tag character.thumbnail, class: "border", size: "35x35" %>
-        <div class="info">
-          <p class="name"><%= character_tag character %></p>
-          <p class="role"><%= character.role %></p>
-        </div>
-      <% end %>
-    </li>
+      <tr>
+        <td><%= image_tag character.thumbnail, class: "border", size: "35x35" %></td>
+        <td><%= image_tag "role-#{character.role}.gif", size: "22x22" %></td>
+        <td><span class="spec"><%= character.spec %></span></td>
+        <td><span class="name"><%= armory_tag character %></span></td>
+        <td><span class="rank"><%= character.user.rank %></span></td>
+        <td>Joined on <%= date_tag(character.user.created_at, time: false) %></td>
+      </tr>
     <% end %>
   </ul>
 </div>

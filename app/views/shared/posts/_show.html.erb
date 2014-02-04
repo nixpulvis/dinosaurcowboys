@@ -27,10 +27,10 @@
 
     <div class="info">
       Posted
-      <%= from_now_tag post.created_at %>
+      <%= date_tag(post.created_at, relative: true) %>
       <% unless (post.updated_at - post.created_at).between?(-1, 60) %>
         updated
-        <%= from_now_tag post.updated_at %>
+        <%= date_tag(post.updated_at, relative: true) %>
       <% end %>
 
       <ul class="actions">

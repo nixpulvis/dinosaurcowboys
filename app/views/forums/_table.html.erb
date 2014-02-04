@@ -40,7 +40,7 @@
       <% end %>
     </td>
     <td class="freshness">
-      <%= from_now_tag topic.updated_at %>
+      <%= date_tag(topic.updated_at, relative: true) %>
     </td>
   </tr>
   <% end %>

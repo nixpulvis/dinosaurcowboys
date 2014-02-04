@@ -76,6 +76,10 @@ class CharactersController < ApplicationController
   def roster
     @characters = policy_scope(Character).where(main: true)
     authorize @characters
+
+    @characters = @characters.select do |character|
+      character.user.rank.try(:>=, 'Trial')
+    end
   end
 
   private
