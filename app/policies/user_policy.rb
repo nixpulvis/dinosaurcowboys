@@ -32,5 +32,6 @@ class UserPolicy < BasePolicy
 
     permitted << :rank_id if user.admin? || user.rank.try(:>=, 'Officer')
     permitted << :admin   if user.admin?
+    permitted
   end
 end
