@@ -10,7 +10,7 @@ module PartyShark
       elements: %w(a b blockquote br caption cite code col colgroup dd dl dt
                    em i img li ol p pre q small strike strong sub sup table
                    tbody td tfoot th thead tr u ul del ins h1 h2 h3 h4 h5 h5
-                   hr kbd iframe),
+                   mark hr kbd iframe),
 
       attributes: {
         'a'          => %w(href title),
@@ -38,7 +38,13 @@ module PartyShark
 
     def markdown(field)
       options = {
-        fenced_code_blocks: true
+        fenced_code_blocks: true,
+        tables: true,
+        strikethrough: true,
+        underline: true,
+        highlight: true,
+        autolink: true,
+        disable_indented_code_blocks: true
       }
       parser = Redcarpet::Markdown.new(Redcarpet::Render::HTML, options)
       dirty = parser.render send(field)

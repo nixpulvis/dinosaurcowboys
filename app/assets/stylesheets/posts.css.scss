@@ -68,6 +68,11 @@
         @extend .border;
         max-width: 100%;
       }
+
+      table td {
+        @extend .border;
+        padding: 5px;
+      }
     }
 
     .info {

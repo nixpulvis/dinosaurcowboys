@@ -42,6 +42,36 @@ $ ->
 
     editor.focus()
 
+  $('.fa-underline').click (e) ->
+    editor = $(this).parent().siblings('textarea')
+    val = editor.val()
+
+    selection = editor.textrange('get')
+    editor.textrange('replace', "_#{selection.text}_")
+    editor.textrange('setcursor', selection.end + 1)
+
+    editor.focus()
+
+  $('.fa-strikethrough').click (e) ->
+    editor = $(this).parent().siblings('textarea')
+    val = editor.val()
+
+    selection = editor.textrange('get')
+    editor.textrange('replace', "~~#{selection.text}~~")
+    editor.textrange('setcursor', selection.end + 1)
+
+    editor.focus()
+
+  $('.fa-eraser').click (e) ->
+    editor = $(this).parent().siblings('textarea')
+    val = editor.val()
+
+    selection = editor.textrange('get')
+    editor.textrange('replace', "==#{selection.text}==")
+    editor.textrange('setcursor', selection.end + 1)
+
+    editor.focus()
+
   $('.fa-text-height').click (e) ->
     editor = $(this).parent().siblings('textarea')
     val = editor.val()
