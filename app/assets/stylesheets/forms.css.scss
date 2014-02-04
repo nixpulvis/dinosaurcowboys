@@ -15,7 +15,7 @@ form {
         margin-bottom: 5px;
       }
 
-      &.radio_buttons, &.checkbox {
+      &.radio_buttons, &.check_boxes, &.boolean {
         &:not(.field_with_errors) p.hint {
           margin-top: 5px;
           border-top-left-radius: $border-radius-size;
@@ -43,9 +43,11 @@ form {
 
       input[type="checkbox"], input[type="radio"] {
         margin-bottom: 5px;
+        border-bottom-left-radius: $border-radius-size;
+        border-bottom-right-radius: $border-radius-size;
       }
 
-      &.radio_buttons, &.checkbox {
+      &.radio_buttons, &.check_boxes, &.boolean {
         p.error {
           margin-top: 5px;
           border-top-left-radius: $border-radius-size;
