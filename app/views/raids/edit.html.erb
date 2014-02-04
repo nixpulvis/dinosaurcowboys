@@ -7,7 +7,7 @@
 
     <ul class="actions">
       <% if policy(@raid).destroy? %>
-        <li><%= link_to fa_icon("trash-o"), raid_path(@raid), method: :delete, confirm: "Are you sure?" %></li>
+        <li><%= link_to fa_icon("trash-o"), raid_path(@raid), method: :delete, data: { confirm: "Are you sure?" } %></li>
       <% end %>
     </ul>
   </div>

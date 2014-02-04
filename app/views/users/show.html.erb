@@ -12,7 +12,7 @@
       <%= link_to "Edit", edit_user_path(@user) %>
     <% end %>
     <% if policy(@user).destroy? %>
-      <%= link_to "Delete", user_path(@user), method: :delete, confirm: "Are you sure?" %>
+      <%= link_to "Delete", user_path(@user), method: :delete, data: { confirm: "Are you sure?" } %>
     <% end %>
   </div>
 
