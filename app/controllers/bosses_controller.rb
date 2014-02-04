@@ -1,5 +1,9 @@
+# BossesController
+# Controller for the Boss model nested in a Raid.
+#
+# Actions: [new, create, show, edit, update, destroy]
+#
 class BossesController < ApplicationController
-
   # GET /raids/:raid_id/bosses/new
   # Build a boss to create.
   #
@@ -76,5 +80,4 @@ class BossesController < ApplicationController
   def boss_params
     params.require(:boss).permit(*policy(@boss || Boss).permitted_attributes)
   end
-
 end

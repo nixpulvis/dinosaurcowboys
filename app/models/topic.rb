@@ -12,17 +12,17 @@ class Topic < ActiveRecord::Base
   belongs_to :user
 
   # All the posts!
-  has_many :posts, :as => :postable, :dependent => :destroy
+  has_many :posts, as: :postable, dependent: :destroy
 
   # Keeps track of views.
   is_impressionable
 
   # A topic must have a title.
-  validates :title, :presence => true
+  validates :title, presence: true
 
   # By default order the topics from newest to oldest. So the
   # newest topics show up first.
-  default_scope -> { order('updated_at DESC') }
+  default_scope { order('updated_at DESC') }
 
   # Set the number of topics to show per page.
   paginates_per 10
@@ -34,7 +34,7 @@ class Topic < ActiveRecord::Base
   # The title of the topic.
   #
   def to_s
-    self.title
+    title
   end
 
   # -> DateTime

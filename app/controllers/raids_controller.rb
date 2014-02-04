@@ -1,5 +1,9 @@
+# RaidsController
+# Controller for the Raid model.
+#
+# Actions: [index, new, create, show, edit, update, destroy]
+#
 class RaidsController < ApplicationController
-
   # GET /raids
   # Provides the raids.
   #
@@ -83,5 +87,4 @@ class RaidsController < ApplicationController
   def raid_params
     params.require(:raid).permit(*policy(@raid || Raid).permitted_attributes)
   end
-
 end

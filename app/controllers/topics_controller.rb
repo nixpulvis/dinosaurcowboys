@@ -1,8 +1,14 @@
+# TopicsController
+# Controller for the Topic model nested in Forum.
+#
+# Actions: [create, show, edit, update, destroy]
+#
 class TopicsController < ApplicationController
-
   # Keep track of views.
   impressionist actions: [:show],
-    unique: [:impressionable_type, :impressionable_id, :session_hash]
+                unique: [:impressionable_type,
+                         :impressionable_id,
+                         :session_hash]
 
   # POST /forum/:forum_id/topics
   # Creates a new topic with the passed in parameters. It then sets
@@ -19,7 +25,7 @@ class TopicsController < ApplicationController
       redirect_to forum_topic_path(forum, @topic)
     else
       @topics = @forum.topics.page(params[:page])
-      render "forums/show"
+      render 'forums/show'
     end
   end
 
@@ -76,7 +82,7 @@ class TopicsController < ApplicationController
   # Permits the topic fields for assignment.
   #
   def topic_params
-    params.require(:topic).permit(*policy(@topic || Topic).permitted_attributes)
+    permit = policy(@topic || Topic).permitted_attributes
+    params.require(:topic).permit(*permit)
   end
-
 end

@@ -1,5 +1,10 @@
+# BossPolicy
+# Defines the policy for bosses on this site.
+#
+# Permissions of bosses are the same as their raid.
+#
 class BossPolicy < BasePolicy
-  class Scope < BaseScope
+  class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
       scope.where(raid_id: Pundit.policy_scope(user, Raid).pluck(:id))
     end
@@ -10,7 +15,7 @@ class BossPolicy < BasePolicy
   end
 
   def create?
-    user.rank.try(:>=, "Officer") || super
+    user.rank.try(:>=, 'Officer') || super
   end
 
   def update?

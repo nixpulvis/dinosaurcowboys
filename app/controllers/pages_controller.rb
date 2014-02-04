@@ -1,3 +1,8 @@
+# PagesController
+# Controller for the pages not backed by a distinct model.
+#
+# Actions: [home, charter, logs, recruitment]
+#
 class PagesController < ApplicationController
   def home
     authorize self

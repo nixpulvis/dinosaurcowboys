@@ -8,7 +8,7 @@ class Application < ActiveRecord::Base
     :pending,
     :trial,
     :accepted,
-    :rejected,
+    :rejected
   ]
 
   # The person applying.
@@ -21,7 +21,7 @@ class Application < ActiveRecord::Base
   validates :state, presence: true
   validates :name, length: { minimum: 3 },
                    format: { with: /[0-9a-z ]/i,
-                             message: "only allows alphanumeric characters" },
+                             message: 'only allows alphanumeric characters' },
                    allow_blank: true
   validates :age, presence: true,
                   numericality: { only_integer: true }
@@ -48,13 +48,13 @@ class Application < ActiveRecord::Base
   after_create :send_email
 
   # By default order the applications from newest to oldest by creation.
-  default_scope -> { order('created_at DESC') }
+  default_scope { order('created_at DESC') }
 
   # status -> String
   # Return the current status of the application.
   #
   def status
-    self.id_changed? ? :created : STATES[self.state]
+    self.id_changed? ? :created : STATES[state]
   end
 
   # status= Symbol -> Boolean
@@ -64,22 +64,22 @@ class Application < ActiveRecord::Base
   def status=(value)
     case value.to_sym
     when :pending
-      self.update_attribute(:state, 0)
-      self.user.update_attribute(:rank, nil)
+      update_attribute(:state, 0)
+      user.update_attribute(:rank, nil)
     when :trial
-      self.update_attribute(:state, 1)
-      self.user.update_attribute(:rank, Rank.find_by_name("Trial"))
+      update_attribute(:state, 1)
+      user.update_attribute(:rank, Rank.find_by_name('Trial'))
     when :accepted
-      self.update_attribute(:state, 2)
-      self.user.update_attribute(:rank, Rank.find_by_name("Raider"))
+      update_attribute(:state, 2)
+      user.update_attribute(:rank, Rank.find_by_name('Raider'))
     when :rejected
-      self.update_attribute(:state, 3)
-      self.user.update_attribute(:rank, nil)
+      update_attribute(:state, 3)
+      user.update_attribute(:rank, nil)
     end
-    self.send_email
+    send_email
   end
 
   def send_email
-    ApplicationMailer.send("#{self.status}_email", self).deliver
+    ApplicationMailer.send("#{status}_email", self).deliver
   end
 end

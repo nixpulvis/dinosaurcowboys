@@ -10,35 +10,35 @@ class Raid < ActiveRecord::Base
   include PartyShark::Markdownable
 
   # As we all know, there are bosses in raids.
-  has_many :bosses, :dependent => :destroy
+  has_many :bosses, dependent: :destroy
 
   # Users can post about raids.
-  has_many :posts, :as => :postable, :dependent => :destroy
+  has_many :posts, as: :postable, dependent: :destroy
 
   # Validate that raids have a name and tier.
   validates :name, presence: true
   validates :tier, numericality: true, allow_nil: true
 
   # Order by tier.
-  default_scope -> { order('tier DESC') }
+  default_scope { order('tier DESC') }
 
   # Setup the routing to be of the form "/raids/name_of_raid".
   # TODO: Maybe make this functionality into a module.
   class << self
     def find_by_param(string)
-      where('lower(name) = ?', string.gsub("_", " ")).first
+      where('lower(name) = ?', string.gsub('_', ' ')).first
     end
     alias_method :find, :find_by_param
 
     def find_by_param!(string)
       find_by_param(string).tap do |obj|
-        raise ActiveRecord::RecordNotFound unless obj
+        fail ActiveRecord::RecordNotFound unless obj
       end
     end
   end
 
   def to_param
-    name.downcase.gsub(" ", "_")
+    name.downcase.gsub(' ', '_')
   end
 
   def to_s

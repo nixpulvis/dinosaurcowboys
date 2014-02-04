@@ -5,7 +5,11 @@ task :lint => ["lint:ruby", "lint:coffee", "lint:sass"]
 
 namespace :lint do
   Rubocop::RakeTask.new(:ruby) do |task|
-    task.patterns = ['**/*.rb']
+    task.patterns = [
+      'app/**/*.rb',
+      'lib/**/*.rb',
+      'config/**/*.rb'
+    ]
   end
 
   desc "Lint Coffeescript."

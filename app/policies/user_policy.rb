@@ -1,5 +1,10 @@
+# UserPolicy
+# Defines the policy for users on this site.
+#
+# Users are only allowed to update their own record.
+#
 class UserPolicy < BasePolicy
-  class Scope < BaseScope
+  class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
       if user.admin?
         scope.all
@@ -23,16 +28,9 @@ class UserPolicy < BasePolicy
 
   def permitted_attributes
     permitted = [:email, :password, :password_confirmation,
-      characters_attributes: [:name, :server]]
+                 characters_attributes: [:name, :server]]
 
-    if user.admin? || user.rank.try(:>=, "Officer")
-      permitted << :rank_id
-    end
-
-    if user.admin?
-      permitted << :admin
-    end
-
-    permitted
+    permitted << :rank_id if user.admin? || user.rank.try(:>=, 'Officer')
+    permitted << :admin   if user.admin?
   end
 end

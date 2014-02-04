@@ -17,9 +17,9 @@ class Character < ActiveRecord::Base
   belongs_to :user
 
   # Validate the two fields needed to look up a character.
-  validates :name, presence: true, length: { maximum: 12 }
+  validates :name, presence: true, length: { maximum: 12 },
+                   uniqueness: { scope: :server }
   validates :server, presence: true
-  validates_uniqueness_of :name, scope: :server
   validates_with CharacterValidator
 
   # FIXME: This should be rethought.
@@ -33,7 +33,7 @@ class Character < ActiveRecord::Base
   # A character is displayed by it's name.
   #
   def to_s
-    self.name.titleize
+    name.titleize
   end
 
   def armory_url
@@ -45,19 +45,19 @@ class Character < ActiveRecord::Base
   #
   def api
     fields = [:items, :talents, :guild]
-    @api ||= WoW::Character.new(self.server, self.name, fields)
+    @api ||= WoW::Character.new(server, name, fields)
   end
 
   # Sync the data from blizz api with out data model.
   def sync!
-    self.update_columns klass: api.get("class"),
-      level: api["level"],
-      achievement_points: api["achievementPoints"],
-      average_item_level_equiped: api["items"]["averageItemLevelEquipped"],
-      spec: api.get("active_spec")["spec"]["name"],
-      role: api.get("active_spec")["spec"]["role"],
-      thumbnail: api.get("thumbnail"),
-      guild_name: api["guild"]["name"]
+    update_columns klass: api.get('class'),
+                   level: api['level'],
+                   achievement_points: api['achievementPoints'],
+                   average_item_level_equiped: api['items']['averageItemLevelEquipped'],
+                   spec: api.get('active_spec')['spec']['name'],
+                   role: api.get('active_spec')['spec']['role'],
+                   thumbnail: api.get('thumbnail'),
+                   guild_name: api['guild']['name']
   end
 
   private
@@ -67,22 +67,21 @@ class Character < ActiveRecord::Base
     sync!
 
     if self.main?
-      self.user.characters.where.not(id: self.id).update_all(main: false)
+      user.characters.where.not(id: id).update_all(main: false)
     else
-      self.user.characters.first.update_column(:main, true)
+      user.characters.first.update_column(:main, true)
     end
   end
 
   def reassign
     if self.main?
-      characters = self.user.characters
+      characters = user.characters
       if characters.reject(&:marked_for_destruction?).count <= 1
-        self.errors.add(:base, "Cannot destroy only character")
+        errors.add(:base, 'Cannot destroy only character')
         return false
       else
-        characters.where.not(id: self.id).first.update_attribute(:main, true)
+        characters.where.not(id: id).first.update_attribute(:main, true)
       end
     end
   end
-
 end

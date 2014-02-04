@@ -1,5 +1,11 @@
+# ForumPolicy
+# Defines the policy for forums on this site.
+#
+# Users read and write permissions are defined by their rank.
+# Officers are allowed to create, and update forums.
+#
 class ForumPolicy < BasePolicy
-  class Scope < BaseScope
+  class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
       if user.admin?
         scope.all
@@ -18,7 +24,7 @@ class ForumPolicy < BasePolicy
   end
 
   def update?
-    user.rank.try(:>=, "Officer") || super
+    user.rank.try(:>=, 'Officer') || super
   end
 
   def show?

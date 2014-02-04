@@ -1,5 +1,10 @@
+# PostsController
+# Controller for the polymorphic Post model. Only defines database
+# actions, this controller doesn't render anything.
+#
+# Actions: [create, update, destroy]
+#
 class PostsController < ApplicationController
-
   # POST /postable/:postable_id/posts
   # Creates a post on the postable, as the current user.
   #
@@ -51,7 +56,7 @@ class PostsController < ApplicationController
     if @postable
       @postable
     else
-      resource, id = request.path.split('/')[1,2]
+      resource, id = request.path.split('/')[1, 2]
       @postable = resource.singularize.classify.constantize.find(id)
     end
   end
@@ -79,5 +84,4 @@ class PostsController < ApplicationController
       user_application_path(postable.user, options)
     end
   end
-
 end

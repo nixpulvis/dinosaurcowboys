@@ -1,5 +1,10 @@
+# TopicPolicy
+# Defines the policy for topics on this site.
+#
+# Topics policies are defined by their forum.
+#
 class TopicPolicy < BasePolicy
-  class Scope < BaseScope
+  class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
       scope.where(forum_id: Pundit.policy_scope(user, Forum).pluck(:id))
     end
