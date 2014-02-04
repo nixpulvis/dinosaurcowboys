@@ -1,21 +1,22 @@
 <div class="post-editor">
   <div class="controls">
-    <%= fa_icon "bold", class: "button-small" %>
-    <%= fa_icon "italic", class: "button-small" %>
+    <%= fa_icon "bold", class: "button-small", title: "Bold" %>
+    <%= fa_icon "italic", class: "button-small", title: "Italic" %>
+    <%= fa_icon "underline", class: "button-small", title: "Underline" %>
+    <%= fa_icon "strikethrough", class: "button-small", title: "Strikethrough" %>
+    <%= fa_icon "eraser", class: "button-small", title: "Highlight" %>
 
-    <%= fa_icon "text-height", class: "button-small" %>
-    <%= fa_icon "quote-left", class: "button-small" %>
-    <%#= fa_icon "list-ol", class: "button-small" %>
-    <%#= fa_icon "list-ul", class: "button-small" %>
-    <%= fa_icon "code", class: "button-small" %>
+    <%= fa_icon "text-height", class: "button-small", title: "Header" %>
+    <%= fa_icon "quote-left", class: "button-small", title: "Quote" %>
+    <%= fa_icon "code", class: "button-small", title: "Codeblock" %>
 
-    <%= fa_icon "link", class: "button-small" %>
+    <%= fa_icon "link", class: "button-small", title: "Link" %>
     <div class="popup link">
       <input type="text" name="text" placeholder="Text">
       <input type="text" name="url" value="http://">
       <input type="submit" value="Add">
     </div>
-    <%= fa_icon "picture-o", class: "button-small" %>
+    <%= fa_icon "picture-o", class: "button-small", title: "Image" %>
     <div class="popup picture-o">
       <input type="text" name="url" value="http://">
       <input type="submit" value="Add">
