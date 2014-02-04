@@ -17,7 +17,7 @@
         <td><%= image_tag "role_#{character.role.downcase}.gif", size: "22x22" %></td>
         <td><span class="spec"><%= character.spec %></span></td>
         <td><span class="rank"><%= character.user.rank %></span></td>
-        <td>Joined on <%= date_tag(character.user.created_at, time: false) %></td>
+        <td><span><%= date_tag(character.user.created_at, time: false) %></span></td>
       </tr>
     <% end %>
   </ul>
