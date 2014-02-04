@@ -21,10 +21,10 @@ $ ->
       $.setIntervalAndExecute 1000, =>
         $(this).updateTimeFromNow(utc_time)
     else if $(this).hasClass('datetime')
-      display_time = moment(utc_time).format('MMMM Do YYYY, h:mm:ss a');
+      display_time = moment(utc_time).format('MMMM Do YYYY, h:mm:ss a')
       $(this).html(display_time)
     else if $(this).hasClass('date')
-      display_time = moment(utc_time).format('MMMM Do YYYY');
+      display_time = moment(utc_time).format('MMMM Do YYYY')
       $(this).html(display_time)
 
   # Automatically resize textareas.
