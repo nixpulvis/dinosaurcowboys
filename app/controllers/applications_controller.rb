@@ -13,13 +13,10 @@ class ApplicationsController < ApplicationController
   # All of the applications.
   #
   def index
-    @applications = policy_scope(Application).page(params[:page])
-    authorize @applications
+    all = policy_scope(Application)
+    authorize all
 
-    @pendings = @applications.where(state: 0)
-    @trials   = @applications.where(state: 1)
-    @accepts  = @applications.where(state: 2)
-    @rejects  = @applications.where(state: 3)
+    @applications = all.unscoped.order(:state).page(params[:page])
   end
 
   # GET /users/:user_id/application

@@ -7,14 +7,7 @@ module CharactersHelper
   # colored and all.
   #
   def character_tag(character)
-    content =
-      if block_given?
-        yield(character)
-      else
-        character
-      end
-
-    content_tag(:span, content, class: "character #{character.klass}")
+    content_tag(:span, character, class: "character #{character.klass}")
   end
 
   # Character -> HTML
