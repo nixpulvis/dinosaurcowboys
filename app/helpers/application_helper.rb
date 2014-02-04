@@ -15,7 +15,7 @@ module ApplicationHelper
   # `time: false` yields "February 4th 2014"
   #
   def date_tag(datetime, options = {})
-    options = {relative: false, time: true}.merge(options)
+    options = { relative: false, time: true }.merge(options)
     classes = ['moment']
 
     classes << 'relative' if options[:relative]
