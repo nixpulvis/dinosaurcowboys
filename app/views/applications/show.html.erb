@@ -1,9 +1,11 @@
 <div class="panel">
   <div class="title">
-    <h1><%= armory_tag @application.user.main %></h1>
-    <div class="status <%= @application.status %>">
-      <%= @application.status.to_s.titleize %>
-    </div>
+    <h1>
+      <%= armory_tag @application.user.main %>
+      <div class="status <%= @application.status %>">
+        <%= @application.status.to_s.titleize %>
+      </div>
+    </h1>
 
     <ul class="actions">
       <% if policy(@application).decide? %>
