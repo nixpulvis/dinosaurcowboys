@@ -80,6 +80,7 @@ class CharactersController < ApplicationController
     @characters = @characters.select do |character|
       character.user.rank.try(:>=, 'Trial')
     end
+    @characters.sort! { |a, b| b.user.rank <=> a.user.rank }
   end
 
   private

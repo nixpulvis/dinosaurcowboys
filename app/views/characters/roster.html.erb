@@ -4,18 +4,18 @@
   <table class="list">
     <tr>
       <th></th>
+      <th></th>
       <th>Role</th>
       <th>Spec</th>
-      <th>Name</th>
       <th>Rank</th>
       <th>Join Date</th>
     </tr>
     <% @characters.each do |character| %>
       <tr>
         <td><%= image_tag character.thumbnail, class: "border", size: "35x35" %></td>
+        <td><span class="name"><%= armory_tag character %></span></td>
         <td><%= image_tag "role-#{character.role}.gif", size: "22x22" %></td>
         <td><span class="spec"><%= character.spec %></span></td>
-        <td><span class="name"><%= armory_tag character %></span></td>
         <td><span class="rank"><%= character.user.rank %></span></td>
         <td>Joined on <%= date_tag(character.user.created_at, time: false) %></td>
       </tr>
