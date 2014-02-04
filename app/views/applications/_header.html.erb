@@ -3,7 +3,7 @@
     <%= link_to user_application_path(app.user) do %>
       <%= character_tag app.user.main %>
       applied
-      <%= from_now_tag app.created_at %>
+      <%= date_tag app.created_at, time: false %>
     <% end %>
 
     <div class="status <%= app.status %>">

@@ -14,10 +14,18 @@ $ ->
   $('div.flash p').delay(3000).slideUp("fast")
 
   # Format .datetime content realtime.
-  $('.datetime').each ->
+  $('.moment').each ->
     utc_time = $(this).html()
-    $.setIntervalAndExecute 1000, =>
-      $(this).updateTimeFromNow(utc_time)
+
+    if $(this).hasClass('relative')
+      $.setIntervalAndExecute 1000, =>
+        $(this).updateTimeFromNow(utc_time)
+    else if $(this).hasClass('datetime')
+      display_time = moment(utc_time).format('MMMM Do YYYY, h:mm:ss a');
+      $(this).html(display_time)
+    else if $(this).hasClass('date')
+      display_time = moment(utc_time).format('MMMM Do YYYY');
+      $(this).html(display_time)
 
   # Automatically resize textareas.
   $('textarea').autosize()

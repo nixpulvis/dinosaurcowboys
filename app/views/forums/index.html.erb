@@ -18,7 +18,7 @@
           <% if forum.freshest %>
             <span class="pull-right">
               <%= forum.freshest.title %>
-              <%= from_now_tag forum.freshest.posts_updated_at %>
+              <%= date_tag(forum.freshest.posts_updated_at, relative: true) %>
             </span>
           <% end %>
         <% end %>
