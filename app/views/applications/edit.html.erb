@@ -6,12 +6,12 @@
     <%= f.input :name, hint: "This is your actual name" %>
     <%= f.input :age %>
     <%= f.input :gender, collection: [[0, "Male"], [1, "Female"]], as: :radio_buttons, label_method: :last, value_method: :first, checked: @application.gender %>
-    <%= f.input :battlenet, label: "Battle.net" %>
+    <%= f.input :battlenet, label: "Battle.net ID" %>
     <%= f.input :logs, hint: "World of Logs, and/or Warcraft Logs" %>
     <%= f.input :computer, label: "Computer Specs", input_html: {rows: 5} %>
     <%= f.input :raiding_history, label: "Your Raiding History", input_html: {rows: 5} %>
     <%= f.input :guild_history, label: "Your Guild History", input_html: {rows: 5} %>
-    <%= f.input :leadership, label: "Guild Leadership" %>
+    <%= f.input :leadership, label: "Your Leadership Experience" %>
     <%= f.input :playstyle, label: "Skill, Rotation, and Playstyle", input_html: {rows: 5} %>
     <%= f.input :why, label: "Why Party Shark?", input_html: {rows: 3} %>
     <%= f.input :referer, label: "How Did You Hear About Party Shark?", input_html: {rows: 3} %>
@@ -43,8 +43,8 @@
       Or Chat with us in game<br />
       - Omnomnomms (Gm/recruitment)<br />
       - Disciplíne (Officer/Logistics/recruitment)<br />
-      - Tencarus (Strats/Raid Lead)<br />
-      - Tahgoe (Call-outs, Performance evaluation)
+      - Tahgoe (Call-outs, Performance evaluation)<br />
+      - Epicgrim (Website)
     </p>
   </div>
 </div>
