@@ -14,16 +14,16 @@ module PartyShark
 
       attributes: {
         'a'          => %w(href title),
-        'blockquote' => ['cite'],
+        'blockquote' => %w(cite),
         'col'        => %w(span width),
         'colgroup'   => %w(span width),
         'img'        => %w(align alt height src title width),
         'ol'         => %w(start type),
-        'q'          => ['cite'],
+        'q'          => %w(cite),
         'table'      => %w(summary width),
         'td'         => %w(abbr axis colspan rowspan width),
         'th'         => %w(abbr axis colspan rowspan scope width),
-        'ul'         => ['type'],
+        'ul'         => %w(type),
         'iframe'     => %w(src width height)
       },
 
@@ -36,19 +36,19 @@ module PartyShark
       }
     }
 
+    OPTIONS = {
+      fenced_code_blocks: true,
+      tables: true,
+      strikethrough: true,
+      underline: true,
+      highlight: true,
+      autolink: true,
+      disable_indented_code_blocks: true
+    }
+
     def markdown(field)
-      options = {
-        fenced_code_blocks: true,
-        tables: true,
-        strikethrough: true,
-        underline: true,
-        highlight: true,
-        autolink: true,
-        disable_indented_code_blocks: true
-      }
-      parser = Redcarpet::Markdown.new(Redcarpet::Render::HTML, options)
-      dirty = parser.render send(field)
-      Sanitize.clean(dirty, ALLOWED_MARKDOWN).html_safe
+      parser = Redcarpet::Markdown.new(Redcarpet::Render::HTML, OPTIONS)
+      Sanitize.clean(parser.render(send(field)), ALLOWED_MARKDOWN).html_safe
     end
   end
 end
