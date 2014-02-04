@@ -5,10 +5,12 @@ task :lint => ["lint:ruby", "lint:coffee", "lint:sass"]
 
 namespace :lint do
   Rubocop::RakeTask.new(:ruby) do |task|
+    task.options = [
+      "-R"
+    ]
     task.patterns = [
       'app/**/*.rb',
-      'lib/**/*.rb',
-      'config/**/*.rb'
+      'lib/**/*.rb'
     ]
   end
 

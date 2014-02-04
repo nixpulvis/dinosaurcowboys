@@ -4,6 +4,11 @@
 # Actions: [index, new, create, show, edit, update, destroy]
 #
 class UsersController < ApplicationController
+  before_filter only: [:show, :edit, :update, :destroy] do
+    @user = User.find(params[:id])
+    authorize @user
+  end
+
   # GET /users
   # As admin, provides all the users.
   # As non-admin, redirects with access error.
@@ -43,25 +48,18 @@ class UsersController < ApplicationController
   # Provides the user, and it's posts.
   #
   def show
-    @user = User.find(params[:id])
-    authorize @user
   end
 
   # GET /users/:id/edit
   # Provides the user.
   #
   def edit
-    @user = User.find(params[:id])
-    authorize @user
   end
 
   # PATCH or PUT /users/:id
   # Allows for users to update their attributes.
   #
   def update
-    @user = User.find(params[:id])
-    authorize @user
-
     # Assume user is not trying to update password if the password is blank.
     if params[:user][:password].blank?
       params[:user].delete(:password)
@@ -90,9 +88,6 @@ class UsersController < ApplicationController
   # Destroy the user, and everything it did.
   #
   def destroy
-    @user = User.find(params[:id])
-    authorize @user
-
     @user.destroy
     sign_out if @user == current_user
     redirect_to root_path, notice: "#{@user.email} deleted"

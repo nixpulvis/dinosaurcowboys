@@ -4,6 +4,11 @@
 # Actions: [index, new, create, show, edit, update, destroy]
 #
 class RaidsController < ApplicationController
+  before_filter only: [:show, :edit, :update, :destroy] do
+    @raid = Raid.find(params[:id])
+    authorize @raid
+  end
+
   # GET /raids
   # Provides the raids.
   #
@@ -39,9 +44,6 @@ class RaidsController < ApplicationController
   # Provides the given raid, and it's posts.
   #
   def show
-    @raid = Raid.find(params[:id])
-    authorize @raid
-
     @posts = @raid.posts.page(params[:page])
     @post  = @raid.posts.build
   end
@@ -50,17 +52,12 @@ class RaidsController < ApplicationController
   # Provides the given raid, and a UI to edit it.
   #
   def edit
-    @raid = Raid.find(params[:id])
-    authorize @raid
   end
 
   # PATCH or PUT /raids/:id
   # Allows for raids to be updated.
   #
   def update
-    @raid = Raid.find(params[:id])
-    authorize @raid
-
     if @raid.update_attributes(raid_params)
       redirect_to raid_path(@raid)
     else
@@ -72,9 +69,6 @@ class RaidsController < ApplicationController
   # Destroys the given raid, and all it's bosses.
   #
   def destroy
-    @raid = Raid.find(params[:id])
-    authorize @raid
-
     @raid.destroy
     redirect_to raids_path
   end

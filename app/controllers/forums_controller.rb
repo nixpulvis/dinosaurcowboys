@@ -4,6 +4,11 @@
 # Actions: [index, new, create, show, edit, update, destroy]
 #
 class ForumsController < ApplicationController
+  before_filter only: [:show, :edit, :update, :destroy] do
+    @forum = Forum.find(params[:id])
+    authorize @forum
+  end
+
   # GET /forums
   # Provide all the forums and the recent topics.
   #
@@ -40,9 +45,7 @@ class ForumsController < ApplicationController
   # create new topics.
   #
   def show
-    @forum = Forum.find(params[:id])
     @topics = policy_scope(@forum.topics).page(params[:page])
-    authorize @forum
 
     # Creating new topics.
     @topic = @forum.topics.build
@@ -53,17 +56,12 @@ class ForumsController < ApplicationController
   # Provide the forum to edit.
   #
   def edit
-    @forum = Forum.find(params[:id])
-    authorize @forum
   end
 
   # PATCH or PUT /forums/:id
   # Allows for updates to the forum.
   #
   def update
-    @forum = Forum.find(params[:id])
-    authorize @forum
-
     if @forum.update_attributes(forum_params)
       redirect_to forum_path(@forum)
     else
@@ -75,9 +73,6 @@ class ForumsController < ApplicationController
   # Destroy the forum and all of it's topics/posts.
   #
   def destroy
-    @forum = Forum.find(params[:id])
-    authorize @forum
-
     @forum.destroy
     redirect_to forums_path
   end
