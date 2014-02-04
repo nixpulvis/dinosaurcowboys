@@ -49,6 +49,7 @@ class Character < ActiveRecord::Base
   end
 
   # Sync the data from blizz api with out data model.
+  # rubocop:disable LineLength
   def sync!
     update_columns klass: api.get('class'),
                    level: api['level'],
@@ -59,6 +60,7 @@ class Character < ActiveRecord::Base
                    thumbnail: api.get('thumbnail'),
                    guild_name: api['guild']['name']
   end
+  # rubocop:enable LineLength
 
   private
 

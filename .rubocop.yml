@@ -1,0 +1,5 @@
+MethodLength:
+  Max: 20
+
+CyclomaticComplexity:
+  Max: 10

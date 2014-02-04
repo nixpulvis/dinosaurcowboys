@@ -5,6 +5,11 @@
 # Actions: [create, update, destroy]
 #
 class PostsController < ApplicationController
+  before_filter only: [:update, :destroy] do
+    @post = postable.posts.find(params[:id])
+    authorize @post
+  end
+
   # POST /postable/:postable_id/posts
   # Creates a post on the postable, as the current user.
   #
@@ -21,9 +26,6 @@ class PostsController < ApplicationController
   # Allows for users to update their posts.
   #
   def update
-    @post = postable.posts.find(params[:id])
-    authorize @post
-
     @post.update_attributes(post_params)
     redirect_to postable_path(postable, page: last_page(postable))
   end
@@ -32,9 +34,6 @@ class PostsController < ApplicationController
   # Destroys the post.
   #
   def destroy
-    @post = postable.posts.find(params[:id])
-    authorize @post
-
     @post.destroy
     redirect_to postable_path(postable)
   end

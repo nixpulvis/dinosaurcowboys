@@ -10,6 +10,12 @@ class TopicsController < ApplicationController
                          :impressionable_id,
                          :session_hash]
 
+  before_filter only: [:show, :edit, :update, :destroy] do
+    forum = Forum.find(params[:forum_id])
+    @topic = forum.topics.find(params[:id])
+    authorize @topic
+  end
+
   # POST /forum/:forum_id/topics
   # Creates a new topic with the passed in parameters. It then sets
   # the topic's user and it's first post's user to the current user.
@@ -17,8 +23,7 @@ class TopicsController < ApplicationController
   def create
     forum = Forum.find(params[:forum_id])
     @topic = forum.topics.build(topic_params)
-    @topic.user = current_user
-    @topic.posts.first.user = current_user
+    @topic.user = current_user && @topic.posts.first.user = current_user
     authorize @topic
 
     if @topic.save
@@ -33,9 +38,6 @@ class TopicsController < ApplicationController
   # Provides the topic, and it's posts.
   #
   def show
-    @topic = Topic.find(params[:id])
-    authorize @topic
-
     @posts = @topic.posts.page(params[:page])
     @post  = @topic.posts.build
   end
@@ -44,19 +46,12 @@ class TopicsController < ApplicationController
   # Provides the topic for editing.
   #
   def edit
-    forum = Forum.find(params[:forum_id])
-    @topic = forum.topics.find(params[:id])
-    authorize @topic
   end
 
   # PATCH or PUT /forum/:forum_id/topics/:id
   # Allows for updates to the topic's attributes.
   #
   def update
-    forum = Forum.find(params[:forum_id])
-    @topic = forum.topics.find(params[:id])
-    authorize @topic
-
     if @topic.update_attributes(topic_params)
       redirect_to forum_topic_path(forum, @topic)
     else
@@ -68,10 +63,6 @@ class TopicsController < ApplicationController
   # Destroys the topic and it's posts.
   #
   def destroy
-    forum = Forum.find(params[:forum_id])
-    @topic = forum.topics.find(params[:id])
-    authorize @topic
-
     @topic.destroy
     redirect_to forum_path(@topic.forum)
   end

@@ -4,6 +4,11 @@
 # Actions: [index, new, create, show, edit, update, destroy, decide]
 #
 class ApplicationsController < ApplicationController
+  before_filter only: [:show, :edit, :update, :destroy, :decide] do
+    user = User.find(params[:user_id])
+    @application = user.application
+  end
+
   # GET /applications
   # All of the applications.
   #
@@ -51,8 +56,6 @@ class ApplicationsController < ApplicationController
   # Provides the given application.
   #
   def show
-    user = User.find(params[:user_id])
-    @application = user.application
     if @application
       authorize @application
     else
@@ -67,8 +70,6 @@ class ApplicationsController < ApplicationController
   # Provides the given application, and a UI to edit it.
   #
   def edit
-    user = User.find(params[:user_id])
-    @application = user.application
     if @application
       authorize @application
     else
@@ -80,8 +81,6 @@ class ApplicationsController < ApplicationController
   # Allows for applications to be updated.
   #
   def update
-    user = User.find(params[:user_id])
-    @application = user.application
     if @application
       authorize @application
     else
@@ -89,7 +88,7 @@ class ApplicationsController < ApplicationController
     end
 
     if @application.update_attributes(application_params)
-      redirect_to user_application_path(user)
+      redirect_to user_application_path(@application.user)
     else
       render :edit
     end
@@ -99,8 +98,6 @@ class ApplicationsController < ApplicationController
   # Destroys the given application.
   #
   def destroy
-    user = User.find(params[:user_id])
-    @application = user.application
     if @application
       authorize @application
     else
@@ -116,8 +113,6 @@ class ApplicationsController < ApplicationController
   # the applicant rank if trial.
   #
   def decide
-    user = User.find(params[:user_id])
-    @application = user.application
     if @application
       authorize @application
     else

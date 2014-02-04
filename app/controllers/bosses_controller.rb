@@ -4,6 +4,13 @@
 # Actions: [new, create, show, edit, update, destroy]
 #
 class BossesController < ApplicationController
+  before_filter only: [:show, :edit, :update, :destroy] do
+    raid = Raid.find(params[:raid_id])
+    @boss = raid.bosses.find_by_param(params[:id])
+
+    authorize @boss
+  end
+
   # GET /raids/:raid_id/bosses/new
   # Build a boss to create.
   #
@@ -32,9 +39,6 @@ class BossesController < ApplicationController
   # Provides the given boss, raid, and the bosses posts.
   #
   def show
-    @boss = Boss.find(params[:id])
-    authorize @boss
-
     @posts = @boss.posts.page(params[:page])
     @post  = @boss.posts.build
   end
@@ -43,17 +47,12 @@ class BossesController < ApplicationController
   # Provides the given boss, and a UI to edit it.
   #
   def edit
-    @boss = Boss.find(params[:id])
-    authorize @boss
   end
 
   # PATCH or PUT /raids/:raid_id/bosses/:id
   # Allows for bosses to be updated.
   #
   def update
-    @boss = Boss.find(params[:id])
-    authorize @boss
-
     if @boss.update_attributes(boss_params)
       redirect_to raid_boss_path(@boss.raid, @boss)
     else
@@ -65,9 +64,6 @@ class BossesController < ApplicationController
   # Destroys the given boss.
   #
   def destroy
-    @boss = Boss.find(params[:id])
-    authorize @boss
-
     @boss.destroy
     redirect_to raid_path(@boss.raid)
   end

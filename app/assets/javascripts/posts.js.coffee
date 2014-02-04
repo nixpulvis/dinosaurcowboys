@@ -13,7 +13,7 @@ $ ->
     body = post.find('.raw').html()
     qoute = "#{name} said:\n> #{$.trim(body)}".replace(/\n\n/, '\n\n> ')
     $('.new_post textarea').val(qoute)
-    $('.new_post textarea').trigger('autosize.resize');
+    $('.new_post textarea').trigger('autosize.resize')
 
   # The Editor!
   $('.post-editor .popup').hide()

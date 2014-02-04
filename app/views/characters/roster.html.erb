@@ -1,9 +1,9 @@
 <div class="panel">
   <h1>Roster</h1>
 
-  <h2>Core</h2>
+  <h2>Members</h2>
   <ul class="character-list">
-    <% @cores.each do |character| %>
+    <% @characters.each do |character| %>
     <li>
       <%= link_to user_character_path(character.user, character) do %>
         <%= image_tag character.thumbnail, class: "border", size: "35x35" %>
@@ -13,13 +13,6 @@
         </div>
       <% end %>
     </li>
-    <% end %>
-  </ul>
-
-  <h2>Trials</h2>
-  <ul>
-    <% @trials.each do |character| %>
-    <li><%= character_tag character %></li>
     <% end %>
   </ul>
 </div>
