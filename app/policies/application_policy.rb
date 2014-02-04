@@ -48,10 +48,11 @@ class ApplicationPolicy < BasePolicy
   end
 
   def permitted_attributes
-    permit = [:name, :age, :gender, :battlenet, :logs, :computer,
-              :raiding_history, :guild_history, :leadership, :playstyle, :why,
-              :referer, :animal, :additional]
+    permitted = [:name, :age, :gender, :battlenet, :logs, :computer,
+                 :raiding_history, :guild_history, :leadership, :playstyle,
+                 :why, :referer, :animal, :additional]
 
-    permit << :status if decide?
+    permitted << :status if decide?
+    permitted
   end
 end
