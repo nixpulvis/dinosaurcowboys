@@ -70,6 +70,9 @@ gem 'librato-rails'
 # Environment and server management.
 gem 'foreman'
 
+# User thin as webserver.
+gem 'thin'
+
 group :production do
   gem 'rails_12factor'
 end
