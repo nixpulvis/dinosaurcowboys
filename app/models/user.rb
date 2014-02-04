@@ -33,13 +33,13 @@ class User < ActiveRecord::Base
   # The name of this user is defined to be the name of their main.
   #
   def to_s
-    self.main.to_s
+    main.to_s
   end
 
   # -> Character
   # The users main character.
   #
   def main
-    self.characters.where(main: true).first
+    characters.where(main: true).first
   end
 end

@@ -1,3 +1,7 @@
+# ApplicationController
+# The base controller for this application. All logic that applies to
+# every action should be defined here.
+#
 class ApplicationController < ActionController::Base
   include Pundit
 
@@ -9,7 +13,7 @@ class ApplicationController < ActionController::Base
   # The browser by default shits itself if a response comes back with
   # the same script-like data sent.
   before_filter do
-    response.headers['X-XSS-Protection'] = "0"
+    response.headers['X-XSS-Protection'] = '0'
   end
 
   # Ensure authorization.
@@ -19,7 +23,6 @@ class ApplicationController < ActionController::Base
   # Don't error 500 when people try to access bad things,
   # pretend like it's just not found.
   rescue_from Pundit::NotAuthorizedError do |e|
-    raise ActionController::RoutingError.new(e.message)
+    fail ActionController::RoutingError, e.message
   end
-
 end

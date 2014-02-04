@@ -1,5 +1,11 @@
+# CharacterPolicy
+# Defines the policy for characters on this site.
+#
+# The public can view characters and the roster.
+# Users can create, update, and destroy characters for themselves.
+#
 class CharacterPolicy < BasePolicy
-  class Scope < BaseScope
+  class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
       scope.all
     end

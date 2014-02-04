@@ -1,5 +1,10 @@
+# CharactersController
+# Controller for the Character model nested inside a User.
+# The roster action acts kinda like the index action.
+#
+# Actions: [new, create, show, edit, update, destroy, roster]
+#
 class CharactersController < ApplicationController
-
   # GET /users/:user_id/character/new
   # Get the given user, and build it a character for it.
   #
@@ -89,9 +94,9 @@ class CharactersController < ApplicationController
     @trials = []
 
     @characters.each do |character|
-      if character.user.rank.try(:>=, "Raider")
+      if character.user.rank.try(:>=, 'Raider')
         @cores << character
-      elsif character.user.rank.try(:==, "Trial")
+      elsif character.user.rank.try(:==, 'Trial')
         @trials << character
       end
     end
@@ -103,7 +108,7 @@ class CharactersController < ApplicationController
   # Permits the character fields for assignment.
   #
   def character_params
-    params.require(:character).permit(*policy(@character || Character).permitted_attributes)
+    permit = policy(@character || Character).permitted_attributes
+    params.require(:character).permit(*permit)
   end
-
 end

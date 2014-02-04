@@ -5,12 +5,14 @@
 #
 class Forum < ActiveRecord::Base
   # The forum's topics.
-  has_many :topics, :dependent => :destroy
+  has_many :topics, dependent: :destroy
 
   # Accesses are given out on a forum to fourm basis,
   # and grant access to either read / write permissions.
-  has_many :read_accesses,  -> { where permission: "read" },  class_name: 'Access'
-  has_many :write_accesses, -> { where permission: "write" }, class_name: 'Access'
+  has_many :read_accesses,  -> { where permission: 'read' },
+           class_name: 'Access'
+  has_many :write_accesses, -> { where permission: 'write' },
+           class_name: 'Access'
   has_many :readable_ranks, through: :read_accesses, source: :rank
   has_many :writable_ranks, through: :write_accesses, source: :rank
 
@@ -18,13 +20,13 @@ class Forum < ActiveRecord::Base
   accepts_nested_attributes_for :readable_ranks, :writable_ranks
 
   # A forum must have a name.
-  validates :name, :presence => true
+  validates :name, presence: true
 
   # -> String
   # Display a forum by it's name.
   #
   def to_s
-    self.name
+    name
   end
 
   # -> Topic

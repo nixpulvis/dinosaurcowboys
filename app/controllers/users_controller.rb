@@ -1,5 +1,9 @@
+# UsersController
+# Controller for the User model.
+#
+# Actions: [index, new, create, show, edit, update, destroy]
+#
 class UsersController < ApplicationController
-
   # GET /users
   # As admin, provides all the users.
   # As non-admin, redirects with access error.
@@ -60,13 +64,15 @@ class UsersController < ApplicationController
 
     # Assume user is not trying to update password if the password is blank.
     if params[:user][:password].blank?
-       params[:user].delete(:password)
-       params[:user].delete(:password_confirmation)
+      params[:user].delete(:password)
+      params[:user].delete(:password_confirmation)
     end
 
     # Append an error for the admin field if you are trying to make yourself
     # not an admin.
-    if params[:user][:admin] == "0" && current_user.admin? && current_user == @user
+    if params[:user][:admin] == '0' &&
+       current_user.admin? &&
+       current_user == @user
       @user.errors.add(:admin?, "can't be disabled by the same user")
       render :edit
       return
@@ -100,5 +106,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(*policy(@user || User).permitted_attributes)
   end
-
 end

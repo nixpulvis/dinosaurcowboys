@@ -1,5 +1,9 @@
+# ForumsController
+# Controller for the Forum model.
+#
+# Actions: [index, new, create, show, edit, update, destroy]
+#
 class ForumsController < ApplicationController
-
   # GET /forums
   # Provide all the forums and the recent topics.
   #
@@ -80,8 +84,11 @@ class ForumsController < ApplicationController
 
   private
 
+  # forum_params: -> Hash
+  # Permits the forum fields for assignment.
+  #
   def forum_params
-    params.require(:forum).permit(*policy(@forum || Forum).permitted_attributes)
+    permit = policy(@forum || Forum).permitted_attributes
+    params.require(:forum).permit(*permit)
   end
-
 end

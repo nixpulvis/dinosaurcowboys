@@ -1,3 +1,9 @@
+# BasePolicy
+# Sets up the default policies for the application. Mainly allowing
+# admins full control.
+#
+# Subclasses of BasePolicy should always call `super` on their methods.
+#
 class BasePolicy
   attr_reader :user, :record
 
@@ -6,7 +12,7 @@ class BasePolicy
     @record = record
   end
 
-  class BaseScope
+  class BaseScope  # rubocop:disable Documentation
     attr_reader :user, :scope
 
     def initialize(user, scope)
@@ -15,7 +21,7 @@ class BasePolicy
     end
 
     def resolve
-      raise NotImplementedError.new("Implement resolve in #{self.class}")
+      fail NotImplementedError, "Implement resolve in #{self.class}"
     end
   end
 
@@ -48,11 +54,10 @@ class BasePolicy
   end
 
   def permitted_attributes
-    raise NotImplementedError.new("Implement permitted_attributes in #{self.class}")
+    fail NotImplementedError, "Implement permitted_attributes in #{self.class}"
   end
 
   def allows?(attribute)
     permitted_attributes.include?(attribute)
   end
 end
-

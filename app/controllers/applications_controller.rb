@@ -1,5 +1,9 @@
+# ApplicationsController
+# Controller for the Application model.
+#
+# Actions: [index, new, create, show, edit, update, destroy, decide]
+#
 class ApplicationsController < ApplicationController
-
   # GET /applications
   # All of the applications.
   #
@@ -21,7 +25,9 @@ class ApplicationsController < ApplicationController
     @application = user.build_application
     authorize @application
 
-    render :edit, locals: {header: "Submit Your Application"}
+    redirect_to root_path, alert: 'You are already in the guild' if user.rank
+
+    render :edit, locals: { header: 'Submit Your Application' }
   end
 
   # POST /users/:user_id/application
@@ -32,14 +38,12 @@ class ApplicationsController < ApplicationController
     @application = user.build_application(application_params)
     authorize @application
 
-    if user.rank
-      redirect_to root_path, alert: "You are already in the guild"
-    end
+    redirect_to root_path, alert: 'You are already in the guild' if user.rank
 
     if @application.save
       redirect_to user_application_path(user)
     else
-      render :edit, locals: {header: "Submit Your Application"}
+      render :edit, locals: { header: 'Submit Your Application' }
     end
   end
 
@@ -52,7 +56,7 @@ class ApplicationsController < ApplicationController
     if @application
       authorize @application
     else
-      raise ActiveRecord::RecordNotFound.new("Couldn't find Application")
+      fail ActiveRecord::RecordNotFound, "Couldn't find Application"
     end
 
     @posts = @application.posts.page(params[:page])
@@ -68,7 +72,7 @@ class ApplicationsController < ApplicationController
     if @application
       authorize @application
     else
-      raise ActiveRecord::RecordNotFound.new("Couldn't find Application")
+      fail ActiveRecord::RecordNotFound, "Couldn't find Application"
     end
   end
 
@@ -81,7 +85,7 @@ class ApplicationsController < ApplicationController
     if @application
       authorize @application
     else
-      raise ActiveRecord::RecordNotFound.new("Couldn't find Application")
+      fail ActiveRecord::RecordNotFound, "Couldn't find Application"
     end
 
     if @application.update_attributes(application_params)
@@ -100,7 +104,7 @@ class ApplicationsController < ApplicationController
     if @application
       authorize @application
     else
-      raise ActiveRecord::RecordNotFound.new("Couldn't find Application")
+      fail ActiveRecord::RecordNotFound, "Couldn't find Application"
     end
 
     @application.destroy
@@ -117,7 +121,7 @@ class ApplicationsController < ApplicationController
     if @application
       authorize @application
     else
-      raise ActiveRecord::RecordNotFound.new("Couldn't find Application")
+      fail ActiveRecord::RecordNotFound, "Couldn't find Application"
     end
 
     @application.status = application_params[:status]
@@ -130,6 +134,7 @@ class ApplicationsController < ApplicationController
   # Permits the application fields for assignment.
   #
   def application_params
-    params.require(:application).permit(*policy(@application || Application).permitted_attributes)
+    permit = policy(@application || Application).permitted_attributes
+    params.require(:application).permit(*permit)
   end
 end

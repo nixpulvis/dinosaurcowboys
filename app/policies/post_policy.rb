@@ -1,5 +1,9 @@
+# PostPolicy
+# Defines the policy for posts on this site.
+#
+# Posts permissions are defined by their postable.
+#
 class PostPolicy < ApplicationPolicy
-
   def create?
     Pundit.policy(user, record.postable).write? || super
   end
@@ -9,7 +13,6 @@ class PostPolicy < ApplicationPolicy
   end
 
   def update?
-    # binding.pry
     user == record.user || super
   end
 
@@ -20,5 +23,4 @@ class PostPolicy < ApplicationPolicy
   def permitted_attributes
     [:body]
   end
-
 end
