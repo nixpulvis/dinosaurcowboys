@@ -22,7 +22,7 @@ module CharactersHelper
   #
   def armory_tag(character)
     link_to character.armory_url, class: 'armory' do
-      character_tag(character)
+      "#{character_tag(character)} #{fa_icon('external-link')}".html_safe
     end
   end
 end
