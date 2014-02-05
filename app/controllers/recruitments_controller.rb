@@ -4,7 +4,6 @@
 # Actions: [show, edit, update]
 #
 class RecruitmentsController < ApplicationController
-
   def show
     @recruitments = policy_scope(RecruitmentClass)
     authorize @recruitments
@@ -24,7 +23,4 @@ class RecruitmentsController < ApplicationController
 
     redirect_to recruitment_path
   end
-
-
-
 end
