@@ -1,3 +1,18 @@
-// Place all the styles related to the recruitment controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.recruitment-classes {
+  ul.classes {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 10px;
+
+    li div {
+      margin: 0 5px;
+      float: left;
+      text-align: center;
+    }
+
+    .clearfix {
+      margin-bottom: 10px;
+    }
+  }
+}

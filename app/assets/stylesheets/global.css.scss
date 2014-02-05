@@ -94,12 +94,6 @@ nav.pagination {
   background: $background-color;
   border: $border-size solid $border-color;
   border-radius: $border-radius-size;
-
-  &:first-child {
-    h1, h2, h3 {
-      margin-top: 0;
-    }
-  }
 }
 
 .title {
@@ -107,8 +101,7 @@ nav.pagination {
 
   h1, h2, h3, h4, h5, h6 {
     display: inline-block;
-    // font-size: 24px;
-    margin-bottom: 3px;
+    margin: 0 0 3px 0;
   }
 
   .actions {
@@ -242,11 +235,10 @@ table.list {
   margin-bottom: 20px;
 
   tr {
+    width: 100%;
+
     &:nth-child(odd) {
       background: darken($background-color, 2%);
-    }
-    &:first-child {
-      background: none;
     }
 
     th {
@@ -258,5 +250,9 @@ table.list {
       @extend hr;
       padding: 10px 0 10px 10px;
     }
+  }
+
+  &:not(.headerless) tr:first-child {
+    background: none;
   }
 }
