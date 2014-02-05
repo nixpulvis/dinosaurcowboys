@@ -11,7 +11,9 @@
     </ul>
 
     <div class="info">
-      Updated <%= date_tag RecruitmentClass.updated_at, relative: true %>
+      <% if RecruitmentClass.any? %>
+        Updated <%= date_tag RecruitmentClass.updated_at, relative: true %>
+      <% end %>
     </div>
   </div>
 
