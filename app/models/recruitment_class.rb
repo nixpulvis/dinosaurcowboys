@@ -20,6 +20,10 @@ class RecruitmentClass < ActiveRecord::Base
   # Save the desires hash as text in the database.
   serialize :desires, Hash
 
+  def self.updated_at
+    maximum(:updated_at)
+  end
+
   # Look up desires as methods.
   # For example: `RecruitmentClass.first.Balance`
   def method_missing(name, *args)
