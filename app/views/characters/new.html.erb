@@ -1,5 +1,7 @@
 <div class="panel">
-  <h2>New Character</h2>
+  <div class="title">
+    <h1>New Character</h1>
+  </div>
 
   <%= simple_form_for [@character.user, @character] do |f| %>
     <%= f.input :name %>
