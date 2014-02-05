@@ -1,10 +1,11 @@
 <div class="recruitment-classes">
+  <% @recruitments ||= policy_scope(RecruitmentClass) %>
 
   <% if policy(RecruitmentClass).update? %>
-
+    <%= link_to fa_icon("edit"), edit_recruitment_path %>
   <% end %>
 
-  <% RecruitmentClass.all.each do |rc| %>
+  <% @recruitments.each do |rc| %>
     <% if rc.needed? %>
       <%= rc.class_name %><br />
       <% rc.needs.each do |k, v| %>
