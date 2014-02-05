@@ -1,0 +1,18 @@
+<div class="recruitment-classes">
+
+  <% if policy(RecruitmentClass).update? %>
+
+  <% end %>
+
+  <% RecruitmentClass.all.each do |rc| %>
+    <% if rc.needed? %>
+      <%= rc.class_name %><br />
+      <% rc.needs.each do |k, v| %>
+        <%= image_tag rc.spec_icon_path(k), size: '20x20' %>
+        <%= v %>
+      <% end %>
+      <br />
+    <% end %>
+  <% end %>
+
+</div>
