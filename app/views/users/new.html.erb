@@ -1,5 +1,7 @@
 <div class="panel">
-  <h1>Sign Up</h1>
+  <div class="title">
+    <h1>Sign Up</h1>
+  </div>
 
   <%= simple_form_for @user do |f| %>
     <%= f.simple_fields_for :characters, @character do |c| %>
