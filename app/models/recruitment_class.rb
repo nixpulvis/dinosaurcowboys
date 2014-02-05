@@ -20,12 +20,31 @@ class RecruitmentClass < ActiveRecord::Base
   # Save the desires hash as text in the database.
   serialize :desires, Hash
 
+  # Look up desires as methods.
+  # For example: `RecruitmentClass.first.Balance`
+  def method_missing(name, *args)
+    key = name.to_s
+    if desires.key?(key)
+      desires[key]
+    else
+      super
+    end
+  end
+
+  def respond_to?(name, include_private = false)
+    desires.key?(name.to_s) || super
+  end
+
+  def desires
+    read_attribute(:desires)
+  end
+
   # -> Hash
   # Returns the same type of data as `desires` except with
   # only specs that are needed.
   #
   def needs
-    desires.select { |spec, value| value > 0 }
+    desires.select { |spec, value| value.present? }
   end
 
   # -> Boolean

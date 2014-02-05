@@ -15,8 +15,4 @@ class PagesController < ApplicationController
   def logs
     authorize self
   end
-
-  def recruitment
-    authorize self
-  end
 end

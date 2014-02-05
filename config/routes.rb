@@ -2,7 +2,6 @@ PartyShark::Application.routes.draw do
 
   # Static pages.
   root 'pages#home'
-  get '/recruitment', to: 'pages#recruitment'
   get '/charter', to: 'pages#charter'
   get '/logs', to: 'pages#logs'
 
@@ -18,6 +17,9 @@ PartyShark::Application.routes.draw do
     end
   end
   get '/applications', to: 'applications#index'
+
+  # Recruitment.
+  resource :recruitment, only: [:show, :edit, :update]
 
   # Raids and bosses.
   resources :raids do
