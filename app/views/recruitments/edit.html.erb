@@ -7,12 +7,14 @@
     <% @recruitments.each do |recruitment| %>
       <h2><%= recruitment.class_name %></h2>
 
-      <%= simple_fields_for "recruitment_class[]", recruitment do |f| %>
-        <% recruitment.desires.each do |spec, value| %>
-          <%= f.label spec %>
-          <%= f.select spec, ['Low', 'Medium', 'High'], include_blank: true %>
+      <div>
+        <%= simple_fields_for "recruitment_class[]", recruitment do |f| %>
+          <% recruitment.desires.each do |spec, value| %>
+            <%= f.label spec %>
+            <%= f.select spec, ['Low', 'Medium', 'High'], include_blank: "None" %>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     <% end %>
 
     <%= submit_tag "Update" %>
