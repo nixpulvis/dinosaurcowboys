@@ -4,17 +4,17 @@
 #
 class RecruitmentClass < ActiveRecord::Base
   CLASSES = {
-    'Death Knight' => ['Blood', 'Frost', 'Unholy'],
-    'Druid'        => ['Balance', 'Feral', 'Guardian', 'Restoration'],
-    'Hunter'       => ['Beast Mastery', 'Marksmanship', 'Survival'],
-    'Mage'         => ['Arcane', 'Fire', 'Frost'],
-    'Monk'         => ['Brewmaster', 'Mistweaver', 'Windwalker'],
-    'Paladin'      => ['Holy', 'Protection', 'Retribution'],
-    'Priest'       => ['Discipline', 'Holy', 'Shadow'],
-    'Rogue'        => ['Assassination', 'Combat', 'Subtlety'],
-    'Shaman'       => ['Elemental', 'Enhancement', 'Restoration'],
-    'Warlock'      => ['Affliction', 'Demonology', 'Destruction'],
-    'Warrior'      => ['Arms', 'Fury', 'Protection']
+    'Death Knight' => %w(Blood Frost Unholy),
+    'Druid'        => %w(Balance Feral Guardian Restoration),
+    'Hunter'       => %w(Beast\ Mastery Marksmanship Survival),
+    'Mage'         => %w(Arcane Fire Frost),
+    'Monk'         => %w(Brewmaster Mistweaver Windwalker),
+    'Paladin'      => %w(Holy Protection Retribution),
+    'Priest'       => %w(Discipline Holy Shadow),
+    'Rogue'        => %w(Assassination Combat Subtlety),
+    'Shaman'       => %w(Elemental Enhancement Restoration),
+    'Warlock'      => %w(Affliction Demonology Destruction),
+    'Warrior'      => %w(Arms Fury Protection)
   }
 
   # Save the desires hash as text in the database.
@@ -36,7 +36,8 @@ class RecruitmentClass < ActiveRecord::Base
   end
 
   def desires
-    read_attribute(:desires)
+    # read_attribute(:desires)
+    self[:desires]
   end
 
   # -> Hash
@@ -70,5 +71,4 @@ class RecruitmentClass < ActiveRecord::Base
     spec_file  = spec.gsub(' ', '').underscore
     "class_#{class_file}/spec_#{spec_file}.jpg"
   end
-
 end
