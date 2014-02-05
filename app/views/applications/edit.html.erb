@@ -1,6 +1,10 @@
 <div class="panel">
-  <h1><%= local_assigns[:header] || "Edit Your Application" %></h1>
-  <p>You are applying as <%= armory_tag @application.user.main %>.</p>
+  <div class="title">
+    <h1><%= local_assigns[:header] || "Edit Your Application" %></h1>
+    <div class="info">
+      You are applying as <%= armory_tag @application.user.main %>.
+    </div>
+  </div>
 
   <%= simple_form_for @application, url: user_application_path(@application.user), html: {class: "application"} do |f| %>
     <%= f.input :name, hint: "This is your actual name" %>

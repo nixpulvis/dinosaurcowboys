@@ -1,7 +1,11 @@
 <div class="panel">
-  <h2>Forgot your password?</h2>
+  <div class="title">
+    <h1>Forgot your password?</h1>
 
-  <p>Don't worry we all do it. Enter your email and we'll send you instructions to reset your password. Try to remember it this time eh?</p>
+    <div class="info">
+      Don't worry we all do it. Enter your email and we'll send you instructions to reset your password. Try to remember it this time eh?
+    </div>
+  </div>
 
   <%= simple_form_for resource, as: resource_name, url: password_path(resource_name), html: { method: :post } do |f| %>
     <%= f.input :email %>
