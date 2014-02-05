@@ -3,7 +3,7 @@
 # will have a number representing the desirability of that spec.
 #
 class RecruitmentClass < ActiveRecord::Base
-  CLASSES = {
+  DEFAULTS = {
     'Death Knight' => %w(Blood Frost Unholy),
     'Druid'        => %w(Balance Feral Guardian Restoration),
     'Hunter'       => %w(Beast\ Mastery Marksmanship Survival),
@@ -20,6 +20,9 @@ class RecruitmentClass < ActiveRecord::Base
   # Save the desires hash as text in the database.
   serialize :desires, Hash
 
+  # They must have a class_name.
+  validates :class_name, presence: true
+
   def self.updated_at
     maximum(:updated_at)
   end
@@ -35,12 +38,14 @@ class RecruitmentClass < ActiveRecord::Base
     end
   end
 
+  # Always redefine this when overloading `method_missing`
   def respond_to?(name, include_private = false)
     desires.key?(name.to_s) || super
   end
 
+  # The way rails does this by default falls back on `method_missing`,
+  # we must define it explicitly because we use it in `method_missing`.
   def desires
-    # read_attribute(:desires)
     self[:desires]
   end
 
