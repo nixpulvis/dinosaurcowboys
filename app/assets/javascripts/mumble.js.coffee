@@ -1,19 +1,42 @@
+window.populateChannel = (parent, channel) ->
+  hasSubChannelUsers = false
+  $(channel['channels']).each (i, sub_channel) ->
+    hasSubChannelUsers ||= sub_channel['users'].length
+
+  if channel['users'].length || hasSubChannelUsers
+    li = $("<li class='channel'><p class='title'>#{channel['name']}</p></li>")
+    parent.append(li)
+
+    if channel['users'].length
+      li.append("<ul class='users'></ul>")
+      $(channel['users']).each (i, user) ->
+          userIcon = "<i class='fa fa-user'></i>"
+          otherIcons = ""
+          if user['deaf'] || user['selfDeaf']
+            otherIcons += "<i class='fa fa-headphones'></i> "
+          if user['mute'] || user['selfMute']
+            otherIcons += "<i class='fa fa-microphone-slash'></i> "
+
+          li.find('.users').append("<li class='user'>#{userIcon} #{user['name']} #{otherIcons}</li>")
+
 window.populateMumble = (data) ->
   $('.mumble ul.channels').empty()
 
   $(data['root']['channels']).each (i, channel) ->
-    li = $("<li>#{channel['name']}<ul class='users'></ul></li>")
+    window.populateChannel($('.mumble ul.channels'), channel)
 
-    $(channel['users']).each (i, user) ->
-      li.find('.users').append("<li>#{user['name']}</li>")
-
-    $('.mumble ul.channels').append(li)
+    if channel['channels'].length
+      li = $('.mumble ul.channels .channel').last()
+      li.append("<ul class='sub-channels'></ul>")
+      $(channel['channels']).each (i, sub_channel) ->
+        window.populateChannel(li.find('.sub-channels'), sub_channel)
 
 window.updateMumble = ->
   $('.mumble .title ul li a i').removeClass('fa-exclamation-triangle')
   $('.mumble .title ul li a i').addClass('fa-refresh')
   $('.mumble .title ul li a i').addClass('fa-spin')
   xhr = $.get "/mumble.json", (data) ->
+    console.log data
     $.setTimeout 500, ->  # UX
       window.populateMumble(data)
       $('.mumble .title ul li a i').removeClass('fa-spin')
