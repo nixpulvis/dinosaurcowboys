@@ -1,6 +1,9 @@
 module PartyShark
 
   class Mumble
+    SERVER = 'partyshark.typefrag.com'
+    PORT   = 7675
+
     include HTTParty
 
     base_uri "http://www.typefrag.com/server-status/mumble/ChannelViewerProtocol.aspx"
