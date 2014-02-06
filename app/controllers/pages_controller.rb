@@ -6,6 +6,8 @@
 class PagesController < ApplicationController
   def home
     authorize self
+
+    @mumble = PartyShark::Mumble.new("partyshark.typefrag.com", 7675)
   end
 
   def charter
