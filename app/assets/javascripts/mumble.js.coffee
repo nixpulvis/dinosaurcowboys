@@ -4,7 +4,7 @@ window.populateChannel = (parent, channel) ->
     hasSubChannelUsers ||= sub_channel['users'].length
 
   if channel['users'].length || hasSubChannelUsers
-    li = $("<li class='channel'><p class='title'>#{channel['name']}</p></li>")
+    li = $("<li id='channel_" + channel['id'] + "' class='channel'><p class='title'>#{channel['name']}</p></li>")
     parent.append(li)
 
     if channel['users'].length
@@ -27,7 +27,7 @@ window.populateMumble = (data) ->
     window.populateChannel($('.mumble ul.channels'), channel)
 
     if channel['channels'].length
-      li = $('.mumble ul.channels .channel').last()
+      li = $(".mumble ul.channels #channel_#{channel['id']}").last()
       li.append("<ul class='sub-channels'></ul>")
       $(channel['channels']).each (i, sub_channel) ->
         window.populateChannel(li.find('.sub-channels'), sub_channel)
@@ -37,7 +37,6 @@ window.updateMumble = ->
   $('.mumble .title ul li a i').addClass('fa-refresh')
   $('.mumble .title ul li a i').addClass('fa-spin')
   xhr = $.get "/mumble.json", (data) ->
-    console.log data
     $.setTimeout 500, ->  # UX
       window.populateMumble(data)
       $('.mumble .title ul li a i').removeClass('fa-spin')
