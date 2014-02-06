@@ -10,14 +10,15 @@ window.populateChannel = (parent, channel) ->
     if channel['users'].length
       li.append("<ul class='users'></ul>")
       $(channel['users']).each (i, user) ->
-          userIcon = "<i class='fa fa-user'></i>"
-          otherIcons = ""
-          if user['deaf'] || user['selfDeaf']
-            otherIcons += "<i class='fa fa-headphones'></i> "
-          if user['mute'] || user['selfMute']
-            otherIcons += "<i class='fa fa-microphone-slash'></i> "
+        userIcon = "<i class='fa fa-user'></i>"
+        otherIcons = ""
+        if user['deaf'] || user['selfDeaf']
+          otherIcons += "<i class='fa fa-headphones'></i> "
+        if user['mute'] || user['selfMute']
+          otherIcons += "<i class='fa fa-microphone-slash'></i> "
 
-          li.find('.users').append("<li class='user'>#{userIcon} #{user['name']} #{otherIcons}</li>")
+        user = "<li class='user'>#{userIcon} #{user['name']} #{otherIcons}</li>"
+        li.find('.users').append(user)
 
 window.populateMumble = (data) ->
   $('.mumble ul.channels').empty()
