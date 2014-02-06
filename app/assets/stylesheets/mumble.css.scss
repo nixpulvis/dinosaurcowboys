@@ -1,0 +1,29 @@
+.mumble {
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    .channel {
+      margin-bottom: 5px;
+      border: $border-size solid $border-color;
+      border-radius: $border-radius-size;
+
+      .title {
+        margin: 0;
+        padding: 2px;
+        background-color: $border-color;
+      }
+
+      & > * {
+        padding: 5px;
+      }
+
+      .sub-channels .channel:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+}
