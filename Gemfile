@@ -7,6 +7,9 @@ gem 'rails', '4.0.2'
 # Use postgres as the database for Active Record
 gem 'pg'
 
+# HTTParty for web calls.
+gem 'httparty'
+
 # Use devise for user authentication.
 gem 'devise'
 

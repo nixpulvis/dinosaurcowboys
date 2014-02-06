@@ -1,3 +1,6 @@
+$.setTimeout = (t, func) ->
+  return setTimeout(func, t)
+
 $.setInterval = (t, func) ->
   return setInterval(func, t)
 
