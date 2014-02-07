@@ -180,6 +180,15 @@ h6 .status {
   font-weight: bold;
 }
 
+.details {
+  margin-right: 10px;
+  float: left;
+
+  p {
+    margin: 0;
+  }
+}
+
 .button {
   display: inline-block;
   margin-bottom: 10px;
