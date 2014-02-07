@@ -48,7 +48,7 @@ class Character < ActiveRecord::Base
     @api ||= WoW::Character.new(server, name, fields)
   end
 
-  # Sync the data from blizz api with out data model.
+  # Sync the data from blizz api with our data model.
   # rubocop:disable LineLength
   def sync!
     update_columns klass: api.get('class'),
