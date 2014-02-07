@@ -29,7 +29,10 @@ window.populateMumble = (data) ->
   $(data['root']['channels']).each (i, channel) ->
     window.populateChannel($('.mumble ul.channels'), channel)
 
-    if channel['channels'].length
+    hasSubChannelAndUsers = channel['channels'].length &&
+      !(channel['channels'].every (c) -> c['users'].length == 0)
+
+    if hasSubChannelAndUsers
       insert = $(".mumble ul.channels #channel_#{channel['id']}")
       insert.append("<ul class='sub-channels'></ul>")
       $(channel['channels']).each (i, sub_channel) ->
