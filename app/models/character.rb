@@ -48,19 +48,19 @@ class Character < ActiveRecord::Base
     @api ||= WoW::Character.new(server, name, fields)
   end
 
+  # -> NA
   # Sync the data from blizz api with our data model.
-  # rubocop:disable LineLength
+  #
   def sync!
     update_columns klass: api.get('class'),
                    level: api['level'],
                    achievement_points: api['achievementPoints'],
-                   average_item_level_equiped: api['items']['averageItemLevelEquipped'],
-                   spec: api.get('active_spec')['spec']['name'],
-                   role: api.get('active_spec')['spec']['role'],
+                   average_item_level_equiped: api['items']['averageItemLevelEquipped'],  # rubocop:disable LineLength
+                   spec: api.get('active_spec')['spec'].try(:[], 'name'),
+                   role: api.get('active_spec')['spec'].try(:[], 'role'),
                    thumbnail: api.get('thumbnail'),
-                   guild_name: api['guild']['name']
+                   guild_name: api['guild'].try(:[], 'name')
   end
-  # rubocop:enable LineLength
 
   private
 
