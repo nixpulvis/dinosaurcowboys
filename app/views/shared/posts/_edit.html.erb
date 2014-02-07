@@ -1,2 +1,3 @@
 <%= render "shared/editor", f: f, field: :body %>
+<%= hidden_field_tag :page, params[:page] %>
 <%= f.button :submit, submit %>
