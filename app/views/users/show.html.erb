@@ -1,35 +1,49 @@
-<div class="panel clearfix">
-  <div class="account">
-    <div class="title">
-      <h1>Account</h1>
-    </div>
+<div class="panel">
+  <div class="title">
+    <h1>Account</h1>
 
-    Email: <%= @user.email %><br />
-
-    <% if @user.rank %>
-      Rank: <%= @user.rank.name %><br />
-    <% end %>
-
-    <% if policy(@user).update? %>
-      <%= link_to "Edit", edit_user_path(@user) %>
-    <% end %>
-    <% if policy(@user).destroy? %>
-      <%= link_to "Delete", user_path(@user), method: :delete, data: { confirm: "Are you sure?" } %>
-    <% end %>
+    <ul class="actions">
+      <% if policy(@user).update? %>
+        <li><%= link_to fa_icon("edit"), edit_user_path(@user) %></li>
+      <% end %>
+      <% if policy(@user).destroy? %>
+        <li><%= link_to fa_icon("trash-o"), user_path(@user), method: :delete, data: { confirm: "Are you sure?" } %></li>
+      <% end %>
+    </ul>
   </div>
 
-  <div class="character">
-    <h1>Charaters</h1>
-    <ul>
-    <% @user.characters.each do |character| %>
-      <li class="<%= character.main? ? "main" : "alt" %>">
-        <%= link_to character, user_character_path(@user, character) %>
-      </li>
-    <% end %>
-    </ul>
+  <div class="details">
+    <%= avatar_tag(@user, class: "border") %>
+  </div>
 
-    <% if policy(@user.characters.build).create? %>
-      <%= link_to "Add", new_user_character_path(@user) %>
+  <div class="details">
+    <p class="email">
+      <%= fa_icon("envelope") %> <%= @user.email %>
+    </p>
+
+    <% if @user.rank %>
+      <p class="rank">
+        <%= fa_icon("shield") %> <%= @user.rank %>
+      </p>
     <% end %>
+  </div>
+  <div class="clearfix"></div>
+
+  <div class="characters">
+    <h3>
+      Charaters
+      <% if policy(Character.new(user: @user)).create? %>
+        <%= link_to fa_icon("plus"), new_user_character_path(@user) %>
+      <% end %>
+    </h3>
+
+    <ul>
+      <% @user.characters.each do |character| %>
+        <li>
+          <%= character.main? ? fa_icon("star") : fa_icon("star-half-o") %>
+          <%= link_to character_tag(character), user_character_path(@user, character) %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>
