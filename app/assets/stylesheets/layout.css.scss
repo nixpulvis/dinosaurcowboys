@@ -46,7 +46,8 @@ div.flash {
 
 nav.topbar {
   width: $page-width;
-  margin: 0 auto 10px;
+  margin: 0 auto;
+  padding: 0 20px;
 
   ul {
     margin: 0;
@@ -77,6 +78,7 @@ nav.topbar {
 div.container {
   width: $page-width;
   margin: 0 auto 20px;
+  padding: 0 20px;
 }
 
 /* FOOTER */
