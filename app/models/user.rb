@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   belongs_to :rank
 
   # Allowed to have many characters, but one **must** be the main.
-  has_many :characters, dependent: :destroy
+  has_many :characters, dependent: :delete_all
 
   # Users make posts.
   has_many :posts, dependent: :destroy
