@@ -59,7 +59,7 @@ class ApplicationsController < ApplicationController
       fail ActiveRecord::RecordNotFound, "Couldn't find Application"
     end
 
-    @posts = @application.posts.page(params[:page])
+    @posts = @application.posts.order(created_at: :asc).page(params[:page])
     @post = @application.posts.build
   end
 

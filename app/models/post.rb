@@ -15,10 +15,6 @@ class Post < ActiveRecord::Base
   # A post **must** have a body. Empty posts are not allowed.
   validates :body, presence: true
 
-  # By default order the posts from oldest to newest. So posts
-  # show up in the order they were created.
-  default_scope { order('created_at ASC') }
-
   # Set the number of posts to show per page.
   paginates_per 10
 end

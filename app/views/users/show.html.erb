@@ -14,12 +14,12 @@
 
   <div class="details">
     <%= avatar_tag(@user, class: "border") %>
-  </div>
 
-  <div class="details">
-    <p class="email">
-      <%= fa_icon("envelope") %> <%= @user.email %>
-    </p>
+    <% if policy(@user).show_email? %>
+      <p class="email">
+        <%= fa_icon("envelope") %> <%= @user.email %>
+      </p>
+    <% end %>
 
     <% if @user.rank %>
       <p class="rank">
@@ -30,19 +30,50 @@
   <div class="clearfix"></div>
 
   <div class="characters">
-    <h3>
-      Charaters
+    <h2>
+      Characters
       <% if policy(Character.new(user: @user)).create? %>
         <%= link_to fa_icon("plus"), new_user_character_path(@user) %>
       <% end %>
-    </h3>
+    </h2>
 
     <ul>
       <% @user.characters.each do |character| %>
         <li>
-          <%= character.main? ? fa_icon("star") : fa_icon("star-half-o") %>
+          <%= character.main? ? fa_icon("star") : fa_icon("star-o") %>
           <%= link_to character_tag(character), user_character_path(@user, character) %>
         </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="posts">
+    <h2>Posts</h2>
+
+    <table class="list">
+      <tr>
+        <th>Postable</th>
+        <th>Posts by User</th>
+        <th>Last Poster</th>
+        <th></th>
+      </tr>
+      <% @postables.each do |postable| %>
+        <tr>
+          <td>
+            <%= link_to postable_path(postable) do %>
+              <%= postable %>
+            <% end %>
+          </td>
+          <td>
+            <%= postable.posts.where(user: @user).count %>
+          </td>
+          <td>
+            <%= character_tag(postable.posts.last.user.main)  %>
+          </td>
+          <td>
+            <%= date_tag(postable.posts_updated_at, relative: true) %>
+          </td>
+        </tr>
       <% end %>
     </ul>
   </div>

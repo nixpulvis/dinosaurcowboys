@@ -15,7 +15,7 @@ class UserPolicy < BasePolicy
   end
 
   def show?
-    user.id == record.id || super
+    true
   end
 
   def create?
@@ -24,6 +24,10 @@ class UserPolicy < BasePolicy
 
   def update?
     user.id == record.id || super
+  end
+
+  def show_email?
+    user.id == record.id || user.admin?
   end
 
   def permitted_attributes

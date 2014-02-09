@@ -4,6 +4,12 @@
 # Posts permissions are defined by their postable.
 #
 class PostPolicy < ApplicationPolicy
+  class Scope < BaseScope  # rubocop:disable Documentation
+    def resolve
+      scope.select { |p| Pundit.policy(user, p).show? }
+    end
+  end
+
   def create?
     Pundit.policy(user, record.postable).write? || super
   end

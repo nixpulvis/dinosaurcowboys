@@ -8,12 +8,10 @@
 #
 class Raid < ActiveRecord::Base
   include PartyShark::Markdownable
+  include Postable
 
   # As we all know, there are bosses in raids.
   has_many :bosses, dependent: :destroy
-
-  # Users can post about raids.
-  has_many :posts, as: :postable, dependent: :destroy
 
   # Validate that raids have a name and tier.
   validates :name, presence: true
