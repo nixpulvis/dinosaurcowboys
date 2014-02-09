@@ -1,11 +1,28 @@
-.characters {
-  h3 {
-    margin-bottom: 5px;
+.users.show {
+  .details {
+    img {
+      margin-right: 5px;
+      float: left;
+    }
+
+    p {
+      margin: 0;
+    }
   }
 
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  .characters {
+    h2 {
+      margin-bottom: 5px;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        font-size: 18px;
+      }
+    }
   }
 }

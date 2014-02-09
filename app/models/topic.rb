@@ -4,15 +4,14 @@
 # it.
 #
 class Topic < ActiveRecord::Base
-  # Each topic falls under a forum, and inherits it's permissions.
-  belongs_to :forum
+  include Postable
 
   # A user creates a topic, we save this relationship to allow that user
   # to delete the topic if they want.
   belongs_to :user
 
-  # All the posts!
-  has_many :posts, as: :postable, dependent: :destroy
+  # Each topic falls under a forum, and inherits it's permissions.
+  belongs_to :forum
 
   # Keeps track of views.
   is_impressionable
@@ -27,20 +26,10 @@ class Topic < ActiveRecord::Base
   # Set the number of topics to show per page.
   paginates_per 10
 
-  # Allow topics forms to create posts.
-  accepts_nested_attributes_for :posts
-
   # -> String
   # The title of the topic.
   #
   def to_s
     title
-  end
-
-  # -> DateTime
-  # The most recent update to the posts of this topic.
-  #
-  def posts_updated_at
-    posts.maximum(:updated_at)
   end
 end

@@ -4,6 +4,8 @@
 # or not.
 #
 class Application < ActiveRecord::Base
+  include Postable
+
   STATES = [
     :pending,
     :trial,
@@ -13,9 +15,6 @@ class Application < ActiveRecord::Base
 
   # The person applying.
   belongs_to :user
-
-  # An application should have discussion.
-  has_many :posts, as: :postable, dependent: :destroy
 
   # Validate the fields of the application.
   validates :state, presence: true
@@ -49,6 +48,13 @@ class Application < ActiveRecord::Base
 
   # By default order the applications from newest to oldest by creation.
   default_scope { order('created_at DESC') }
+
+  # -> String
+  # A displayable format for the application.
+  #
+  def to_s
+    "#{user}'s Application"
+  end
 
   # status -> String
   # Return the current status of the application.

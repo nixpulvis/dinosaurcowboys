@@ -48,6 +48,8 @@ class UsersController < ApplicationController
   # Provides the user, and it's posts.
   #
   def show
+    @posts = policy_scope(@user.posts).sort_by { |p| p.updated_at }.reverse
+    @postables = @posts.map { |p| p.postable }.flatten.uniq
   end
 
   # GET /users/:id/edit

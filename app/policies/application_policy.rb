@@ -39,7 +39,7 @@ class ApplicationPolicy < BasePolicy
 
   # READ === See the topic, and its posts.
   def read?
-    user == record.user || user.rank.try(:>=, 'Raider') || super
+    user == record.user || user.rank.try(:>=, 'Raider')
   end
 
   # WRITE === Make a new topic, and post on it.

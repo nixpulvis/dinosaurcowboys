@@ -38,7 +38,7 @@ class TopicsController < ApplicationController
   # Provides the topic, and it's posts.
   #
   def show
-    @posts = @topic.posts.page(params[:page])
+    @posts = @topic.posts.order(created_at: :asc).page(params[:page])
     @post  = @topic.posts.build
   end
 

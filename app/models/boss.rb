@@ -8,12 +8,10 @@
 #
 class Boss < ActiveRecord::Base
   include PartyShark::Markdownable
+  include Postable
 
   # A boss is in a raid.
   belongs_to :raid
-
-  # Users can post about bosses.
-  has_many :posts, as: :postable, dependent: :destroy
 
   # Validate that raids have a name and tier.
   validates :name, presence: true

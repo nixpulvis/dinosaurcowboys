@@ -75,20 +75,4 @@ class PostsController < ApplicationController
   def last_page(postable)
     postable.posts.page.total_pages
   end
-
-  # postable_path (Instance of Model) -> String
-  # Returns a path to the given model, this allows posts to
-  # route without worrying about nesting.
-  #
-  def postable_path(postable, options = {})
-    if postable.is_a? Raid
-      raid_path(postable, options)
-    elsif postable.is_a? Boss
-      raid_boss_path(postable.raid, postable, options)
-    elsif postable.is_a? Topic
-      forum_topic_path(postable.forum, postable, options)
-    elsif postable.is_a? Application
-      user_application_path(postable.user, options)
-    end
-  end
 end
