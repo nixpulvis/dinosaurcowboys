@@ -1,3 +1,7 @@
+# Postable
+# A module to add functionality of something that can be posted
+# on, like a topic or an application.
+#
 module Postable
   extend ActiveSupport::Concern
 
@@ -15,12 +19,9 @@ module Postable
   def posts_updated_at
     posts.maximum(:updated_at)
   end
-
-  module ClassMethods
-  end
-
 end
 
+# Add path helper to application controller to be in all controllers.
 class ApplicationController
   # postable_path (Instance of Model) -> String
   # Returns a path to the given model, this allows posts to
