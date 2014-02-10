@@ -22,7 +22,7 @@ module Postable
 end
 
 # Add path helper to application controller to be in all controllers.
-class ApplicationController
+class ApplicationController < ActionController::Base
   # postable_path (Instance of Model) -> String
   # Returns a path to the given model, this allows posts to
   # route without worrying about nesting.
