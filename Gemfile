@@ -88,6 +88,7 @@ end
 
 group :development, :test do
   gem 'rubocop'
+  gem 'scss-lint', '= 0.17.1'
 end
 
 group :doc do
