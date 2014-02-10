@@ -80,6 +80,14 @@ nav.pagination {
     max-width: 100%;
     max-height: 100%;
   }
+
+  table {
+    th,
+    td {
+      padding: 10px;
+      border: $border-size solid $border-color;
+    }
+  }
 }
 
 .border {
