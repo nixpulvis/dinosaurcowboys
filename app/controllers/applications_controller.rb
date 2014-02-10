@@ -6,6 +6,12 @@
 class ApplicationsController < ApplicationController
   before_filter only: [:show, :edit, :update, :destroy, :decide] do
     user = User.find(params[:user_id])
+
+    if user.rank
+      authorize PagesController, :home?
+      redirect_to root_path, alert: 'You are already in the guild'
+    end
+
     @application = user.application
   end
 
@@ -24,12 +30,19 @@ class ApplicationsController < ApplicationController
   #
   def new
     user = User.find(params[:user_id])
-    @application = user.build_application
-    authorize @application
 
-    redirect_to root_path, alert: 'You are already in the guild' if user.rank
+    if user.rank
+      authorize PagesController, :home?
+      redirect_to root_path, alert: 'You are already in the guild'
+    elsif user.application
+      authorize user.application
+      redirect_to user_application_path(user)
+    else
+      @application = user.build_application
+      authorize @application
 
-    render :edit, locals: { header: 'Submit Your Application' }
+      render :edit, locals: { header: 'Submit Your Application' }
+    end
   end
 
   # POST /users/:user_id/application
