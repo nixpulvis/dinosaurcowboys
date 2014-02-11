@@ -14,3 +14,12 @@ bundle install
 rake db:create && rake db:migrate && rake db:seed
 foreman start
 ```
+
+## Heroku Database
+
+### Pull the Database
+
+```
+curl -o latest.dump `heroku pgbackups:url`  # Download the latest backup.
+pg_restore --verbose --clean --no-acl --no-owner -h localhost -U postgres -d party_shark_development latest.dump
+```
