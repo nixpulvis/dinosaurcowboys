@@ -6,12 +6,6 @@
 class ApplicationsController < ApplicationController
   before_filter only: [:show, :edit, :update, :destroy, :decide] do
     user = User.find(params[:user_id])
-
-    if user.rank
-      authorize PagesController, :home?
-      redirect_to root_path, alert: 'You are already in the guild'
-    end
-
     @application = user.application
   end
 
