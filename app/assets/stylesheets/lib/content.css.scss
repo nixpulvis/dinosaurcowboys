@@ -7,20 +7,30 @@
   @include prefixer(font-smoothing, antialiased, webkit moz);
   font: 16px 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
+  *:first-child {
+    margin-top: 0;
+  }
+
+  *:last-child {
+    margin-bottom: 0;
+  }
+
   p {
     line-height: 1.6em;
+  }
+
+  img {
+    @extend .border;
+    max-width: 100%;
+  }
+
+  table td {
+    @extend .border;
+    padding: 10px;
   }
 
   iframe {
     max-height: 100%;
     max-width: 100%;
-  }
-
-  table {
-    th,
-    td {
-      padding: 10px;
-      border: $border-size solid $border-color;
-    }
   }
 }

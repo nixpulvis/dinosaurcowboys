@@ -55,27 +55,6 @@
     padding: 10px;
     width: 83%;
 
-    // TODO: Should all be handled by content styles.
-    .content {
-      *:first-child {
-        margin-top: 0;
-      }
-
-      *:last-child {
-        margin-bottom: 0;
-      }
-
-      img {
-        @extend .border;
-        max-width: 100%;
-      }
-
-      table td {
-        @extend .border;
-        padding: 5px;
-      }
-    }
-
     .info {
       font-size: 11px;
 

@@ -39,7 +39,7 @@
       display: inline-block;
     }
 
-    li a {
+    a {
       @extend .button-small;
       margin-bottom: 0;
     }

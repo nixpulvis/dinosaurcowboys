@@ -19,14 +19,14 @@ unless Rails.env.production?
     desc 'Lint Coffeescript'
     task :coffee do
       puts 'Running coffeelint...'
-      pass = system('coffeelint . -PlaceholderInExtend')
+      pass = system('coffeelint .')
       fail 'failed coffeescript linting' unless pass
     end
 
     desc 'Lint SCSS'
     task :scss do
       puts 'Running scss-lint...'
-      pass = system('scss-lint .')
+      pass = system('scss-lint -x SelectorDepth,PlaceholderInExtend .')
       fail 'failed scss linting' unless pass
     end
   end
