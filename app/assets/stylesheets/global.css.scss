@@ -1,4 +1,5 @@
-/* Variables */
+// Variables
+
 $border-color: #404040;
 $background-color: #242424;
 $topbar-hover-color: #122939;
@@ -22,7 +23,8 @@ $fg-column: 60px;
 $fg-gutter: 25px;
 $fg-max-columns: 12;
 
-/* General styles */
+
+// General styles
 
 body {
   color: $text-color;
@@ -54,11 +56,14 @@ nav.pagination {
     margin-right: 3px;
   }
 
-  span a, .current, .gap {
+  span a,
+  .current,
+  .gap {
     @extend .button-small;
   }
 
-  span.current, span.gap {
+  span.current,
+  span.gap {
     &:hover {
       background: $border-color;
       color: $text-color;
@@ -66,150 +71,8 @@ nav.pagination {
   }
 }
 
-/* Custom classes */
 
-.content {
-  font: 16px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  @include prefixer(font-smoothing, antialiased, webkit moz);
-
-  p {
-    line-height: 1.6em;
-  }
-
-  iframe {
-    max-width: 100%;
-    max-height: 100%;
-  }
-
-  table {
-    th,
-    td {
-      padding: 10px;
-      border: $border-size solid $border-color;
-    }
-  }
-}
-
-.border {
-  margin: -$border-size;
-  border: $border-size solid $border-color;
-  border-radius: $border-radius-size;
-}
-
-.panel {
-  margin: 0 0 10px 0;
-  padding: 15px;
-  background: $background-color;
-  border: $border-size solid $border-color;
-  border-radius: $border-radius-size;
-}
-
-.title {
-  margin-bottom: 20px;
-
-  h1, h2, h3, h4, h5, h6 {
-    display: inline-block;
-    margin: 0 0 3px 0;
-  }
-
-  .actions {
-    display: inline-block;
-    float: right;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-
-    li {
-      display: inline-block;
-    }
-
-    li a {
-      @extend .button-small;
-      margin-bottom: 0;
-    }
-  }
-
-  .info {
-    font-size: 14px;
-  }
-}
-
-.status {
-  display: inline-block;
-  padding: 4px 6px;
-  border-radius: $border-radius-size;
-  vertical-align: 2px;
-  color: $background-color;
-  font-weight: normal;
-
-  &.pending {
-    background-color: $info-color;
-  }
-  &.trial {
-    background-color: $warning-color;
-  }
-  &.accepted {
-    background-color: $success-color;
-  }
-  &.rejected {
-    background-color: $danger-color;
-  }
-}
-
-h1 .status {
-  font-size: 22px;
-}
-h2 .status {
-  margin: 0 6px;
-  font-size: 16px;
-}
-h3 .status {
-  margin: 0 4px;
-  padding: 3px 5px;
-  font-size: 12px;
-  font-weight: bold;
-}
-h4 .status {
-  margin: 0 4px;
-  padding: 3px 5px;
-  font-size: 10px;
-  font-weight: bold;
-}
-h5 .status {
-  margin: 0 2px;
-  padding: 2px 4px;
-  font-size: 8px;
-  font-weight: bold;
-}
-h6 .status {
-  margin: 0;
-  padding: 1px 2px;
-  font-size: 8px;
-  font-weight: bold;
-}
-
-.button {
-  display: inline-block;
-  margin-bottom: 10px;
-  padding: 7px 20px;
-  background-color: $border-color;
-  border: none;
-  border-radius: $border-radius-size;
-
-  &:hover {
-    background: $link-color;
-    color: $background-color;
-  }
-}
-
-.button-small {
-  @extend .button;
-  padding: 3px 6px;
-}
-
-h1 .sub {
-  font-size: 16px;
-}
+// Utility classes
 
 .clearfix {
   @include clearfix;
@@ -218,49 +81,4 @@ h1 .sub {
 .hidden {
   display: none;
   visibility: 0;
-}
-
-.button-list {
-  display: block;
-  margin: 10px 0 20px 0;
-  padding: 0;
-  list-style: none;
-
-  li {
-    margin-bottom: 10px;
-    vertical-align: top;
-
-    a {
-      @extend .button;
-      display: block;
-      padding: 10px;
-    }
-  }
-}
-
-table.list {
-  width: 100%;
-  margin-bottom: 20px;
-
-  tr {
-    width: 100%;
-
-    &:nth-child(odd) {
-      background: darken($background-color, 2%);
-    }
-
-    th {
-      text-align: left;
-      padding-left: 10px;
-    }
-
-    td {
-      @extend hr;
-      padding: 10px 0 10px 10px;
-    }
-  }
-
-  &:not(.headerless) tr:first-child {
-    background: none;
-  }
 }

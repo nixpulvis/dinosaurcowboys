@@ -1,0 +1,9 @@
+// .border
+// This is a class to add to elements we want a border on
+// without effecting the size the element.
+//
+.border {
+  border: $border-size solid $border-color;
+  border-radius: $border-radius-size;
+  margin: -$border-size;
+}

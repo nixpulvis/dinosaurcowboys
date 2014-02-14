@@ -1,0 +1,26 @@
+// .content
+// This is a class for content that should be displayed
+// for ease of reading. This includes styles for markdown
+// elements.
+//
+.content {
+  @include prefixer(font-smoothing, antialiased, webkit moz);
+  font: 16px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  p {
+    line-height: 1.6em;
+  }
+
+  iframe {
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  table {
+    th,
+    td {
+      padding: 10px;
+      border: $border-size solid $border-color;
+    }
+  }
+}

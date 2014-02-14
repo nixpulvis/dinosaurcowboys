@@ -1,8 +1,8 @@
 .users.show {
   .details {
     img {
-      margin-right: 5px;
       float: left;
+      margin-right: 5px;
     }
 
     p {
@@ -16,13 +16,13 @@
     }
 
     ul {
+      list-style: none;
       margin: 0;
       padding: 0;
-      list-style: none;
+    }
 
-      li {
-        font-size: 18px;
-      }
+    li {
+      font-size: 18px;
     }
   }
 }

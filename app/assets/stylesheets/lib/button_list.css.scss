@@ -1,0 +1,20 @@
+// .button-list
+// Style a ul to look like a list of buttons.
+//
+.button-list {
+  display: block;
+  list-style: none;
+  margin: 10px 0 20px;
+  padding: 0;
+
+  li {
+    margin-bottom: 10px;
+    vertical-align: top;
+
+    a {
+      @extend .button;
+      display: block;
+      padding: 10px;
+    }
+  }
+}

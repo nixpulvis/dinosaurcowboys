@@ -1,15 +1,47 @@
 .character {
-  &.death_knight { color: #C41F3B; }
-  &.druid { color: #FF7D0A; }
-  &.hunter { color: #ABD473; }
-  &.mage { color: #69CCF0; }
-  &.monk { color: #00FF96; }
-  &.paladin { color: #F58CBA; }
-  &.priest { color: #FFFFFF; }
-  &.rogue { color: #FFF569; }
-  &.shaman { color: #0070DE; }
-  &.warlock { color: #9482C9; }
-  &.warrior { color: #C79C6E; }
+  &.death_knight {
+    color: #c41f3b;
+  }
+
+  &.druid {
+    color: #ff7d0a;
+  }
+
+  &.hunter {
+    color: #abd473;
+  }
+
+  &.mage {
+    color: #69ccf0;
+  }
+
+  &.monk {
+    color: #00ff96;
+  }
+
+  &.paladin {
+    color: #f58cba;
+  }
+
+  &.priest {
+    color: #fff;
+  }
+
+  &.rogue {
+    color: #fff569;
+  }
+
+  &.shaman {
+    color: #0070de;
+  }
+
+  &.warlock {
+    color: #9482c9;
+  }
+
+  &.warrior {
+    color: #c79c6e;
+  }
 }
 
 .profile {
@@ -20,8 +52,8 @@
 
   .title {
     display: inline-block;
-    width: 840px;
     vertical-align: top;
+    width: 840px;
 
     .name {
       display: block;

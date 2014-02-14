@@ -21,9 +21,9 @@
     <% @recruitments.each do |rc| %>
       <% if rc.needed? %>
         <li>
-          <div title="<%= rc.class_name %>"><%= image_tag rc.class_icon_path, size: '40x40', class: 'border' %></div>
+          <div class="class" title="<%= rc.class_name %>"><%= image_tag rc.class_icon_path, size: '40x40', class: 'border' %></div>
           <% rc.needs.each do |k, v| %>
-            <div title="<%= k %>">
+            <div class="spec" title="<%= k %>">
               <%= image_tag rc.spec_icon_path(k), size: '25x25', class: 'border' %><br />
               <%= v %>
             </div>

@@ -1,0 +1,11 @@
+// .panel
+// A class to make an element look and feel like a panel.
+// These are what all content are within on the site.
+//
+.panel {
+  background: $background-color;
+  border: $border-size solid $border-color;
+  border-radius: $border-radius-size;
+  margin: 0 0 10px;
+  padding: 15px;
+}
