@@ -26,7 +26,7 @@ unless Rails.env.production?
     desc 'Lint SCSS'
     task :scss do
       puts 'Running scss-lint...'
-      pass = system('scss-lint -x SelectorDepth,PlaceholderInExtend .')
+      pass = system('scss-lint -x SelectorDepth,PlaceholderInExtend app')
       fail 'failed scss linting' unless pass
     end
   end
