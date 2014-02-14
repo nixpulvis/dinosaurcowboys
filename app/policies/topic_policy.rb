@@ -26,6 +26,10 @@ class TopicPolicy < BasePolicy
     user == record.user || super
   end
 
+  def stick?
+    user.admin?
+  end
+
   # READ === See the topic, and its posts.
   def read?
     Pundit.policy(user, record.forum).read?
@@ -37,6 +41,9 @@ class TopicPolicy < BasePolicy
   end
 
   def permitted_attributes
-    [:title, posts_attributes: [:body]]
+    permitted = [:title, posts_attributes: [:body]]
+
+    permitted << :sticky if user.admin?
+    permitted
   end
 end

@@ -16,7 +16,7 @@
   </tr>
   <% topics.each do |topic| %>
   <% last_post = topic.posts.last %>
-  <tr>
+  <tr <%= 'class=highlight' if topic.sticky %>>
     <td>
       <%= link_to topic, forum_topic_path(topic.forum, topic) %>
     </td>

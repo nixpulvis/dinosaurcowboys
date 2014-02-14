@@ -19,10 +19,6 @@ class Topic < ActiveRecord::Base
   # A topic must have a title.
   validates :title, presence: true
 
-  # By default order the topics from newest to oldest. So the
-  # newest topics show up first.
-  default_scope { order('updated_at DESC') }
-
   # Set the number of topics to show per page.
   paginates_per 10
 

@@ -21,15 +21,17 @@ class TopicsController < ApplicationController
   # the topic's user and it's first post's user to the current user.
   #
   def create
-    forum = Forum.find(params[:forum_id])
-    @topic = forum.topics.build(topic_params)
+    @forum = Forum.find(params[:forum_id])
+    @topic = @forum.topics.build(topic_params)
     @topic.user = current_user && @topic.posts.first.user = current_user
     authorize @topic
 
     if @topic.save
-      redirect_to forum_topic_path(forum, @topic)
+      redirect_to forum_topic_path(@forum, @topic)
     else
-      @topics = @forum.topics.page(params[:page])
+      @topics = policy_scope(@forum.topics)
+                  .order(sticky: :desc, updated_at: :desc)
+                  .page(params[:page])
       render 'forums/show'
     end
   end
