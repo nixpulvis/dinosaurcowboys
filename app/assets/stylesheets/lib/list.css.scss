@@ -1,6 +1,8 @@
 // table.list
 // Beautiful list styles for tables.
 //
+$highlight-color: shade($primary-color, 35%);
+
 table.list {
   margin-bottom: 20px;
   width: 100%;
@@ -8,7 +10,15 @@ table.list {
   tr {
     width: 100%;
 
-    &:nth-child(odd) {
+    &.highlight {
+      background: $highlight-color;
+    }
+
+    &.highlight:nth-child(odd) {
+      background: darken($highlight-color, 8%);
+    }
+
+    &:not(.highlight):nth-child(odd) {
       background: darken($background-color, 2%);
     }
 

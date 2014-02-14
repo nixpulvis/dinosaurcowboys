@@ -16,6 +16,10 @@
   <%= simple_form_for [@topic.forum, @topic] do |f| %>
     <%= f.input :title %>
 
+    <% if policy(@topic).stick? %>
+      <%= f.input :sticky %>
+    <% end %>
+
     <%= f.button :submit, "Update" %>
   <% end %>
 </div>

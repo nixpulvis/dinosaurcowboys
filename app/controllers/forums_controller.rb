@@ -14,7 +14,9 @@ class ForumsController < ApplicationController
   #
   def index
     @forums = policy_scope(Forum)
-    @topics = policy_scope(Topic).page(params[:page])
+    @topics = policy_scope(Topic)
+                .order(updated_at: :desc)
+                .page(params[:page])
     authorize @forums
   end
 
@@ -45,7 +47,9 @@ class ForumsController < ApplicationController
   # create new topics.
   #
   def show
-    @topics = policy_scope(@forum.topics).page(params[:page])
+    @topics = policy_scope(@forum.topics)
+                .order(sticky: :desc, updated_at: :desc)
+                .page(params[:page])
 
     # Creating new topics.
     @topic = @forum.topics.build
