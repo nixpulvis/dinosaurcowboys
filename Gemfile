@@ -31,6 +31,9 @@ gem 'kaminari'
 # Keep track of user hits.
 gem 'impressionist'
 
+# Paperclip for attachments.
+gem 'paperclip'
+
 # Simple form for easier better forms.
 gem 'simple_form'
 
