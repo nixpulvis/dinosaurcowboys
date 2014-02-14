@@ -36,7 +36,7 @@ module PartyShark
       }
     }
 
-    OPTIONS = {
+    EXTENSIONS = {
       fenced_code_blocks: true,
       tables: true,
       strikethrough: true,
@@ -46,8 +46,14 @@ module PartyShark
       disable_indented_code_blocks: true
     }
 
+    RENDER_OPTIONS = {
+      hard_wrap: true,
+      prettify: true
+    }
+
     def markdown(field)
-      parser = Redcarpet::Markdown.new(Redcarpet::Render::HTML, OPTIONS)
+      render = Redcarpet::Render::HTML.new(RENDER_OPTIONS)
+      parser = Redcarpet::Markdown.new(render, EXTENSIONS)
       Sanitize.clean(parser.render(send(field)), ALLOWED_MARKDOWN).html_safe
     end
   end
