@@ -14,8 +14,7 @@
     margin-right: 10px;
     width: 12%;
 
-    img.avatar {
-      @extend .border;
+    .avatar {
       float: left;
       height: 50px;
       margin: 0 5px 3px 0;

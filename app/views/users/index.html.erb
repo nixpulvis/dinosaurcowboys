@@ -13,7 +13,7 @@
     </tr>
     <% @users.each do |user| %>
       <tr>
-        <td><%= image_tag user.main.thumbnail, class: "border", size: "35x35" %></td>
+        <td><%= avatar_tag(user, size: "35x35") %></td>
         <td><span class="name">
           <%= link_to user_path(user) do %>
             <%= character_tag(user.main) %>
