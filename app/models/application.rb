@@ -46,9 +46,6 @@ class Application < ActiveRecord::Base
   # Send a creation email.
   after_create :send_email
 
-  # By default order the applications from newest to oldest by creation.
-  default_scope { order('created_at DESC') }
-
   # -> String
   # A displayable format for the application.
   #
