@@ -32,3 +32,16 @@ $ ->
 
   # Automatically resize textareas.
   $('textarea').autosize()
+
+  regex = /https:\/\/www.youtu[be\.com|\.be]*\/watch\?v=(.*)/
+  $('.content a').each ->
+    match = $(this).html().match(regex)
+    if match && match[1]
+      iframe = $ '<iframe>',
+        width: "420",
+        height: "315",
+        src: "//www.youtube.com/embed/#{match[1]}?rel=0",
+        frameborder: 0,
+        allowfullscreen: true
+      $(this).before(iframe)
+      $(this).remove()
