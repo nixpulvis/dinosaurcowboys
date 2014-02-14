@@ -19,7 +19,7 @@ unless Rails.env.production?
     desc 'Lint Coffeescript'
     task :coffee do
       puts 'Running coffeelint...'
-      pass = system('coffeelint .')
+      pass = system('coffeelint . -PlaceholderInExtend')
       fail 'failed coffeescript linting' unless pass
     end
 

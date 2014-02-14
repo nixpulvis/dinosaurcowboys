@@ -1,18 +1,18 @@
-/*
- *= require_self
- *= require normalize-rails
- */
-@import "bourbon";
-@import "font-awesome";
+//= require_self
+//= require normalize-rails
+//
+@import 'bourbon';
+@import 'font-awesome';
 
-@import "global";
+@import 'global';
+@import 'lib';
 
-@import "applications";
-@import "characters";
-@import "forms";
-@import "layout";
-@import "mumble";
-@import "pages";
-@import "posts";
-@import "recruitment";
-@import "users";
+@import 'applications';
+@import 'characters';
+@import 'forms';
+@import 'layout';
+@import 'mumble';
+@import 'pages';
+@import 'posts';
+@import 'recruitment';
+@import 'users';

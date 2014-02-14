@@ -1,29 +1,29 @@
-/* BODY */
+// Body
 
 body {
   background-image: url('/images/water_bg.jpg');
 }
 
-/* HEADER */
+// Header
 
 header.logo {
-  width: $page-width;
   margin: 0 auto;
+  width: $page-width;
 }
 
-/* FLASH */
+// Flash
 
 div.flash {
-  position: absolute;
-  top: 0;
   left: 50%;
   margin-left: -($page-width/2);
+  position: absolute;
+  top: 0;
   width: $page-width;
 
   @media screen and (max-width: $page-width) {
-    width: 100%;
-    margin-left: 0;
     left: 0;
+    margin-left: 0;
+    width: 100%;
   }
 
   p {
@@ -32,56 +32,56 @@ div.flash {
   }
 
   p.notice {
-    background: yellow;
-    color: #222;
+    background: $warning-color;
+    color: $background-color;
   }
 
   p.alert {
-    background: red;
-    color: #fff;
+    background: $danger-color;
+    color: $text-color;
   }
 }
 
-/* NAVBAR */
+// Navbar
 
 nav.topbar {
-  width: $page-width;
   margin: 0 auto;
   padding: 0 20px;
+  width: $page-width;
 
   ul {
+    display: inline-block;
     margin: 0;
     padding: 0;
-    display: inline-block;
-
-    li {
-      display: inline-block;
-
-      a {
-        display: block;
-        padding: 10px;
-      }
-
-      a:hover {
-        background: $topbar-hover-color;
-      }
-    }
   }
 
   ul.user-links {
     float: right;
   }
+
+  li {
+    display: inline-block;
+
+    a {
+      display: block;
+      padding: 10px;
+    }
+
+    a:hover {
+      background: $topbar-hover-color;
+    }
+  }
 }
 
-/* CONTAINER */
+// Container
 
 div.container {
-  width: $page-width;
   margin: 0 auto 20px;
   padding: 0 20px;
+  width: $page-width;
 }
 
-/* FOOTER */
+// Footer
 
 footer {
   width: $page-width;

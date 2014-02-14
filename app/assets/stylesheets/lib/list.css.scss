@@ -1,0 +1,29 @@
+// table.list
+// Beautiful list styles for tables.
+//
+table.list {
+  margin-bottom: 20px;
+  width: 100%;
+
+  tr {
+    width: 100%;
+
+    &:nth-child(odd) {
+      background: darken($background-color, 2%);
+    }
+
+    th {
+      padding-left: 10px;
+      text-align: left;
+    }
+
+    td {
+      @extend hr;
+      padding: 10px 0 10px 10px;
+    }
+  }
+
+  &:not(.headerless) tr:first-child {
+    background: none;
+  }
+}

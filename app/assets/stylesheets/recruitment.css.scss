@@ -1,13 +1,14 @@
 .recruitment-classes {
   ul.classes {
+    font-size: 10px;
+    list-style: none;
     margin: 0;
     padding: 0;
-    list-style: none;
-    font-size: 10px;
 
-    li div {
-      margin: 0 5px;
+    .class,
+    .spec {
       float: left;
+      margin: 0 5px;
       text-align: center;
     }
 

@@ -5,105 +5,115 @@ form {
     width: $form-width;
 
     &.field_with_hint {
-      input, textarea, select {
-        margin-bottom: 0;
+      input,
+      textarea,
+      select {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
+        margin-bottom: 0;
       }
 
-      input[type="checkbox"], input[type="radio"] {
+      input[type="checkbox"],
+      input[type="radio"] {
         margin-bottom: 5px;
       }
 
-      &.radio_buttons, &.check_boxes, &.boolean {
+      &.radio_buttons,
+      &.check_boxes,
+      &.boolean {
         &:not(.field_with_errors) p.hint {
-          margin-top: 5px;
           border-top-left-radius: $border-radius-size;
           border-top-right-radius: $border-radius-size;
+          margin-top: 5px;
         }
       }
 
       p.hint {
-        margin: 0 0 $input-margin-bottom 0;
-        padding: 5px 7px;
         background-color: $success-color;
         border-bottom-left-radius: $border-radius-size;
         border-bottom-right-radius: $border-radius-size;
         color: $background-color;
+        margin: 0 0 $input-margin-bottom;
+        padding: 5px 7px;
       }
     }
 
     &.field_with_errors {
-      input, textarea, select {
-        margin-bottom: 0;
+      input,
+      textarea,
+      select {
         border: $border-size solid $danger-color;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
+        margin-bottom: 0;
       }
 
-      input[type="checkbox"], input[type="radio"] {
-        margin-bottom: 5px;
+      input[type="checkbox"],
+      input[type="radio"] {
         border-bottom-left-radius: $border-radius-size;
         border-bottom-right-radius: $border-radius-size;
+        margin-bottom: 5px;
       }
 
-      &.radio_buttons, &.check_boxes, &.boolean {
+      &.radio_buttons,
+      &.check_boxes,
+      &.boolean {
         p.error {
-          margin-top: 5px;
           border-top-left-radius: $border-radius-size;
           border-top-right-radius: $border-radius-size;
+          margin-top: 5px;
         }
       }
 
       p.error {
-        margin: 0 0 $input-margin-bottom 0;
-        padding: 5px 7px;
         background-color: $danger-color;
         border-bottom-left-radius: $border-radius-size;
         border-bottom-right-radius: $border-radius-size;
         color: $background-color;
+        margin: 0 0 $input-margin-bottom;
+        padding: 5px 7px;
 
         &:before {
-          content: "Field ";
+          content: 'Field ';
         }
       }
 
       &.field_with_hint p.error {
-        margin-bottom: 0;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
+        margin-bottom: 0;
       }
     }
   }
 
   label {
     display: block;
-    width: $form-width;
     margin-bottom: 3px;
+    width: $form-width;
 
     &.required abbr {
-      border-bottom: none;
+      border-bottom: 0;
     }
   }
 
-  input, textarea, select {
+  input,
+  textarea,
+  select {
     @include box-sizing(border-box);
+    @include appearance(none);
 
-    width: $form-width;
-    margin-bottom: $input-margin-bottom;
-    padding: 5px;
     background: $border-color;
     border: $border-size solid $border-color;
     border-radius: $border-radius-size;
     color: $text-color;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+    margin-bottom: $input-margin-bottom;
+    padding: 5px;
+    width: $form-width;
 
     &:focus {
-      padding: -2px;
-      outline: none;
       border: $border-size solid $link-color;
+      outline: none;
+      padding: -2px;
     }
   }
 
@@ -111,11 +121,12 @@ form {
     resize: vertical;
   }
 
-  input[type=checkbox], input[type=radio] {
-    width: 1.25em;
+  input[type=checkbox],
+  input[type=radio] {
     height: 1.25em;
     margin: 0 5px 5px 0;
     vertical-align: -8px;
+    width: 1.25em;
 
     &:checked {
       background-color: $link-color;
@@ -126,7 +137,8 @@ form {
     border-radius: 2em !important;
   }
 
-  label.radio, label.checkbox {
+  label.checkbox,
+  label.radio {
     &:last-child {
       margin-bottom: $input-margin-bottom;
     }
@@ -135,14 +147,14 @@ form {
   input[type="submit"] {
     @extend .button;
 
-    width: auto;
-    margin-bottom: 0;
     color: $link-color;
+    margin-bottom: 0;
+    width: auto;
 
     &:focus {
       background-color: $link-color;
+      border: 0;
       color: $background-color;
-      border: none;
     }
   }
 }

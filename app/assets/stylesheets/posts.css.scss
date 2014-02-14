@@ -10,51 +10,52 @@
   }
 
   .user {
-    width: 12%;
     display: inline-block;
     margin-right: 10px;
+    width: 12%;
 
     img.avatar {
       @extend .border;
       float: left;
-      margin: 0 5px 3px 0;
       height: 50px;
+      margin: 0 5px 3px 0;
       width: 50px;
-    }
-
-    .info {
-      width: 47%;
-      float: left;
-
-      .rank {
-        font-size: 11px;
-      }
-
-      .count {
-        color: $faded-text-color;
-        font-size: 11px;
-      }
     }
 
     p {
       margin: 0;
     }
 
+    .info {
+      float: left;
+      width: 47%;
+    }
+
+    .rank {
+      font-size: 11px;
+    }
+
+    .count {
+      color: $faded-text-color;
+      font-size: 11px;
+    }
+
     .name {
-      width: 100%;
       overflow: hidden;
-      text-overflow: ellipsis
+      text-overflow: ellipsis;
+      width: 100%;
     }
   }
 
   .body {
-    display: inline-block;
-    width: 83%;
-    float: right;
-    padding: 10px;
     border: $border-size solid $border-color;
     border-radius: $border-radius-size;
+    display: inline-block;
+    float: right;
+    padding: 10px;
+    width: 83%;
 
+    // TODO: Should all be handled by content styles.
     .content {
       *:first-child {
         margin-top: 0;
@@ -80,10 +81,10 @@
 
       .actions {
         display: inline-block;
+        float: right;
+        list-style: none;
         margin: 0;
         padding: 0;
-        list-style: none;
-        float: right;
 
         li {
           display: inline-block;
@@ -98,41 +99,40 @@
 }
 
 .post-editor {
-
   .controls {
-    padding: 4px;
     border: $border-size solid $border-color;
     border-bottom: 0;
     border-top-left-radius: $border-radius-size;
     border-top-right-radius: $border-radius-size;
+    padding: 4px;
 
     .button {
       margin-bottom: 0;
     }
 
     .popup {
-      position: relative;
       display: inline;
+      position: relative;
 
       input {
-        width: 150px;
         margin: 0;
         padding: 0 3px;
         vertical-align: top;
+        width: 150px;
       }
 
       input[type="submit"] {
-        width: 50px;
         padding: 2px 3px;
+        width: 50px;
       }
     }
   }
 
   textarea {
-    width: 100%;
-    height: 100px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+    height: 100px;
+    width: 100%;
   }
 
   input[type="submit"] {

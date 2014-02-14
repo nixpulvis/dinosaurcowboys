@@ -1,0 +1,64 @@
+// .status
+// Little colored pills for status information.
+//
+.status {
+  border-radius: $border-radius-size;
+  color: $background-color;
+  display: inline-block;
+  font-weight: normal;
+  padding: 4px 6px;
+  vertical-align: 2px;
+
+  &.pending {
+    background-color: $info-color;
+  }
+
+  &.trial {
+    background-color: $warning-color;
+  }
+
+  &.accepted {
+    background-color: $success-color;
+  }
+
+  &.rejected {
+    background-color: $danger-color;
+  }
+}
+
+h1 .status {
+  font-size: 22px;
+}
+
+h2 .status {
+  font-size: 16px;
+  margin: 0 6px;
+}
+
+h3 .status {
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0 4px;
+  padding: 3px 5px;
+}
+
+h4 .status {
+  font-size: 10px;
+  font-weight: bold;
+  margin: 0 4px;
+  padding: 3px 5px;
+}
+
+h5 .status {
+  font-size: 8px;
+  font-weight: bold;
+  margin: 0 2px;
+  padding: 2px 4px;
+}
+
+h6 .status {
+  font-size: 8px;
+  font-weight: bold;
+  margin: 0;
+  padding: 1px 2px;
+}
