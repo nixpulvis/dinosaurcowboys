@@ -29,6 +29,10 @@ GEM
     arel (4.0.1)
     ast (1.1.0)
     atomic (1.1.14)
+    aws-sdk (1.34.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     bcrypt-ruby (3.1.2)
     better_errors (0.9.0)
       coderay (>= 1.0.0)
@@ -217,6 +221,7 @@ GEM
     uglifier (2.3.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    uuidtools (2.1.4)
     warden (1.2.3)
       rack (>= 1.0)
     wow (0.0.5)
@@ -226,6 +231,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk
   better_errors
   binding_of_caller
   bourbon
