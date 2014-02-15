@@ -33,7 +33,7 @@ $ ->
   # Automatically resize textareas.
   $('textarea').autosize()
 
-  regex = /https:\/\/www.youtu[be\.com|\.be]*\/watch\?v=(.*)/
+  regex = /https?:\/\/www.youtu[be\.com|\.be]*\/watch\?v=(.*)/
   $('.content a').each ->
     match = $(this).html().match(regex)
     if match && match[1]
