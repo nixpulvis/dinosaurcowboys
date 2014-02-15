@@ -8,6 +8,9 @@ PartyShark::Application.routes.draw do
   # Devise user authentication.
   devise_for :users, skip: :registration
 
+  # Features.
+  resources :features, except: [:index, :show]
+
   # Users, characters and applications.
   get '/roster', to: 'characters#roster'
   resources :users do
