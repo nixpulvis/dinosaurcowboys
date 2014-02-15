@@ -6,12 +6,12 @@
 
   section {
     float: left;
-    margin-right: 10px;
+    margin: 0 10px 400px 0;  // HACK: We really need a 2 column setup.
     width: 645px;
   }
 
   aside {
-    float: left;
+    float: right;
     width: 257px;
   }
 }

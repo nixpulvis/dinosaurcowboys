@@ -8,3 +8,7 @@ RecruitmentClass::DEFAULTS.each do |klass, specs|
     RecruitmentClass.create(class_name: klass, desires: desires)
   end
 end
+
+Feature.find_or_create_by(title: 'Welcome to Party Shark', body: <<-EOF)
+We are a 2 day a week 25 man raiding guild.
+EOF
