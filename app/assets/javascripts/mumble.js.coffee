@@ -27,6 +27,7 @@ window.populateMumble = (data) ->
   $('.mumble ul.channels').empty()
 
   $(data['root']['channels']).each (i, channel) ->
+    console.log channel
     window.populateChannel($('.mumble ul.channels'), channel)
 
     hasSubChannelAndUsers = channel['channels'].length &&

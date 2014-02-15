@@ -33,6 +33,7 @@ gem 'impressionist'
 
 # Paperclip for attachments.
 gem 'paperclip'
+gem 'aws-sdk'
 
 # Simple form for easier better forms.
 gem 'simple_form'
