@@ -18,9 +18,11 @@ class ApplicationController < ActionController::Base
 
   # Ensure authorization.
   after_filter :verify_authorized, except: :index,
-    unless: [:devise_controller?, :errors_controller?]
+                                   unless: [:devise_controller?,
+                                            :errors_controller?]
   after_filter :verify_policy_scoped, only: :index,
-    unless: [:devise_controller?, :errors_controller?]
+                                      unless: [:devise_controller?,
+                                               :errors_controller?]
 
   # Don't error 500 when people try to access bad things,
   # pretend like it's just not found.
@@ -33,5 +35,4 @@ class ApplicationController < ActionController::Base
   def errors_controller?
     is_a?(ErrorsController)
   end
-
 end
