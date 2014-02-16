@@ -1,5 +1,7 @@
+# ErrorsController
+# This controller handles the errors of the application.
+#
 class ErrorsController < ApplicationController
-
   def not_found
     render '404', layout: :default, status: :not_found
   end
@@ -11,5 +13,4 @@ class ErrorsController < ApplicationController
   def internal_server_error
     render '500', status: :internal_server_error
   end
-
 end
