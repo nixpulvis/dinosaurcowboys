@@ -26,3 +26,20 @@
     }
   }
 }
+
+.users.edit,
+.users.update {
+  .settings {
+    float: left;
+  }
+
+  .new-password {
+    @extend .panel;
+    float: right;
+    width: $form-width;
+
+    h3 {
+      margin-top: 0;
+    }
+  }
+}

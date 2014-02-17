@@ -2,18 +2,26 @@
   <h2>Edit User Information</h2>
 
   <%= simple_form_for @user, html: { multipart: true } do |f| %>
-    <%= f.input :email %>
-    <%= f.input :password %>
-    <%= f.input :password_confirmation %>
-    <%= f.input :avatar %>
+    <div class="settings">
+      <%= f.input :email %>
+      <%= f.input :avatar %>
 
-    <% if policy(@user).allows?(:rank_id) %>
-      <%= f.association :rank, include_blank: "None" %>
-    <% end %>
+      <% if policy(@user).allows?(:rank_id) %>
+        <%= f.association :rank, include_blank: "None" %>
+      <% end %>
 
-    <% if policy(@user).allows?(:admin) %>
-      <%= f.input :admin?, as: :boolean %>
-    <% end %>
+      <% if policy(@user).allows?(:admin) %>
+        <%= f.input :admin?, as: :boolean %>
+      <% end %>
+    </div>
+
+    <div class="new-password">
+      <h3>New Password</h3>
+
+      <%= f.input :password %>
+      <%= f.input :password_confirmation %>
+    </div>
+    <div class="clearfix"></div>
 
     <%= f.button :submit %>
   <% end %>
