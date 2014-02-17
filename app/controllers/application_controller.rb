@@ -17,12 +17,22 @@ class ApplicationController < ActionController::Base
   end
 
   # Ensure authorization.
-  after_filter :verify_authorized, except: :index, unless: :devise_controller?
-  after_filter :verify_policy_scoped, only: :index, unless: :devise_controller?
+  after_filter :verify_authorized, except: :index,
+                                   unless: [:devise_controller?,
+                                            :errors_controller?]
+  after_filter :verify_policy_scoped, only: :index,
+                                      unless: [:devise_controller?,
+                                               :errors_controller?]
 
   # Don't error 500 when people try to access bad things,
   # pretend like it's just not found.
   rescue_from Pundit::NotAuthorizedError do |e|
     fail ActionController::RoutingError, e.message
+  end
+
+  protected
+
+  def errors_controller?
+    is_a?(ErrorsController)
   end
 end
