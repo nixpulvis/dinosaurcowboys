@@ -9,6 +9,8 @@ Bundler.require(:default, Rails.env)
 module PartyShark
   class Application < Rails::Application
     require 'party_shark'
+
+    config.exceptions_app = self.routes
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
