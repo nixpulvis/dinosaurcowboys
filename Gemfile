@@ -71,8 +71,8 @@ gem 'jbuilder', '~> 1.2'
 # Real time error watch.
 gem 'rollbar'
 
-# Monitor the app with Librato.
-gem 'librato-rails'
+# Monitor the app with newrelic.
+gem 'newrelic_rpm'
 
 # Environment and server management.
 gem 'foreman'
