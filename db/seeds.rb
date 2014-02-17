@@ -9,6 +9,8 @@ RecruitmentClass::DEFAULTS.each do |klass, specs|
   end
 end
 
-Feature.find_or_create_by(title: 'Welcome to Party Shark', body: <<-EOF)
-We are a 2 day a week 25 man raiding guild.
-EOF
+if Feature.count == 0
+  Feature.create title: 'Welcome to Party Shark', body: <<-EOF
+  We are a 2 day a week 25 man raiding guild.
+  EOF
+end
