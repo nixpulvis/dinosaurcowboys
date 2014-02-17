@@ -23,8 +23,10 @@
   <%= render "shared/recruitment_classes" %>
 </aside>
 
-<aside class="panel">
-  <%= render "shared/mumble" %>
-</aside>
+<% if policy(PartyShark::Mumble).index? %>
+  <aside class="panel">
+    <%= render "shared/mumble" %>
+  </aside>
+<% end %>
 
 <div class="clearfix"></div>
