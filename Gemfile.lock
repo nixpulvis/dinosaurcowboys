@@ -227,7 +227,6 @@ DEPENDENCIES
   devise
   font-awesome-rails
   foreman
-  httparty
   impressionist
   jbuilder (~> 1.2)
   jquery-rails
