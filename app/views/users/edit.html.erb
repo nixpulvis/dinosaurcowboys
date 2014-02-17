@@ -5,7 +5,7 @@
     <%= f.input :email %>
     <%= f.input :password %>
     <%= f.input :password_confirmation %>
-    <%= f.file_field :avatar %>
+    <%= f.input :avatar %>
 
     <% if policy(@user).allows?(:rank_id) %>
       <%= f.association :rank, include_blank: "None" %>
