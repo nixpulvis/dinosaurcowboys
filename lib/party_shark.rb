@@ -5,4 +5,3 @@ module PartyShark
 end
 
 require 'party_shark/markdownable'
-require 'party_shark/mumble'

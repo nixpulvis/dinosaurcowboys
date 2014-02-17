@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.2'
 gem 'pg'
-gem 'httparty'
 gem 'devise'
 gem 'pundit'
 gem 'redcarpet'

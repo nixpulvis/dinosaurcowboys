@@ -23,7 +23,7 @@
   <%= render "shared/recruitment_classes" %>
 </aside>
 
-<% if policy(PartyShark::Mumble).index? %>
+<% if current_user.try(:rank) %>
   <aside class="panel">
     <%= render "shared/mumble" %>
   </aside>

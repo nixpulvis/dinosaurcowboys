@@ -24,9 +24,6 @@ PartyShark::Application.routes.draw do
   # Recruitment.
   resource :recruitment, only: [:show, :edit, :update]
 
-  # Mumble.
-  get '/mumble', to: 'mumble#index'
-
   # Raids and bosses.
   resources :raids do
     resources :bosses, except: :index

@@ -27,7 +27,6 @@ window.populateMumble = (data) ->
   $('.mumble ul.channels').empty()
 
   $(data['root']['channels']).each (i, channel) ->
-    console.log channel
     window.populateChannel($('.mumble ul.channels'), channel)
 
     hasSubChannelAndUsers = channel['channels'].length &&
@@ -39,11 +38,21 @@ window.populateMumble = (data) ->
       $(channel['channels']).each (i, sub_channel) ->
         window.populateChannel(insert.find('.sub-channels'), sub_channel)
 
+window.getMumble = (callback) ->
+  host  = 'http://www.typefrag.com'
+  route = '/server-status/mumble/ChannelViewerProtocol.aspx'
+  params =
+    'ReturnType': 'json',
+    'HostName': 'partyshark.typefrag.com',
+    'PortNumber': 7675
+  $.get host + route, params, (data) ->
+    callback(data)
+
 window.updateMumble = ->
   $('.mumble .title ul li a i').removeClass('fa-exclamation-triangle')
   $('.mumble .title ul li a i').addClass('fa-refresh')
   $('.mumble .title ul li a i').addClass('fa-spin')
-  xhr = $.get "/mumble.json", (data) ->
+  xhr = window.getMumble (data) ->
     $.setTimeout 500, ->  # UX
       window.populateMumble(data)
       $('.mumble .title ul li a i').removeClass('fa-spin')
@@ -55,5 +64,5 @@ window.updateMumble = ->
 
 $ ->
   if $('.mumble').length
-    interval = 30  # Seconds.
+    interval = 10  # Seconds.
     $.setIntervalAndExecute(interval * 1000, -> updateMumble())
