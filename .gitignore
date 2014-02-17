@@ -17,3 +17,6 @@
 
 # Ignore database dumps.
 *.dump
+
+# Ignore the .env
+.env
