@@ -6,6 +6,6 @@
   background: $background-color;
   border: $border-size solid $border-color;
   border-radius: $border-radius-size;
-  margin: 0 0 10px;
+  margin: 0 0 $gutter;
   padding: 15px;
 }

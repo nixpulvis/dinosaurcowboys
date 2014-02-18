@@ -1,30 +1,32 @@
-<div class="panel">
-  <div class="profile">
+<div class="page">
+  <div class="portrait">
     <%= image_tag @character.thumbnail, class: "border", size: "88x88" %>
-
-    <div class="title">
-      <h2 class="gear pull-right">
-        <%= @character.average_item_level_equiped %>
-        ilvl
-      </h2>
-
-      <h1 class="name">
-        <%= character_tag(@character) %> of <%= @character.guild_name %>
-      </h1>
-
-      <h2 class="info">
-        <%= @character.level %>
-        <%= @character.spec %>
-        <%= @character.klass.titleize %>,
-        <%= @character.server %>
-      </h2>
-
-      <h2 class="info">
-        <%= fa_icon "shield" %>
-        <%= @character.achievement_points %>
-      </h2>
-    </div>
   </div>
+
+  <div class="title">
+    <h2 class="gear pull-right">
+      <%= @character.average_item_level_equiped %>
+      ilvl
+    </h2>
+
+    <h1 class="name">
+      <%= character_tag(@character) %> of <%= @character.guild_name %>
+    </h1>
+
+    <h2 class="info">
+      <%= @character.level %>
+      <%= @character.spec %>
+      <%= @character.klass.titleize %>,
+      <%= @character.server %>
+    </h2>
+
+    <h2 class="info">
+      <%= fa_icon "shield" %>
+      <%= @character.achievement_points %>
+    </h2>
+  </div>
+
+  <div class="clearfix"></div>
 
   <% if policy(@character).update? %>
     <%= link_to "Edit", edit_user_character_path(@character.user, @character) %>

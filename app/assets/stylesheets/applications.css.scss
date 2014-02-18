@@ -1,13 +1,13 @@
-.applications {
-  .side {
-    display: inline-block;
-    vertical-align: top;
-    width: $form-width;
+.applications.new,
+.applications.create,
+.applications.edit,
+.applications.update {
+  form {
+    @include span-columns(6);
   }
 
-  form.application {
-    display: inline-block;
-    margin-right: 30px;
+  .content {
+    @include span-columns(6);
+    @include omega();
   }
-
 }

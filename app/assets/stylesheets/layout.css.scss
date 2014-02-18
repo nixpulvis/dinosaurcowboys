@@ -9,7 +9,7 @@ body {
 
 header.logo {
   margin: 10px auto 5px;
-  width: $page-width;
+  width: $max-width;
 
   img {
     display: block;
@@ -20,21 +20,13 @@ header.logo {
 // Flash
 
 div.flash {
-  left: 50%;
-  margin-left: -($page-width/2);
   position: absolute;
   top: 0;
-  width: $page-width;
-
-  @media screen and (max-width: $page-width) {
-    left: 0;
-    margin-left: 0;
-    width: 100%;
-  }
+  width: 100%;
 
   p {
     margin: 0;
-    padding: 10px;
+    padding: 10px 20px;
   }
 
   p.notice {
@@ -51,10 +43,6 @@ div.flash {
 // Navbar
 
 nav.topbar {
-  margin: 0 auto;
-  padding: 0 20px;
-  width: $page-width;
-
   ul {
     display: inline-block;
     margin: 0;
@@ -82,13 +70,7 @@ nav.topbar {
 // Container
 
 div.container {
-  margin: 0 auto 20px;
-  padding: 0 20px;
-  width: $page-width;
-}
-
-// Footer
-
-footer {
-  width: $page-width;
+  @include outer-container;
+  @include pad(0 20px 10px);
+  min-width: 750px;
 }

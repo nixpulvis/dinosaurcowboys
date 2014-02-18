@@ -1,17 +1,12 @@
 .recruitments.show {
-
-  section {
-    float: left;
-    margin-right: 20px;
-    width: 58%;
+  .content {
+    @include span-columns(8);
   }
 
   .recruitment-classes {
-    @extend .panel;
-    float: left;
-    width: 35%;
+    @include span-columns(4);
+    @include omega();
   }
-
 }
 
 .recruitment-classes {
