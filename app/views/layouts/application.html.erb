@@ -18,15 +18,14 @@
   <% end %>
 </div>
 
-<header class="logo">
-  <%= link_to root_path do %>
-    <%= image_tag 'logo_banner.png' %>
-  <% end %>
-</header>
-
-<%= render "layouts/nav" %>
-
 <div class="container">
+  <header class="logo">
+    <%= link_to root_path do %>
+      <%= image_tag 'logo_banner.png' %>
+    <% end %>
+  </header>
+  <%= render "layouts/nav" %>
+
   <%= yield %>
 </div>
 

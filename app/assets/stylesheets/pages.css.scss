@@ -1,24 +1,22 @@
 .pages.home {
-  .banner img {
-    margin-bottom: 10px;
-    width: 100%;
+  img.banner {
+    @include span-columns(12);
+    margin-bottom: $gutter;
   }
 
-  section {
-    float: left;
-    margin: 0 10px 400px 0;  // HACK: We really need a 2 column setup.
-    width: 645px;
+  .large-column {
+    @include span-columns(8);
   }
 
-  aside {
-    float: right;
-    width: 257px;
+  .small-column {
+    @include span-columns(4);
+    @include omega();
   }
 }
 
 .pages.logs {
-  iframe.wol {
-    height: 800px;
-    width: 100%;
+  iframe {
+    @include span-columns(12);
+    height: 900px;
   }
 }

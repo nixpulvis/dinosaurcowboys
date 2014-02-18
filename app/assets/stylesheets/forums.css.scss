@@ -1,5 +1,12 @@
-.topic.list {
-  .last-post .datetime {
-    font-size: 11px;
+.forums.new,
+.forums.create,
+.forums.edit,
+.forums.update {
+  .forum_readable_ranks {
+    @include span-columns(6);
+  }
+
+  .forum_writeable_ranks {
+    @include span-columns(6);
   }
 }

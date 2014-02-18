@@ -44,16 +44,20 @@
   }
 }
 
-.profile {
+.characters.show {
+  .portrait {
+    @include span-columns(2);
 
-  img {
-    margin-right: 10px;
+    img {
+      height: auto;
+      max-width: 88px;
+      max-height: 88px;
+    }
   }
 
   .title {
-    display: inline-block;
-    vertical-align: top;
-    width: 840px;
+    @include span-columns(10);
+    @include omega();
 
     .name {
       display: block;

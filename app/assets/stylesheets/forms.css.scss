@@ -2,8 +2,6 @@ $input-margin-bottom: 15px;
 
 form {
   .input {
-    width: $form-width;
-
     &.field_with_hint {
       input,
       textarea,
@@ -89,7 +87,6 @@ form {
   label {
     display: block;
     margin-bottom: 3px;
-    width: $form-width;
 
     &.required abbr {
       border-bottom: 0;
@@ -108,7 +105,7 @@ form {
     color: $text-color;
     margin-bottom: $input-margin-bottom;
     padding: 5px;
-    width: $form-width;
+    width: 100%;
 
     &:focus {
       border: $border-size solid $link-color;
