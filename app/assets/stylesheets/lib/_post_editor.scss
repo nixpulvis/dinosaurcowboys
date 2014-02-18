@@ -1,0 +1,41 @@
+.post-editor {
+  .controls {
+    border: $border-size solid $border-color;
+    border-bottom: 0;
+    border-top-left-radius: $border-radius-size;
+    border-top-right-radius: $border-radius-size;
+    padding: 4px;
+
+    .button {
+      margin-bottom: 0;
+    }
+
+    .popup {
+      display: inline;
+      position: relative;
+
+      input {
+        margin: 0;
+        padding: 0 3px;
+        vertical-align: top;
+        width: 150px;
+      }
+
+      input[type="submit"] {
+        padding: 2px 3px;
+        width: 50px;
+      }
+    }
+  }
+
+  textarea {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    height: 100px;
+    width: 100%;
+  }
+
+  input[type="submit"] {
+    margin-bottom: 0;
+  }
+}

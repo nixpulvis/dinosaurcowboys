@@ -1,22 +1,39 @@
 //= require_self
 //= require normalize-rails
 //
+
+// Extensions.
+@import 'ext/neat';
+
+// Vendor libraries.
 @import 'bourbon';
-@import 'neat_settings';
 @import 'neat';
 @import 'font-awesome';
 
-@import 'global';
-@import 'lib';
+// Our libraries.
+@import 'lib/variables';
+@import 'lib/form';
+@import 'lib/global';
+@import 'lib/_avatar';
+@import 'lib/_border';
+@import 'lib/_button';
+@import 'lib/_button_list';
+@import 'lib/_content';
+@import 'lib/_list';
+@import 'lib/_mumble';
+@import 'lib/_page';
+@import 'lib/_panel';
+@import 'lib/_post';
+@import 'lib/_post_editor';
+@import 'lib/_status';
+@import 'lib/_title';
 
+// Controller pages styles.
 @import 'applications';
 @import 'characters';
 @import 'errors';
-@import 'forms';
 @import 'forums';
-@import 'layout';
-@import 'mumble';
+@import 'layouts';
 @import 'pages';
-@import 'posts';
 @import 'recruitment';
 @import 'users';
