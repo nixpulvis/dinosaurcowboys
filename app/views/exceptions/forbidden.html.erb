@@ -1,0 +1,26 @@
+<div class="panel errors">
+  <div class="title">
+    <h1>You cannot access that page.</h1>
+
+    <div class="info">
+      <code>Status: <%= @status.to_s.titleize %>, Code: <%= @code %></code>
+    </div>
+  </div>
+
+  <% if user_signed_in? %>
+    <%= image_tag "sad_moonkin.jpg", class: "border" %>
+  <% else %>
+    <%= simple_form_for :user, url: user_session_path do |f| %>
+      <%= f.input :email %>
+      <%= f.input :password %>
+      <%= f.input :remember_me, as: :boolean %>
+
+      <%= f.button :submit, "Sign In" %>
+    <% end %>
+
+    <p>
+      Not a member yet? <%= link_to "Sign up", new_user_path %><br />
+      <%= link_to "Forgot your password?", new_user_password_path %>
+    </p>
+  <% end %>
+</div>

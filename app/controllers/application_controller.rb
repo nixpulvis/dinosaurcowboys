@@ -19,20 +19,24 @@ class ApplicationController < ActionController::Base
   # Ensure authorization.
   after_filter :verify_authorized, except: :index,
                                    unless: [:devise_controller?,
-                                            :errors_controller?]
+                                            :exceptions_controller?]
   after_filter :verify_policy_scoped, only: :index,
                                       unless: [:devise_controller?,
-                                               :errors_controller?]
-
-  # Don't error 500 when people try to access bad things,
-  # pretend like it's just not found.
-  rescue_from Pundit::NotAuthorizedError do |e|
-    fail ActionController::RoutingError, e.message
-  end
+                                               :exceptions_controller?]
 
   protected
 
-  def errors_controller?
-    is_a?(ErrorsController)
+  # Check if the controller is an exception controller.
+  def exceptions_controller?
+    is_a?(ExceptionsController)
+  end
+
+  # Follow requests through on sign in.
+  def after_sign_in_path_for(resource)
+    if request.referer == user_session_url
+      super
+    else
+      stored_location_for(resource) || request.referer || root_path
+    end
   end
 end
