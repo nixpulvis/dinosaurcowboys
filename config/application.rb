@@ -11,7 +11,9 @@ module PartyShark
     require 'party_shark'
 
     # Handle errors internally.
-    config.exceptions_app = self.routes
+    config.exceptions_app = -> (env) do
+      ExceptionsController.action(:show).call(env)
+    end
 
     # I'm not localizing this application.
     config.i18n.enforce_available_locales = false

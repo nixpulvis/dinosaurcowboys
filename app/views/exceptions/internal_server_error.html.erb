@@ -3,7 +3,7 @@
     <h1>Hmm, something here is wrong.</h1>
 
     <div class="info">
-      <code>Status Internal Server Error, Code 500</code>
+      <code>Status: <%= @status.to_s.titleize %>, Code: <%= @code %></code>
     </div>
   </div>
 
