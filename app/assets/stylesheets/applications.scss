@@ -1,13 +1,9 @@
-.applications.new,
-.applications.create,
-.applications.edit,
-.applications.update {
+@include select-page('applications', ('new', 'create', 'edit', 'update')) {
   form {
     @include span-columns(6);
   }
 
-  .content {
+  aside {
     @include span-columns(6);
-    @include omega();
   }
 }

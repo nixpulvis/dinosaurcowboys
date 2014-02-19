@@ -1,0 +1,7 @@
+@mixin select-page($controller, $actions) {
+  @each $action in $actions {
+    .#{$controller}.#{$action} {
+      @content;
+    }
+  }
+}
