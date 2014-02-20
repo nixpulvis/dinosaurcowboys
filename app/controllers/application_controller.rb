@@ -18,13 +18,17 @@ class ApplicationController < ActionController::Base
 
   # Ensure authorization.
   after_filter :verify_authorized, except: :index,
-                                   unless: [:devise_controller?,
-                                            :exceptions_controller?]
+                                   unless: :insecure_controller?
   after_filter :verify_policy_scoped, only: :index,
-                                      unless: [:devise_controller?,
-                                               :exceptions_controller?]
+                                      unless: :insecure_controller?
 
   protected
+
+  # Check if the controller is a controller that should not have
+  # authorizations run on it.
+  def insecure_controller?
+    devise_controller? || exceptions_controller?
+  end
 
   # Check if the controller is an exception controller.
   def exceptions_controller?
