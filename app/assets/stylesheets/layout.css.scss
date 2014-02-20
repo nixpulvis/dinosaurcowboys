@@ -9,6 +9,12 @@ body {
 header.logo {
   margin: 0 auto;
   width: $page-width;
+
+  img {
+    display: block;
+    height: 130px;
+    margin: 0 auto;
+  }
 }
 
 // Flash

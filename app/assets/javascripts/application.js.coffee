@@ -3,5 +3,4 @@
 #= require jquery_textrange
 #= require jquery_autosize
 #= require moment
-#= require fittext
 #= require_tree .
