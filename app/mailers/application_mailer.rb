@@ -9,7 +9,7 @@ class ApplicationMailer < ActionMailer::Base
     define_method("#{status}_email") do |application|
       @application = application
       @user = application.user
-      subject = "Application to Party Shark"
+      subject = 'Application to Party Shark'
       mail(to: @user.email, subject: subject)
     end
   end

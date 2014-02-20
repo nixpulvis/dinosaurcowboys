@@ -3,6 +3,7 @@
     <li><%= link_to "Home", root_path %></li>
 
     <% unless current_user.try(:rank) %>
+      <li><%= link_to "Recruitment", recruitment_path %></li>
       <li><%= link_to "Charter", charter_path %></li>
     <% end %>
 

@@ -8,6 +8,11 @@
       <% if policy(RecruitmentClass).update? %>
         <li><%= link_to fa_icon("edit"), edit_recruitment_path %></li>
       <% end %>
+      <% if user_signed_in? && current_user.rank.nil? && current_user.application.nil? %>
+        <%= link_to "Apply", new_user_application_path(current_user) %>
+      <% elsif !user_signed_in? %>
+        <%= link_to "Sign Up", new_user_path %>
+      <% end %>
     </ul>
 
     <div class="info">
@@ -34,9 +39,3 @@
     <% end %>
   </ul>
 </div>
-
-<% if user_signed_in? && current_user.rank.nil? && current_user.application.nil? %>
-  <%= link_to "Apply", new_user_application_path(current_user) %>
-<% elsif !user_signed_in? %>
-  <%= link_to "Sign Up", new_user_path %>
-<% end %>
