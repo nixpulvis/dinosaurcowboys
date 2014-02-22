@@ -10,6 +10,10 @@
         <%= f.association :rank, include_blank: "None" %>
       <% end %>
 
+      <% if policy(@user).allows?(:created_at) %>
+        <%= f.input :created_at, label: 'Join Date', as: :date %>
+      <% end %>
+
       <% if policy(@user).allows?(:admin) %>
         <%= f.input :admin?, as: :boolean %>
       <% end %>
