@@ -80,7 +80,7 @@ class Application < ActiveRecord::Base
       user.update_attribute(:rank, nil)
     end
 
-    send_email unless (user.rank && value.to_sym == :rejected)
+    send_email unless user.rank && value.to_sym == :rejected
   end
 
   def send_email
