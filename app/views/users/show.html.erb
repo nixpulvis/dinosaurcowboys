@@ -14,6 +14,9 @@
 
   <div class="details">
     <%= avatar_tag(@user, class: "border") %>
+    <p class="join">
+      Joined on <%= date_tag(@user.created_at, time: false) %>
+    </p>
 
     <% if policy(@user).show_email? %>
       <p class="email">
