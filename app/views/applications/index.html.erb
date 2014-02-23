@@ -1,6 +1,16 @@
 <div class="panel">
   <div class="title">
     <h1>Applications</h1>
+
+    <ul class="actions">
+      <li>
+        <% if params[:resolved] %>
+          <%= link_to "Excluding Resolved", applications_path %>
+        <% else %>
+          <%= link_to "Including Resolved", applications_path(resolved: true) %>
+        <% end %>
+      </li>
+    </ul>
   </div>
 
   <%= render "applications/table", applications: @applications %>
