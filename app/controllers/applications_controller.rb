@@ -16,6 +16,13 @@ class ApplicationsController < ApplicationController
     @applications = policy_scope(Application)
                       .order(:state, created_at: :desc)
                       .page(params[:page])
+
+    unless params[:resolved]
+      @applications = @applications.where.not state:
+        [Application::STATES.index(:accepted),
+         Application::STATES.index(:rejected)]
+    end
+
     authorize @applications
   end
 
