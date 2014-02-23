@@ -26,6 +26,7 @@ gem 'foreman'
 gem 'unicorn'
 
 group :development do
+  gem 'heroku'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry'
