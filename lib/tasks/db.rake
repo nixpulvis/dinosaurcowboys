@@ -1,6 +1,6 @@
 namespace :db do
 
-  desc "Pull database contents from pgbackups"
+  desc 'Pull database contents from pgbackups'
   task :pull do
     system 'curl -o latest.dump `heroku pgbackups:url`'
 
