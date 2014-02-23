@@ -9,10 +9,10 @@
       <th>Forum</th>
     <% end %>
 
-    <th>Posts</th>
+    <th>Author</th>
+    <th>Replies</th>
     <th>Views</th>
-    <th>Last Poster</th>
-    <th>Freshness</th>
+    <th>Last Post</th>
   </tr>
   <% topics.each do |topic| %>
   <% last_post = topic.posts.last %>
@@ -22,25 +22,27 @@
     </td>
 
     <% if params[:action] == "index" %>
-    <td class="forum">
-    <%= topic.forum %>
-    </td>
+      <td class="forum">
+      <%= topic.forum %>
+      </td>
     <% end %>
 
-    <td class="count">
-      <%= topic.posts.count %>
+    <td class="author">
+      <%= character_tag(topic.user.main) %>
+    </td>
+
+    <td class="relpies">
+      <%= topic.posts.count - 1 %>
     </td>
 
     <td class="views">
       <%= topic.impressionist_count %>
     </td>
-    <td class="last-poster">
+    <td class="last-post">
       <% if last_post %>
-      <%= character_tag(last_post.user.main) %>
+        <%= character_tag(last_post.user.main) %>
+        <%= date_tag(topic.updated_at, relative: true) %>
       <% end %>
-    </td>
-    <td class="freshness">
-      <%= date_tag(topic.updated_at, relative: true) %>
     </td>
   </tr>
   <% end %>

@@ -7,6 +7,11 @@ table.list {
   margin-bottom: 20px;
   width: 100%;
 
+  // TODO: More general approach to this.
+  &.topic {
+    font-size: 13px;
+  }
+
   tr {
     width: 100%;
 
@@ -30,6 +35,11 @@ table.list {
     td {
       @extend hr;
       padding: 10px 0 10px 10px;
+    }
+
+    th:last-child,
+    td:last-child {
+      text-align: right;
     }
   }
 
