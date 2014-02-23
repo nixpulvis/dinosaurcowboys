@@ -23,7 +23,7 @@
 
     <% if params[:action] == "index" %>
       <td class="forum">
-      <%= topic.forum %>
+        <%= link_to topic.forum, forum_path(topic.forum) %>
       </td>
     <% end %>
 
