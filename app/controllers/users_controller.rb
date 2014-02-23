@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   # As non-admin, redirects with access error.
   #
   def index
-    @users = policy_scope(User)
+    @users = policy_scope(User).order(:created_at)
     authorize @users
   end
 
