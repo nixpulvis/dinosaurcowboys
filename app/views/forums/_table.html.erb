@@ -41,7 +41,7 @@
     <td class="last-post">
       <% if last_post %>
         <%= character_tag(last_post.user.main) %>
-        <%= date_tag(topic.updated_at, relative: true) %>
+        <%= date_tag(last_post.updated_at, relative: true) %>
       <% end %>
     </td>
   </tr>
