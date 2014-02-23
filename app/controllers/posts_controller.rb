@@ -19,9 +19,8 @@ class PostsController < ApplicationController
     @post.user = current_user
     authorize @post
 
-    response_params = { page: last_page(postable) }
-
     @post.save
+    response_params = { page: last_page(postable) }
     redirect_to postable_path(postable, response_params)
   end
 
@@ -40,9 +39,13 @@ class PostsController < ApplicationController
   # Destroys the post.
   #
   def destroy
-    response_params = { page: params[:page].blank? ? 1 : params[:page] }
-
     @post.destroy
+    scope = postable.posts.page(params[:page])
+    if scope.empty?
+      response_params = { page: scope.current_page - 1 }
+    else
+      response_params = { page: scope.current_page }
+    end
     redirect_to postable_path(postable, response_params)
   end
 
