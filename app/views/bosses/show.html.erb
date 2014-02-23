@@ -24,6 +24,7 @@
 
   <hr />
 
+  <%= paginate @posts %>
   <% @posts.each do |post| %>
     <%= render "shared/posts/show", post: post %>
   <% end %>
