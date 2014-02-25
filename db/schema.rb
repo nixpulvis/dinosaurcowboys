@@ -11,21 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140215011156) do
+ActiveRecord::Schema.define(version: 20140225000206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accesses", force: true do |t|
-    t.string   "permission"
-    t.integer  "rank_id"
-    t.integer  "forum_id"
+    t.string   "permission", null: false
+    t.integer  "rank_id",    null: false
+    t.integer  "forum_id",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "accesses", ["forum_id"], name: "index_accesses_on_forum_id", using: :btree
+  add_index "accesses", ["rank_id"], name: "index_accesses_on_rank_id", using: :btree
+
   create_table "applications", force: true do |t|
-    t.integer  "user_id"
+    t.integer  "user_id",                     null: false
     t.integer  "state",           default: 0
     t.string   "name"
     t.integer  "age",                         null: false
@@ -45,19 +48,23 @@ ActiveRecord::Schema.define(version: 20140215011156) do
     t.datetime "updated_at"
   end
 
+  add_index "applications", ["user_id"], name: "index_applications_on_user_id", using: :btree
+
   create_table "bosses", force: true do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.text     "content"
-    t.integer  "raid_id"
+    t.integer  "raid_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "bosses", ["raid_id"], name: "index_bosses_on_raid_id", using: :btree
+
   create_table "characters", force: true do |t|
     t.string   "name",                                      null: false
     t.string   "server",                                    null: false
-    t.boolean  "main",                       default: true
-    t.integer  "user_id"
+    t.boolean  "main",                       default: true, null: false
+    t.integer  "user_id",                                   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "klass"
@@ -70,9 +77,11 @@ ActiveRecord::Schema.define(version: 20140215011156) do
     t.string   "guild_name"
   end
 
+  add_index "characters", ["user_id"], name: "index_characters_on_user_id", using: :btree
+
   create_table "features", force: true do |t|
-    t.string   "title"
-    t.text     "body"
+    t.string   "title",      null: false
+    t.text     "body",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -109,17 +118,20 @@ ActiveRecord::Schema.define(version: 20140215011156) do
   add_index "impressions", ["user_id"], name: "index_impressions_on_user_id", using: :btree
 
   create_table "posts", force: true do |t|
-    t.text     "body"
-    t.integer  "postable_id"
-    t.string   "postable_type"
-    t.integer  "user_id"
+    t.text     "body",          null: false
+    t.integer  "postable_id",   null: false
+    t.string   "postable_type", null: false
+    t.integer  "user_id",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "posts", ["postable_id"], name: "index_posts_on_postable_id", using: :btree
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
   create_table "raids", force: true do |t|
-    t.string   "name"
-    t.integer  "tier"
+    t.string   "name",       null: false
+    t.integer  "tier",       null: false
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -132,8 +144,8 @@ ActiveRecord::Schema.define(version: 20140215011156) do
   end
 
   create_table "recruitment_classes", force: true do |t|
-    t.string   "class_name"
-    t.text     "desires"
+    t.string   "class_name", null: false
+    t.text     "desires",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -143,9 +155,12 @@ ActiveRecord::Schema.define(version: 20140215011156) do
     t.integer  "forum_id",                   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
-    t.boolean  "sticky",     default: false
+    t.integer  "user_id",                    null: false
+    t.boolean  "sticky",     default: false, null: false
   end
+
+  add_index "topics", ["forum_id"], name: "index_topics_on_forum_id", using: :btree
+  add_index "topics", ["user_id"], name: "index_topics_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.integer  "rank_id"
@@ -161,7 +176,7 @@ ActiveRecord::Schema.define(version: 20140215011156) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.boolean  "admin",                  default: false
+    t.boolean  "admin",                  default: false, null: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -169,6 +184,7 @@ ActiveRecord::Schema.define(version: 20140215011156) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["rank_id"], name: "index_users_on_rank_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
