@@ -26,6 +26,11 @@ class UserPolicy < BasePolicy
     user.id == record.id || super
   end
 
+  # TODO: Decide what to do about destroying users.
+  def destroy?
+    false
+  end
+
   def show_email?
     user.id == record.id || user.admin?
   end
