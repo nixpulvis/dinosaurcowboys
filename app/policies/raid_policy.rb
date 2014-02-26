@@ -32,6 +32,10 @@ class RaidPolicy < BasePolicy
     create? || super
   end
 
+  def destroy?
+    false
+  end
+
   # READ === See the topic, and its posts.
   def read?
     true

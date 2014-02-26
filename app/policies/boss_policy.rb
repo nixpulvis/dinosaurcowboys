@@ -22,6 +22,10 @@ class BossPolicy < BasePolicy
     create? || super
   end
 
+  def destroy?
+    false
+  end
+
   # READ === See the topic, and its posts.
   def read?
     Pundit.policy(user, record.raid).read?
