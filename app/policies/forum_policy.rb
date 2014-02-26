@@ -31,6 +31,10 @@ class ForumPolicy < BasePolicy
     read? || super
   end
 
+  def destroy?
+    false
+  end
+
   # READ === See the topics, and thier posts.
   def read?
     (user.rank && user.rank.readable_forums.include?(record))
