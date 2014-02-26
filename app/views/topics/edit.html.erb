@@ -16,6 +16,10 @@
   <%= simple_form_for [@topic.forum, @topic] do |f| %>
     <%= f.input :title %>
 
+    <% if policy(@topic).allows?(:forum_id) %>
+      <%= f.association :forum, include_blank: false %>
+    <% end %>
+
     <% if policy(@topic).stick? %>
       <%= f.input :sticky %>
     <% end %>
