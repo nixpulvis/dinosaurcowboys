@@ -43,7 +43,7 @@ class TopicPolicy < BasePolicy
   def permitted_attributes
     permitted = [:title, posts_attributes: [:body]]
 
-    permitted << :sticky if user.admin?
+    permitted += [:sticky, :forum_id] if user.admin?
     permitted
   end
 end
