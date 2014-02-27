@@ -52,6 +52,12 @@ class Rank < ActiveRecord::Base
         fail ArgumentError, 'Argument is not a String or Rank'
       end
 
-    DEFAULTS.index(other_name) <=> DEFAULTS.index(name)
+    if DEFAULTS.exclude?(name)
+      -1
+    elsif DEFAULTS.exclude?(other_name)
+      1
+    else
+      DEFAULTS.index(other_name) <=> DEFAULTS.index(name)
+    end
   end
 end
