@@ -32,6 +32,8 @@ class Forum < ActiveRecord::Base
   # -> Topic
   # The forum's most recently updated topic.
   #
+  # FIXME
+  #
   def freshest
     topics.select(&:posts_updated_at).max_by(&:posts_updated_at)
   end
