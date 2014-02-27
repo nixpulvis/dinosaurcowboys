@@ -15,7 +15,6 @@
     <th>Last Post</th>
   </tr>
   <% topics.each do |topic| %>
-  <% last_post = topic.posts.last %>
   <tr <%= 'class=highlight' if topic.sticky %>>
     <td>
       <%= link_to topic, forum_topic_path(topic.forum, topic) %>
@@ -39,9 +38,9 @@
       <%= topic.impressionist_count %>
     </td>
     <td class="last-post">
-      <% if last_post %>
-        <%= character_tag(last_post.user.main) %>
-        <%= date_tag(last_post.updated_at, relative: true) %>
+      <% if topic.last_post %>
+        <%= character_tag(topic.last_post.user.main) %>
+        <%= date_tag(topic.last_post.created_at, relative: true) %>
       <% end %>
     </td>
   </tr>

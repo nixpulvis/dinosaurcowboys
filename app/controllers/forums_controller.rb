@@ -14,9 +14,16 @@ class ForumsController < ApplicationController
   #
   def index
     @forums = policy_scope(Forum)
-    @topics = policy_scope(Topic)
-                .order(updated_at: :desc)
-                .page(params[:page])
+    _topics = policy_scope(Topic)
+                .includes(:posts)
+                .order('posts.created_at DESC')
+
+    # TODO: Look into doing this with sql, this is going to be
+    # very slow when there are a lot of topics.
+    @topics = Kaminari.paginate_array(_topics.to_a)
+                      .page(params[:page])
+                      .per(10)
+
     authorize @forums
   end
 
@@ -47,9 +54,15 @@ class ForumsController < ApplicationController
   # create new topics.
   #
   def show
-    @topics = policy_scope(@forum.topics)
-                .order(sticky: :desc, updated_at: :desc)
-                .page(params[:page])
+    _topics = policy_scope(@forum.topics)
+                .includes(:posts)
+                .order('sticky DESC, posts.created_at DESC')
+
+    # TODO: Look into doing this with sql, this is going to be
+    # very slow when there are a lot of topics.
+    @topics = Kaminari.paginate_array(_topics.to_a)
+                      .page(params[:page])
+                      .per(10)
 
     # Creating new topics.
     @topic = @forum.topics.build
