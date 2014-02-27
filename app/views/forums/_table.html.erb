@@ -39,8 +39,10 @@
     </td>
     <td class="last-post">
       <% if topic.last_post %>
-        <%= character_tag(topic.last_post.user.main) %>
-        <%= date_tag(topic.last_post.created_at, relative: true) %>
+        <%= link_to postable_post_path(topic, topic.last_post) do %>
+          <%= character_tag(topic.last_post.user.main) %>
+          <%= date_tag(topic.last_post.created_at, relative: true) %>
+        <% end %>
       <% end %>
     </td>
   </tr>

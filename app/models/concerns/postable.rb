@@ -19,6 +19,14 @@ module Postable
   def posts_updated_at
     posts.maximum(:updated_at)
   end
+
+  # last_page -> Fixnum
+  # Returns the number of the last page of the given postable
+  # object.
+  #
+  def last_page
+    posts.page.total_pages
+  end
 end
 
 # Add path helper to application controller to be in all controllers.
@@ -39,4 +47,14 @@ class ApplicationController < ActionController::Base
     end
   end
   helper_method :postable_path
+
+  # postable_post_path Post -> String
+  # Returns a path to the given post in it's postable's show action. Posts
+  # id are put into their HTML so this will automatically navigate to the
+  # post
+  #
+  def postable_post_path(postable, post)
+    postable_path(postable, page: postable.last_page) + "##{post.id}"
+  end
+  helper_method :postable_post_path
 end
