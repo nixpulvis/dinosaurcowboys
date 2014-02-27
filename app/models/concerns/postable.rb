@@ -20,6 +20,13 @@ module Postable
     posts.maximum(:updated_at)
   end
 
+  # -> Post
+  # Returns the post that was created the most recently.
+  #
+  def last_post
+    @last_post ||= posts.order(:created_at).last
+  end
+
   # last_page -> Fixnum
   # Returns the number of the last page of the given postable
   # object.

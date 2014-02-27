@@ -28,11 +28,4 @@ class Topic < ActiveRecord::Base
   def to_s
     title
   end
-
-  # -> Post
-  # Returns the post that was created the most recently.
-  #
-  def last_post
-    @last_post ||= posts.order(:created_at).last
-  end
 end

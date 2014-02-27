@@ -1,5 +1,26 @@
 <div class="panel">
   <div class="title">
+    <h1>Progression Bosses</h1>
+  </div>
+
+  <ul class="button-list">
+    <% Boss.last(2).each do |boss| %>
+      <li>
+        <%= link_to raid_boss_path(boss.raid, boss) do %>
+          <%= boss %>
+
+          <% if boss.posts.any? %>
+            <span class="pull-right">
+              <%= character_tag(boss.last_post.user.main) %>
+              <%= date_tag(boss.last_post.created_at, relative: true) %>
+            </span>
+          <% end %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="title">
     <h1>Forums</h1>
 
     <ul class="actions">
