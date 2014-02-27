@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     authorize @post
 
     @post.save
-    response_params = { page: last_page(postable) }
+    response_params = { page: postable.last_page }
     redirect_to postable_path(postable, response_params)
   end
 
@@ -69,13 +69,5 @@ class PostsController < ApplicationController
       resource, id = request.path.split('/')[1, 2]
       @postable = resource.singularize.classify.constantize.find(id)
     end
-  end
-
-  # last_page Postable -> Fixnum
-  # Returns the number of the last page of the given postable
-  # object.
-  #
-  def last_page(postable)
-    postable.posts.page.total_pages
   end
 end
