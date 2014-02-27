@@ -1,7 +1,8 @@
 // Body
 
 body {
-  background-image: url('/images/water_bg.jpg');
+  background: image-url('background.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
 
 // Header
