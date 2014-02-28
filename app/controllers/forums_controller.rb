@@ -22,7 +22,7 @@ class ForumsController < ApplicationController
     # very slow when there are a lot of topics.
     @topics = Kaminari.paginate_array(_topics.to_a)
                       .page(params[:page])
-                      .per(10)
+                      .per(Topic.default_per_page)
 
     authorize @forums
   end
@@ -62,7 +62,7 @@ class ForumsController < ApplicationController
     # very slow when there are a lot of topics.
     @topics = Kaminari.paginate_array(_topics.to_a)
                       .page(params[:page])
-                      .per(10)
+                      .per(Topic.default_per_page)
 
     # Creating new topics.
     @topic = @forum.topics.build

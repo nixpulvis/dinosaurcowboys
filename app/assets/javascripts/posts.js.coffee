@@ -1,4 +1,14 @@
 $ ->
+  # Save the default background color before ever overriding it.
+  backgroundColor = $(".post .body").css("background-color")
+
+  # Update the color of the post's body, when it's selected.
+  window.onhashchange = ->
+    if window.location.hash
+      $(".post .body").css("background-color", backgroundColor)
+      $(".post#{window.location.hash} .body").css("background-color", "#443424")
+  window.onhashchange()
+
   $('.post form').hide()
 
   $('.post .edit-button').click (e) ->

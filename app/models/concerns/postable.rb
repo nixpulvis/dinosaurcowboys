@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
   # post
   #
   def postable_post_path(postable, post)
-    postable_path(postable, page: postable.last_page) + "##{post.id}"
+    postable_path(postable, page: post.page) + "##{post.id}"
   end
   helper_method :postable_post_path
 end

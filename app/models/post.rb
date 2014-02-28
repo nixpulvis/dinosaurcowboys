@@ -16,5 +16,14 @@ class Post < ActiveRecord::Base
   validates :body, presence: true
 
   # Set the number of posts to show per page.
-  paginates_per 10
+  paginates_per 15
+
+  # page -> Fixnum
+  # Returns the page of this post.
+  #
+  def page
+    position = Post.where('created_at <= ? AND postable_id = ?',
+                          created_at, postable.id).count
+    (position.to_f / Post.default_per_page).ceil
+  end
 end
