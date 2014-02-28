@@ -26,7 +26,8 @@
     <hr />
 
     <div class="info">
-      Posted
+      <%= link_to "##{post.id}", postable_post_path(post.postable, post) %>
+      posted
       <%= date_tag(post.created_at, relative: true) %>
       <% unless (post.updated_at - post.created_at).between?(-1, 60) %>
         updated

@@ -20,7 +20,7 @@ class Topic < ActiveRecord::Base
   validates :title, presence: true
 
   # Set the number of topics to show per page.
-  paginates_per 10
+  paginates_per 15
 
   # -> String
   # The title of the topic.
