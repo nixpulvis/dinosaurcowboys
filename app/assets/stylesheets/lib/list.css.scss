@@ -1,7 +1,7 @@
 // table.list
 // Beautiful list styles for tables.
 //
-$highlight-color: shade($primary-color, 35%);
+$highlight-color: shade($warning-color, 60%);
 
 table.list {
   margin-bottom: 20px;
@@ -17,14 +17,6 @@ table.list {
 
     &.highlight {
       background: $highlight-color;
-    }
-
-    &.highlight:nth-child(odd) {
-      background: darken($highlight-color, 8%);
-    }
-
-    &:not(.highlight):nth-child(odd) {
-      background: darken($background-color, 2%);
     }
 
     th {
