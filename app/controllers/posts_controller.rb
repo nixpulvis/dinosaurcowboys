@@ -20,8 +20,7 @@ class PostsController < ApplicationController
     authorize @post
 
     @post.save
-    response_params = { page: postable.last_page }
-    redirect_to postable_path(postable, response_params)
+    redirect_to postable_post_path(postable, @post)
   end
 
   # PATCH or PUT /postable/:postable_id/posts/:id
@@ -29,10 +28,8 @@ class PostsController < ApplicationController
   # postable on the same page as it was on.
   #
   def update
-    response_params = { page: params[:page].blank? ? 1 : params[:page] }
-
     @post.update_attributes(post_params)
-    redirect_to postable_path(postable, response_params)
+    redirect_to postable_post_path(postable, @post)
   end
 
   # DELETE /postable/:postable_id/posts/:id
