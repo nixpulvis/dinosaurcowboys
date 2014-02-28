@@ -37,10 +37,6 @@ class ApplicationController < ActionController::Base
 
   # Follow requests through on sign in.
   def after_sign_in_path_for(resource)
-    if request.referer == user_session_url
-      super
-    else
-      stored_location_for(resource) || request.referer || root_path
-    end
+    params[:redirect] || super
   end
 end
