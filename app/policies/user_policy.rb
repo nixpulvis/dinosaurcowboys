@@ -37,7 +37,7 @@ class UserPolicy < BasePolicy
 
   def permitted_attributes
     permitted = [:email, :password, :password_confirmation,
-                 avatar_attributes: [:file],
+                 avatar_attributes: [:file, :id],
                  characters_attributes: [:name, :server]]
 
     permitted << :rank_id if user.admin? || user.rank.try(:>=, 'Officer')
