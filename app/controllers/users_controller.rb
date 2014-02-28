@@ -56,6 +56,7 @@ class UsersController < ApplicationController
   # Provides the user.
   #
   def edit
+    @user.build_avatar unless @user.avatar
   end
 
   # PATCH or PUT /users/:id
