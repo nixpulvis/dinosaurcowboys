@@ -1,0 +1,15 @@
+// .banner
+// A centered banner that fills the width of the page.
+//
+.banner {
+  width: 100%;
+
+  a {
+    display: block;
+  }
+
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+}

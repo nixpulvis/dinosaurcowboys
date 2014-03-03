@@ -1,0 +1,10 @@
+@include select-page('recruitments', 'show') {
+  .content {
+    @include span-columns(8);
+  }
+
+  .recruitment-classes {
+    @include span-columns(4);
+    @include omega();
+  }
+}

@@ -1,32 +1,32 @@
-<div class="banner">
-  <img class="border" src="images/h_siegecrafter.jpg">
+<img class="border banner" src="images/h_siegecrafter.jpg">
+
+<div class="large-column">
+  <section class="panel content">
+    <div class="title">
+      <h2><%= @feature.title %></h2>
+
+      <ul class="actions">
+        <% if policy(Feature).create? %>
+          <li><%= link_to fa_icon("file-o"), new_feature_path %></li>
+        <% end %>
+        <% if policy(@feature).update? %>
+          <li><%= link_to fa_icon("edit"), edit_feature_path(@feature) %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <%= raw @feature.markdown(:body) %>
+  </section>
 </div>
 
-<section class="panel content">
-  <div class="title">
-    <h2><%= @feature.title %></h2>
-
-    <ul class="actions">
-      <% if policy(Feature).create? %>
-        <li><%= link_to fa_icon("file-o"), new_feature_path %></li>
-      <% end %>
-      <% if policy(@feature).update? %>
-        <li><%= link_to fa_icon("edit"), edit_feature_path(@feature) %></li>
-      <% end %>
-    </ul>
-  </div>
-
-  <%= raw @feature.markdown(:body) %>
-</section>
-
-<aside class="panel">
-  <%= render "shared/recruitment_classes" %>
-</aside>
-
-<% if current_user.try(:rank) %>
+<div class="small-column">
   <aside class="panel">
-    <%= render "shared/mumble" %>
+    <%= render "shared/recruitment_classes" %>
   </aside>
-<% end %>
 
-<div class="clearfix"></div>
+  <% if current_user.try(:rank) %>
+    <aside class="panel">
+      <%= render "shared/mumble" %>
+    </aside>
+  <% end %>
+</div>

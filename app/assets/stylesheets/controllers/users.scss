@@ -1,5 +1,7 @@
-.users.show {
+@include select-page('users', 'show') {
   .details {
+    @include span-columns(6);
+
     img {
       float: left;
       margin-right: 5px;
@@ -11,8 +13,11 @@
   }
 
   .characters {
+    @include span-columns(6);
+    @include omega();
+
     h2 {
-      margin-bottom: 5px;
+      margin: 0 0 5px;
     }
 
     ul {
@@ -25,18 +30,21 @@
       font-size: 18px;
     }
   }
+
+  .posts {
+    @include span-columns(12);
+  }
 }
 
-.users.edit,
-.users.update {
+@include select-page('users', 'edit' 'update') {
   .settings {
-    float: left;
+    @include span-columns(6);
   }
 
   .new-password {
     @extend .panel;
-    float: right;
-    width: $form-width;
+    @include span-columns(6);
+    @include omega();
 
     h3 {
       margin-top: 0;

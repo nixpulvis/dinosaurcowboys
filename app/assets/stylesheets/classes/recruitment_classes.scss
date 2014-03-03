@@ -1,19 +1,6 @@
-.recruitments.show {
-
-  section {
-    float: left;
-    margin-right: 20px;
-    width: 58%;
-  }
-
-  .recruitment-classes {
-    @extend .panel;
-    float: left;
-    width: 35%;
-  }
-
-}
-
+// .recruitment-classes
+// Iconized list of classes with recruitment needs.
+//
 .recruitment-classes {
   ul.classes {
     font-size: 10px;
