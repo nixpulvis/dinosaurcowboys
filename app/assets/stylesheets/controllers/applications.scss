@@ -1,4 +1,4 @@
-@include select-page('applications', ('new', 'create', 'edit', 'update')) {
+@include select-page('applications', 'new' 'create' 'edit' 'update') {
   form {
     @include span-columns(6);
   }

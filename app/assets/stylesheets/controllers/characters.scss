@@ -1,0 +1,29 @@
+// TODO: This page is unfinished.
+@include select-page('characters', 'show') {
+  .portrait {
+    @include span-columns(2);
+
+    img {
+      height: auto;
+      max-height: 88px;
+      max-width: 88px;
+    }
+  }
+
+  .title {
+    @include span-columns(10);
+    @include omega();
+
+    .name {
+      display: block;
+    }
+
+    .info {
+      display: block;
+    }
+
+    .gear {
+      vertical-align: top;
+    }
+  }
+}
