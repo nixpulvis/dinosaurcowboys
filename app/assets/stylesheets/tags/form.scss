@@ -96,7 +96,6 @@ form {
   input,
   textarea,
   select {
-    @include box-sizing(border-box);
     @include appearance(none);
 
     background: $border-color;
