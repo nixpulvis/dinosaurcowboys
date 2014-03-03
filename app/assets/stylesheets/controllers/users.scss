@@ -1,4 +1,4 @@
-.users.show {
+@include select-page('users', 'show') {
   .details {
     @include span-columns(6);
 
@@ -36,12 +36,7 @@
   }
 }
 
-.users.edit,
-.users.update {
-  .panel {
-    @include span-columns(12);
-  }
-
+@include select-page('users', 'edit' 'update') {
   .settings {
     @include span-columns(6);
   }

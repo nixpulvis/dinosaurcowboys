@@ -1,6 +1,5 @@
-.pages.home {
+@include select-page('pages', 'home') {
   img.banner {
-    @include span-columns(12);
     margin-bottom: $gutter;
   }
 
@@ -14,7 +13,7 @@
   }
 }
 
-.pages.logs {
+@include select-page('pages', 'logs') {
   iframe {
     @include span-columns(12);
     height: 900px;
