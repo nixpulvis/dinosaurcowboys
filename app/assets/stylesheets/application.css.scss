@@ -13,21 +13,25 @@
 // Our libraries.
 @import 'lib/variables';
 @import 'lib/mixins';
-@import 'lib/form';
 @import 'lib/global';
-@import 'lib/_avatar';
-@import 'lib/_border';
-@import 'lib/_button';
-@import 'lib/_button_list';
-@import 'lib/_content';
-@import 'lib/_list';
-@import 'lib/_mumble';
-@import 'lib/_page';
-@import 'lib/_panel';
-@import 'lib/_post';
-@import 'lib/_post_editor';
-@import 'lib/_status';
-@import 'lib/_title';
+
+// Tag styles.
+@import 'tags/form';
+
+// Class styles.
+@import 'classes/avatar';
+@import 'classes/border';
+@import 'classes/button';
+@import 'classes/button_list';
+@import 'classes/content';
+@import 'classes/list';
+@import 'classes/mumble';
+@import 'classes/page';
+@import 'classes/panel';
+@import 'classes/post';
+@import 'classes/post_editor';
+@import 'classes/status';
+@import 'classes/title';
 
 // Controller pages styles.
 @import 'applications';
