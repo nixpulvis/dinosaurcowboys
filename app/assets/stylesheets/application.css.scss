@@ -13,7 +13,6 @@
 // Our libraries.
 @import 'lib/variables';
 @import 'lib/mixins';
-@import 'lib/global';
 
 // Tag styles.
 @import 'tags/a';
@@ -31,9 +30,11 @@
 @import 'classes/button';
 @import 'classes/button_list';
 @import 'classes/character';
+@import 'classes/clearfix';
 @import 'classes/container';
 @import 'classes/content';
 @import 'classes/flash';
+@import 'classes/hidden';
 @import 'classes/list';
 @import 'classes/mumble';
 @import 'classes/page';
@@ -41,6 +42,7 @@
 @import 'classes/panel';
 @import 'classes/post';
 @import 'classes/post_editor';
+@import 'classes/recruitment_classes';
 @import 'classes/status';
 @import 'classes/title';
 @import 'classes/topnav';

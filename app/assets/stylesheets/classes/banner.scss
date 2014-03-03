@@ -2,8 +2,11 @@
 // A centered banner that fills the width of the page.
 //
 .banner {
-  margin: 10px auto 5px;
-  width: $max-width;
+  width: 100%;
+
+  a {
+    display: block;
+  }
 
   img {
     display: block;
