@@ -1,6 +1,12 @@
-@mixin select-page($controller, $actions) {
-  @each $action in $actions {
-    .#{$controller}.#{$action} {
+@mixin select-page($controller, $actions:()) {
+  @if length($actions) > 0 {
+    @each $action in $actions {
+      .#{$controller}.#{$action} {
+        @content;
+      }
+    }
+  } @else {
+    .#{$controller} {
       @content;
     }
   }

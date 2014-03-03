@@ -1,7 +1,4 @@
-.forums.new,
-.forums.create,
-.forums.edit,
-.forums.update {
+@include select-page('forums', 'new' 'create' 'edit' 'update') {
   .forum_readable_ranks {
     @include span-columns(6);
   }

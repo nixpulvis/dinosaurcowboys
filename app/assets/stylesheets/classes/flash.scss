@@ -1,0 +1,24 @@
+// .flash
+// This is a full width bar, for displaying information to
+// users.
+//
+.flash {
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  p {
+    margin: 0;
+    padding: 10px 20px;
+  }
+
+  p.notice {
+    background: $warning-color;
+    color: $background-color;
+  }
+
+  p.alert {
+    background: $danger-color;
+    color: $text-color;
+  }
+}

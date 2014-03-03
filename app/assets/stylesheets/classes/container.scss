@@ -1,0 +1,8 @@
+// .container
+// Everything lives inside this.
+//
+div.container {
+  @include outer-container;
+  @include pad(0 20px 10px);
+  min-width: 750px;
+}
