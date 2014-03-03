@@ -7,7 +7,7 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body class='<%= params[:controller] %> <%= params[:action] %>'>
+<body class='<%= controller_name %> <%= action_name %>'>
 
 <div class="flash">
   <% if notice %>
@@ -18,15 +18,14 @@
   <% end %>
 </div>
 
-<header class="logo">
-  <%= link_to root_path do %>
-    <%= image_tag 'logo_banner.png' %>
-  <% end %>
-</header>
-
-<%= render "layouts/nav" %>
-
 <div class="container">
+  <header class="banner">
+    <%= link_to root_path do %>
+      <%= image_tag 'logo_banner.png' %>
+    <% end %>
+  </header>
+  <%= render "layouts/nav" %>
+
   <%= yield %>
 </div>
 

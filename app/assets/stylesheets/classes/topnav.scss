@@ -1,0 +1,27 @@
+// .topnav
+// The main nav for the site.
+//
+.topnav {
+  ul {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul.user-links {
+    float: right;
+  }
+
+  li {
+    display: inline-block;
+
+    a {
+      display: block;
+      padding: 10px;
+    }
+
+    a:hover {
+      background: $topbar-hover-color;
+    }
+  }
+}

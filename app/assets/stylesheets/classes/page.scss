@@ -1,0 +1,8 @@
+// .page
+// This is a class to contain a page of the website. It looks like a
+// panel.
+//
+.page {
+  @extend .panel;
+  @include span-columns(12);
+}

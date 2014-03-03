@@ -1,0 +1,9 @@
+@include select-page('forums', 'new' 'create' 'edit' 'update') {
+  .forum_readable_ranks {
+    @include span-columns(6);
+  }
+
+  .forum_writeable_ranks {
+    @include span-columns(6);
+  }
+}

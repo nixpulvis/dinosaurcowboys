@@ -1,0 +1,25 @@
+// .pagination
+// This is the class for the navigation for content with pages.
+//
+.pagination {
+  float: right;
+
+  span {
+    display: inline-block;
+    margin-right: 3px;
+  }
+
+  span a,
+  .current,
+  .gap {
+    @extend .button-small;
+  }
+
+  span.current,
+  span.gap {
+    &:hover {
+      background: $border-color;
+      color: $text-color;
+    }
+  }
+}

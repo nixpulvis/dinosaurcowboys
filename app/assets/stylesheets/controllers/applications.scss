@@ -1,0 +1,9 @@
+@include select-page('applications', 'new' 'create' 'edit' 'update') {
+  form {
+    @include span-columns(6);
+  }
+
+  aside {
+    @include span-columns(6);
+  }
+}

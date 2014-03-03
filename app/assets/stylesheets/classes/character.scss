@@ -1,3 +1,7 @@
+// .character
+// A class to apply to some text that should resemble the given
+// class.
+//
 .character {
   &.death_knight {
     color: #c41f3b;
@@ -41,30 +45,5 @@
 
   &.warrior {
     color: #c79c6e;
-  }
-}
-
-.profile {
-
-  img {
-    margin-right: 10px;
-  }
-
-  .title {
-    display: inline-block;
-    vertical-align: top;
-    width: 840px;
-
-    .name {
-      display: block;
-    }
-
-    .info {
-      display: block;
-    }
-
-    .gear {
-      vertical-align: top;
-    }
   }
 }
