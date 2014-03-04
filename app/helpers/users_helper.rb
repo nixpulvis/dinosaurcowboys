@@ -8,7 +8,7 @@ module UsersHelper
   def avatar_tag(user, options = {})
     options.merge!(class: 'avatar')
 
-    if user.avatar.exists?
+    if user.avatar && user.avatar.file.exists?
       image_tag(user.avatar.url(:thumb), options)
     else
       image_tag(user.main.thumbnail, options)

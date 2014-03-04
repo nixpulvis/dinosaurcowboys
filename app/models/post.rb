@@ -3,7 +3,7 @@
 # was posted on.
 #
 class Post < ActiveRecord::Base
-  include PartyShark::Markdownable
+  include Markdownable
 
   # A post belongs to what it was posted on, and updating the post updates
   # that model too.
