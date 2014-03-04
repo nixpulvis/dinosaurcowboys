@@ -11,9 +11,4 @@ class Upload < ActiveRecord::Base
 
   # Delegate some of the methods to the paperclip object.
   delegate :url, to: :file
-
-  # Delete the file before offing yourself.
-  before_destroy do
-    # TODO: Delete the file.
-  end
 end
