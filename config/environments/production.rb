@@ -66,7 +66,7 @@ PartyShark::Application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Settup mailer in production.
-  config.action_mailer.default_url_options = { host: 'party-shark.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'www.partyshark.org' }
 
   # Setup SendGrid.
   ActionMailer::Base.smtp_settings = {
