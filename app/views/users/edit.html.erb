@@ -16,8 +16,12 @@
         <%= f.input :created_at, label: 'Join Date', as: :date %>
       <% end %>
 
+      <% if policy(@user).allows?(:raid_moderator) %>
+        <%= f.input :raid_moderator, as: :boolean, label: 'Raid Moderator' %>
+      <% end %>
+
       <% if policy(@user).allows?(:admin) %>
-        <%= f.input :admin?, as: :boolean %>
+        <%= f.input :admin, as: :boolean %>
       <% end %>
     </div>
 

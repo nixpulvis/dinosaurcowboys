@@ -40,7 +40,7 @@ class UserPolicy < BasePolicy
                  characters_attributes: [:name, :server]]
 
     permitted << :rank_id if user.admin? || user.rank.try(:>=, 'Officer')
-    permitted += [:admin, :created_at] if user.admin?
+    permitted += [:admin, :raid_moderator, :created_at] if user.admin?
     permitted
   end
 end
