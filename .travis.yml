@@ -6,7 +6,7 @@ rvm:
   - 2.1.0
 
 deploy:
-  app: party-shark
+  app: partyshark
   provider: heroku
   run:
     - "rake db:migrate"
