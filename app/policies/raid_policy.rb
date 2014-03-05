@@ -25,7 +25,7 @@ class RaidPolicy < BasePolicy
   end
 
   def create?
-    user.rank.try(:>=, 'Officer') || super
+    user.rank.try(:>=, 'Officer') || user.raid_moderator? || super
   end
 
   def update?
