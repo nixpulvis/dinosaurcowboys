@@ -2,8 +2,8 @@
 # A file to be stored in the cloud via paperclip.
 #
 class Upload < ActiveRecord::Base
-  # The model that this upload belongs to.
-  belongs_to :uploadable, polymorphic: true
+  # The user that created this upload.
+  belongs_to :user
 
   # The paperclip file object itself.
   has_attached_file :file, styles: { medium: '300x300>', thumb: '50x50#' }
