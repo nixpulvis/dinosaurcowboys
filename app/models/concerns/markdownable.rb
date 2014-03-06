@@ -52,6 +52,10 @@ module Markdownable
     prettify: true
   }
 
+  # markdown: Symbol -> HTML
+  # Returns the given field converted into markdown, and sanitized
+  # against malicious user input.
+  #
   def markdown(field)
     render = Redcarpet::Render::HTML.new(RENDER_OPTIONS)
     parser = Redcarpet::Markdown.new(render, EXTENSIONS)
