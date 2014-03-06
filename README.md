@@ -1,4 +1,4 @@
-# Party Shark [![Build Status](https://travis-ci.org/party-shark/website.png?branch=master)](https://travis-ci.org/party-shark/website)
+# Party Shark [![Build Status](https://travis-ci.org/partyshark/website.png?branch=responsive)](https://travis-ci.org/partyshark/website)
 
 This is the website for Party Shark, we are a World of Warcraft raiding guild on Stormreaver Horde.
 
