@@ -1,0 +1,11 @@
+<div class="page">
+  <div class="title">
+    <h1>New Upload</h1>
+  </div>
+
+  <%= simple_form_for [@user, @upload] do |f| %>
+    <%= f.input :file %>
+
+    <%= f.button :submit %>
+  <% end %>
+</div>
