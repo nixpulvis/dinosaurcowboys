@@ -22,8 +22,11 @@ class User < ActiveRecord::Base
   # to if they do not have a rank.
   has_one :application, dependent: :destroy
 
-  # Add an attachment for user uploaded photos.
-  has_one :avatar, as: :uploadable, class_name: 'Upload'
+  # Add an attachment for a user uploaded avatar.
+  belongs_to :avatar, class_name: 'Upload'
+
+  # A user can upload things. :)
+  has_many :uploads
 
   # A user **must** have an email address, and a character.
   validates :email, presence: true

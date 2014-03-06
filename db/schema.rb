@@ -167,8 +167,7 @@ ActiveRecord::Schema.define(version: 20140305192424) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
-    t.integer  "uploadable_id"
-    t.string   "uploadable_type"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -188,6 +187,7 @@ ActiveRecord::Schema.define(version: 20140305192424) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "admin",                  default: false, null: false
+    t.integer  "avatar_id"
     t.boolean  "raid_moderator"
   end
 
