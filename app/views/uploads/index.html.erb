@@ -1,0 +1,22 @@
+<div class="page">
+  <div class="title">
+    <h1>All Uploads</h1>
+
+    <ul class="actions">
+      <% if policy(Upload.new(user: @user)).create? %>
+        <li><%= link_to fa_icon("upload"), new_user_upload_path(@user) %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <ul>
+    <% @uploads.each do |upload| %>
+      <li>
+        <%= link_to user_upload_path(@user, upload) do %>
+          <%= image_tag upload.url, width: "100" %>
+        <% end %>
+        <p style="font-size:12px;font-family:monospace;"><%= upload.url %></p>
+      </li>
+    <% end %>
+  </ul>
+</div>

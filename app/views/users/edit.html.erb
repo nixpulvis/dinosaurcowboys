@@ -7,8 +7,9 @@
     <div class="settings">
       <%= f.input :email %>
 
-      <%= f.simple_fields_for :avatar do |a| %>
+      <%= f.simple_fields_for :avatar, @user.build_avatar(user: @user) do |a| %>
         <%= a.input :file %>
+        <%= a.input :user_id, as: :hidden %>
       <% end %>
 
       <% if policy(@user).allows?(:rank_id) %>
