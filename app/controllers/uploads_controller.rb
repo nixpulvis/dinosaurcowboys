@@ -1,7 +1,7 @@
 # UploadsController
 # Controller for the user uploads.
 #
-# Actions: [index, new, create, show, destroy]
+# Actions: [index, new, create, destroy]
 #
 class UploadsController < ApplicationController
   before_filter do
@@ -38,14 +38,6 @@ class UploadsController < ApplicationController
     else
       render :new
     end
-  end
-
-  # GET /users/:user_id/uploads/:id
-  # Provides the given user upload.
-  #
-  def show
-    @upload = @user.uploads.find(params[:id])
-    authorize @upload
   end
 
   # DELETE /users/:user_id/uploads/:id
