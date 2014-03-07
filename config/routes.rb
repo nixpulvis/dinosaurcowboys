@@ -15,7 +15,7 @@ PartyShark::Application.routes.draw do
   get '/roster', to: 'characters#roster'
   resources :users do
     resources :characters, except: :index
-    resources :uploads, except: [:edit, :update]
+    resources :uploads, except: [:show, :edit, :update]
     resource :application do
       member { match 'decide', via: [:put, :patch] }
     end
