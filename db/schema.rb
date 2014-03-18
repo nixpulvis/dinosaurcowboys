@@ -162,6 +162,16 @@ ActiveRecord::Schema.define(version: 20140305192424) do
   add_index "topics", ["forum_id"], name: "index_topics_on_forum_id", using: :btree
   add_index "topics", ["user_id"], name: "index_topics_on_user_id", using: :btree
 
+  create_table "uploads", force: true do |t|
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.integer  "rank_id"
     t.datetime "created_at"
@@ -177,10 +187,7 @@ ActiveRecord::Schema.define(version: 20140305192424) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "admin",                  default: false, null: false
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
+    t.integer  "avatar_id"
     t.boolean  "raid_moderator"
   end
 
