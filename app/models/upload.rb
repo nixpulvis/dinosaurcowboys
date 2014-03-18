@@ -11,4 +11,9 @@ class Upload < ActiveRecord::Base
 
   # Delegate some of the methods to the paperclip object.
   delegate :url, to: :file
+
+  # Include url in json of the upload.
+  def as_json(options)
+    super(methods: [:url])
+  end
 end

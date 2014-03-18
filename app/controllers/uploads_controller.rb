@@ -32,11 +32,14 @@ class UploadsController < ApplicationController
     @upload = @user.uploads.build(upload_params)
     authorize @upload
 
-    if @upload.save
-      # TODO: What are we redirecting to...
-      redirect_to user_uploads_path(@user)
-    else
-      render :new
+    respond_to do |format|
+      if @upload.save
+        format.json { render json: @upload }
+        format.html { redirect_to user_uploads_path(@user) }
+      else
+        format.json { render json: @upload.errors }
+        format.json { render :new }
+      end
     end
   end
 

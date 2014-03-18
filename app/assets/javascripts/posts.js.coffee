@@ -1,6 +1,7 @@
 $ ->
   # Save the default background color before ever overriding it.
   backgroundColor = $(".post .body").css("background-color")
+  borderColor = $(".post .body").css("border-color")
 
   # Update the color of the post's body, when it's selected.
   window.onhashchange = ->
@@ -41,6 +42,7 @@ $ ->
     selection = editor.textrange('get')
     editor.textrange('replace', "**#{selection.text}**")
     editor.textrange('setcursor', selection.end + 2)
+    last_position = $(this).textrange('get').position
 
     editor.focus()
 
@@ -51,6 +53,7 @@ $ ->
     selection = editor.textrange('get')
     editor.textrange('replace', "*#{selection.text}*")
     editor.textrange('setcursor', selection.end + 1)
+    last_position = $(this).textrange('get').position
 
     editor.focus()
 
@@ -61,6 +64,7 @@ $ ->
     selection = editor.textrange('get')
     editor.textrange('replace', "_#{selection.text}_")
     editor.textrange('setcursor', selection.end + 1)
+    last_position = $(this).textrange('get').position
 
     editor.focus()
 
@@ -71,6 +75,7 @@ $ ->
     selection = editor.textrange('get')
     editor.textrange('replace', "~~#{selection.text}~~")
     editor.textrange('setcursor', selection.end + 1)
+    last_position = $(this).textrange('get').position
 
     editor.focus()
 
@@ -81,6 +86,7 @@ $ ->
     selection = editor.textrange('get')
     editor.textrange('replace', "==#{selection.text}==")
     editor.textrange('setcursor', selection.end + 1)
+    last_position = $(this).textrange('get').position
 
     editor.focus()
 
@@ -93,6 +99,7 @@ $ ->
     editor.textrange('setcursor', line_start)
     editor.textrange('replace', "#")
     editor.textrange('setcursor', selection.end + 1)
+    last_position = $(this).textrange('get').position
 
     editor.focus()
 
@@ -105,10 +112,9 @@ $ ->
     editor.textrange('setcursor', line_start)
     editor.textrange('replace', ">")
     editor.textrange('setcursor', selection.end + 1)
+    last_position = $(this).textrange('get').position
 
     editor.focus()
-
-  # TODO: UL / OL
 
   $('.fa-code').click (e) ->
     editor = $(this).parent().siblings('textarea')
@@ -117,6 +123,7 @@ $ ->
     selection = editor.textrange('get')
     editor.textrange('replace', "```\n#{selection.text}\n```")
     editor.textrange('setcursor', selection.end + 4)
+    last_position = $(this).textrange('get').position
 
     editor.focus()
 
@@ -136,6 +143,7 @@ $ ->
 
     editor.textrange('setcursor', last_position + 1)
     editor.textrange('replace', "[#{text}](#{url})")
+    last_position = $(this).textrange('get').position
     $(this).parent().hide()
 
 
@@ -154,4 +162,63 @@ $ ->
 
     editor.textrange('setcursor', last_position + 1)
     editor.textrange('replace', "![](#{url})")
+    last_position = $(this).textrange('get').position
     $(this).parent().hide()
+
+  # Drag-n-Drop Image Uploading.
+
+  # Add the `dataTransfer` property to jQuery events.
+  jQuery.event.props.push('dataTransfer')
+
+  # Upload file via AJAX.
+  # Requires an input on the page holding the authenticity token.
+  #
+  uploadFile = (file, url, func) ->
+    reader = new FileReader()
+    reader.readAsDataURL(file)
+
+    formdata = new FormData()
+    formdata.append('upload[file]', file)
+    formdata.append('authenticity_token',
+                    $('input[name=authenticity_token]').val())
+
+    request = new XMLHttpRequest()
+    request.open('POST', url)
+
+    this.url = null
+    request.onreadystatechange = ->
+      if request.readyState == 4
+        if request.status == 200
+          func JSON.parse(request.responseText)
+        else
+          alert "Upload failed with response code #{request.status}."
+
+
+    request.send(formdata)
+
+  # Grab the dropfile element.
+  dropfile = $('.dropfile')
+
+  dropfile.on 'dragenter', (event) ->
+    event.stopPropagation()
+    event.preventDefault()
+    $(event.currentTarget).css('background-color', '#0d5')
+
+  dropfile.on 'dragleave', (event) ->
+    event.stopPropagation()
+    event.preventDefault()
+    $(event.currentTarget).css('background-color', borderColor)
+
+  dropfile.on 'drop', (event) ->
+    event.stopPropagation()
+    event.preventDefault()
+    $(event.currentTarget).css('background-color', borderColor)
+
+    currentUserID = $(event.currentTarget).data('current-user-id')
+
+    for file in event.dataTransfer.files
+      uploadFile file, "/users/#{currentUserID}/uploads", (upload) ->
+        imageLink = "![](#{upload.url})\n"
+        $(event.currentTarget).textrange('setcursor', last_position + 1)
+        $(event.currentTarget).textrange('replace', imageLink)
+        last_position += imageLink.length
