@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
   # postable_post_path Post -> String
   # Returns a path to the given post in it's postable's show action. Posts
   # id are put into their HTML so this will automatically navigate to the
-  # post
+  # post.
   #
   def postable_post_path(postable, post)
     postable_path(postable, page: post.page) + "##{post.id}"

@@ -8,10 +8,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Add an attachment for user uploaded photos.
-  has_attached_file :avatar, styles: { medium: '300x300>', thumb: '50x50#' }
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
-
   # If a user has a rank they MUST be in the guild. Users without
   # a rank are assumed to be not invited yet.
   belongs_to :rank
@@ -26,12 +22,18 @@ class User < ActiveRecord::Base
   # to if they do not have a rank.
   has_one :application, dependent: :destroy
 
+  # Add an attachment for a user uploaded avatar.
+  belongs_to :avatar, class_name: 'Upload'
+
+  # A user can upload things. :)
+  has_many :uploads
+
   # A user **must** have an email address, and a character.
   validates :email, presence: true
   validates :characters, presence: true
 
   # Allow users forms to create characters.
-  accepts_nested_attributes_for :characters
+  accepts_nested_attributes_for :characters, :avatar
 
   # -> String
   # The name of this user is defined to be the name of their main.

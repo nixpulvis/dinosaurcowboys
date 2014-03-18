@@ -29,6 +29,8 @@
         <%= fa_icon("shield") %> <%= @user.rank %>
       </p>
     <% end %>
+
+    <%= link_to "Uploads", user_uploads_path(@user) %>
   </div>
 
   <div class="characters">

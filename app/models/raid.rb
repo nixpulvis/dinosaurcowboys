@@ -7,7 +7,7 @@
 # TODO: Wiki.
 #
 class Raid < ActiveRecord::Base
-  include PartyShark::Markdownable
+  include Markdownable
   include Postable
 
   # As we all know, there are bosses in raids.
