@@ -6,7 +6,11 @@
   <%= simple_form_for @user, html: { multipart: true } do |f| %>
     <div class="settings">
       <%= f.input :email %>
-      <%= f.input :avatar %>
+
+      <%= f.simple_fields_for :avatar, @user.build_avatar(user: @user) do |a| %>
+        <%= a.input :file %>
+        <%= a.input :user_id, as: :hidden %>
+      <% end %>
 
       <% if policy(@user).allows?(:rank_id) %>
         <%= f.association :rank, include_blank: "None" %>

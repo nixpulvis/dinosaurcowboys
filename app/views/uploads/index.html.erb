@@ -1,0 +1,34 @@
+<div class="page">
+  <div class="title">
+    <h1><%= character_tag @user.main %>'s Uploads</h1>
+
+    <ul class="actions">
+      <% if policy(Upload.new(user: @user)).create? %>
+        <li><%= link_to fa_icon("upload"), new_user_upload_path(@user) %></li>
+      <% end %>
+    </ul>
+
+    <div class="info">
+      All uploads are <strong>public</strong>. Please be mindful of the law
+      when uploading files to this site. Files may be taken down without
+      warning if they are felt to be out of place, or illegal.
+    </div>
+  </div>
+
+  <ul class="upload-list">
+    <% @uploads.each do |upload| %>
+      <li>
+        <span class="filename"><%= upload.file_file_name %></span>
+        <div class="actions">
+          <%= link_to fa_icon("link"), upload.url %>
+          <% if policy(upload).destroy? %>
+            <%= link_to fa_icon("trash-o"), user_upload_path(@user, upload), method: :delete, data: { confirm: "Are you sure?" } %>
+          <% end %>
+        </div>
+        <%= link_to upload.url, class: "image" do %>
+          <%= image_tag upload.url %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

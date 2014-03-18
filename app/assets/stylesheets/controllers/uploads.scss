@@ -1,0 +1,45 @@
+@include select-page('uploads', 'index') {
+
+  .upload-list {
+    list-style: none;
+    padding: 0;
+
+    li {
+      @include span-columns(3);
+      @extend .panel;
+
+      &:nth-child(4n) {
+        margin-right: 0;
+      }
+
+      a.image {
+        display: block;
+        height: 176px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .filename {
+        color: $faded-text-color;
+        display: inline-block;
+        font-size: 12px;
+        margin-bottom: 4px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 75%;
+      }
+
+      .actions {
+        display: inline-block;
+        float: right;
+        text-align: right;
+        width: 20%;
+      }
+    }
+  }
+
+}

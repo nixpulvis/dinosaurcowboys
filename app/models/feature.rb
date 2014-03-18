@@ -3,7 +3,7 @@
 # and is intended to be very viable and time related.
 #
 class Feature < ActiveRecord::Base
-  include PartyShark::Markdownable
+  include Markdownable
 
   # An feature must have a title and a body.
   validates :title, presence: true
