@@ -20,3 +20,6 @@
 
 # Ignore the .env
 .env
+
+# Ignore public/system these are images uploaded in development.
+public/system
