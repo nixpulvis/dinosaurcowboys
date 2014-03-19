@@ -1,0 +1,14 @@
+// .github
+// This class is for a link sitting in the top right of the page
+// linking to GitHub source code.
+//
+.github {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+
+  span {
+    font-size: 12px;
+    font-weight: bold;
+  }
+}
