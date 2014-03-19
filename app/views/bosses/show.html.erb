@@ -7,6 +7,7 @@
     </h3>
 
     <ul class="actions">
+      <li><%= link_to fa_icon("comment"), "#discussion" %></li>
       <% if policy(@boss).update? %>
         <li><%= link_to fa_icon("edit"), edit_raid_boss_path(@boss.raid, @boss) %></li>
       <% end %>
@@ -22,13 +23,13 @@
     <%= raw @boss.markdown(:content) %>
   </div>
 
-  <hr />
+  <hr id="discussion" />
 
-  <%= paginate @posts %>
+  <%= paginate @posts, params: { anchor: 'discussion' } %>
   <% @posts.each do |post| %>
     <%= render "shared/posts/show", post: post %>
   <% end %>
-  <%= paginate @posts %>
+  <%= paginate @posts, params: { anchor: 'discussion' } %>
 
   <% if policy(@post).create? %>
     <%= simple_form_for [@boss, @boss.posts.build] do |f| %>
