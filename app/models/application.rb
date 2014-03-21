@@ -46,6 +46,13 @@ class Application < ActiveRecord::Base
   # Send a creation email.
   after_create :send_email
 
+  # Symbol -> Fixnum
+  # Returns the state corresponding to the given status.
+  #
+  def self.state(status)
+    Application::STATES.index(status)
+  end
+
   # -> String
   # A displayable format for the application.
   #
@@ -53,14 +60,14 @@ class Application < ActiveRecord::Base
     "#{user}'s Application"
   end
 
-  # status -> String
+  # -> String
   # Return the current status of the application.
   #
   def status
     self.id_changed? ? :created : STATES[state]
   end
 
-  # status= Symbol -> Boolean
+  # Symbol -> Boolean
   # Sets the status of this application, changes ranks of the user
   # and sends emails.
   #
