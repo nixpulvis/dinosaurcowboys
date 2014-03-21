@@ -32,6 +32,9 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates :characters, presence: true
 
+  # Set the number of users to show per page.
+  paginates_per 20
+
   # Allow users forms to create characters.
   accepts_nested_attributes_for :characters, :avatar
 
