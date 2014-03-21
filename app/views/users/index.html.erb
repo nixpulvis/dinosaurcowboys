@@ -24,6 +24,7 @@
         <td><span class="join"><%= date_tag(user.main.user.created_at, time: false) %></span></td>
       </tr>
     <% end %>
-  </ul>
+  </table>
+  <%= paginate @users %>
 
 </div>
