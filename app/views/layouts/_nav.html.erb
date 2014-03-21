@@ -20,7 +20,17 @@
     <% end %>
 
     <% if policy(Application).index? %>
-      <li><%= link_to "Applications", applications_path %></li>
+      <li>
+        <%= link_to applications_path do %>
+          Applications
+          <div class="status pending">
+            <%= Application.where(state: Application.state(:pending)).count %>
+          </div>
+          <div class="status trial">
+            <%= Application.where(state: Application.state(:trial)).count %>
+          </div>
+        <% end %>
+      </li>
     <% end %>
 
     <% if policy(User).index? %>
