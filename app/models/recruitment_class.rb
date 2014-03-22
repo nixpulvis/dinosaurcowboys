@@ -23,6 +23,9 @@ class RecruitmentClass < ActiveRecord::Base
   # They must have a class_name.
   validates :class_name, presence: true
 
+  # -> DateTime
+  # Returns the datetime of the last updated recruitment class.
+  #
   def self.updated_at
     maximum(:updated_at)
   end
