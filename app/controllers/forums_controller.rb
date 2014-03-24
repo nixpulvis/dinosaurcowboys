@@ -13,18 +13,18 @@ class ForumsController < ApplicationController
   # Provide all the forums and the recent topics.
   #
   def index
-    @forums = policy_scope(Forum)
-    _topics = policy_scope(Topic)
-                .includes(:posts)
-                .order('posts.created_at DESC')
+    @bosses = policy_scope(Boss)
+                .includes(:raid)
+                .order(created_at: :desc)
+                .limit(2)
 
-    # TODO: Look into doing this with sql, this is going to be
-    # very slow when there are a lot of topics.
-    @topics = Kaminari.paginate_array(_topics.to_a)
-                      .page(params[:page])
-                      .per(10)
+    @topics = load_topics(Topic)
+
+    @forums = policy_scope(Forum)
+                .includes(:topics)
 
     authorize @forums
+    authorize @bosses
   end
 
   # GET /forums/new
@@ -54,15 +54,7 @@ class ForumsController < ApplicationController
   # create new topics.
   #
   def show
-    _topics = policy_scope(@forum.topics)
-                .includes(:posts)
-                .order('sticky DESC, posts.created_at DESC')
-
-    # TODO: Look into doing this with sql, this is going to be
-    # very slow when there are a lot of topics.
-    @topics = Kaminari.paginate_array(_topics.to_a)
-                      .page(params[:page])
-                      .per(Topic.default_per_page)
+    @topics = load_topics(@forum.topics)
 
     # Creating new topics.
     @topic = @forum.topics.build
@@ -102,5 +94,21 @@ class ForumsController < ApplicationController
   def forum_params
     permit = policy(@forum || Forum).permitted_attributes
     params.require(:forum).permit(*permit)
+  end
+
+  # Scope -> ActiveRecord::Relation
+  #
+  # FIXME: This is kinda shitty...
+  # Look into doing this with sql, this is going to be
+  # very slow when there are a lot of topics.
+  #
+  def load_topics(scope)
+    _topics = policy_scope(scope)
+                .includes(:forum, :posts, :user)
+                .order('posts.created_at DESC')
+
+    Kaminari.paginate_array(_topics.to_a)
+            .page(params[:page])
+            .per(10)
   end
 end

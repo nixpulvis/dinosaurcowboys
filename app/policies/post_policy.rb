@@ -6,7 +6,9 @@
 class PostPolicy < ApplicationPolicy
   class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
-      scope.select { |p| Pundit.policy(user, p).show? }
+      scope
+        .includes(:user, :postable)
+        .select { |p| Pundit.policy(user, p).show? }
     end
   end
 

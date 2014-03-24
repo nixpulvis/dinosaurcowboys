@@ -39,7 +39,7 @@ class BossesController < ApplicationController
   # Provides the given boss, raid, and the bosses posts.
   #
   def show
-    @posts = @boss.posts.order(created_at: :asc).page(params[:page])
+    @posts = Post.for_postable(@boss, params[:page])
     @post  = @boss.posts.build
   end
 

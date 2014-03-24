@@ -18,6 +18,16 @@ class Post < ActiveRecord::Base
   # Set the number of posts to show per page.
   paginates_per 15
 
+  # Postable, Fixnum -> ActiveRecord::Relation
+  # Returns a page of posts for the postable.
+  #
+  def self.for_postable(postable, page)
+    postable.posts
+            .includes({ user: [:rank, :avatar] }, :postable)
+            .order(created_at: :asc)
+            .page(page)
+  end
+
   # page -> Fixnum
   # Returns the page of this post.
   #

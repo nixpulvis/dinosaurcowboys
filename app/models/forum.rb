@@ -35,6 +35,6 @@ class Forum < ActiveRecord::Base
   # FIXME
   #
   def freshest
-    topics.select(&:posts_updated_at).max_by(&:posts_updated_at)
+    topics.max_by(&:posts_updated_at)
   end
 end

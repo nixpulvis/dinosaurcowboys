@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   #
   def index
     @users = policy_scope(User)
+               .includes(:avatar)
                .order(created_at: :desc)
                .page(params[:page])
     authorize @users
