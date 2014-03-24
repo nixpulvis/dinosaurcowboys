@@ -6,8 +6,7 @@
   color: $background-color;
   display: inline-block;
   font-weight: normal;
-  padding: 2px 5px;
-  vertical-align: 2px;
+  padding: 0 3px;
 
   &.pending {
     background-color: $info-color;
@@ -28,25 +27,31 @@
 
 h1 .status {
   font-size: 22px;
+  padding: 3px 6px;
+  vertical-align: 2px;
 }
 
 h2 .status {
   font-size: 16px;
   margin: 0 6px;
+  padding: 2px 5px;
+  vertical-align: 2px;
 }
 
 h3 .status {
   font-size: 12px;
   font-weight: bold;
   margin: 0 4px;
-  padding: 3px 5px;
+  padding: 2px 5px;
+  vertical-align: 1px;
 }
 
 h4 .status {
   font-size: 10px;
   font-weight: bold;
   margin: 0 4px;
-  padding: 3px 5px;
+  padding: 2px 4px;
+  vertical-align: 1px;
 }
 
 h5 .status {
@@ -54,6 +59,7 @@ h5 .status {
   font-weight: bold;
   margin: 0 2px;
   padding: 2px 4px;
+  vertical-align: 1px;
 }
 
 h6 .status {
@@ -61,4 +67,5 @@ h6 .status {
   font-weight: bold;
   margin: 0;
   padding: 1px 2px;
+  vertical-align: 1px;
 }
