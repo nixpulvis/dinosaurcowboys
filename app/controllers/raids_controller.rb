@@ -44,7 +44,8 @@ class RaidsController < ApplicationController
   # Provides the given raid, and it's posts.
   #
   def show
-    @posts = @raid.posts.order(created_at: :asc).page(params[:page])
+    @bosses = @raid.bosses.includes(:raid)
+    @posts = Post.for_postable(@raid, params[:page])
     @post  = @raid.posts.build
   end
 

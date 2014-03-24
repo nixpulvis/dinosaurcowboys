@@ -4,7 +4,7 @@
   </div>
 
   <ul class="button-list">
-    <% Boss.last(2).each do |boss| %>
+    <% @bosses.each do |boss| %>
       <li>
         <%= link_to raid_boss_path(boss.raid, boss) do %>
           <%= boss %>

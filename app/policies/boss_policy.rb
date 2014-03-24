@@ -10,6 +10,10 @@ class BossPolicy < BasePolicy
     end
   end
 
+  def index?
+    true
+  end
+
   def show?
     read? || super
   end

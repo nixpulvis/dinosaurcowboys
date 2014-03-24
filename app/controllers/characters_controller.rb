@@ -74,7 +74,9 @@ class CharactersController < ApplicationController
   # Provides the users that are part of the core, and applicants.
   #
   def roster
-    @characters = policy_scope(Character).where(main: true)
+    @characters = policy_scope(Character)
+                    .includes(user: :rank)
+                    .where(main: true)
     authorize @characters
 
     @characters = @characters.select do |character|

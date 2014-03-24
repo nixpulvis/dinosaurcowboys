@@ -25,7 +25,7 @@
     <% end %>
   </h3>
   <ul class="button-list">
-    <% @raid.bosses.each do |boss| %>
+    <% @bosses.each do |boss| %>
       <% if policy(boss).read? %>
         <li><%= link_to boss.name, raid_boss_path(@raid, boss) %></li>
       <% end %>

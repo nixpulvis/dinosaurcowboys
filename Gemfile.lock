@@ -45,6 +45,9 @@ GEM
       sass (>= 3.2.0)
       thor
     builder (3.1.4)
+    bullet (4.8.0)
+      activesupport
+      uniform_notifier (>= 1.4.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.3)
@@ -231,6 +234,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    uniform_notifier (1.4.0)
     uuidtools (2.1.4)
     warden (1.2.3)
       rack (>= 1.0)
@@ -245,6 +249,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bourbon
+  bullet
   coffee-rails (~> 4.0.0)
   devise
   font-awesome-rails
