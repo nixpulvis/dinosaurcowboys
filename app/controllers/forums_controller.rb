@@ -79,7 +79,8 @@ class ForumsController < ApplicationController
   end
 
   # DELETE /forums/:id
-  # Destroy the forum and all of it's topics/posts.
+  # Destroy the forum and all of it's topics/posts. Also
+  # clean up accesses that no longer point to anything.
   #
   def destroy
     @forum.destroy
