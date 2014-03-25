@@ -20,9 +20,9 @@
   <%= render "forums/table", topics: @topics %>
 
   <% if policy(@topic).create? %>
-    <h3>New Topic</h3>
-
     <%= simple_form_for [@forum, @topic], url: forum_topics_path(@forum) do |f| %>
+      <h2>New Topic in <%= @forum.name %></h2>
+
       <%= f.input :title %>
 
       <%= f.simple_fields_for :posts do |p| %>
