@@ -1,9 +1,7 @@
 <% if topics.any? %>
 <table class="topic list">
   <tr>
-    <th>
-      <%= defined?(topics_label) ? topics_label : "Topics" %>
-    </th>
+    <th>Topic</th>
 
     <% if params[:action] == "index" %>
       <th>Forum</th>
