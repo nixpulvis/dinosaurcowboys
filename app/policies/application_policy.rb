@@ -33,6 +33,10 @@ class ApplicationPolicy < BasePolicy
     user == record.user || super
   end
 
+  def destroy?
+    false
+  end
+
   def decide?
     user.rank.try(:>=, 'Officer') || user.admin?
   end
