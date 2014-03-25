@@ -1,6 +1,6 @@
 <div class="page">
   <div class="title">
-    <h1>Progression Bosses</h1>
+    <h1>Recent Bosses</h1>
   </div>
 
   <ul class="button-list">
@@ -21,6 +21,13 @@
   </ul>
 
   <div class="title">
+    <h1>Recent Topics</h1>
+  </div>
+
+  <%= render "forums/table", topics: @topics %>
+
+
+  <div class="title">
     <h1>Forums</h1>
 
     <ul class="actions">
@@ -29,8 +36,6 @@
       <% end %>
     </ul>
   </div>
-
-  <%= render "forums/table", topics: @topics, topics_label: "Recent Topics" %>
 
   <ul class="button-list">
     <% @forums.each do |forum| %>
