@@ -14,6 +14,7 @@ class ApplicationsController < ApplicationController
   #
   def index
     @applications = policy_scope(Application)
+                      .includes(:user)
                       .order(:state, created_at: :desc)
                       .page(params[:page])
 
