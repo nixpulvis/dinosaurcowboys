@@ -4,7 +4,7 @@
 # Actions: [new, create, show, edit, update, destroy]
 #
 class BossesController < ApplicationController
-  before_filter only: [:show, :edit, :update, :destroy] do
+  before_action only: [:show, :edit, :update, :destroy] do
     raid = Raid.find(params[:raid_id])
     @boss = raid.bosses.find_by_param(params[:id])
 

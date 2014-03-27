@@ -4,7 +4,7 @@
 # Actions: [new, create, edit, update, destroy]
 #
 class FeaturesController < ApplicationController
-  before_filter only: [:edit, :update, :destroy] do
+  before_action only: [:edit, :update, :destroy] do
     @feature = Feature.find(params[:id])
     authorize @feature
   end

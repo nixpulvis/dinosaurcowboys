@@ -4,7 +4,7 @@
 # Actions: [index, new, create, show, edit, update, destroy]
 #
 class UsersController < ApplicationController
-  before_filter only: [:show, :edit, :update, :destroy] do
+  before_action only: [:show, :edit, :update, :destroy] do
     @user = User.find(params[:id])
     authorize @user
   end

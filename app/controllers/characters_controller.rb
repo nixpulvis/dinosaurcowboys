@@ -5,7 +5,7 @@
 # Actions: [new, create, show, edit, update, destroy, roster]
 #
 class CharactersController < ApplicationController
-  before_filter only: [:show, :edit, :update, :destroy] do
+  before_action only: [:show, :edit, :update, :destroy] do
     user = User.find(params[:user_id])
     @character = user.characters.find(params[:id])
     authorize @character

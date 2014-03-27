@@ -12,14 +12,14 @@ class ApplicationController < ActionController::Base
   # Allowing things like iframes in content of the site requires this.
   # The browser by default shits itself if a response comes back with
   # the same script-like data sent.
-  before_filter do
+  before_action do
     response.headers['X-XSS-Protection'] = '0'
   end
 
   # Ensure authorization.
-  after_filter :verify_authorized, except: :index,
+  after_action :verify_authorized, except: :index,
                                    unless: :insecure_controller?
-  after_filter :verify_policy_scoped, only: :index,
+  after_action :verify_policy_scoped, only: :index,
                                       unless: :insecure_controller?
 
   protected

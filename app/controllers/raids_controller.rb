@@ -4,7 +4,7 @@
 # Actions: [index, new, create, show, edit, update, destroy]
 #
 class RaidsController < ApplicationController
-  before_filter only: [:show, :edit, :update, :destroy] do
+  before_action only: [:show, :edit, :update, :destroy] do
     @raid = Raid.find(params[:id])
     authorize @raid
   end

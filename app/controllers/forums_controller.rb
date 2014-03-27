@@ -4,7 +4,7 @@
 # Actions: [index, new, create, show, edit, update, destroy]
 #
 class ForumsController < ApplicationController
-  before_filter only: [:show, :edit, :update, :destroy] do
+  before_action only: [:show, :edit, :update, :destroy] do
     @forum = Forum.find(params[:id])
     authorize @forum
   end
