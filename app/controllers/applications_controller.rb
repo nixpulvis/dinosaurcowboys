@@ -4,7 +4,7 @@
 # Actions: [index, new, create, show, edit, update, destroy, decide]
 #
 class ApplicationsController < ApplicationController
-  before_filter only: [:show, :edit, :update, :destroy, :decide] do
+  before_action only: [:show, :edit, :update, :destroy, :decide] do
     user = User.find(params[:user_id])
     @application = user.application
   end

@@ -5,7 +5,7 @@
 # Actions: [create, update, destroy]
 #
 class PostsController < ApplicationController
-  before_filter only: [:update, :destroy] do
+  before_action only: [:update, :destroy] do
     @post = postable.posts.find(params[:id])
     authorize @post
   end

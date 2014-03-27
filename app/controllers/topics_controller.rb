@@ -10,7 +10,7 @@ class TopicsController < ApplicationController
                          :impressionable_id,
                          :session_hash]
 
-  before_filter only: [:show, :edit, :update, :destroy] do
+  before_action only: [:show, :edit, :update, :destroy] do
     forum = Forum.find(params[:forum_id])
     @topic = forum.topics.find(params[:id])
     authorize @topic

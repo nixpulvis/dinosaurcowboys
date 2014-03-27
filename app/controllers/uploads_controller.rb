@@ -4,7 +4,7 @@
 # Actions: [index, new, create, destroy]
 #
 class UploadsController < ApplicationController
-  before_filter do
+  before_action do
     @user = User.find(params[:user_id])
   end
 
