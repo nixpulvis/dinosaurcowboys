@@ -18,10 +18,16 @@ foreman start
 ## Database
 
 ### Pull the Database
+Getting the latest database backup locally is as easy as running the following command.
 
 ```
-curl -o latest.dump `heroku pgbackups:url`  # Download the latest backup.
-pg_restore --verbose --clean --no-acl --no-owner -h localhost -U postgres -d party_shark_development latest.dump
+rake db:pull
+```
+
+To tell heroku to capture a backup of the current production database run the following.
+
+```
+rake db:capture
 ```
 
 ## Conventions
