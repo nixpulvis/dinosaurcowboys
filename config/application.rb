@@ -10,6 +10,7 @@ module PartyShark
   class Application < Rails::Application
     require 'party_shark'
 
+    # Redirect requests to partyshark.herokuapp.com to our domain.
     config.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
       r301 %r{.*}, 'http://www.partyshark.org$&', :if => Proc.new { |env|
         env['SERVER_NAME'] == 'partyshark.herokuapp.com'
