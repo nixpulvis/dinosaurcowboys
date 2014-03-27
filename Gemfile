@@ -25,6 +25,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 gem 'foreman'
 gem 'unicorn'
+gem 'rack-rewrite'
 
 group :development do
   gem 'heroku'

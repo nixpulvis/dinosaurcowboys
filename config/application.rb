@@ -10,6 +10,12 @@ module PartyShark
   class Application < Rails::Application
     require 'party_shark'
 
+    config.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
+      r301 %r{.*}, 'http://www.partyshark.org$&', :if => Proc.new { |env|
+        env['SERVER_NAME'] == 'partyshark.herokuapp.com'
+      }
+    end
+
     # Handle errors internally.
     config.exceptions_app = -> (env) do
       ExceptionsController.action(:show).call(env)
