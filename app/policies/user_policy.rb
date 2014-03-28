@@ -9,13 +9,13 @@ class UserPolicy < BasePolicy
       if user.admin?
         scope.all
       else
-        scope.where(id: user.id)
+        scope.where(id: user.id, hidden: false)
       end
     end
   end
 
   def show?
-    true
+    record.shown?
   end
 
   def create?
@@ -24,6 +24,10 @@ class UserPolicy < BasePolicy
 
   def update?
     user.id == record.id || super
+  end
+
+  def toggle?
+    user.admin?
   end
 
   def destroy?

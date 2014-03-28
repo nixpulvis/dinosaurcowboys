@@ -5,6 +5,8 @@
 # them.
 #
 class User < ActiveRecord::Base
+  include Hidable
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
