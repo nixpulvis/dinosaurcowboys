@@ -1,7 +1,7 @@
 <div class="page">
   <div class="title">
     <h1>
-      <%= armory_tag @application.user.main %>
+      <%= character_tag @application.user.main %>'s Application
       <div class="status <%= @application.status %>">
         <%= @application.status.to_s.titleize %>
       </div>
@@ -22,78 +22,62 @@
         <li><%= link_to fa_icon("trash-o"), user_application_path(@application.user), method: :delete, data: { confirm: "Are you sure?" } %></li>
       <% end %>
     </ul>
+
+    <div class="info">
+      <span>Applied on <%= date_tag @application.created_at %>.</span>
+    </div>
   </div>
 
+  <h2>Player Informaion</h2>
+  <dl>
+    <dt>Name</dt>
+    <dd><%= @application.name %></dd>
+
+    <dt>Age</dt>
+    <dd><%= @application.age %></dd>
+
+    <dt>Gender</dt>
+    <dd><%= @application.gender == 0 ? "Male" : "Female" %></dd>
+
+    <dt>Battle.net ID</dt>
+    <dd><%= @application.battlenet %></dd>
+
+    <dt>Armory</dt>
+    <dd><%= armory_tag @application.user.main %></dd>
+
+    <dt>Referer</dt>
+    <dd><%= @application.referer %></dd>
+  </dl>
+
   <div class="content">
-    <div class="entry">
-      <h3>Name</h3>
-      <p><%= @application.name %></p>
-    </div>
+    <h2>Logs</h2>
+    <%= @application.markdown :logs %>
 
-    <div class="entry">
-      <h3>Age</h3>
-      <p><%= @application.age %></p>
-    </div>
+    <h2>Computer</h2>
+    <pre><code><%= @application.computer %></code></pre>
 
-    <div class="entry">
-      <h3>Gender</h3>
-      <p><%= @application.gender == 0 ? "Male" : "Female" %></p>
-    </div>
+    <h2>Raiding History</h2>
+    <%= @application.markdown :raiding_history %>
 
-    <div class="entry">
-      <h3>Battle.net ID</h3>
-      <p><%= @application.battlenet %></p>
-    </div>
+    <h2>Guild History</h2>
+    <%= @application.markdown :guild_history %>
 
-    <div class="entry">
-      <h3>Logs</h3>
-      <p><%= @application.logs %></p>
-    </div>
+    <h2>Guild Leadership</h2>
+    <%= @application.markdown :leadership %>
 
-    <div class="entry">
-      <h3>Computer</h3>
-      <%= simple_format @application.computer %>
-    </div>
+    <h2>Skill, Rotation, and Playstyle</h2>
+    <%= @application.markdown :playstyle %>
 
-    <div class="entry">
-      <h3>Raiding History</h3>
-      <%= simple_format @application.raiding_history %>
-    </div>
+    <h2>Why Party Shark?</h2>
+    <%= @application.markdown :why %>
 
-    <div class="entry">
-      <h3>Guild History</h3>
-      <%= simple_format @application.guild_history %>
-    </div>
+    <h2>What Animal?</h2>
+    <%= @application.markdown :animal %>
 
-    <div class="entry">
-      <h3>Guild Leadership</h3>
-      <%= simple_format @application.leadership %>
-    </div>
-
-    <div class="entry">
-      <h3>Skill, Rotation, and Playstyle</h3>
-      <%= simple_format @application.playstyle %>
-    </div>
-
-    <div class="entry">
-      <h3>Why Party Shark?</h3>
-      <%= simple_format @application.why %>
-    </div>
-
-    <div class="entry">
-      <h3>Referer</h3>
-      <%= simple_format @application.referer %>
-    </div>
-
-    <div class="entry">
-      <h3>What Animal?</h3>
-      <%= simple_format @application.animal %>
-    </div>
-
-    <div class="entry">
-      <h3>Additional</h3>
-      <%= simple_format @application.additional %>
-    </div>
+    <% if @application.additional.present? %>
+      <h2>Additional</h2>
+      <%= @application.markdown :additional %>
+    <% end %>
   </div>
 
   <hr />

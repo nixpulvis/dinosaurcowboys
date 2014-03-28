@@ -5,6 +5,7 @@
 #
 class Application < ActiveRecord::Base
   include Postable
+  include Markdownable
 
   STATES = [
     :pending,

@@ -7,3 +7,15 @@
     @include span-columns(6);
   }
 }
+
+@include select-page('applications', 'show') {
+  dl {
+    dt {
+      font-weight: bold;
+    }
+
+    dd {
+      margin: 2px 0 8px;
+    }
+  }
+}
