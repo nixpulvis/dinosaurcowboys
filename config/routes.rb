@@ -14,6 +14,7 @@ PartyShark::Application.routes.draw do
   # Users, characters and applications.
   get '/roster', to: 'characters#roster'
   resources :users do
+    member { patch 'toggle' }
     resources :characters, except: :index
     resources :uploads, except: [:show, :edit, :update]
     resource :application do

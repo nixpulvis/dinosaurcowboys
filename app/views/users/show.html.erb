@@ -6,6 +6,9 @@
       <% if policy(@user).update? %>
         <li><%= link_to action_tag(:update), edit_user_path(@user) %></li>
       <% end %>
+      <% if policy(@user).toggle? %>
+        <li><%= link_to fa_icon("archive"), toggle_user_path(@user), method: :patch, data: { confirm: "Are you sure?" } %></li>
+      <% end %>
       <% if policy(@user).destroy? %>
         <li><%= link_to action_tag(:destroy), user_path(@user), method: :delete, data: { confirm: "Are you sure?" } %></li>
       <% end %>
