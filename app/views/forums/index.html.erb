@@ -26,7 +26,6 @@
 
   <%= render "forums/table", topics: @topics %>
 
-
   <div class="title">
     <h1>Forums</h1>
 
@@ -43,12 +42,6 @@
         <%= link_to forum_path(forum), class: "button" do %>
           <%= forum %>
           (<%= forum.topics.count %>)
-          <% if forum.freshest %>
-            <span class="pull-right">
-              <%= forum.freshest.title %>
-              <%= date_tag(forum.freshest.posts_updated_at, relative: true) %>
-            </span>
-          <% end %>
         <% end %>
       </li>
     <% end %>

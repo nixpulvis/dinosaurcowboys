@@ -21,7 +21,6 @@ class ForumsController < ApplicationController
     @topics = load_topics(Topic)
 
     @forums = policy_scope(Forum)
-                .includes(:topics)
 
     authorize @forums
     authorize @bosses
