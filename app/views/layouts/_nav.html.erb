@@ -24,10 +24,10 @@
         <%= link_to applications_path do %>
           Applications
           <div class="status pending">
-            <%= Application.where(state: Application.state(:pending)).count %>
+            <%= Application.pendings.count %>
           </div>
           <div class="status trial">
-            <%= Application.where(state: Application.state(:trial)).count %>
+            <%= Application.trials.count %>
           </div>
         <% end %>
       </li>
