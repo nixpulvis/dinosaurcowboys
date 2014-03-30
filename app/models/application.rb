@@ -54,6 +54,34 @@ class Application < ActiveRecord::Base
     Application::STATES.index(status)
   end
 
+  # -> ActiveRecord::Relation
+  # Returns a relation of applications that are pending.
+  #
+  def self.pendings
+    Application.where(state: Application.state(:pending))
+  end
+
+  # -> ActiveRecord::Relation
+  # Returns a relation of applications that are trial.
+  #
+  def self.trials
+    Application.where(state: Application.state(:trial))
+  end
+
+  # -> ActiveRecord::Relation
+  # Returns a relation of applications that are accepted.
+  #
+  def self.accepteds
+    Application.where(state: Application.state(:accepted))
+  end
+
+  # -> ActiveRecord::Relation
+  # Returns a relation of applications that are rejected.
+  #
+  def self.rejecteds
+    Application.where(state: Application.state(:rejected))
+  end
+
   # -> String
   # A displayable format for the application.
   #
