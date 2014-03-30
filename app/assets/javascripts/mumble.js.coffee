@@ -63,6 +63,10 @@ window.updateMumble = ->
     $('.mumble .title ul li a i').addClass('fa-exclamation-triangle')
 
 $ ->
+  $('.mumble .refresh').click (e) ->
+    e.preventDefault()
+    updateMumble()
+
   if $('.mumble').length
     interval = 10  # Seconds.
     $.setIntervalAndExecute(interval * 1000, -> updateMumble())
