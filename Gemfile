@@ -33,6 +33,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'pry'
   gem 'bullet'
+  gem 'ruby-prof'
 end
 
 group :development, :test do
