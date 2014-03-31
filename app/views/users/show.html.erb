@@ -72,7 +72,7 @@
             <%= postable.posts.where(user: @user).count %>
           </td>
           <td>
-            <%= character_tag(postable.posts.last.user.main)  %>
+            <%= user_tag(postable.posts.last.user)  %>
           </td>
           <td>
             <%= date_tag(postable.posts_updated_at, relative: true) %>

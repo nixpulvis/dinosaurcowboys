@@ -40,11 +40,7 @@
 
   <ul class="user-links">
     <% if user_signed_in? %>
-      <li>
-        <%= link_to user_path(current_user) do %>
-          <%= character_tag(current_user.main) %>
-        <% end %>
-      </li>
+      <li><%= user_tag(current_user) %></li>
 
       <% unless current_user.rank %>
         <% if current_user.application %>

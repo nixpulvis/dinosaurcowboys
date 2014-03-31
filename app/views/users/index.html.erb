@@ -15,9 +15,7 @@
       <tr>
         <td><%= avatar_tag(user, size: "35x35") %></td>
         <td><span class="name">
-          <%= link_to user_path(user) do %>
-            <%= character_tag(user.main) %>
-          <% end %>
+          <%= user_tag(user) %>
         </span></td>
         <td><span class="email"><%= user.email %></span></td>
         <td><span class="rank"><%= user.main.user.rank %></span></td>
