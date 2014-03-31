@@ -21,6 +21,7 @@ class ForumsController < ApplicationController
     @topics = load_topics(Topic)
 
     @forums = policy_scope(Forum)
+                .order(:created_at)
 
     authorize @forums
     authorize @bosses
