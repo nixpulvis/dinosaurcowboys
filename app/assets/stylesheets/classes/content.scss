@@ -7,11 +7,19 @@
   @include prefixer(font-smoothing, antialiased, webkit moz);
   font: 16px 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-  *:first-child {
+  // TODO: May need to select more things?
+  h1:first-child,
+  h2:first-child,
+  h3:first-child,
+  h4:first-child,
+  h5:first-child,
+  h6:first-child,
+  p:first-child {
     margin-top: 0;
   }
 
-  *:last-child {
+  // TODO: May need to select more things.
+  p:last-child {
     margin-bottom: 0;
   }
 
