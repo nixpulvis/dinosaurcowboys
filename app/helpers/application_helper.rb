@@ -24,4 +24,21 @@ module ApplicationHelper
     content_tag(:abbr, datetime.iso8601, title: datetime,
                                          class: classes.join(' '))
   end
+
+  # Symbol -> HTML
+  # Returns the appropriate HTML for an icon and text
+  # for the given action.
+  #
+  def action_tag(action)
+    case action
+    when :new, :create
+      "New ".html_safe + fa_icon("file-o")
+    when :edit, :update
+      "Edit ".html_safe + fa_icon("edit")
+    when :destroy
+      "Delete ".html_safe + fa_icon("trash-o")
+    when :discussion
+      "View Discussion ".html_safe + fa_icon("comment")
+    end
+  end
 end

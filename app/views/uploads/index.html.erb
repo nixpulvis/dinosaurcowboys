@@ -4,7 +4,7 @@
 
     <ul class="actions">
       <% if policy(Upload.new(user: @user)).create? %>
-        <li><%= link_to fa_icon("upload"), new_user_upload_path(@user) %></li>
+        <li><%= link_to action_tag(:create), new_user_upload_path(@user) %></li>
       <% end %>
     </ul>
 
