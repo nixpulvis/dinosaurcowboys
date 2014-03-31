@@ -8,7 +8,7 @@
 
     <ul class="actions">
       <% if policy(@topic).destroy? %>
-        <li><%= link_to fa_icon("trash-o"), forum_topic_path(@topic.forum, @topic), method: :delete, data: { confirm: "Are you sure?" } %></li>
+        <li><%= link_to action_tag(:destroy), forum_topic_path(@topic.forum, @topic), method: :delete, data: { confirm: "Are you sure?" } %></li>
       <% end %>
     </ul>
   </div>
