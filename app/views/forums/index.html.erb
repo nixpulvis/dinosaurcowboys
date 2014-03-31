@@ -41,7 +41,9 @@
       <li>
         <%= link_to forum_path(forum), class: "button" do %>
           <%= forum %>
-          (<%= forum.topics.count %>)
+          <div class="pull-right">
+            <%= pluralize forum.topics.count, "topic" %>
+          </div>
         <% end %>
       </li>
     <% end %>
