@@ -20,7 +20,9 @@
   <%= render "forums/table", topics: @topics %>
 
   <% if policy(@topic).create? %>
-    <%= simple_form_for [@forum, @topic], url: forum_topics_path(@forum) do |f| %>
+    <a id="showNewTopic" class="button" href="#">Create New Topic</a>
+
+    <%= simple_form_for [@forum, @topic], url: forum_topics_path(@forum), html: { class: "hidden" } do |f| %>
       <h2>New Topic in <%= @forum.name %></h2>
 
       <%= f.input :title %>
