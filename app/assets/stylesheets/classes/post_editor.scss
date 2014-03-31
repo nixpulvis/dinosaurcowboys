@@ -28,7 +28,16 @@
     }
   }
 
+  .upload-hint {
+    margin: 0;
+    padding: 4px 6px;
+    background-color: $border-color;
+    font-size: 12px;
+    color: $faded-text-color;
+  }
+
   textarea {
+    border-top: 1px dashed $background-color;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     height: 100px;

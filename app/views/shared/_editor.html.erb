@@ -26,5 +26,6 @@
       <%= fa_icon "question-circle", class: "button-small pull-right" %>
     <% end %>
   </div>
-  <%= f.text_area field, class: "dropfile", data: { current_user_id: current_user.id } %><br />
+  <p class="upload-hint">Attach images by dragging &amp; dropping.</p>
+  <%= f.input field, label: false, input_html: { class: 'dropfile', data: { current_user_id: current_user.id } } %>
 </div>
