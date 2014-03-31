@@ -31,7 +31,7 @@
 
       <td>
         <% if application.posts.last %>
-          <%= character_tag(application.posts.last.user.main) %>
+          <%= user_tag(application.posts.last.user) %>
         <% end %>
       </td>
 

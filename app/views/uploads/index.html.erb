@@ -1,6 +1,6 @@
 <div class="page">
   <div class="title">
-    <h1><%= character_tag @user.main %>'s Uploads</h1>
+    <h1><%= user_tag @user %>'s Uploads</h1>
 
     <ul class="actions">
       <% if policy(Upload.new(user: @user)).create? %>

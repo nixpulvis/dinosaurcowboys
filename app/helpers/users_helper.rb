@@ -3,6 +3,15 @@
 #
 module UsersHelper
   # User -> HTML
+  # Returns HTML for a link to the given user.
+  #
+  def user_tag(user)
+    link_to user_path(user) do
+      character_tag(user.main)
+    end
+  end
+
+  # User -> HTML
   # Returns an image tag for the given users avatar.
   #
   def avatar_tag(user, options = {})
