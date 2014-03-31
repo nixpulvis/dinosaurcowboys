@@ -27,5 +27,5 @@
     <% end %>
   </div>
   <p class="upload-hint">Attach images by dragging &amp; dropping.</p>
-  <%= f.input field, label: false, input_html: { class: 'dropfile', data: { current_user_id: current_user.id } } %>
+  <%= f.input field, label: false, hint: local_assigns[:hint], input_html: { class: 'dropfile', data: { current_user_id: current_user.id } } %>
 </div>
