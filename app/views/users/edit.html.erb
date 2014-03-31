@@ -8,7 +8,7 @@
       <%= f.input :email %>
 
       <%= f.simple_fields_for :avatar, @user.build_avatar(user: @user) do |a| %>
-        <%= a.input :file %>
+        <%= a.input :file, label: "Avatar" %>
         <%= a.input :user_id, as: :hidden %>
       <% end %>
 
