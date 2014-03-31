@@ -90,7 +90,7 @@
 
   <% if policy(@post).create? %>
     <%= simple_form_for [@application, @post] do |f| %>
-      <%= render "shared/posts/edit", f: f, submit: "Reply" %>
+      <%= render "shared/posts/edit", f: f, submit: "Reply", hint: "Posts are visible to the applicant." %>
     <% end %>
   <% end %>
 </div>
