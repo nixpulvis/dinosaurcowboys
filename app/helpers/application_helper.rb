@@ -32,13 +32,13 @@ module ApplicationHelper
   def action_tag(action)
     case action
     when :new, :create
-      "New ".html_safe + fa_icon("file-o")
+      'New '.html_safe + fa_icon('file-o')
     when :edit, :update
-      "Edit ".html_safe + fa_icon("edit")
+      'Edit '.html_safe + fa_icon('edit')
     when :destroy
-      "Delete ".html_safe + fa_icon("trash-o")
+      'Delete '.html_safe + fa_icon('trash-o')
     when :discussion
-      "View Discussion ".html_safe + fa_icon("comment")
+      'View Discussion '.html_safe + fa_icon('comment')
     end
   end
 end
