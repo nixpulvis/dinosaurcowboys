@@ -2,6 +2,10 @@
 // The main nav for the site.
 //
 .topnav {
+  background-color: $border-color;
+  border: $border-size solid $border-color;
+  margin-bottom: -4px;
+
   ul {
     display: inline-block;
     margin: 0;
@@ -16,12 +20,9 @@
     display: inline-block;
 
     a {
-      display: block;
-      padding: 10px;
-    }
-
-    a:hover {
-      background: $topbar-hover-color;
+      @extend .button;
+      margin-bottom: 0;
+      border-radius: 0;
     }
   }
 }
