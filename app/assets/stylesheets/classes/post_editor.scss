@@ -29,11 +29,11 @@
   }
 
   .upload-hint {
+    background-color: $border-color;
+    color: $faded-text-color;
+    font-size: 12px;
     margin: 0;
     padding: 4px 6px;
-    background-color: $border-color;
-    font-size: 12px;
-    color: $faded-text-color;
   }
 
   textarea {
