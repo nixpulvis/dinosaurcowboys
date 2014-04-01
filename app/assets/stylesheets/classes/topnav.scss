@@ -4,7 +4,8 @@
 .topnav {
   background-color: $border-color;
   border: $border-size solid $border-color;
-  margin-bottom: -4px;
+  border-top-left-radius: $border-radius-size;
+  border-top-right-radius: $border-radius-size;
 
   ul {
     display: inline-block;
@@ -23,6 +24,7 @@
       @extend .button;
       border-radius: 0;
       margin-bottom: 0;
+      padding: 8px 10px;
     }
   }
 }
