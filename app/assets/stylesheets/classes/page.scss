@@ -5,4 +5,7 @@
 .page {
   @extend .panel;
   @include span-columns(12);
+  border-top: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
 }
