@@ -36,7 +36,7 @@ $ ->
     last_position = $(this).textrange('get').position
 
   $('.fa-bold').click (e) ->
-    editor = $(this).parent().siblings('textarea')
+    editor = $(this).parent().siblings('.input').children('textarea')
     val = editor.val()
 
     selection = editor.textrange('get')
@@ -47,7 +47,7 @@ $ ->
     editor.focus()
 
   $('.fa-italic').click (e) ->
-    editor = $(this).parent().siblings('textarea')
+    editor = $(this).parent().siblings('.input').children('textarea')
     val = editor.val()
 
     selection = editor.textrange('get')
@@ -58,7 +58,7 @@ $ ->
     editor.focus()
 
   $('.fa-underline').click (e) ->
-    editor = $(this).parent().siblings('textarea')
+    editor = $(this).parent().siblings('.input').children('textarea')
     val = editor.val()
 
     selection = editor.textrange('get')
@@ -69,7 +69,7 @@ $ ->
     editor.focus()
 
   $('.fa-strikethrough').click (e) ->
-    editor = $(this).parent().siblings('textarea')
+    editor = $(this).parent().siblings('.input').children('textarea')
     val = editor.val()
 
     selection = editor.textrange('get')
@@ -80,7 +80,7 @@ $ ->
     editor.focus()
 
   $('.fa-eraser').click (e) ->
-    editor = $(this).parent().siblings('textarea')
+    editor = $(this).parent().siblings('.input').children('textarea')
     val = editor.val()
 
     selection = editor.textrange('get')
@@ -91,7 +91,7 @@ $ ->
     editor.focus()
 
   $('.fa-text-height').click (e) ->
-    editor = $(this).parent().siblings('textarea')
+    editor = $(this).parent().siblings('.input').children('textarea')
     val = editor.val()
 
     selection = editor.textrange('get')
@@ -104,7 +104,7 @@ $ ->
     editor.focus()
 
   $('.fa-indent').click (e) ->
-    editor = $(this).parent().siblings('textarea')
+    editor = $(this).parent().siblings('.input').children('textarea')
     val = editor.val()
 
     selection = editor.textrange('get')
@@ -117,7 +117,7 @@ $ ->
     editor.focus()
 
   $('.fa-code').click (e) ->
-    editor = $(this).parent().siblings('textarea')
+    editor = $(this).parent().siblings('.input').children('textarea')
     val = editor.val()
 
     selection = editor.textrange('get')
@@ -128,7 +128,7 @@ $ ->
     editor.focus()
 
   $('.fa-link').click (e) ->
-    editor = $(this).parent().siblings('textarea')
+    editor = $(this).parent().siblings('.input').children('textarea')
     popup = $(this).parent().find('.popup.link')
     val = editor.val()
 
@@ -137,7 +137,7 @@ $ ->
 
   $('.popup.link input[type="submit"]').click (e) ->
     e.preventDefault()
-    editor = $(this).parent().parent().siblings('textarea')
+    editor = $(this).parent().parent().siblings('.input').children('textarea')
     text = $(this).siblings('input[name="text"]').val()
     url = $(this).siblings('input[name="url"]').val()
 
@@ -148,7 +148,7 @@ $ ->
 
 
   $('.fa-picture-o').click (e) ->
-    editor = $(this).parent().siblings('textarea')
+    editor = $(this).parent().siblings('.input').children('textarea')
     popup = $(this).parent().find('.popup.picture-o')
     val = editor.val()
 
@@ -157,7 +157,7 @@ $ ->
 
   $('.popup.picture-o input[type="submit"]').click (e) ->
     e.preventDefault()
-    editor = $(this).parent().parent().siblings('textarea')
+    editor = $(this).parent().parent().siblings('.input').children('textarea')
     url = $(this).siblings('input[name="url"]').val()
 
     editor.textrange('setcursor', last_position + 1)
