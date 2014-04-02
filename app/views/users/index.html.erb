@@ -3,13 +3,7 @@
     <h1>Users</h1>
 
     <ul class="actions">
-      <li>
-        <% if params[:hidden] %>
-          <%= link_to "Excluding Hidden", users_path %>
-        <% else %>
-          <%= link_to "Including Hidden", users_path(hidden: true) %>
-        <% end %>
-      </li>
+      <li><%= toggle_param_tag(:hidden, :users_path) %></li>
     </ul>
   </div>
 

@@ -43,4 +43,16 @@ module ApplicationHelper
       'View Discussion '.html_safe + fa_icon('comment')
     end
   end
+
+  # Symbol, Symbol -> HTML
+  # Given a param to toggle and the symbol of the path method to
+  # the path returns a link that toggles the given param.
+  #
+  def toggle_param_tag(param, path)
+    if params[param]
+      link_to "Excluding #{param.to_s.titleize}", send(path, params.reject { |k,v| k == param.to_s })
+    else
+      link_to "Including #{param.to_s.titleize}", send(path, params.merge({ param => true }))
+    end
+  end
 end
