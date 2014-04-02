@@ -5,9 +5,16 @@
     <ul class="actions">
       <li>
         <% if params[:resolved] %>
-          <%= link_to "Excluding Resolved", applications_path %>
+          <%= link_to "Excluding Resolved", applications_path(params.reject { |k,v| k == "resolved" }) %>
         <% else %>
-          <%= link_to "Including Resolved", applications_path(resolved: true) %>
+          <%= link_to "Including Resolved", applications_path(params.merge({ resolved: true })) %>
+        <% end %>
+      </li>
+      <li>
+        <% if params[:hidden] %>
+          <%= link_to "Excluding Hidden", applications_path(params.reject { |k,v| k == "hidden" }) %>
+        <% else %>
+          <%= link_to "Including Hidden", applications_path(params.merge({ hidden: true })) %>
         <% end %>
       </li>
     </ul>

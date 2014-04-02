@@ -4,7 +4,7 @@
 # Actions: [index, new, create, show, edit, update, destroy, decide]
 #
 class ApplicationsController < ApplicationController
-  before_action only: [:show, :edit, :update, :destroy, :decide] do
+  before_action only: [:show, :edit, :update, :toggle, :destroy, :decide] do
     user = User.find(params[:user_id])
     @application = user.application
   end
@@ -17,6 +17,10 @@ class ApplicationsController < ApplicationController
                       .includes(:user)
                       .order(:state, created_at: :desc)
                       .page(params[:page])
+
+    unless params[:hidden]
+      @applications = @applications.where(hidden: false)
+    end
 
     unless params[:resolved]
       @applications = @applications.where.not state:
@@ -104,6 +108,15 @@ class ApplicationsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  # PATCH /users/:user_id/application/decide
+  # Hide or show the given Application, setting it's hidden attribute.
+  #
+  def toggle
+    authorize @application
+    @application.toggle
+    redirect_to :back
   end
 
   # DELETE /users/:user_id/application
