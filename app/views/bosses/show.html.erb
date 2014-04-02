@@ -26,11 +26,7 @@
 
   <hr id="discussion" />
 
-  <%= paginate @posts, params: { anchor: 'discussion' } %>
-  <% @posts.each do |post| %>
-    <%= render "shared/posts/show", post: post %>
-  <% end %>
-  <%= paginate @posts, params: { anchor: 'discussion' } %>
+  <%= render "shared/posts/index", posts: @posts, anchor: true %>
 
   <% if policy(@post).create? %>
     <%= simple_form_for [@boss, @boss.posts.build] do |f| %>

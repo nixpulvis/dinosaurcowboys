@@ -69,7 +69,7 @@ class UsersController < ApplicationController
 
     @postables = Kaminari.paginate_array(@postables)
                          .page(params[:page])
-                         .per(10)
+                         .per(15)
   end
 
   # GET /users/:id/edit

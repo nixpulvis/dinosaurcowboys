@@ -1,3 +1,5 @@
+<% if postables.any? %>
+
 <table class="list compact">
   <tr>
     <th>Postable</th>
@@ -6,7 +8,7 @@
     <th>Last Post</th>
   </tr>
 
-  <% @postables.each do |postable, post, count| %>
+  <% postables.each do |postable, post, count| %>
     <tr>
       <td><%= link_to postable, postable_path(postable) %></td>
       <td><%= count %></td>
@@ -22,4 +24,12 @@
     </tr>
   <% end %>
 </table>
-<%= paginate @postables %>
+<%= paginate postables %>
+
+<% else %>
+
+<hr />
+<p>No Posts Yet.</p>
+<hr />
+
+<% end %>

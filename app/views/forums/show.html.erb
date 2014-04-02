@@ -17,7 +17,7 @@
     </ul>
   </div>
 
-  <%= render "forums/table", topics: @topics %>
+  <%= render "forums/topics_table", topics: @topics %>
 
   <% if policy(@topic).create? %>
     <a id="showNewTopic" class="button" href="#">Create New Topic</a>

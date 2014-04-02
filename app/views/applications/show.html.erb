@@ -83,13 +83,9 @@
     <% end %>
   </div>
 
-  <hr />
+  <hr id="discussion" />
 
-  <%= paginate @posts %>
-  <% @posts.each do |post| %>
-    <%= render "shared/posts/show", post: post %>
-  <% end %>
-  <%= paginate @posts %>
+  <%= render "shared/posts/index", posts: @posts, anchor: true %>
 
   <% if policy(@post).create? %>
     <%= simple_form_for [@application, @post] do |f| %>

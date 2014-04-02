@@ -21,11 +21,7 @@
     </div>
   </div>
 
-  <%= paginate @posts %>
-  <% @posts.each do |post| %>
-    <%= render "shared/posts/show", post: post %>
-  <% end %>
-  <%= paginate @posts %>
+  <%= render "shared/posts/index", posts: @posts %>
 
   <% if policy(@post).create? %>
     <%= simple_form_for [@topic, @topic.posts.build] do |f| %>
