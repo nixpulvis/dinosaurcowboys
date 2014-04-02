@@ -53,9 +53,23 @@ class UsersController < ApplicationController
   # GET /users/:id
   # Provides the user, and it's posts.
   #
+  # TODO: This is kinda gross.
+  #
   def show
-    @posts = policy_scope(@user.posts).sort_by { |p| p.updated_at }.reverse
-    @postables = @posts.map { |p| p.postable }.flatten.uniq
+    @postables = @user.posts.group(:postable_id, :postable_type).count
+
+    @postables = @postables.map do |g, c|
+      postable = g[1].constantize.find_by_id(g[0])
+      [postable, postable.posts.where(user: @user).last, c]
+    end
+
+    @postables.sort! do |a, b|
+      b[1].created_at <=> a[1].created_at
+    end
+
+    @postables = Kaminari.paginate_array(@postables)
+                         .page(params[:page])
+                         .per(10)
   end
 
   # GET /users/:id/edit
