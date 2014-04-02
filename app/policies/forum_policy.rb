@@ -8,7 +8,7 @@ class ForumPolicy < BasePolicy
   class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
       if user.admin?
-        scope.all
+        scope
       else
         user.rank.try(:readable_forums) || Forum.none
       end

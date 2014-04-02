@@ -7,7 +7,7 @@
 class CharacterPolicy < BasePolicy
   class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
-      scope.all
+      scope
     end
   end
 

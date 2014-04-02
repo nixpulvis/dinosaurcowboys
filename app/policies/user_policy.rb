@@ -7,7 +7,7 @@ class UserPolicy < BasePolicy
   class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
       if user.admin?
-        scope.all
+        scope
       else
         scope.where(id: user.id, hidden: false)
       end

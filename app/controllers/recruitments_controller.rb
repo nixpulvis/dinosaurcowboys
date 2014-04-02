@@ -8,7 +8,7 @@ class RecruitmentsController < ApplicationController
   # Provides the recruitment class needs.
   #
   def show
-    @recruitments = policy_scope(RecruitmentClass)
+    @recruitments = policy_scope(RecruitmentClass).all
     authorize @recruitments
   end
 
@@ -16,7 +16,7 @@ class RecruitmentsController < ApplicationController
   # Provides the recruitment class needs for editing.
   #
   def edit
-    @recruitments = policy_scope(RecruitmentClass)
+    @recruitments = policy_scope(RecruitmentClass).all
     authorize RecruitmentClass
   end
 

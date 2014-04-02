@@ -10,7 +10,7 @@ class ApplicationPolicy < BasePolicy
   class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
       if user.admin?
-        scope.all
+        scope
       elsif user.rank.try(:>=, 'Raider')
         scope.where(hidden: false)
       else
