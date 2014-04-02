@@ -1,6 +1,23 @@
 <div class="page">
   <div class="title">
     <h1><%= local_assigns[:header] || "Edit Your Application" %></h1>
+
+    <ul class="actions">
+      <% if policy(@application).decide? %>
+        <li><%= decide_link "Pending", @application.user, :pending %></li>
+        <li><%= decide_link "Trial", @application.user, :trial %></li>
+        <li><%= decide_link "Accept", @application.user, :accepted %></li>
+        <li><%= decide_link "Reject", @application.user, :rejected %></li>
+      <% end %>
+
+      <% if policy(@application).toggle? %>
+        <li><%= link_to action_tag(:toggle), toggle_user_application_path(@application.user), method: :patch, data: { confirm: "Are you sure?" } %></li>
+      <% end %>
+      <% if policy(@application).destroy? %>
+        <li><%= link_to action_tag(:destroy), user_application_path(@application.user), method: :delete, data: { confirm: "Are you sure?" } %></li>
+      <% end %>
+    </ul>
+
     <div class="info">
       You are applying as <%= armory_tag @application.user.main %>.
     </div>
