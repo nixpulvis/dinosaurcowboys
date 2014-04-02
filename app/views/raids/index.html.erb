@@ -4,7 +4,7 @@
 
     <ul class="actions">
       <% if policy(Raid.new).create? %>
-        <li><%= link_to action_tag(:create), new_raid_path %></li>
+        <li><%= link_to action_tag(:create, Raid), new_raid_path %></li>
       <% end %>
     </ul>
   </div>
