@@ -57,39 +57,6 @@
   <div class="posts">
     <h2>Posts</h2>
 
-    <table class="list">
-      <tr>
-        <th>Postable</th>
-        <th>Posts by User</th>
-        <th>Last Post by <%= user_tag(@user) %></th>
-        <th>Last Post</th>
-      </tr>
-      <% @postables.each do |postable, post, count| %>
-        <tr>
-          <td>
-            <%= link_to postable_path(postable) do %>
-              <%= postable %>
-            <% end %>
-          </td>
-          <td>
-            <%= count %>
-          </td>
-          <td>
-            <%= link_to postable_post_path(postable, post) do %>
-              <%= date_tag(post.created_at, relative: true) %>
-            <% end %>
-          </td>
-          <td>
-            <% if postable.last_post %>
-              <%= link_to postable_post_path(postable, postable.last_post) do %>
-                <%= character_tag(postable.last_post.user.main) %>
-                <%= date_tag(postable.last_post.created_at, relative: true) %>
-              <% end %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-    <%= paginate @postables %>
+    <%= render 'users/table' %>
   </div>
 </div>
