@@ -11,10 +11,11 @@
       <% if policy(@boss).update? %>
         <li><%= link_to action_tag(:edit, @boss), edit_raid_boss_path(@boss.raid, @boss) %></li>
       <% end %>
+      <% if policy(@boss).toggle? %>
+        <li><%= link_to action_tag(:toggle, @boss), toggle_raid_boss_path(@boss.raid, @boss), method: :patch %></li>
+      <% end %>
       <% if policy(@boss).destroy? %>
-        <li>
-          <%= link_to action_tag(:destroy, @boss), raid_boss_path(@boss.raid, @boss), method: :delete, data: { confirm: "Are you sure?" } %>
-        </li>
+        <li><%= link_to action_tag(:destroy, @boss), raid_boss_path(@boss.raid, @boss), method: :delete, data: { confirm: "Are you sure?" } %></li>
       <% end %>
     </ul>
   </div>

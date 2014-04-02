@@ -8,16 +8,16 @@
 class RaidPolicy < BasePolicy
   class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
-      if Pundit.policy(user, Raid).read? || user.admin?
+      if user.admin?
         scope.all
       else
-        scope.none
+        scope.where(hidden: false)
       end
     end
   end
 
   def index?
-    read? || super
+    true
   end
 
   def show?
@@ -38,7 +38,7 @@ class RaidPolicy < BasePolicy
 
   # READ === See the topic, and its posts.
   def read?
-    true
+    record.shown? || user.admin?
   end
 
   # WRITE === Make a new topic, and post on it.

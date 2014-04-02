@@ -6,6 +6,9 @@
     </h2>
 
     <ul class="actions">
+      <% if policy(@raid).toggle? %>
+        <li><%= link_to action_tag(:toggle, @raid), toggle_raid_path(@raid), method: :patch %></li>
+      <% end %>
       <% if policy(@raid).destroy? %>
         <li><%= link_to action_tag(:destroy, @raid), raid_path(@raid), method: :delete, data: { confirm: "Are you sure?" } %></li>
       <% end %>
