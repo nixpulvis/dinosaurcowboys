@@ -4,7 +4,7 @@
 # Actions: [new, create, show, edit, update, destroy]
 #
 class BossesController < ApplicationController
-  before_action only: [:show, :edit, :update, :destroy] do
+  before_action only: [:show, :edit, :update, :toggle, :destroy] do
     raid = Raid.find(params[:raid_id])
     @boss = raid.bosses.find_by_param(params[:id])
 
@@ -58,6 +58,14 @@ class BossesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  # PATCH /raids/:raid_id/bosses/:id/toggle
+  # Hide or show the given boss, setting it's hidden attribute.
+  #
+  def toggle
+    @boss.toggle
+    redirect_to :back
   end
 
   # DELETE /raids/:raid_id/bosses/:id

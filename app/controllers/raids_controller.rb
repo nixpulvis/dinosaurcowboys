@@ -4,7 +4,7 @@
 # Actions: [index, new, create, show, edit, update, destroy]
 #
 class RaidsController < ApplicationController
-  before_action only: [:show, :edit, :update, :destroy] do
+  before_action only: [:show, :edit, :update, :toggle, :destroy] do
     @raid = Raid.find(params[:id])
     authorize @raid
   end
@@ -13,7 +13,13 @@ class RaidsController < ApplicationController
   # Provides the raids.
   #
   def index
-    @raids = policy_scope(Raid).order(tier: :desc)
+    @raids = policy_scope(Raid)
+               .order(tier: :desc)
+
+    unless params[:hidden]
+      @raids = @raids.where(hidden: false)
+    end
+
     authorize @raids
   end
 
@@ -44,7 +50,15 @@ class RaidsController < ApplicationController
   # Provides the given raid, and it's posts.
   #
   def show
-    @bosses = @raid.bosses.includes(:raid)
+    # @bosses = @raid.bosses.includes(:raid)
+    @bosses = policy_scope(Boss)
+                .where(raid: @raid)
+                .includes(:raid)
+
+    unless params[:hidden]
+      @bosses = @bosses.where(hidden: false)
+    end
+
     @posts = Post.for_postable(@raid, params[:page])
     @post  = @raid.posts.build
   end
@@ -64,6 +78,14 @@ class RaidsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  # PATCH /raids/:id/toggle
+  # Hide or show the given raid, setting it's hidden attribute.
+  #
+  def toggle
+    @raid.toggle
+    redirect_to :back
   end
 
   # DELETE /raids/:id

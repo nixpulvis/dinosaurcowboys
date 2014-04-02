@@ -29,7 +29,10 @@ PartyShark::Application.routes.draw do
 
   # Raids and bosses.
   resources :raids do
-    resources :bosses, except: :index
+    member { patch 'toggle' }
+    resources :bosses, except: :index do
+      member { patch 'toggle' }
+    end
   end
 
   # Forums and topics.

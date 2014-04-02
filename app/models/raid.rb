@@ -9,6 +9,7 @@
 class Raid < ActiveRecord::Base
   include Markdownable
   include Postable
+  include Hidable
 
   # As we all know, there are bosses in raids.
   has_many :bosses, dependent: :destroy
