@@ -19,3 +19,11 @@
     }
   }
 }
+
+@include select-page('applications', 'show' 'edit') {
+  .title {
+    div:last-child {
+      margin-top: 10px;
+    }
+  }
+}

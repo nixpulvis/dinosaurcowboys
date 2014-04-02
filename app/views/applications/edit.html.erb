@@ -3,13 +3,6 @@
     <h1><%= local_assigns[:header] || "Edit Your Application" %></h1>
 
     <ul class="actions">
-      <% if policy(@application).decide? %>
-        <li><%= decide_link "Pending", @application.user, :pending %></li>
-        <li><%= decide_link "Trial", @application.user, :trial %></li>
-        <li><%= decide_link "Accept", @application.user, :accepted %></li>
-        <li><%= decide_link "Reject", @application.user, :rejected %></li>
-      <% end %>
-
       <% if policy(@application).toggle? %>
         <li><%= link_to action_tag(:toggle, @application), toggle_user_application_path(@application.user), method: :patch %></li>
       <% end %>
@@ -20,6 +13,15 @@
 
     <div class="info">
       You are applying as <%= armory_tag @application.user.main %>.
+    </div>
+
+    <div>
+      <% if policy(@application).decide? %>
+        <%= decide_link "Pend", @application.user, :pending %>
+        <%= decide_link "Try", @application.user, :trial %>
+        <%= decide_link "Accept", @application.user, :accepted %>
+        <%= decide_link "Reject", @application.user, :rejected %>
+      <% end %>
     </div>
   </div>
 
