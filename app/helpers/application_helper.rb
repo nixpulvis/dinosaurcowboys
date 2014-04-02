@@ -35,6 +35,8 @@ module ApplicationHelper
       'New '.html_safe + fa_icon('file-o')
     when :edit, :update
       'Edit '.html_safe + fa_icon('edit')
+    when :toggle
+      'Toggle '.html_safe + fa_icon('eye')
     when :destroy
       'Delete '.html_safe + fa_icon('trash-o')
     when :discussion
