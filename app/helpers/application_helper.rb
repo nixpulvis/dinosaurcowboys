@@ -29,14 +29,18 @@ module ApplicationHelper
   # Returns the appropriate HTML for an icon and text
   # for the given action.
   #
-  def action_tag(action)
+  def action_tag(action, model)
     case action
     when :new, :create
       'New '.html_safe + fa_icon('file-o')
     when :edit, :update
       'Edit '.html_safe + fa_icon('edit')
     when :toggle
-      'Toggle '.html_safe + fa_icon('eye')
+      if model.hidden?
+        'Show '.html_safe + fa_icon('eye')
+      else
+        'Hide '.html_safe + fa_icon('eye')
+      end
     when :destroy
       'Delete '.html_safe + fa_icon('trash-o')
     when :discussion
