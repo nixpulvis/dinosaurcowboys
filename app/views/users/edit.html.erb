@@ -4,7 +4,7 @@
 
     <ul class="actions">
       <% if policy(@user).toggle? %>
-        <li><%= link_to action_tag(:toggle, @user), toggle_user_path(@user), method: :patch, data: { confirm: "Are you sure?" } %></li>
+        <li><%= link_to action_tag(:toggle, @user), toggle_user_path(@user), method: :patch %></li>
       <% end %>
       <% if policy(@user).destroy? %>
         <li><%= link_to action_tag(:destroy, @user), user_path(@user), method: :delete, data: { confirm: "Are you sure?" } %></li>

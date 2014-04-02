@@ -11,7 +11,7 @@
       <% end %>
 
       <% if policy(@application).toggle? %>
-        <li><%= link_to action_tag(:toggle, @application), toggle_user_application_path(@application.user), method: :patch, data: { confirm: "Are you sure?" } %></li>
+        <li><%= link_to action_tag(:toggle, @application), toggle_user_application_path(@application.user), method: :patch %></li>
       <% end %>
       <% if policy(@application).destroy? %>
         <li><%= link_to action_tag(:destroy, @application), user_application_path(@application.user), method: :delete, data: { confirm: "Are you sure?" } %></li>
