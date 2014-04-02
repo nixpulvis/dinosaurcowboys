@@ -6,7 +6,7 @@
     </h2>
 
     <ul class="actions">
-      <% if current_user.admin? %>
+      <% if current_user.try(:admin?) %>
         <li><%= toggle_param_tag(:hidden, :raid_path) %></li>
       <% end %>
 

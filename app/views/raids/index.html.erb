@@ -7,7 +7,7 @@
         <li><%= link_to action_tag(:create, Raid), new_raid_path %></li>
       <% end %>
 
-      <% if current_user.admin? %>
+      <% if current_user.try(:admin?) %>
         <li><%= toggle_param_tag(:hidden, :raids_path) %></li>
       <% end %>
     </ul>
