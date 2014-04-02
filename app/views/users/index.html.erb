@@ -3,7 +3,9 @@
     <h1>Users</h1>
 
     <ul class="actions">
-      <li><%= toggle_param_tag(:hidden, :users_path) %></li>
+      <% if current_user.admin? %>
+        <li><%= toggle_param_tag(:hidden, :users_path) %></li>
+      <% end %>
     </ul>
   </div>
 
