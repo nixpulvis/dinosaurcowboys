@@ -50,7 +50,6 @@ class RaidsController < ApplicationController
   def show
     @bosses = policy_scope(Boss)
                 .where(raid: @raid)
-                .includes(:raid)
 
     @bosses = @bosses.where(hidden: false) unless params[:hidden]
 
