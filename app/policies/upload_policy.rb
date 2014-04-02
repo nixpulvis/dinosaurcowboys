@@ -7,7 +7,7 @@
 class UploadPolicy < BasePolicy
   class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
-      scope
+      scope.all
     end
   end
 

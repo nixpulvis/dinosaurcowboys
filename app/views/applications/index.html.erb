@@ -4,7 +4,10 @@
 
     <ul class="actions">
       <li><%= toggle_param_tag(:resolved, :applications_path) %></li>
-      <li><%= toggle_param_tag(:hidden, :applications_path) %></li>
+
+      <% if current_user.admin? %>
+        <li><%= toggle_param_tag(:hidden, :applications_path) %></li>
+      <% end %>
     </ul>
   </div>
 
