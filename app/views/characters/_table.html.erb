@@ -1,0 +1,21 @@
+<table class="list">
+  <tr>
+    <th></th>
+    <th></th>
+    <th>Role</th>
+    <th>Spec</th>
+    <th>Rank</th>
+    <th>Join Date</th>
+  </tr>
+
+  <% characters.each do |character| %>
+    <tr>
+      <td><%= image_tag character.thumbnail, class: "border", size: "35x35" %></td>
+      <td><span class="name"><%= armory_tag character %></span></td>
+      <td><%= image_tag "role_#{character.role.downcase}.gif", size: "22x22" %></td>
+      <td><span class="spec"><%= character.spec %></span></td>
+      <td><span class="rank"><%= character.user.rank %></span></td>
+      <td><span><%= date_tag(character.user.created_at, time: false) %></span></td>
+    </tr>
+  <% end %>
+</table>
