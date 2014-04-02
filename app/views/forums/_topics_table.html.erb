@@ -1,4 +1,5 @@
 <% if topics.any? %>
+
 <table class="list compact">
   <tr>
     <th>Topic</th>
@@ -47,7 +48,11 @@
   <% end %>
 </table>
 <%= paginate topics %>
+
 <% else %>
+
+<hr />
 <p>No Topics Yet.</p>
 <hr />
+
 <% end %>

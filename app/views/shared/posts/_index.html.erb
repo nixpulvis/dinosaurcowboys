@@ -1,0 +1,13 @@
+<%
+pageination = if local_assigns[:anchor]
+  paginate posts, params: { anchor: 'discussion' }
+else
+  paginate posts
+end
+%>
+
+<%= pageination %>
+<% posts.each do |post| %>
+  <%= render "shared/posts/show", post: post %>
+<% end %>
+<%= pageination %>
