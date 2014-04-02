@@ -56,13 +56,10 @@ class UsersController < ApplicationController
   # TODO: This is kinda gross.
   #
   def show
-    @postables = @user.posts.group(:postable_id, :postable_type).count
+    _posts = policy_scope(@user.posts)
+    _postables = _posts.map { |post| post.postable }.uniq
 
-    @postables = @postables.map do |g, c|
-      postable = g[1].constantize.find_by_id(g[0])
-      [postable, postable.posts.where(user: @user).last, c]
-    end
-
+    @postables = _postables.map { |p| [p, p.posts.where(user: @user).last, p.posts.where(user: @user).count] }
     @postables.sort! do |a, b|
       b[1].created_at <=> a[1].created_at
     end
