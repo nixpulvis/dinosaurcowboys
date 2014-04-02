@@ -9,6 +9,10 @@ module ApplicationsHelper
   #
   def decide_link(label, user, status)
     path = decide_user_application_path(user, application: { status: status })
-    link_to(label, path, class: "status #{status}", method: :patch, data: { confirm: 'Are you sure?' })
+    link_to label,
+            path,
+            class: "status #{status}",
+            method: :patch,
+            data: { confirm: 'Are you sure?' }
   end
 end
