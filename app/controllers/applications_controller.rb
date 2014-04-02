@@ -18,9 +18,7 @@ class ApplicationsController < ApplicationController
                       .order(:state, created_at: :desc)
                       .page(params[:page])
 
-    unless params[:hidden]
-      @applications = @applications.where(hidden: false)
-    end
+    @applications = @applications.where(hidden: false) unless params[:hidden]
 
     unless params[:resolved]
       @applications = @applications.where.not state:
