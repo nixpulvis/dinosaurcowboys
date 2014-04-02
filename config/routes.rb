@@ -19,6 +19,7 @@ PartyShark::Application.routes.draw do
     resources :uploads, except: [:show, :edit, :update]
     resource :application do
       member { match 'decide', via: [:put, :patch] }
+      member { patch 'toggle' }
     end
   end
   get '/applications', to: 'applications#index'

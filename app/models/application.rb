@@ -6,6 +6,7 @@
 class Application < ActiveRecord::Base
   include Postable
   include Markdownable
+  include Hidable
 
   STATES = [
     :pending,
@@ -58,28 +59,36 @@ class Application < ActiveRecord::Base
   # Returns a relation of applications that are pending.
   #
   def self.pendings
-    Application.where(state: Application.state(:pending))
+    Application
+      .where(hidden: false)
+      .where(state: Application.state(:pending))
   end
 
   # -> ActiveRecord::Relation
   # Returns a relation of applications that are trial.
   #
   def self.trials
-    Application.where(state: Application.state(:trial))
+    Application
+      .where(hidden: false)
+      .where(state: Application.state(:trial))
   end
 
   # -> ActiveRecord::Relation
   # Returns a relation of applications that are accepted.
   #
   def self.accepteds
-    Application.where(state: Application.state(:accepted))
+    Application
+      .where(hidden: false)
+      .where(state: Application.state(:accepted))
   end
 
   # -> ActiveRecord::Relation
   # Returns a relation of applications that are rejected.
   #
   def self.rejecteds
-    Application.where(state: Application.state(:rejected))
+    Application
+      .where(hidden: false)
+      .where(state: Application.state(:rejected))
   end
 
   # -> String

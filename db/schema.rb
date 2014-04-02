@@ -28,24 +28,25 @@ ActiveRecord::Schema.define(version: 20140328153556) do
   add_index "accesses", ["rank_id"], name: "index_accesses_on_rank_id", using: :btree
 
   create_table "applications", force: true do |t|
-    t.integer  "user_id",                     null: false
+    t.integer  "user_id",                         null: false
     t.integer  "state",           default: 0
     t.string   "name"
-    t.integer  "age",                         null: false
-    t.integer  "gender",                      null: false
-    t.string   "battlenet",                   null: false
+    t.integer  "age",                             null: false
+    t.integer  "gender",                          null: false
+    t.string   "battlenet",                       null: false
     t.text     "logs"
-    t.text     "computer",                    null: false
-    t.text     "raiding_history",             null: false
-    t.text     "guild_history",               null: false
-    t.text     "leadership",                  null: false
-    t.text     "playstyle",                   null: false
-    t.text     "why",                         null: false
-    t.text     "referer",                     null: false
-    t.text     "animal",                      null: false
+    t.text     "computer",                        null: false
+    t.text     "raiding_history",                 null: false
+    t.text     "guild_history",                   null: false
+    t.text     "leadership",                      null: false
+    t.text     "playstyle",                       null: false
+    t.text     "why",                             null: false
+    t.text     "referer",                         null: false
+    t.text     "animal",                          null: false
     t.text     "additional"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "hidden",          default: false
   end
 
   add_index "applications", ["user_id"], name: "index_applications_on_user_id", using: :btree
