@@ -15,7 +15,7 @@ class UserPolicy < BasePolicy
   end
 
   def show?
-    record.shown?
+    record.shown? || super
   end
 
   def create?
@@ -24,10 +24,6 @@ class UserPolicy < BasePolicy
 
   def update?
     user.id == record.id || super
-  end
-
-  def toggle?
-    user.admin?
   end
 
   def destroy?

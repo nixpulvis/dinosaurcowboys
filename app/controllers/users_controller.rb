@@ -18,6 +18,11 @@ class UsersController < ApplicationController
                .includes(:avatar)
                .order(created_at: :desc)
                .page(params[:page])
+
+    unless params[:hidden]
+      @users = @users.where(hidden: false)
+    end
+
     authorize @users
   end
 
