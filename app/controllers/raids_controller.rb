@@ -48,9 +48,7 @@ class RaidsController < ApplicationController
   # Provides the given raid, and it's posts.
   #
   def show
-    @bosses = policy_scope(Boss)
-                .where(raid: @raid)
-
+    @bosses = policy_scope(@raid.bosses)
     @bosses = @bosses.where(hidden: false) unless params[:hidden]
 
     @posts = Post.for_postable(@raid, params[:page])
