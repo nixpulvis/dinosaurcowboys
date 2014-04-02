@@ -1,7 +1,7 @@
 # RaidsController
 # Controller for the Raid model.
 #
-# Actions: [index, new, create, show, edit, update, destroy]
+# Actions: [index, new, create, show, edit, update, toggle, destroy]
 #
 class RaidsController < ApplicationController
   before_action only: [:show, :edit, :update, :toggle, :destroy] do

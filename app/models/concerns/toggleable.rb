@@ -1,4 +1,6 @@
 # Toggleable
+# Methods to add to models with a hidden attribute. Allows for
+# toggling the model to be shown or not.
 #
 module Toggleable
   extend ActiveSupport::Concern
