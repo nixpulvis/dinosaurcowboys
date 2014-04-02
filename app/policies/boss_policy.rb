@@ -6,7 +6,13 @@
 class BossPolicy < BasePolicy
   class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
-      scope.where(raid_id: Pundit.policy_scope(user, Raid).pluck(:id))
+      if user.admin?
+        scope.all
+      else
+        scope
+          .where(raid_id: Pundit.policy_scope(user, Raid).pluck(:id))
+          .where(hidden: false)
+      end
     end
   end
 
