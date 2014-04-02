@@ -9,7 +9,7 @@ class RaidPolicy < BasePolicy
   class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
       if user.admin?
-        scope.all
+        scope
       else
         scope.where(hidden: false)
       end

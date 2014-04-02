@@ -1,5 +1,5 @@
 <div class="recruitment-classes">
-  <% @recruitments ||= policy_scope(RecruitmentClass) %>
+  <% @recruitments ||= policy_scope(RecruitmentClass).all %>
 
   <div class="title">
     <h2>Recruitment</h2>
