@@ -14,10 +14,12 @@ PartyShark::Application.routes.draw do
   # Users, characters and applications.
   get '/roster', to: 'characters#roster'
   resources :users do
+    member { patch 'toggle' }
     resources :characters, except: :index
     resources :uploads, except: [:show, :edit, :update]
     resource :application do
       member { match 'decide', via: [:put, :patch] }
+      member { patch 'toggle' }
     end
   end
   get '/applications', to: 'applications#index'
@@ -27,7 +29,10 @@ PartyShark::Application.routes.draw do
 
   # Raids and bosses.
   resources :raids do
-    resources :bosses, except: :index
+    member { patch 'toggle' }
+    resources :bosses, except: :index do
+      member { patch 'toggle' }
+    end
   end
 
   # Forums and topics.

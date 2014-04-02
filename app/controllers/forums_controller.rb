@@ -14,6 +14,7 @@ class ForumsController < ApplicationController
   #
   def index
     @bosses = policy_scope(Boss)
+                .where(hidden: false)
                 .includes(:raid)
                 .order(created_at: :desc)
                 .limit(2)

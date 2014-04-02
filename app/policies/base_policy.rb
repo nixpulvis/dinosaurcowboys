@@ -49,6 +49,10 @@ class BasePolicy
     update?
   end
 
+  def toggle?
+    user.admin?
+  end
+
   def destroy?
     user.admin?
   end

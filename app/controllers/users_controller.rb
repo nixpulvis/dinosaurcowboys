@@ -1,10 +1,10 @@
 # UsersController
 # Controller for the User model.
 #
-# Actions: [index, new, create, show, edit, update, destroy]
+# Actions: [index, new, create, show, edit, update, toggle, destroy]
 #
 class UsersController < ApplicationController
-  before_action only: [:show, :edit, :update, :destroy] do
+  before_action only: [:show, :edit, :update, :toggle, :destroy] do
     @user = User.find(params[:id])
     authorize @user
   end
@@ -18,6 +18,9 @@ class UsersController < ApplicationController
                .includes(:avatar)
                .order(created_at: :desc)
                .page(params[:page])
+
+    @users = @users.where(hidden: false) unless params[:hidden]
+
     authorize @users
   end
 
@@ -87,6 +90,14 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  # PATCH /users/:id/toggle
+  # Hide or show the given user, setting it's hidden attribute.
+  #
+  def toggle
+    @user.toggle
+    redirect_to :back
   end
 
   # DELETE /users/:id

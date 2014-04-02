@@ -9,13 +9,13 @@ class UserPolicy < BasePolicy
       if user.admin?
         scope.all
       else
-        scope.where(id: user.id)
+        scope.where(id: user.id, hidden: false)
       end
     end
   end
 
   def show?
-    true
+    record.shown? || super
   end
 
   def create?

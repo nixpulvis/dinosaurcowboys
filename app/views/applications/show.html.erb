@@ -16,10 +16,13 @@
       <% end %>
 
       <% if policy(@application).update? %>
-        <li><%= link_to action_tag(:edit), edit_user_application_path(@application.user) %></li>
+        <li><%= link_to action_tag(:edit, @application), edit_user_application_path(@application.user) %></li>
+      <% end %>
+      <% if policy(@application).toggle? %>
+        <li><%= link_to action_tag(:toggle, @application), toggle_user_application_path(@application.user), method: :patch %></li>
       <% end %>
       <% if policy(@application).destroy? %>
-        <li><%= link_to action_tag(:destroy), user_application_path(@application.user), method: :delete, data: { confirm: "Are you sure?" } %></li>
+        <li><%= link_to action_tag(:destroy, @application), user_application_path(@application.user), method: :delete, data: { confirm: "Are you sure?" } %></li>
       <% end %>
     </ul>
 

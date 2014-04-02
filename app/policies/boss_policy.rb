@@ -6,7 +6,13 @@
 class BossPolicy < BasePolicy
   class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
-      scope.where(raid_id: Pundit.policy_scope(user, Raid).pluck(:id))
+      if user.admin?
+        scope
+      else
+        scope
+          .where(raid_id: Pundit.policy_scope(user, Raid).pluck(:id))
+          .where(hidden: false)
+      end
     end
   end
 
@@ -32,7 +38,11 @@ class BossPolicy < BasePolicy
 
   # READ === See the topic, and its posts.
   def read?
-    Pundit.policy(user, record.raid).read?
+    if user.admin?
+      true
+    else
+      record.shown? && Pundit.policy(user, record.raid).read?
+    end
   end
 
   # WRITE === Make a new topic, and post on it.
