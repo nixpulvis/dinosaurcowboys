@@ -5,7 +5,7 @@
 # them.
 #
 class User < ActiveRecord::Base
-  include Hidable
+  include Toggleable
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

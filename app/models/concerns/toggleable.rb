@@ -1,6 +1,6 @@
-# Hidable
+# Toggleable
 #
-module Hidable
+module Toggleable
   extend ActiveSupport::Concern
 
   def toggle
