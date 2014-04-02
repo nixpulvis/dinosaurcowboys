@@ -1,25 +1,21 @@
 <table class="list">
   <tr>
-    <th>Postable</th>
-    <th>Posts by <%= user_tag(@user) %></th>
-    <th>Last Post by <%= user_tag(@user) %></th>
-    <th>Last Post</th>
+    <th></th>
+    <th></th>
+    <th>Email</th>
+    <th>Rank</th>
+    <th>Join Date</th>
   </tr>
-
-  <% @postables.each do |postable, post, count| %>
+  <% users.each do |user| %>
     <tr>
-      <td><%= link_to postable, postable_path(postable) %></td>
-      <td><%= count %></td>
-      <td><%= link_to date_tag(post.created_at, relative: true), postable_post_path(postable, post) %></td>
-      <td>
-        <% if postable.last_post %>
-          <%= link_to postable_post_path(postable, postable.last_post) do %>
-            <%= character_tag(postable.last_post.user.main) %>
-            <%= date_tag(postable.last_post.created_at, relative: true) %>
-          <% end %>
-        <% end %>
-      </td>
+      <td><%= avatar_tag(user, size: "35x35") %></td>
+      <td><span class="name">
+        <%= user_tag(user) %>
+      </span></td>
+      <td><span class="email"><%= user.email %></span></td>
+      <td><span class="rank"><%= user.main.user.rank %></span></td>
+      <td><span class="join"><%= date_tag(user.main.user.created_at, time: false) %></span></td>
     </tr>
   <% end %>
 </table>
-<%= paginate @postables %>
+<%= paginate users %>
