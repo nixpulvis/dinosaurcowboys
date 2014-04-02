@@ -1,7 +1,7 @@
 # BossesController
 # Controller for the Boss model nested in a Raid.
 #
-# Actions: [new, create, show, edit, update, destroy]
+# Actions: [new, create, show, edit, update, toggle, destroy]
 #
 class BossesController < ApplicationController
   before_action only: [:show, :edit, :update, :toggle, :destroy] do

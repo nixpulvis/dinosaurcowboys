@@ -1,7 +1,7 @@
 # ApplicationsController
 # Controller for the Application model.
 #
-# Actions: [index, new, create, show, edit, update, destroy, decide]
+# Actions: [index, new, create, show, edit, update, toggle, destroy, decide]
 #
 class ApplicationsController < ApplicationController
   before_action only: [:show, :edit, :update, :toggle, :destroy, :decide] do
