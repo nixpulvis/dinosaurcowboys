@@ -6,7 +6,7 @@
 class Application < ActiveRecord::Base
   include Postable
   include Markdownable
-  include Hidable
+  include Toggleable
 
   STATES = [
     :pending,
