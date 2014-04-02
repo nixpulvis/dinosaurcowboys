@@ -4,11 +4,7 @@ module Hidable
   extend ActiveSupport::Concern
 
   def toggle
-    if hidden
-      show
-    else
-      hide
-    end
+    hidden ? show : hide
   end
 
   def hide
