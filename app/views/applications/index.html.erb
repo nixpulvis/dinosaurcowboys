@@ -3,13 +3,11 @@
     <h1>Applications</h1>
 
     <ul class="actions">
-      <li>
-        <% if params[:resolved] %>
-          <%= link_to "Excluding Resolved", applications_path %>
-        <% else %>
-          <%= link_to "Including Resolved", applications_path(resolved: true) %>
-        <% end %>
-      </li>
+      <li><%= toggle_param_tag(:resolved, :applications_path) %></li>
+
+      <% if current_user.try(:admin?) %>
+        <li><%= toggle_param_tag(:hidden, :applications_path) %></li>
+      <% end %>
     </ul>
   </div>
 

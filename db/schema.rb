@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140305192424) do
+ActiveRecord::Schema.define(version: 20140328153556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,34 +28,36 @@ ActiveRecord::Schema.define(version: 20140305192424) do
   add_index "accesses", ["rank_id"], name: "index_accesses_on_rank_id", using: :btree
 
   create_table "applications", force: true do |t|
-    t.integer  "user_id",                     null: false
+    t.integer  "user_id",                         null: false
     t.integer  "state",           default: 0
     t.string   "name"
-    t.integer  "age",                         null: false
-    t.integer  "gender",                      null: false
-    t.string   "battlenet",                   null: false
+    t.integer  "age",                             null: false
+    t.integer  "gender",                          null: false
+    t.string   "battlenet",                       null: false
     t.text     "logs"
-    t.text     "computer",                    null: false
-    t.text     "raiding_history",             null: false
-    t.text     "guild_history",               null: false
-    t.text     "leadership",                  null: false
-    t.text     "playstyle",                   null: false
-    t.text     "why",                         null: false
-    t.text     "referer",                     null: false
-    t.text     "animal",                      null: false
+    t.text     "computer",                        null: false
+    t.text     "raiding_history",                 null: false
+    t.text     "guild_history",                   null: false
+    t.text     "leadership",                      null: false
+    t.text     "playstyle",                       null: false
+    t.text     "why",                             null: false
+    t.text     "referer",                         null: false
+    t.text     "animal",                          null: false
     t.text     "additional"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "hidden",          default: false
   end
 
   add_index "applications", ["user_id"], name: "index_applications_on_user_id", using: :btree
 
   create_table "bosses", force: true do |t|
-    t.string   "name",       null: false
+    t.string   "name",                       null: false
     t.text     "content"
-    t.integer  "raid_id",    null: false
+    t.integer  "raid_id",                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "hidden",     default: false
   end
 
   add_index "bosses", ["raid_id"], name: "index_bosses_on_raid_id", using: :btree
@@ -130,11 +132,12 @@ ActiveRecord::Schema.define(version: 20140305192424) do
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "raids", force: true do |t|
-    t.string   "name",       null: false
-    t.integer  "tier",       null: false
+    t.string   "name",                       null: false
+    t.integer  "tier",                       null: false
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "hidden",     default: false
   end
 
   create_table "ranks", force: true do |t|
@@ -187,8 +190,9 @@ ActiveRecord::Schema.define(version: 20140305192424) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "admin",                  default: false, null: false
-    t.integer  "avatar_id"
     t.boolean  "raid_moderator"
+    t.integer  "avatar_id"
+    t.boolean  "hidden",                 default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -9,10 +9,12 @@
 class ApplicationPolicy < BasePolicy
   class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
-      if user.rank.try(:>=, 'Raider') || user.admin?
+      if user.admin?
         scope.all
+      elsif user.rank.try(:>=, 'Raider')
+        scope.where(hidden: false)
       else
-        scope.where(user: user)
+        scope.where(user: user, hidden: false)
       end
     end
   end
@@ -26,7 +28,11 @@ class ApplicationPolicy < BasePolicy
   end
 
   def show?
-    user == record.user || user.rank.try(:>=, 'Raider') || super
+    if record.hidden?
+      super
+    else
+      user == record.user || user.rank.try(:>=, 'Raider') || super
+    end
   end
 
   def update?

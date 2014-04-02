@@ -1,6 +1,12 @@
 <div class="page">
   <div class="title">
     <h1>Users</h1>
+
+    <ul class="actions">
+      <% if current_user.try(:admin?) %>
+        <li><%= toggle_param_tag(:hidden, :users_path) %></li>
+      <% end %>
+    </ul>
   </div>
 
   <table class="list">

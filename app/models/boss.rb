@@ -9,6 +9,7 @@
 class Boss < ActiveRecord::Base
   include Markdownable
   include Postable
+  include Toggleable
 
   # A boss is in a raid.
   belongs_to :raid

@@ -29,16 +29,36 @@ module ApplicationHelper
   # Returns the appropriate HTML for an icon and text
   # for the given action.
   #
-  def action_tag(action)
+  def action_tag(action, model)
     case action
     when :new, :create
       'New '.html_safe + fa_icon('file-o')
     when :edit, :update
       'Edit '.html_safe + fa_icon('edit')
+    when :toggle
+      if model.hidden?
+        'Show '.html_safe + fa_icon('eye')
+      else
+        'Hide '.html_safe + fa_icon('eye')
+      end
     when :destroy
       'Delete '.html_safe + fa_icon('trash-o')
     when :discussion
       'View Discussion '.html_safe + fa_icon('comment')
+    end
+  end
+
+  # Symbol, Symbol -> HTML
+  # Given a param to toggle and the symbol of the path method to
+  # the path returns a link that toggles the given param.
+  #
+  def toggle_param_tag(param, path)
+    if params[param]
+      toggled_params = params.reject { |k, v| k == param.to_s }
+      link_to "Excluding #{param.to_s.titleize}", send(path, toggled_params)
+    else
+      toggled_params = params.merge(param => true)
+      link_to "Including #{param.to_s.titleize}", send(path, toggled_params)
     end
   end
 end

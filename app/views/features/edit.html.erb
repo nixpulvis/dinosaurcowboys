@@ -5,7 +5,7 @@
     <ul class="actions">
       <% if policy(@feature).destroy? %>
         <li>
-          <%= link_to action_tag(:destroy), feature_path(@feature), method: :delete, data: { confirm: "Are you sure?" } %>
+          <%= link_to action_tag(:destroy, @feature), feature_path(@feature), method: :delete, data: { confirm: "Are you sure?" } %>
         </li>
       <% end %>
     </ul>

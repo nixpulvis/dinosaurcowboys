@@ -6,14 +6,19 @@
     </h2>
 
     <ul class="actions">
-      <li><%= link_to action_tag(:discussion), "#discussion" %></li>
+      <% if current_user.try(:admin?) %>
+        <li><%= toggle_param_tag(:hidden, :raid_path) %></li>
+      <% end %>
+
+      <li><%= link_to action_tag(:discussion, @raid), "#discussion" %></li>
       <% if policy(@raid).update? %>
-        <li><%= link_to action_tag(:update), edit_raid_path(@raid) %></li>
+        <li><%= link_to action_tag(:update, @raid), edit_raid_path(@raid) %></li>
+      <% end %>
+      <% if policy(@raid).toggle? %>
+        <li><%= link_to action_tag(:toggle, @raid), toggle_raid_path(@raid), method: :patch %></li>
       <% end %>
       <% if policy(@raid).destroy? %>
-        <li>
-          <%= link_to action_tag(:destroy), raid_path(@raid), method: :delete, data: { confirm: "Are you sure?" } %>
-        </li>
+        <li><%= link_to action_tag(:destroy, @raid), raid_path(@raid), method: :delete, data: { confirm: "Are you sure?" } %></li>
       <% end %>
     </ul>
   </div>
