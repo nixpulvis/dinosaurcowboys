@@ -3,7 +3,7 @@
 #
 # Posts permissions are defined by their postable.
 #
-class PostPolicy < ApplicationPolicy
+class PostPolicy < BasePolicy
   class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
       scope
