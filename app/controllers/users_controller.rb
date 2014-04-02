@@ -19,9 +19,7 @@ class UsersController < ApplicationController
                .order(created_at: :desc)
                .page(params[:page])
 
-    unless params[:hidden]
-      @users = @users.where(hidden: false)
-    end
+    @users = @users.where(hidden: false) unless params[:hidden]
 
     authorize @users
   end

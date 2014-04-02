@@ -16,9 +16,7 @@ class RaidsController < ApplicationController
     @raids = policy_scope(Raid)
                .order(tier: :desc)
 
-    unless params[:hidden]
-      @raids = @raids.where(hidden: false)
-    end
+    @raids = @raids.where(hidden: false) unless params[:hidden]
 
     authorize @raids
   end
@@ -50,14 +48,11 @@ class RaidsController < ApplicationController
   # Provides the given raid, and it's posts.
   #
   def show
-    # @bosses = @raid.bosses.includes(:raid)
     @bosses = policy_scope(Boss)
                 .where(raid: @raid)
                 .includes(:raid)
 
-    unless params[:hidden]
-      @bosses = @bosses.where(hidden: false)
-    end
+    @bosses = @bosses.where(hidden: false) unless params[:hidden]
 
     @posts = Post.for_postable(@raid, params[:page])
     @post  = @raid.posts.build
