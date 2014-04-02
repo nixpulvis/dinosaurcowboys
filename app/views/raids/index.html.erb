@@ -3,12 +3,12 @@
     <h1>Raids</h1>
 
     <ul class="actions">
-      <% if policy(Raid.new).create? %>
-        <li><%= link_to action_tag(:create, Raid), new_raid_path %></li>
-      <% end %>
-
       <% if current_user.try(:admin?) %>
         <li><%= toggle_param_tag(:hidden, :raids_path) %></li>
+      <% end %>
+
+      <% if policy(Raid.new).create? %>
+        <li><%= link_to action_tag(:create, Raid), new_raid_path %></li>
       <% end %>
     </ul>
   </div>
