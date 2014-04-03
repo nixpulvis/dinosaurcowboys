@@ -59,7 +59,9 @@ class UsersController < ApplicationController
     _posts = policy_scope(@user.posts)
     _postables = _posts.map { |post| post.postable }.uniq
 
-    @postables = _postables.map { |p| [p, p.posts.where(user: @user).last, p.posts.where(user: @user).count] }
+    @postables = _postables.map do |p|
+      [p, p.posts.where(user: @user).last, p.posts.where(user: @user).count]
+    end
     @postables.sort! do |a, b|
       b[1].created_at <=> a[1].created_at
     end
