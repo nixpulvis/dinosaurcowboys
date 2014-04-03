@@ -2,21 +2,12 @@
   <ul class="main-links">
     <li><%= link_to "Home", root_path %></li>
 
-    <% unless current_user.try(:rank) %>
-      <li><%= link_to "Recruitment", recruitment_path %></li>
-      <li><%= link_to "Charter", charter_path %></li>
-    <% end %>
-
-    <% if policy(Character).roster? %>
-      <li><%= link_to "Roster", roster_path %></li>
+    <% if policy(Forum).index? %>
+      <li><%= link_to "Forums", forums_path %></li>
     <% end %>
 
     <% if policy(Raid).index? %>
       <li><%= link_to "Raids", raids_path %></li>
-    <% end %>
-
-    <% if policy(Forum).index? %>
-      <li><%= link_to "Forums", forums_path %></li>
     <% end %>
 
     <% if policy(Application).index? %>
@@ -33,12 +24,30 @@
       </li>
     <% end %>
 
-    <% if policy(User).index? %>
-      <li><%= link_to "Users", users_path %></li>
+    <% if policy(PagesController).logs? %>
+      <li><%= link_to "Logs", logs_path %></li>
+    <% end %>
+
+    <% if policy(Character).roster? %>
+      <li><%= link_to "Roster", roster_path %></li>
+    <% end %>
+
+    <% unless current_user.try(:rank) %>
+      <% if policy(PagesController).recruitment? %>
+        <li><%= link_to "Recruitment", recruitment_path %></li>
+      <% end %>
+    <% end %>
+
+    <% if policy(PagesController).charter? %>
+      <li><%= link_to "Charter", charter_path %></li>
     <% end %>
   </ul>
 
   <ul class="user-links">
+    <% if policy(User).index? %>
+      <li><%= link_to "Users", users_path %></li>
+    <% end %>
+
     <% if user_signed_in? %>
       <li><%= user_tag(current_user) %></li>
 
