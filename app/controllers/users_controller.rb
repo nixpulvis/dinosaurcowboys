@@ -97,6 +97,11 @@ class UsersController < ApplicationController
       return
     end
 
+    # Don't make an Upload unless we are given a file.
+    unless params[:user][:avatar_attributes][:file]
+      params[:user][:avatar_attributes] = nil
+    end
+
     if @user.update_attributes(user_params)
       sign_in @user, bypass: true if @user == current_user
       redirect_to @user
