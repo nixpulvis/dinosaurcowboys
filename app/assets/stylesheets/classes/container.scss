@@ -3,6 +3,7 @@
 //
 div.container {
   @include outer-container;
-  @include pad(0 20px 10px);
+  padding: 0 20px 10px;
+  position: relative;
   width: $page-width;
 }
