@@ -31,11 +31,12 @@ $ ->
   # The Editor!
   $('.post-editor .popup').hide()
 
+  # Keep track of the last position.
   last_position = 0
   $('.post-editor textarea').bind "keydown click focus", (e) ->
     last_position = $(this).textrange('get').position
 
-  $('.fa-bold').click (e) ->
+  $('.post-editor .fa-bold').click (e) ->
     editor = $(this).parent().siblings('.input').children('textarea')
     val = editor.val()
 
@@ -46,7 +47,7 @@ $ ->
 
     editor.focus()
 
-  $('.fa-italic').click (e) ->
+  $('.post-editor .fa-italic').click (e) ->
     editor = $(this).parent().siblings('.input').children('textarea')
     val = editor.val()
 
@@ -57,7 +58,7 @@ $ ->
 
     editor.focus()
 
-  $('.fa-underline').click (e) ->
+  $('.post-editor .fa-underline').click (e) ->
     editor = $(this).parent().siblings('.input').children('textarea')
     val = editor.val()
 
@@ -68,7 +69,7 @@ $ ->
 
     editor.focus()
 
-  $('.fa-strikethrough').click (e) ->
+  $('.post-editor .fa-strikethrough').click (e) ->
     editor = $(this).parent().siblings('.input').children('textarea')
     val = editor.val()
 
@@ -79,7 +80,7 @@ $ ->
 
     editor.focus()
 
-  $('.fa-eraser').click (e) ->
+  $('.post-editor .fa-eraser').click (e) ->
     editor = $(this).parent().siblings('.input').children('textarea')
     val = editor.val()
 
@@ -90,7 +91,7 @@ $ ->
 
     editor.focus()
 
-  $('.fa-text-height').click (e) ->
+  $('.post-editor .fa-text-height').click (e) ->
     editor = $(this).parent().siblings('.input').children('textarea')
     val = editor.val()
 
@@ -103,7 +104,7 @@ $ ->
 
     editor.focus()
 
-  $('.fa-indent').click (e) ->
+  $('.post-editor .fa-indent').click (e) ->
     editor = $(this).parent().siblings('.input').children('textarea')
     val = editor.val()
 
@@ -116,7 +117,7 @@ $ ->
 
     editor.focus()
 
-  $('.fa-code').click (e) ->
+  $('.post-editor .fa-code').click (e) ->
     editor = $(this).parent().siblings('.input').children('textarea')
     val = editor.val()
 
@@ -127,7 +128,7 @@ $ ->
 
     editor.focus()
 
-  $('.fa-link').click (e) ->
+  $('.post-editor .fa-link').click (e) ->
     editor = $(this).parent().siblings('.input').children('textarea')
     popup = $(this).parent().find('.popup.link')
     val = editor.val()
@@ -135,7 +136,7 @@ $ ->
     popup.toggle()
     $(this).parent().find('.popup.picture-o').hide()
 
-  $('.popup.link input[type="submit"]').click (e) ->
+  $('.post-editor .popup.link input[type="submit"]').click (e) ->
     e.preventDefault()
     editor = $(this).parent().parent().siblings('.input').children('textarea')
     text = $(this).siblings('input[name="text"]').val()
@@ -147,7 +148,7 @@ $ ->
     $(this).parent().hide()
 
 
-  $('.fa-picture-o').click (e) ->
+  $('.post-editor .fa-picture-o').click (e) ->
     editor = $(this).parent().siblings('.input').children('textarea')
     popup = $(this).parent().find('.popup.picture-o')
     val = editor.val()
@@ -155,7 +156,7 @@ $ ->
     popup.toggle()
     $(this).parent().find('.popup.link').hide()
 
-  $('.popup.picture-o input[type="submit"]').click (e) ->
+  $('.post-editor .popup.picture-o input[type="submit"]').click (e) ->
     e.preventDefault()
     editor = $(this).parent().parent().siblings('.input').children('textarea')
     url = $(this).siblings('input[name="url"]').val()
