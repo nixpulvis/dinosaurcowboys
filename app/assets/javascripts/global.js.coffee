@@ -14,7 +14,7 @@ $.fn.updateTimeFromNow = (utc_time) ->
 
 $ ->
   # Slide up the flash after 3 seconds.
-  $('div.flash p').delay(3000).slideUp("fast")
+  $('.flash').delay(3000).slideUp("fast")
 
   # Format .datetime content realtime.
   $('.moment').each ->
