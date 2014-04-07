@@ -13,11 +13,11 @@ class PostPolicy < BasePolicy
   end
 
   def create?
-    Pundit.policy(user, record.postable).write? || super
+    Pundit.policy(user, record.postable).create_posts? || super
   end
 
   def show?
-    Pundit.policy(user, record.postable).read? || super
+    Pundit.policy(user, record.postable).show_posts? || super
   end
 
   def update?

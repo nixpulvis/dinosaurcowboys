@@ -26,6 +26,10 @@ class FeaturePolicy < BasePolicy
     create?
   end
 
+  def destroy?
+    create?
+  end
+
   def permitted_attributes
     [:title, :body]
   end
