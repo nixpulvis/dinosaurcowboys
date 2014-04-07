@@ -11,33 +11,31 @@ class TopicPolicy < BasePolicy
   end
 
   def create?
-    write? || super
+    Pundit.policy(user, record.forum).create_topics? || super
   end
 
   def show?
-    read? || super
+    Pundit.policy(user, record.forum).show? || super
   end
 
   def update?
-    user == record.user || super
+    (show? && user == record.user) || super
   end
 
   def destroy?
-    user == record.user || super
+    (show? && user == record.user) || super
   end
 
   def stick?
-    user.admin?
+    user.rank.try(:>=, 'Officer') || user.admin?
   end
 
-  # READ === See the topic, and its posts.
-  def read?
-    Pundit.policy(user, record.forum).read?
+  def show_posts?
+    show?
   end
 
-  # WRITE === Make a new topic, and post on it.
-  def write?
-    Pundit.policy(user, record.forum).write?
+  def create_posts?
+    create?
   end
 
   def permitted_attributes

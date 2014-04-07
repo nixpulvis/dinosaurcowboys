@@ -25,7 +25,6 @@ class ForumsController < ApplicationController
                 .order(:created_at)
 
     authorize @forums
-    authorize @bosses
   end
 
   # GET /forums/new

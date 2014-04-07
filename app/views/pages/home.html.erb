@@ -12,6 +12,9 @@
         <% if policy(@feature).update? %>
           <li><%= link_to action_tag(:update, @feature), edit_feature_path(@feature) %></li>
         <% end %>
+        <% if policy(@feature).destroy? %>
+          <li><%= link_to action_tag(:destroy, @feature), feature_path(@feature), method: :delete, data: { confirm: "Are you sure?" } %></li>
+        <% end %>
       </ul>
     </div>
 

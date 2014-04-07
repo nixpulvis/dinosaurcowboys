@@ -31,7 +31,7 @@
   </h3>
   <ul class="button-list">
     <% @bosses.each do |boss| %>
-      <% if policy(boss).read? %>
+      <% if policy(boss).show? %>
         <li><%= link_to boss.name, raid_boss_path(@raid, boss) %></li>
       <% end %>
     <% end %>
