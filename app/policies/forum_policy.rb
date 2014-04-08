@@ -19,16 +19,8 @@ class ForumPolicy < BasePolicy
     user.rank || super
   end
 
-  def create?
-    user.rank.try(:>=, 'Officer') || super
-  end
-
   def show?
     (user.rank && user.rank.readable_forums.include?(record)) || super
-  end
-
-  def update?
-    show? && create?
   end
 
   def destroy?
