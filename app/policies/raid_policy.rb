@@ -21,7 +21,7 @@ class RaidPolicy < BasePolicy
   end
 
   def show?
-    read? || super
+    record.shown? || super
   end
 
   def create?
@@ -36,14 +36,12 @@ class RaidPolicy < BasePolicy
     false
   end
 
-  # READ === See the topic, and its posts.
-  def read?
-    record.shown? || user.admin?
+  def show_posts?
+    show?
   end
 
-  # WRITE === Make a new topic, and post on it.
-  def write?
-    user.rank.try(:>=, 'Trial')
+  def create_posts?
+    user.rank.try(:>=, 'Trial') || user.admin?
   end
 
   def permitted_attributes

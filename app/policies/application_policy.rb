@@ -47,14 +47,12 @@ class ApplicationPolicy < BasePolicy
     user.rank.try(:>=, 'Officer') || user.admin?
   end
 
-  # READ === See the topic, and its posts.
-  def read?
-    user == record.user || user.rank.try(:>=, 'Raider')
+  def show_posts?
+    user == record.user || user.rank.try(:>=, 'Raider') || user.admin?
   end
 
-  # WRITE === Make a new topic, and post on it.
-  def write?
-    read?
+  def create_posts?
+    show_posts?
   end
 
   def permitted_attributes

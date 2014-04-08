@@ -31,7 +31,7 @@ class UserPolicy < BasePolicy
   end
 
   def show_email?
-    user.id == record.id || user.admin?
+    (record.shown? && user.id == record.id) || user.admin?
   end
 
   def permitted_attributes
