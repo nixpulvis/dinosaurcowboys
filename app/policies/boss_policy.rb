@@ -16,12 +16,8 @@ class BossPolicy < BasePolicy
     end
   end
 
-  def index?
-    true
-  end
-
   def show?
-    read? || super
+    (record.shown? && Pundit.policy(user, record.raid).show?) || super
   end
 
   def create?
@@ -36,18 +32,12 @@ class BossPolicy < BasePolicy
     false
   end
 
-  # READ === See the topic, and its posts.
-  def read?
-    if user.admin?
-      true
-    else
-      record.shown? && Pundit.policy(user, record.raid).read?
-    end
+  def show_posts?
+    Pundit.policy(user, record.raid).show_posts?
   end
 
-  # WRITE === Make a new topic, and post on it.
-  def write?
-    Pundit.policy(user, record.raid).write?
+  def create_posts?
+    Pundit.policy(user, record.raid).create_posts?
   end
 
   def permitted_attributes

@@ -53,7 +53,12 @@ class FeaturesController < ApplicationController
   # Destroys the given feature.
   #
   def destroy
-    @feature.destroy unless Feature.count <= 1
+    if Feature.count <= 1
+      flash[:alert] = 'Cannot delete only feature'
+    else
+      @feature.destroy
+    end
+
     redirect_to root_path
   end
 

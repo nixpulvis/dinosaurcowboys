@@ -20,7 +20,7 @@ class UploadPolicy < BasePolicy
   end
 
   def create?
-    (user == record.user && user.rank)# || super
+    (user == record.user && user.rank) || super
   end
 
   def update?

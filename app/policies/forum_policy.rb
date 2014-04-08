@@ -19,30 +19,20 @@ class ForumPolicy < BasePolicy
     user.rank || super
   end
 
-  def create?
-    update?
-  end
-
-  def update?
-    user.rank.try(:>=, 'Officer') || super
-  end
-
   def show?
-    read? || super
+    (user.rank && user.rank.readable_forums.include?(record)) || super
   end
 
   def destroy?
     false
   end
 
-  # READ === See the topics, and thier posts.
-  def read?
-    (user.rank && user.rank.readable_forums.include?(record))
+  def show_topics?
+    show?
   end
 
-  # WRITE === Make new topics, and post on topics.
-  def write?
-    (user.rank && user.rank.writable_forums.include?(record))
+  def create_topics?
+    (user.rank && user.rank.writable_forums.include?(record)) || user.admin?
   end
 
   def permitted_attributes

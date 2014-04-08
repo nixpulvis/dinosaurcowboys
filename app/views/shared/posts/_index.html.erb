@@ -8,6 +8,8 @@ end
 
 <%= pageination %>
 <% posts.each do |post| %>
-  <%= render "shared/posts/show", post: post %>
+  <% if policy(post).show? %>
+    <%= render "shared/posts/show", post: post %>
+  <% end %>
 <% end %>
 <%= pageination %>
