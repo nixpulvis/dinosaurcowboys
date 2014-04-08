@@ -15,7 +15,7 @@ class TopicPolicy < BasePolicy
   end
 
   def show?
-    Pundit.policy(user, record.forum).show? || super
+    Pundit.policy(user, record.forum).show_topics? || super
   end
 
   def update?
