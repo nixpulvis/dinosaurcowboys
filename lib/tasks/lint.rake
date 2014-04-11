@@ -2,15 +2,20 @@ unless Rails.env.production?
   require 'rubocop/rake_task'
 
   desc 'Lint the application. (Ruby/Coffeescript/SCSS)'
-  task lint: ['lint:ruby', 'lint:coffee', 'lint:scss']
+  task lint: ['lint:rails', 'lint:ruby', 'lint:coffee', 'lint:scss']
 
   namespace :lint do
-    Rubocop::RakeTask.new(:ruby) do |task|
+    Rubocop::RakeTask.new(:rails) do |task|
       task.options = [
         '-R'
       ]
       task.patterns = [
-        'app/**/*.rb',
+        'app/**/*.rb'
+      ]
+    end
+
+    Rubocop::RakeTask.new(:ruby) do |task|
+      task.patterns = [
         'lib/**/*.rb',
         'lib/**/*.rake'
       ]
