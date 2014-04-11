@@ -84,7 +84,7 @@ class CharactersController < ApplicationController
     end
 
     # FIXME: Make this with SQL.
-    @characters.sort! { |a, b| b.user.rank <=> a.user.rank }
+    @characters.sort! { |a, b| b.klass <=> a.klass }
   end
 
   private
