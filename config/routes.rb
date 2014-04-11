@@ -1,4 +1,4 @@
-PartyShark::Application.routes.draw do
+Rails.application.routes.draw do
 
   # Static pages.
   root 'pages#home'
@@ -53,4 +53,5 @@ PartyShark::Application.routes.draw do
   scope 'applications/:application_id', as: :application do
     resources :posts, only: [:create, :update, :destroy]
   end
+
 end
