@@ -1,7 +1,7 @@
 ruby '2.1.0'
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.0.0'
+gem 'rails', '~> 4.1.0'
 gem 'pg'
 gem 'devise'
 gem 'pundit'
@@ -14,6 +14,7 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'simple_form'
 gem 'sass-rails', '~> 4.0.0'
+gem 'sprockets', '= 2.11.0'  # http://stackoverflow.com/questions/22392862/undefined-method-environment-for-nilnilclass-when-importing-bootstrap
 gem 'bourbon'
 gem 'neat'
 gem 'momentjs-rails'
