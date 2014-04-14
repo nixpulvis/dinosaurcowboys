@@ -3,22 +3,21 @@
     <h1>Roster</h1>
   </div>
 
-  <ul class="tiles">
-    <% @characters.each do |character| %>
-      <li class="character-tile">
-        <%= image_tag character.thumbnail, size: "50x50" %>
-        <div class="info">
-          <div class="primary-info">
-            <span class="character <%= character.klass %>"><%= character %></span>
-            <%= character.user.rank %>
-          </div>
-          <div class="secondary-info">
-            <%= image_tag "role_#{character.role.downcase}.gif", size: "22x22" %>
-            <%= character.spec %>
-          </div>
-        </div>
-      </li>
-    <% end %>
-    <div class="clearfix"></div>
-  </ul>
+  <% @classes.each do |klass, characters| %>
+    <ul class="character-tiles">
+      <% characters.each do |character| %>
+        <li>
+          <%#= link_to user_path(character.user) do %>
+            <%= image_tag character.thumbnail, size: "30x30", class: "portrait" %>
+            <div class="info">
+              <%= image_tag "role_#{character.role.downcase}.gif", size: "22x22" %>
+              <span class="character <%= character.klass %>"><%= character %></span>
+              <%= character.user.rank %>
+            </div>
+          <%# end %>
+        </li>
+      <% end %>
+      <div class="clearfix"></div>
+    </ul>
+  <% end %>
 </div>
