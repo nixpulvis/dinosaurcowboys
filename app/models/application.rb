@@ -8,7 +8,13 @@ class Application < ActiveRecord::Base
   include Markdownable
   include Toggleable
 
-  STATES = [
+  # STATES = [
+  #   :pending,
+  #   :trial,
+  #   :accepted,
+  #   :rejected
+  # ]
+  enum status: [
     :pending,
     :trial,
     :accepted,
@@ -19,7 +25,7 @@ class Application < ActiveRecord::Base
   belongs_to :user
 
   # Validate the fields of the application.
-  validates :state, presence: true
+  validates :status, presence: true
   validates :name, length: { minimum: 3 },
                    format: { with: /[0-9a-z ]/i,
                              message: 'only allows alphanumeric characters' },
@@ -48,20 +54,13 @@ class Application < ActiveRecord::Base
   # Send a creation email.
   after_create :send_email
 
-  # Symbol -> Fixnum
-  # Returns the state corresponding to the given status.
-  #
-  def self.state(status)
-    Application::STATES.index(status)
-  end
-
   # -> ActiveRecord::Relation
   # Returns a relation of applications that are pending.
   #
   def self.pendings
     Application
       .where(hidden: false)
-      .where(state: Application.state(:pending))
+      .where(status: statuses[:pending])
   end
 
   # -> ActiveRecord::Relation
@@ -70,7 +69,7 @@ class Application < ActiveRecord::Base
   def self.trials
     Application
       .where(hidden: false)
-      .where(state: Application.state(:trial))
+      .where(status: statuses[:trial])
   end
 
   # -> ActiveRecord::Relation
@@ -79,7 +78,7 @@ class Application < ActiveRecord::Base
   def self.accepteds
     Application
       .where(hidden: false)
-      .where(state: Application.state(:accepted))
+      .where(status: statuses[:accepted])
   end
 
   # -> ActiveRecord::Relation
@@ -88,7 +87,7 @@ class Application < ActiveRecord::Base
   def self.rejecteds
     Application
       .where(hidden: false)
-      .where(state: Application.state(:rejected))
+      .where(status: statuses[:rejected])
   end
 
   # -> String
@@ -98,30 +97,23 @@ class Application < ActiveRecord::Base
     "#{user}'s Application"
   end
 
-  # -> String
-  # Return the current status of the application.
-  #
-  def status
-    self.id_changed? ? :created : STATES[state]
-  end
-
   # Symbol -> Boolean
   # Sets the status of this application, changes ranks of the user
   # and sends emails.
   #
-  def status=(value)
+  def assign_status(value)
     case value.to_sym
     when :pending
-      update_attribute(:state, 0)
+      update_attribute(:status, value)
       user.update_attribute(:rank, nil)
     when :trial
-      update_attribute(:state, 1)
+      update_attribute(:status, value)
       user.update_attribute(:rank, Rank.find_by_name('Trial'))
     when :accepted
-      update_attribute(:state, 2)
+      update_attribute(:status, value)
       user.update_attribute(:rank, Rank.find_by_name('Raider'))
     when :rejected
-      update_attribute(:state, 3)
+      update_attribute(:status, value)
       user.update_attribute(:rank, nil)
     end
 
