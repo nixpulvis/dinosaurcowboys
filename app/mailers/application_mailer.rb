@@ -5,7 +5,7 @@
 class ApplicationMailer < ActionMailer::Base
   default from: 'no-reply@partyshark.org'
 
-  (Application::STATES << :created).each do |status|
+  (Application.statuses.keys << 'created').each do |status|
     define_method("#{status}_email") do |application|
       @application = application
       @user = application.user

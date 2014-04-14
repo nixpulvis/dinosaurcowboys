@@ -15,15 +15,15 @@ class ApplicationsController < ApplicationController
   def index
     @applications = policy_scope(Application)
                       .includes(:user)
-                      .order(:state, created_at: :desc)
+                      .order(:status, created_at: :desc)
                       .page(params[:page])
 
     @applications = @applications.where(hidden: false) unless params[:hidden]
 
     unless params[:resolved]
-      @applications = @applications.where.not state:
-        [Application::STATES.index(:accepted),
-         Application::STATES.index(:rejected)]
+      @applications = @applications.where.not status:
+        [Application.statuses[:accepted],
+         Application.statuses[:rejected]]
     end
 
     authorize @applications
@@ -142,7 +142,7 @@ class ApplicationsController < ApplicationController
       fail ActiveRecord::RecordNotFound, "Couldn't find Application"
     end
 
-    @application.status = application_params[:status]
+    @application.assign_status(application_params[:status])
     redirect_to :back
   end
 
