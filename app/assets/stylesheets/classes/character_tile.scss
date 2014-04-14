@@ -1,0 +1,24 @@
+// .character-tile
+// A pretty tile with the basic information about a character.
+//
+
+// TODO: MOVE THIS!
+.tiles {
+  padding: 0;
+}
+
+.character-tile {
+  @extend .border;
+  @include span-columns(3);
+  margin-bottom: 10px;
+  height: 50px;
+
+  &:nth-child(4n) {
+    @include omega();
+  }
+
+  .name {
+    @extend .character;
+  }
+
+}
