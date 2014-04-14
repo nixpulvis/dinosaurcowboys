@@ -7,14 +7,14 @@
     <ul class="character-tiles">
       <% characters.each do |character| %>
         <li>
-          <%#= link_to user_path(character.user) do %>
+          <%= link_to character.armory_url do %>
             <%= image_tag character.thumbnail, size: "30x30", class: "portrait" %>
             <div class="info">
               <%= image_tag "role_#{character.role.downcase}.gif", size: "22x22" %>
               <span class="character <%= character.klass %>"><%= character %></span>
               <%= character.user.rank %>
             </div>
-          <%# end %>
+          <% end %>
         </li>
       <% end %>
       <div class="clearfix"></div>
