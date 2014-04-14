@@ -14,15 +14,13 @@
       @include omega();
     }
 
-    // a {
-    //   border-bottom: $border-size solid transparent;
-    //   display: block;
-    //   padding-bottom: 3px;
-    // }
+    a {
+      display: block;
+    }
 
-    // a:hover {
-    //   border-color: $link-color;
-    // }
+    a:hover .info {
+      border-color: $link-color;
+    }
 
     img {
       vertical-align: bottom;
@@ -33,6 +31,7 @@
     }
 
     .info {
+      border-bottom: $border-size solid transparent;
       color: $text-color;
       display: inline-block;
       padding: 4px 2px;
