@@ -30,11 +30,23 @@
       @extend .border;
     }
 
+    .role-icon {
+      position: absolute;
+      left: -40px;
+      top: 14px;
+    }
+
     .info {
+      position: relative;
       border-bottom: $border-size solid transparent;
       color: $text-color;
       display: inline-block;
       padding: 4px 2px;
+    }
+
+    .ilvl {
+      font-size: 11px;
+      color: $faded-text-color;
     }
   }
 }
