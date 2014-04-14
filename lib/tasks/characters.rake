@@ -1,5 +1,5 @@
 namespace :characters do
-  desc "Sync all characters"
+  desc 'Sync all characters'
   task sync: :environment do
     Character.all.each do |character|
       begin
