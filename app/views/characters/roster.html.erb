@@ -6,15 +6,19 @@
   <ul class="tiles">
     <% @characters.each do |character| %>
       <li class="character-tile">
-        <%= image_tag character.thumbnail, size: "45x45" %>
-        <span class="name <%= character.klass %>"><%= character %></span>
-        <%#= image_tag "role_#{character.role.downcase}.gif", size: "22x22" %>
-        <%= character.spec %>
-        <%#= character.user.rank %>
-        <%#= date_tag(character.user.created_at, time: false) %>
+        <%= image_tag character.thumbnail, size: "50x50" %>
+        <div class="info">
+          <div class="primary-info">
+            <span class="character <%= character.klass %>"><%= character %></span>
+            <%= character.user.rank %>
+          </div>
+          <div class="secondary-info">
+            <%= image_tag "role_#{character.role.downcase}.gif", size: "22x22" %>
+            <%= character.spec %>
+          </div>
+        </div>
       </li>
     <% end %>
     <div class="clearfix"></div>
   </ul>
-  <%#= render 'characters/table', characters: @characters %>
 </div>

@@ -9,16 +9,20 @@
 
 .character-tile {
   @extend .border;
-  @include span-columns(3);
+  @include span-columns(4);
   margin-bottom: 10px;
-  height: 50px;
 
-  &:nth-child(4n) {
+  &:nth-child(3n) {
     @include omega();
   }
 
-  .name {
-    @extend .character;
+  img {
+    vertical-align: bottom;
+  }
+
+  .info {
+    padding: 4px 2px;
+    display: inline-block;
   }
 
 }
