@@ -8,12 +8,12 @@ namespace :db do
 
   desc 'Download latest database from pgbackups'
   task :download do
-    system 'curl -o latest.dump `heroku pgbackups:url`'
+    system 'curl -o latest.dump `heroku pgbackups:url --remote production`'
   end
 
   desc 'Request pgbackups to capture a backup'
   task :capture do
-    system 'heroku pgbackups:capture'
+    system 'heroku pgbackups:capture --remote production'
   end
 
 end
