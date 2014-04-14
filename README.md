@@ -15,6 +15,13 @@ rake db:create && rake db:migrate && rake db:seed
 foreman start
 ```
 
+Adding heroku:
+```
+git remote add staging git@heroku.com:partyshark-staging.git
+git remote add production git@heroku.com:partyshark.git
+git config heroku.remote staging  # Allows for `heroku` command to default to staging.
+```
+
 ## Database
 
 ### Pull the Database
