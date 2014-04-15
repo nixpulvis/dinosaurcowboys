@@ -79,12 +79,15 @@ class CharactersController < ApplicationController
                     .where(main: true)
     authorize @characters
 
+    # Get only the characters over Trial rank and shown.
     @characters = @characters.select do |character|
-      character.user.rank.try(:>=, 'Trial')
+      character.user.shown? && character.user.rank.try(:>=, 'Trial')
     end
 
-    # FIXME: Make this with SQL.
-    @characters.sort! { |a, b| b.klass <=> a.klass }
+    # Group and sort the characters.
+    @classes = @characters.group_by(&:klass).each do |klass, characters|
+      characters.sort! { |a, b| b.user.rank <=> a.user.rank }
+    end
   end
 
   private

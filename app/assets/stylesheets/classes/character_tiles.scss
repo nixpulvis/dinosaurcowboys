@@ -1,0 +1,52 @@
+// .character-tiles
+// A pretty list of tiles with the basic information about each character.
+//
+.character-tiles {
+  @extend hr;
+  margin: 10px 0 0;
+  padding: 0;
+
+  li {
+    @include span-columns(4);
+    margin-bottom: 10px;
+
+    &:nth-child(3n) {
+      @include omega();
+    }
+
+    a {
+      display: block;
+    }
+
+    a:hover .info {
+      border-color: $link-color;
+    }
+
+    img {
+      vertical-align: bottom;
+    }
+
+    .portrait {
+      @extend .border;
+    }
+
+    .role-icon {
+      left: -40px;
+      position: absolute;
+      top: 14px;
+    }
+
+    .info {
+      border-bottom: $border-size solid transparent;
+      color: $text-color;
+      display: inline-block;
+      padding: 4px 2px;
+      position: relative;
+    }
+
+    .ilvl {
+      color: $faded-text-color;
+      font-size: 11px;
+    }
+  }
+}
