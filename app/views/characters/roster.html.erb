@@ -3,5 +3,22 @@
     <h1>Roster</h1>
   </div>
 
-  <%= render 'characters/table', characters: @characters %>
+  <% @classes.each do |klass, characters| %>
+    <ul class="character-tiles">
+      <% characters.each do |character| %>
+        <li>
+          <%= link_to character.armory_url do %>
+            <%= image_tag character.thumbnail, size: "30x30", class: "portrait" %>
+            <div class="info">
+              <%= image_tag "role_#{character.role.downcase}.gif", size: "16x16", class: 'role-icon' %>
+              <span class="character <%= character.klass %>"><%= character %></span>
+              <%= character.user.rank %>
+              <span class="ilvl"><%= character.average_item_level_equiped %> ilvl</span>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+      <div class="clearfix"></div>
+    </ul>
+  <% end %>
 </div>
