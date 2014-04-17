@@ -1,72 +1,77 @@
-window.populateChannel = (parent, channel) ->
-  hasSubChannelUsers = false
-  $(channel['channels']).each (i, sub_channel) ->
-    hasSubChannelUsers ||= sub_channel['users'].length
+window.PartyShark ||= {}
+PS = window.PartyShark
 
-  if channel['users'].length || hasSubChannelUsers
-    p  = "<p class='title'>#{channel['name']}</p>"
-    li = "<li id='channel_#{channel['id']}' class='channel'>#{p}</li>"
+class PS.MumbleBrowser
+  constructor: (element) ->
+    $('.mumble .refresh').click (e) =>
+      e.preventDefault()
+      @update()
 
-    insert = $(li)
-    parent.append(insert)
+    if $('.mumble').length
+      interval = 10  # Seconds.
+      $.setIntervalAndExecute(interval * 1000, => @update())
 
-    if channel['users'].length
-      insert.append("<ul class='users'></ul>")
-      $(channel['users']).each (i, user) ->
-        userIcon = "<i class='fa fa-user'></i>"
-        otherIcons = ""
-        if user['deaf'] || user['selfDeaf']
-          otherIcons += "<i class='fa fa-headphones'></i> "
-        if user['mute'] || user['selfMute']
-          otherIcons += "<i class='fa fa-microphone-slash'></i> "
+  populate: (data) ->
+    $('.mumble ul.channels').empty()
 
-        user = "<li class='user'>#{userIcon} #{user['name']} #{otherIcons}</li>"
-        insert.find('.users').append(user)
+    $(data['root']['channels']).each (i, channel) =>
+      populateChannel($('.mumble ul.channels'), channel)
 
-window.populateMumble = (data) ->
-  $('.mumble ul.channels').empty()
+      hasSubChannelAndUsers = channel['channels'].length &&
+        !(channel['channels'].every (c) -> c['users'].length == 0)
 
-  $(data['root']['channels']).each (i, channel) ->
-    window.populateChannel($('.mumble ul.channels'), channel)
+      if hasSubChannelAndUsers
+        insert = $(".mumble ul.channels #channel_#{channel['id']}")
+        insert.append("<ul class='sub-channels'></ul>")
+        $(channel['channels']).each (i, sub_channel) =>
+          populateChannel(insert.find('.sub-channels'), sub_channel)
 
-    hasSubChannelAndUsers = channel['channels'].length &&
-      !(channel['channels'].every (c) -> c['users'].length == 0)
+  typefrag: (callback) ->
+    host  = 'http://www.typefrag.com'
+    route = '/server-status/mumble/ChannelViewerProtocol.aspx'
+    params =
+      'ReturnType': 'json',
+      'HostName': 'partyshark.typefrag.com',
+      'PortNumber': 7675
+    $.get host + route, params, (data) =>
+      callback(data)
 
-    if hasSubChannelAndUsers
-      insert = $(".mumble ul.channels #channel_#{channel['id']}")
-      insert.append("<ul class='sub-channels'></ul>")
-      $(channel['channels']).each (i, sub_channel) ->
-        window.populateChannel(insert.find('.sub-channels'), sub_channel)
-
-window.getMumble = (callback) ->
-  host  = 'http://www.typefrag.com'
-  route = '/server-status/mumble/ChannelViewerProtocol.aspx'
-  params =
-    'ReturnType': 'json',
-    'HostName': 'partyshark.typefrag.com',
-    'PortNumber': 7675
-  $.get host + route, params, (data) ->
-    callback(data)
-
-window.updateMumble = ->
-  $('.mumble .title ul li a i').removeClass('fa-exclamation-triangle')
-  $('.mumble .title ul li a i').addClass('fa-refresh')
-  $('.mumble .title ul li a i').addClass('fa-spin')
-  xhr = window.getMumble (data) ->
-    $.setTimeout 500, ->  # UX
-      window.populateMumble(data)
+  update: ->
+    $('.mumble .title ul li a i').removeClass('fa-exclamation-triangle')
+    $('.mumble .title ul li a i').addClass('fa-refresh')
+    $('.mumble .title ul li a i').addClass('fa-spin')
+    xhr = @typefrag (data) =>
+      $.setTimeout 500, =>  # UX
+        @populate(data)
+        $('.mumble .title ul li a i').removeClass('fa-spin')
+    xhr.fail =>
       $('.mumble .title ul li a i').removeClass('fa-spin')
+      $('.mumble .title ul li a i').removeClass('fa-refresh')
+      $('.mumble .title ul li a i').addClass('fa-exclamation-triangle')
 
-  xhr.fail ->
-    $('.mumble .title ul li a i').removeClass('fa-spin')
-    $('.mumble .title ul li a i').removeClass('fa-refresh')
-    $('.mumble .title ul li a i').addClass('fa-exclamation-triangle')
+  # Private
 
-$ ->
-  $('.mumble .refresh').click (e) ->
-    e.preventDefault()
-    updateMumble()
+  populateChannel = (parent, channel) ->
+    hasSubChannelUsers = false
+    $(channel['channels']).each (i, sub_channel) =>
+      hasSubChannelUsers ||= sub_channel['users'].length
 
-  if $('.mumble').length
-    interval = 10  # Seconds.
-    $.setIntervalAndExecute(interval * 1000, -> updateMumble())
+    if channel['users'].length || hasSubChannelUsers
+      p  = "<p class='title'>#{channel['name']}</p>"
+      li = "<li id='channel_#{channel['id']}' class='channel'>#{p}</li>"
+
+      insert = $(li)
+      parent.append(insert)
+
+      if channel['users'].length
+        insert.append("<ul class='users'></ul>")
+        $(channel['users']).each (i, user) ->
+          userIcon = "<i class='fa fa-user'></i>"
+          otherIcons = ""
+          if user['deaf'] || user['selfDeaf']
+            otherIcons += "<i class='fa fa-headphones'></i> "
+          if user['mute'] || user['selfMute']
+            otherIcons += "<i class='fa fa-microphone-slash'></i> "
+
+          user = "<li class='user'>#{userIcon} #{user['name']} #{otherIcons}</li>"
+          insert.find('.users').append(user)
