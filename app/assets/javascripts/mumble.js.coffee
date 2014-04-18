@@ -14,7 +14,7 @@ class PS.MumbleBrowser
   populate: (data) ->
     $('.mumble ul.channels').empty()
 
-    $(data['root']['channels']).each (i, channel) =>
+    $(data['root']['channels']).each (i, channel) ->
       populateChannel($('.mumble ul.channels'), channel)
 
       hasSubChannelAndUsers = channel['channels'].length &&
@@ -23,7 +23,7 @@ class PS.MumbleBrowser
       if hasSubChannelAndUsers
         insert = $(".mumble ul.channels #channel_#{channel['id']}")
         insert.append("<ul class='sub-channels'></ul>")
-        $(channel['channels']).each (i, sub_channel) =>
+        $(channel['channels']).each (i, sub_channel) ->
           populateChannel(insert.find('.sub-channels'), sub_channel)
 
   typefrag: (callback) ->
@@ -33,7 +33,7 @@ class PS.MumbleBrowser
       'ReturnType': 'json',
       'HostName': @host,
       'PortNumber': @port
-    $.get host + route, params, (data) =>
+    $.get host + route, params, (data) ->
       callback(data)
 
   update: ->
@@ -44,7 +44,7 @@ class PS.MumbleBrowser
       $.setTimeout 500, =>  # UX
         @populate(data)
         $('.mumble .title ul li a i').removeClass('fa-spin')
-    xhr.fail =>
+    xhr.fail ->
       $('.mumble .title ul li a i').removeClass('fa-spin')
       $('.mumble .title ul li a i').removeClass('fa-refresh')
       $('.mumble .title ul li a i').addClass('fa-exclamation-triangle')
@@ -53,7 +53,7 @@ class PS.MumbleBrowser
 
   populateChannel = (parent, channel) ->
     hasSubChannelUsers = false
-    $(channel['channels']).each (i, sub_channel) =>
+    $(channel['channels']).each (i, sub_channel) ->
       hasSubChannelUsers ||= sub_channel['users'].length
 
     if channel['users'].length || hasSubChannelUsers
@@ -73,5 +73,5 @@ class PS.MumbleBrowser
           if user['mute'] || user['selfMute']
             otherIcons += "<i class='fa fa-microphone-slash'></i> "
 
-          user = "<li class='user'>#{userIcon} #{user['name']} #{otherIcons}</li>"
-          insert.find('.users').append(user)
+          u = "<li class='user'>#{userIcon} #{user['name']} #{otherIcons}</li>"
+          insert.find('.users').append(u)
