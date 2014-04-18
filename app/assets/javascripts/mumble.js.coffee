@@ -2,26 +2,26 @@
 PS = window.PartyShark ||= {}
 
 class PS.MumbleBrowser
-  constructor: (element, @host, @port) ->
-    $('.mumble .refresh').click (e) =>
+  constructor: (@element, @host, @port) ->
+    @element.find('.refresh').click (e) =>
       e.preventDefault()
       @update()
 
-    if $('.mumble').length
+    if @element.length
       interval = 10  # Seconds.
       PS.setIntervalAndExecute(interval * 1000, => @update())
 
   populate: (data) ->
-    $('.mumble ul.channels').empty()
+    @element.find('ul.channels').empty()
 
-    $(data['root']['channels']).each (i, channel) ->
-      populateChannel($('.mumble ul.channels'), channel)
+    $(data['root']['channels']).each (i, channel) =>
+      populateChannel(@element.find('ul.channels'), channel)
 
       hasSubChannelAndUsers = channel['channels'].length &&
         !(channel['channels'].every (c) -> c['users'].length == 0)
 
       if hasSubChannelAndUsers
-        insert = $(".mumble ul.channels #channel_#{channel['id']}")
+        insert = @element.find("ul.channels #channel_#{channel['id']}")
         insert.append("<ul class='sub-channels'></ul>")
         $(channel['channels']).each (i, sub_channel) ->
           populateChannel(insert.find('.sub-channels'), sub_channel)
@@ -37,17 +37,17 @@ class PS.MumbleBrowser
       callback(data)
 
   update: ->
-    $('.mumble .title ul li a i').removeClass('fa-exclamation-triangle')
-    $('.mumble .title ul li a i').addClass('fa-refresh')
-    $('.mumble .title ul li a i').addClass('fa-spin')
+    @element.find('.title ul li a i').removeClass('fa-exclamation-triangle')
+    @element.find('.title ul li a i').addClass('fa-refresh')
+    @element.find('.title ul li a i').addClass('fa-spin')
     xhr = @typefrag (data) =>
       PS.setTimeout 500, =>  # UX
         @populate(data)
-        $('.mumble .title ul li a i').removeClass('fa-spin')
-    xhr.fail ->
-      $('.mumble .title ul li a i').removeClass('fa-spin')
-      $('.mumble .title ul li a i').removeClass('fa-refresh')
-      $('.mumble .title ul li a i').addClass('fa-exclamation-triangle')
+        @element.find('.title ul li a i').removeClass('fa-spin')
+    xhr.fail =>
+      @element.find('.title ul li a i').removeClass('fa-spin')
+      @element.find('.title ul li a i').removeClass('fa-refresh')
+      @element.find('.title ul li a i').addClass('fa-exclamation-triangle')
 
   # Private
 
