@@ -9,7 +9,7 @@ class PS.MumbleBrowser
 
     if $('.mumble').length
       interval = 10  # Seconds.
-      $.setIntervalAndExecute(interval * 1000, => @update())
+      PS.setIntervalAndExecute(interval * 1000, => @update())
 
   populate: (data) ->
     $('.mumble ul.channels').empty()
@@ -41,7 +41,7 @@ class PS.MumbleBrowser
     $('.mumble .title ul li a i').addClass('fa-refresh')
     $('.mumble .title ul li a i').addClass('fa-spin')
     xhr = @typefrag (data) =>
-      $.setTimeout 500, =>  # UX
+      PS.setTimeout 500, =>  # UX
         @populate(data)
         $('.mumble .title ul li a i').removeClass('fa-spin')
     xhr.fail ->
