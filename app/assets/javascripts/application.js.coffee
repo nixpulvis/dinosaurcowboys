@@ -9,18 +9,5 @@
 window.PartyShark ||= {}
 PS = window.PartyShark
 
-class Foo
-  constructor: ->
-    @a = @bar()
-
-  bar: ->
-    1
-
-  baz: ->
-    @a
-
 $ ->
   new PS.MumbleBrowser('.mumble')
-
-  bin = new Foo
-  console.log(bin.baz())
