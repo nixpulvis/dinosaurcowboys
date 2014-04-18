@@ -1,12 +1,19 @@
-$.setTimeout = (t, func) ->
+# Party Shark Namespace.
+PS = window.PartyShark ||= {}
+
+# Global Functions.
+
+PS.setTimeout = (t, func) ->
   return setTimeout(func, t)
 
-$.setInterval = (t, func) ->
+PS.setInterval = (t, func) ->
   return setInterval(func, t)
 
-$.setIntervalAndExecute = (t, func) ->
+PS.setIntervalAndExecute = (t, func) ->
   func()
   return setInterval(func, t)
+
+# jQuery Extensions.
 
 $.fn.updateTimeFromNow = (utc_time) ->
   display_time = moment(utc_time).fromNow()
@@ -21,7 +28,7 @@ $ ->
     utc_time = $(this).html()
 
     if $(this).hasClass('relative')
-      $.setIntervalAndExecute 1000, =>
+      PS.setIntervalAndExecute 1000, =>
         $(this).updateTimeFromNow(utc_time)
     else if $(this).hasClass('datetime')
       display_time = moment(utc_time).format('MMMM Do YYYY, h:mm:ss a')
