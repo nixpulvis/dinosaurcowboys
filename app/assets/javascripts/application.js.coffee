@@ -6,8 +6,8 @@
 #= require power
 #= require_tree .
 
-window.PartyShark ||= {}
-PS = window.PartyShark
+# Party Shark Namespace.
+PS = window.PartyShark ||= {}
 
 $ ->
   new PS.MumbleBrowser('.mumble')
