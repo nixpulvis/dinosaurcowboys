@@ -2,7 +2,7 @@
 PS = window.PartyShark ||= {}
 
 class PS.MumbleBrowser
-  constructor: (element) ->
+  constructor: (element, @host, @port) ->
     $('.mumble .refresh').click (e) =>
       e.preventDefault()
       @update()
@@ -31,8 +31,8 @@ class PS.MumbleBrowser
     route = '/server-status/mumble/ChannelViewerProtocol.aspx'
     params =
       'ReturnType': 'json',
-      'HostName': 'partyshark.typefrag.com',
-      'PortNumber': 7675
+      'HostName': @host,
+      'PortNumber': @port
     $.get host + route, params, (data) =>
       callback(data)
 
