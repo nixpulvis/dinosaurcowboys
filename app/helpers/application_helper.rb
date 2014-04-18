@@ -16,7 +16,7 @@ module ApplicationHelper
   #
   def date_tag(datetime, options = {})
     options = { relative: false, time: true }.merge(options)
-    classes = ['moment']
+    classes = ['live-time']
 
     classes << 'relative' if options[:relative]
     classes << (options[:time] ? 'datetime' : 'date')
