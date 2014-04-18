@@ -1,5 +1,5 @@
-window.PartyShark ||= {}
-PS = window.PartyShark
+# Party Shark Namespace.
+PS = window.PartyShark ||= {}
 
 class PS.MumbleBrowser
   constructor: (element) ->
