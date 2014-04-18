@@ -2,7 +2,9 @@
 PS = window.PartyShark ||= {}
 
 class PS.MumbleBrowser
-  constructor: (@element, @host, @port) ->
+  constructor: (element, @host, @port) ->
+    @element = $(element)
+
     @element.find('.refresh').click (e) =>
       e.preventDefault()
       @update()
