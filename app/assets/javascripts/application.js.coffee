@@ -10,4 +10,4 @@
 PS = window.PartyShark ||= {}
 
 $ ->
-  new PS.MumbleBrowser('.mumble', 'partyshark.typefrag.com', 7675)
+  new PS.MumbleBrowser($('.mumble'), 'partyshark.typefrag.com', 7675)
