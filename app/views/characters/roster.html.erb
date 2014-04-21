@@ -1,6 +1,14 @@
 <div class="page">
   <div class="title">
     <h1>Roster</h1>
+
+    <div class="info">
+      <b><%= pluralize(@characters.count, "character") %></b> on the roster, with
+      <b><%= pluralize(@characters.select { |c| c.role == "TANK" }.count, 'tank') %></b>,
+      <b><%= @characters.select { |c| c.role == "DPS" }.count %> DPS</b> and
+      <b><%= pluralize(@characters.select { |c| c.role == "HEALING" }.count, 'healer') %></b>.
+      <i>Updated from the Armory at Midnight EST.</i>
+    </div>
   </div>
 
   <% @classes.each do |klass, characters| %>
