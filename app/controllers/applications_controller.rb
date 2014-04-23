@@ -15,7 +15,7 @@ class ApplicationsController < ApplicationController
   def index
     @applications = policy_scope(Application)
                       .includes(:user)
-                      .order(:status, created_at: :desc)
+                      .order(created_at: :desc)
                       .page(params[:page])
 
     @applications = @applications.where(hidden: false) unless params[:hidden]
