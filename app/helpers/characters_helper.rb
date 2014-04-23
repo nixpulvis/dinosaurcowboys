@@ -11,6 +11,16 @@ module CharactersHelper
   end
 
   # Character -> HTML
+  # Returns an image for the character base on the armory.
+  #
+  def character_avatar_tag(character, options = {})
+    data = { fallback: image_path('fallback_avatar.jpg') }
+    options.merge!(class: 'avatar', data: data)
+
+    image_tag(character.thumbnail, options)
+  end
+
+  # Character -> HTML
   # Returns a link to the character in the armory.
   #
   def armory_tag(character)

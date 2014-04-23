@@ -14,6 +14,7 @@ $ ->
   PS.Flash.activate('.flash')
   PS.LiveTime.activate('.live-time')
   PS.Youtube.activate('.content')
+  PS.ImageFallback.activate()
 
   new PS.MumbleBrowser('.party-shark-mumble', 'partyshark.typefrag.com', 7675)
 

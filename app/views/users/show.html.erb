@@ -16,7 +16,7 @@
   </div>
 
   <div class="details">
-    <%= avatar_tag(@user, class: "border") %>
+    <%= avatar_tag(@user, class: "border", size: "75x75") %>
     <p class="join">
       Joined on <%= date_tag(@user.created_at, time: false) %>
     </p>

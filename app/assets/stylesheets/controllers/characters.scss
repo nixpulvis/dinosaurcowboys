@@ -1,6 +1,6 @@
 // TODO: This page is unfinished.
 @include select-page('characters', 'show') {
-  .portrait {
+  .avatar {
     @include span-columns(2);
 
     img {

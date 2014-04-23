@@ -20,7 +20,7 @@ module UsersHelper
     if user.avatar && user.avatar.file.exists?
       image_tag(user.avatar.url(:thumb), options)
     else
-      image_tag(user.main.thumbnail, options)
+      character_avatar_tag(user.main, options)
     end
   end
 
