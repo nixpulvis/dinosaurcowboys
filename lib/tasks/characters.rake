@@ -1,7 +1,11 @@
 namespace :characters do
   desc 'Sync all characters'
   task sync: :environment do
-    Character.all.each do |character|
+    characters = Character.where(main: true).select do |character|
+      character.user.rank.try(:>=, 'Trial')
+    end
+
+    characters.each do |character|
       begin
         character.sync!
         puts "SYNC #{character}"
