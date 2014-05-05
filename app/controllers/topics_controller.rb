@@ -55,7 +55,7 @@ class TopicsController < ApplicationController
   #
   def update
     if @topic.update_attributes(topic_params)
-      redirect_to forum_topic_path(@topic.forum, @topic)
+      redirect_to forum_topic_path(@topic.reload.forum, @topic)
     else
       render :edit
     end
