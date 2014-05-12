@@ -13,7 +13,8 @@ class Upload < ActiveRecord::Base
   delegate :url, to: :file
 
   # Include url in json of the upload.
-  def as_json(options)
-    super(methods: [:url])
+  def as_json(options = nil)
+    options = (options || {}).merge(methods: [:url])
+    super
   end
 end

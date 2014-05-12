@@ -54,7 +54,7 @@ module ApplicationHelper
   #
   def toggle_param_tag(param, path)
     if params[param]
-      toggled_params = params.reject { |k, v| k == param.to_s }
+      toggled_params = params.reject { |k, _| k == param.to_s }
       link_to "Excluding #{param.to_s.titleize}", send(path, toggled_params)
     else
       toggled_params = params.merge(param => true)

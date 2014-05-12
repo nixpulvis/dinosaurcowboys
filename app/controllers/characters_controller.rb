@@ -85,7 +85,7 @@ class CharactersController < ApplicationController
     end
 
     # Group and sort the characters.
-    @classes = @characters.group_by(&:klass).each do |klass, characters|
+    @classes = @characters.group_by(&:klass).each do |_klass, characters|
       characters.sort! { |a, b| b.user.rank <=> a.user.rank }
     end
   end

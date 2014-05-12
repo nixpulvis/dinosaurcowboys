@@ -76,14 +76,14 @@ class Character < ActiveRecord::Base
   end
 
   def reassign
-    if self.main?
-      characters = user.characters
-      if characters.reject(&:marked_for_destruction?).count <= 1
-        errors.add(:base, 'Cannot destroy only character')
-        return false
-      else
-        characters.where.not(id: id).first.update_attribute(:main, true)
-      end
+    return unless self.main?
+
+    characters = user.characters
+    if characters.reject(&:marked_for_destruction?).count <= 1
+      errors.add(:base, 'Cannot destroy only character')
+      return false
+    else
+      characters.where.not(id: id).first.update_attribute(:main, true)
     end
   end
 end
