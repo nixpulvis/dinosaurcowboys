@@ -40,12 +40,8 @@ class User < ActiveRecord::Base
   # Allow users forms to create characters.
   accepts_nested_attributes_for :characters, :avatar
 
-  # -> String
   # The name of this user is defined to be the name of their main.
-  #
-  def to_s
-    main.to_s
-  end
+  delegate :to_s, to: :main
 
   # -> Character
   # The users main character.

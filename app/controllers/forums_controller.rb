@@ -104,11 +104,11 @@ class ForumsController < ApplicationController
   # very slow when there are a lot of topics.
   #
   def load_topics(scope)
-    _topics = policy_scope(scope)
+    topics = policy_scope(scope)
                 .includes(:forum, :posts, :user)
                 .order('posts.created_at DESC')
 
-    Kaminari.paginate_array(_topics.to_a)
+    Kaminari.paginate_array(topics.to_a)
             .page(params[:page])
             .per(10)
   end

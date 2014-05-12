@@ -56,10 +56,10 @@ class UsersController < ApplicationController
   # TODO: This is kinda gross.
   #
   def show
-    _posts = policy_scope(@user.posts)
-    _postables = _posts.map { |post| post.postable }.uniq
+    posts = policy_scope(@user.posts)
+    postables = posts.map { |post| post.postable }.uniq
 
-    @postables = _postables.map do |p|
+    @postables = postables.map do |p|
       [p, p.posts.where(user: @user).last, p.posts.where(user: @user).count]
     end
     @postables.sort! do |a, b|

@@ -57,7 +57,7 @@ class RecruitmentClass < ActiveRecord::Base
   # only specs that are needed.
   #
   def needs
-    desires.select { |spec, value| value.present? }
+    desires.select { |_spec, value| value.present? }
   end
 
   # -> Boolean

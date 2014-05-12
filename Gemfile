@@ -38,7 +38,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rubocop'
+  gem 'rubocop', github: 'bbatsov/rubocop'
   gem 'scss-lint', '= 0.17.1'
 end
 
