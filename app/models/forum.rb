@@ -4,6 +4,8 @@
 # the forum.
 #
 class Forum < ActiveRecord::Base
+  include RankedModel
+
   # The forum's topics.
   has_many :topics, dependent: :destroy
 
@@ -21,6 +23,14 @@ class Forum < ActiveRecord::Base
 
   # A forum must have a name.
   validates :name, presence: true
+
+  # Custom ordering support.
+  ranks :row_order
+
+  # New forums should be last in the row order.
+  after_initialize do
+    self.row_order = Forum.maximum(:row_order) + 1 unless self.persisted?
+  end
 
   # -> String
   # Display a forum by it's name.

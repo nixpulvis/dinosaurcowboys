@@ -22,7 +22,7 @@ class ForumsController < ApplicationController
     @topics = load_topics(Topic)
 
     @forums = policy_scope(Forum)
-                .order(:created_at)
+                .rank(:row_order)
 
     authorize @forums
   end
