@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140413184326) do
+ActiveRecord::Schema.define(version: 20140605182256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,9 +89,10 @@ ActiveRecord::Schema.define(version: 20140413184326) do
   end
 
   create_table "forums", force: true do |t|
-    t.string   "name",       null: false
+    t.string   "name",                   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "row_order",  default: 0, null: false
   end
 
   create_table "impressions", force: true do |t|
@@ -190,8 +191,8 @@ ActiveRecord::Schema.define(version: 20140413184326) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "admin",                  default: false, null: false
-    t.integer  "avatar_id"
     t.boolean  "raid_moderator"
+    t.integer  "avatar_id"
     t.boolean  "hidden",                 default: false
   end
 
