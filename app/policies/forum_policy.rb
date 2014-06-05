@@ -36,6 +36,6 @@ class ForumPolicy < BasePolicy
   end
 
   def permitted_attributes
-    [:name, :public, readable_rank_ids: [], writable_rank_ids: []]
+    [:name, :public, :row_order, readable_rank_ids: [], writable_rank_ids: []]
   end
 end
