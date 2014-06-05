@@ -190,8 +190,8 @@ ActiveRecord::Schema.define(version: 20140413184326) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "admin",                  default: false, null: false
-    t.boolean  "raid_moderator"
     t.integer  "avatar_id"
+    t.boolean  "raid_moderator"
     t.boolean  "hidden",                 default: false
   end
 
