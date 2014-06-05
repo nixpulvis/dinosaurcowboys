@@ -1,5 +1,6 @@
 <%= simple_form_for forum do |f| %>
   <%= f.input :name %>
+  <%= f.input :row_order, label: 'Order' %>
   <%= f.association :readable_ranks, as: :check_boxes %>
   <%= f.association :writable_ranks, as: :check_boxes %>
 
