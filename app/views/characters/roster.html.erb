@@ -15,7 +15,7 @@
     <ul class="character-tiles">
       <% characters.each do |character| %>
         <li>
-          <%= link_to character.armory_url do %>
+          <%= link_to character.armory_url, target: '_blank' do %>
             <%= character_avatar_tag character, size: "30x30" %>
             <div class="info">
               <%= image_tag "role_#{character.role.downcase}.gif", size: "16x16", class: 'role-icon' %>
