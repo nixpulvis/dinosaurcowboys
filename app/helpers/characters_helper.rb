@@ -24,7 +24,7 @@ module CharactersHelper
   # Returns a link to the character in the armory.
   #
   def armory_tag(character)
-    link_to character.armory_url, class: 'armory' do
+    link_to character.armory_url, class: 'armory', target: '_blank' do
       "#{character_tag(character)} #{fa_icon('external-link')}".html_safe
     end
   end
