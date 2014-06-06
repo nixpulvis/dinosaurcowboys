@@ -38,13 +38,4 @@ class Forum < ActiveRecord::Base
   def to_s
     name
   end
-
-  # -> Topic
-  # The forum's most recently updated topic.
-  #
-  # FIXME
-  #
-  def freshest
-    topics.max_by(&:posts_updated_at)
-  end
 end
