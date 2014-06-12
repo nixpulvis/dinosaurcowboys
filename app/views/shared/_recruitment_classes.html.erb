@@ -1,5 +1,5 @@
 <div class="recruitment-classes">
-  <% @recruitments ||= policy_scope(RecruitmentClass).all %>
+  <% @recruitments ||= policy_scope(RecruitmentClass).select { |rc| rc.needed? } %>
 
   <div class="title">
     <h2>Recruitment</h2>
@@ -22,9 +22,9 @@
     </div>
   </div>
 
-  <ul class="classes">
-    <% @recruitments.each do |rc| %>
-      <% if rc.needed? %>
+  <% if @recruitments.any? %>
+    <ul class="classes">
+      <% @recruitments.each do |rc| %>
         <li>
           <div class="class" title="<%= rc.class_name %>"><%= image_tag rc.class_icon_path, size: '40x40', class: 'border' %></div>
           <% rc.needs.each do |k, v| %>
@@ -36,6 +36,8 @@
         </li>
         <div class="clearfix"></div>
       <% end %>
-    <% end %>
-  </ul>
+    </ul>
+  <% else %>
+    <p>We are not currently recruiting, please check back later.</p>
+  <% end %>
 </div>
