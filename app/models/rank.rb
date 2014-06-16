@@ -34,7 +34,7 @@ class Rank < ActiveRecord::Base
 
   # After destroying a rank, set it's users ranks to nil.
   after_destroy do
-    self.users.update_all(rank_id: nil)
+    users.update_all(rank_id: nil)
   end
 
   # -> String
