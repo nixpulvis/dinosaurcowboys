@@ -31,6 +31,11 @@ class Rank < ActiveRecord::Base
   # A rank is defined by it's name.
   validates :name, presence: true
 
+  # After destroying a rank, set it's users ranks to nil.
+  after_destroy do
+    self.users.update_all(rank_id: nil)
+  end
+
   # -> String
   # Display ranks by their names.
   #
