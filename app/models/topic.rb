@@ -17,7 +17,7 @@ class Topic < ActiveRecord::Base
   is_impressionable
 
   # A topic must have a title.
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: 40 }
 
   # Set the number of topics to show per page.
   paginates_per 15
