@@ -1,3 +1,5 @@
+<% if applications.any? %>
+
 <table class="list">
   <thead>
     <tr>
@@ -45,3 +47,9 @@
     <% end %>
   </tbody>
 </table>
+
+<% else %>
+
+<p>There are no applications at this time.</p>
+
+<% end %>
