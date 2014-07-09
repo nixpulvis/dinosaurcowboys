@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20140714203626) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "hidden",     default: true
+    t.integer  "row_order",  default: 0,    null: false
   end
 
   add_index "bosses", ["raid_id"], name: "index_bosses_on_raid_id", using: :btree
