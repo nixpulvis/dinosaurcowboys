@@ -134,12 +134,13 @@ ActiveRecord::Schema.define(version: 20140714203626) do
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "raids", force: true do |t|
-    t.string   "name",                      null: false
-    t.integer  "tier",                      null: false
+    t.string   "name",                           null: false
+    t.integer  "tier",                           null: false
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "hidden",     default: true
+    t.boolean  "hidden",          default: true
+    t.integer  "banner_photo_id"
   end
 
   create_table "ranks", force: true do |t|

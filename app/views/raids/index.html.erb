@@ -9,11 +9,31 @@
     </ul>
   </div>
 
+  <ul class="raid-list">
+    <% @raids.each do |raid| %>
+      <li>
+        <%= link_to raid_path(raid) do %>
+          <p>
+            <%= raid %>
+            <span class="pull-right">
+              T<%= raid.tier %>
+            </span>
+          </p>
+          <div class="image-mask">
+            <%= image_tag raid.banner_photo.url(:medium) %>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+  <% if false %>
   <ul class="button-list">
     <% @raids.each do |raid| %>
       <% options = { class: 'toggle-hidden' } if raid.hidden? %>
       <%= content_tag :li, options do %>
         <%= link_to raid_path(raid) do %>
+          <%= image_tag raid.banner_photo.url if raid.banner_photo %>
           <%= raid %>
           <span class="pull-right">
             Tier <%= raid.tier %>
@@ -22,4 +42,5 @@
       <% end %>
     <% end %>
   </ul>
+  <% end %>
 </div>
