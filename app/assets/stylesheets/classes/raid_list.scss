@@ -1,0 +1,42 @@
+// .raid-list
+// A grid of raids with image banners.
+//
+
+.raid-list {
+  padding: 0;
+
+  li {
+    @include span-columns(4);
+
+    border-radius: $border-radius-size;
+    border: $border-size solid $border-color;
+    display: inline-block;
+    vertical-align: bottom;
+
+    &:hover {
+      border-color: $link-color;
+
+      p {
+        background-color: $link-color;
+        color: $background-color;
+      }
+    }
+
+    p {
+      background-color: $border-color;
+      margin: 0;
+      padding: 5px;
+    }
+
+    .image-mask {
+      height: 180px;
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

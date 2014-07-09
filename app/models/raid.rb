@@ -14,9 +14,16 @@ class Raid < ActiveRecord::Base
   # As we all know, there are bosses in raids.
   has_many :bosses, dependent: :destroy
 
+  # Associated banner photo.
+  belongs_to :banner_photo, class_name: 'Upload'
+
   # Validate that raids have a name and tier.
   validates :name, presence: true
   validates :tier, numericality: true, allow_nil: true
+  validates :banner_photo, presence: true
+
+  # Allow raid forms to create banner uploads.
+  accepts_nested_attributes_for :banner_photo
 
   # Setup the routing to be of the form "/raids/name_of_raid".
   # TODO: Maybe make this functionality into a module.
