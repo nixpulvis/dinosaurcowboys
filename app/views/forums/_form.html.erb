@@ -1,6 +1,6 @@
 <%= simple_form_for forum do |f| %>
   <%= f.input :name %>
-  <%= f.input :row_order, label: 'Order' %>
+  <%= f.input :row_order, label: 'Order', hint: 'Lower values come before higher values.' %>
 
   <% ordered_ranks = Rank.all.sort { |a, b| b <=> a } %>
   <%= f.association :readable_ranks, collection: ordered_ranks, as: :check_boxes %>
