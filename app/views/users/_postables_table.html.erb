@@ -1,28 +1,32 @@
 <% if postables.any? %>
 
 <table class="list compact">
-  <tr>
-    <th>Postable</th>
-    <th>Posts by <%= user_tag(@user) %></th>
-    <th>Last Post by <%= user_tag(@user) %></th>
-    <th>Last Post</th>
-  </tr>
-
-  <% postables.each do |postable, post, count| %>
+  <thead>
     <tr>
-      <td><%= link_to postable, postable_path(postable) %></td>
-      <td><%= count %></td>
-      <td><%= link_to date_tag(post.created_at, relative: true), postable_post_path(postable, post) %></td>
-      <td>
-        <% if postable.last_post %>
-          <%= link_to postable_post_path(postable, postable.last_post) do %>
-            <%= character_tag(postable.last_post.user.main) %>
-            <%= date_tag(postable.last_post.created_at, relative: true) %>
-          <% end %>
-        <% end %>
-      </td>
+      <th>Postable</th>
+      <th>Posts by <%= user_tag(@user) %></th>
+      <th>Last Post by <%= user_tag(@user) %></th>
+      <th>Last Post</th>
     </tr>
-  <% end %>
+  </thead>
+
+  <tbody>
+    <% postables.each do |postable, post, count| %>
+      <tr>
+        <td><%= link_to postable, postable_path(postable) %></td>
+        <td><%= count %></td>
+        <td><%= link_to date_tag(post.created_at, relative: true), postable_post_path(postable, post) %></td>
+        <td>
+          <% if postable.last_post %>
+            <%= link_to postable_post_path(postable, postable.last_post) do %>
+              <%= character_tag(postable.last_post.user.main) %>
+              <%= date_tag(postable.last_post.created_at, relative: true) %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 <%= paginate postables %>
 

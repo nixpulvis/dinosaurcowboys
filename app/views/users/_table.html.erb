@@ -1,21 +1,25 @@
 <table class="list">
-  <tr>
-    <th></th>
-    <th></th>
-    <th>Email</th>
-    <th>Rank</th>
-    <th>Join Date</th>
-  </tr>
-  <% users.each do |user| %>
+  <thead>
     <tr>
-      <td><%= avatar_tag(user, size: "35x35") %></td>
-      <td><span class="name">
-        <%= user_tag(user) %>
-      </span></td>
-      <td><span class="email"><%= user.email %></span></td>
-      <td><span class="rank"><%= user.main.user.rank %></span></td>
-      <td><span class="join"><%= date_tag(user.main.user.created_at, time: false) %></span></td>
+      <th></th>
+      <th></th>
+      <th>Email</th>
+      <th>Rank</th>
+      <th>Join Date</th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td><%= avatar_tag(user, size: "35x35") %></td>
+        <td><span class="name">
+          <%= user_tag(user) %>
+        </span></td>
+        <td><span class="email"><%= user.email %></span></td>
+        <td><span class="rank"><%= user.main.user.rank %></span></td>
+        <td><span class="join"><%= date_tag(user.main.user.created_at, time: false) %></span></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 <%= paginate users %>

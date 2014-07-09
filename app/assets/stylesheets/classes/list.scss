@@ -1,7 +1,6 @@
 // table.list
 // Beautiful list styles for tables.
 //
-$highlight-color: shade($warning-color, 60%);
 
 table.list {
   margin-bottom: 20px;
@@ -11,31 +10,34 @@ table.list {
     font-size: 13px;
   }
 
-  tr {
-    width: 100%;
-
-    &.highlight {
-      background: $highlight-color;
-    }
-
+  thead tr {
     th {
-      padding-left: 10px;
+      padding: 0 0 5px 10px;
       text-align: left;
+
     }
 
-    td {
-      @extend hr;
-      padding: 10px 0 10px 10px;
-    }
-
-    th:last-child,
-    td:last-child {
+    th:last-child {
       padding-right: 10px;
       text-align: right;
     }
   }
 
-  &:not(.headerless) tr:first-child {
-    background: none;
+  tbody tr {
+    @extend hr;
+
+    &.highlight {
+      background: $border-color;
+      border-color: $background-color;
+    }
+
+    td {
+      padding: 10px 0 10px 10px;
+    }
+
+    td:last-child {
+      padding-right: 10px;
+      text-align: right;
+    }
   }
 }
