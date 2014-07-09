@@ -1,43 +1,47 @@
 <table class="list">
-  <tr>
-    <th>Applicant</th>
-    <th>Status</th>
-    <th>Application Date</th>
-    <th>Posts</th>
-    <th>Last Poster</th>
-    <th>Freshness</th>
-  </tr>
-  <% applications.each do |application| %>
+  <thead>
     <tr>
-      <td>
-        <%= link_to user_application_path(application.user) do %>
-          <%= character_tag application.user.main %>
-        <% end %>
-      </td>
-
-      <td>
-        <div class="status <%= application.status %>">
-          <%= application.status.to_s.titleize %>
-        </div>
-      </td>
-
-      <td>
-        <%= date_tag application.created_at, time: false %>
-      </td>
-
-      <td>
-        <%= application.posts.count %>
-      </td>
-
-      <td>
-        <% if application.posts.last %>
-          <%= user_tag(application.posts.last.user) %>
-        <% end %>
-      </td>
-
-      <td>
-        <%= date_tag application.updated_at, relative: true %>
-      </td>
+      <th>Applicant</th>
+      <th>Status</th>
+      <th>Application Date</th>
+      <th>Posts</th>
+      <th>Last Poster</th>
+      <th>Freshness</th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% applications.each do |application| %>
+      <tr>
+        <td>
+          <%= link_to user_application_path(application.user) do %>
+            <%= character_tag application.user.main %>
+          <% end %>
+        </td>
+
+        <td>
+          <div class="status <%= application.status %>">
+            <%= application.status.to_s.titleize %>
+          </div>
+        </td>
+
+        <td>
+          <%= date_tag application.created_at, time: false %>
+        </td>
+
+        <td>
+          <%= application.posts.count %>
+        </td>
+
+        <td>
+          <% if application.posts.last %>
+            <%= user_tag(application.posts.last.user) %>
+          <% end %>
+        </td>
+
+        <td>
+          <%= date_tag application.updated_at, relative: true %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>

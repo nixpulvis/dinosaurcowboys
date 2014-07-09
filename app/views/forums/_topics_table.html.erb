@@ -1,18 +1,21 @@
 <% if topics.any? %>
 
 <table class="list compact">
-  <tr>
-    <th>Topic</th>
+  <thead>
+    <tr>
+      <th>Topic</th>
 
-    <% if params[:action] == "index" %>
-      <th>Forum</th>
-    <% end %>
+      <% if params[:action] == "index" %>
+        <th>Forum</th>
+      <% end %>
 
-    <th>Author</th>
-    <th>Replies</th>
-    <th>Views</th>
-    <th>Last Post</th>
-  </tr>
+      <th>Author</th>
+      <th>Replies</th>
+      <th>Views</th>
+      <th>Last Post</th>
+    </tr>
+  </thead>
+  <tbody>
   <% topics.each do |topic| %>
   <tr <%= 'class=highlight' if topic.sticky %>>
     <td>
@@ -46,6 +49,7 @@
     </td>
   </tr>
   <% end %>
+  </tbody>
 </table>
 <%= paginate topics %>
 
