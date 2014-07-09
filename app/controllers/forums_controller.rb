@@ -106,6 +106,7 @@ class ForumsController < ApplicationController
   def load_topics(scope)
     topics = policy_scope(scope)
                 .includes(:forum, :posts, :user)
+                .order('sticky DESC')
                 .order('posts.created_at DESC')
 
     Kaminari.paginate_array(topics.to_a)
