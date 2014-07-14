@@ -17,11 +17,11 @@ class RaidPolicy < BasePolicy
   end
 
   def index?
-    user.rank || super
+    user.rank || user.raid_moderator? || super
   end
 
   def show?
-    (user.rank && record.shown?) || super
+    (user.rank && record.shown?) || user.raid_moderator? || super
   end
 
   def create?
