@@ -20,26 +20,33 @@
     </ul>
   </div>
 
-  <h3>
-    Bosses
-    <% if policy(Boss).create? %>
-      <%= link_to fa_icon("plus"), new_raid_boss_path(@raid) %>
-    <% end %>
-  </h3>
-  <ul class="button-list">
-    <% @bosses.each do |boss| %>
-      <% if policy(boss).show? %>
-        <% options = { class: 'toggle-hidden' } if boss.hidden? %>
-        <%= content_tag :li, options do %>
-          <%= link_to boss.name, raid_boss_path(@raid, boss) %>
+  <div class="bosses">
+    <h3>
+      Bosses
+      <% if policy(Boss).create? %>
+        <%= link_to fa_icon("plus"), new_raid_boss_path(@raid) %>
+      <% end %>
+    </h3>
+    <ul class="button-list">
+      <% @bosses.each do |boss| %>
+        <% if policy(boss).show? %>
+          <% options = { class: 'toggle-hidden' } if boss.hidden? %>
+          <%= content_tag :li, options do %>
+            <%= link_to boss.name, raid_boss_path(@raid, boss) %>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
-  </ul>
-
-  <div class="content">
-    <%= raw @raid.markdown(:content) %>
+    </ul>
   </div>
+
+  <div class="banner-photo">
+    <%= image_tag @raid.banner_photo.url %>
+
+    <div class="content">
+      <%= raw @raid.markdown(:content) %>
+    </div>
+  </div>
+  <div class="clearfix"></div>
 
   <hr id="discussion" />
 
