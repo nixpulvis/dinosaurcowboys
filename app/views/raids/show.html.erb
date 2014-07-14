@@ -6,11 +6,8 @@
     </h2>
 
     <ul class="actions">
-      <% if current_user.try(:admin?) %>
-        <li><%= toggle_param_tag(:hidden, :raid_path) %></li>
-      <% end %>
-
       <li><%= link_to action_tag(:discussion, @raid), "#discussion" %></li>
+
       <% if policy(@raid).update? %>
         <li><%= link_to action_tag(:update, @raid), edit_raid_path(@raid) %></li>
       <% end %>
@@ -32,7 +29,10 @@
   <ul class="button-list">
     <% @bosses.each do |boss| %>
       <% if policy(boss).show? %>
-        <li><%= link_to boss.name, raid_boss_path(@raid, boss) %></li>
+        <% options = { class: 'toggle-hidden' } if boss.hidden? %>
+        <%= content_tag :li, options do %>
+          <%= link_to boss.name, raid_boss_path(@raid, boss) %>
+        <% end %>
       <% end %>
     <% end %>
   </ul>

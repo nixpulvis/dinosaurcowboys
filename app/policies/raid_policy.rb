@@ -1,14 +1,14 @@
 # RaidPolicy
 # Defines the policy for raids on this site.
 #
-# The public is allowed to read the raids.
+# Anyone with a rank is allowed to read the raids.
 # Trials and higher are allowed to comment.
-# Officers are allowed to create and update raids.
+# Officers and Raid moderators are allowed to create and update raids.
 #
 class RaidPolicy < BasePolicy
   class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
-      if user.admin?
+      if user.rank.try(:>=, 'Officer') || user.raid_moderator? || user.admin?
         scope
       else
         scope.where(hidden: false)
@@ -21,7 +21,7 @@ class RaidPolicy < BasePolicy
   end
 
   def show?
-    (user.rank && record.shown?) || user.raid_moderator? || super
+    (user.rank && record.shown?) || create? || super
   end
 
   def create?
@@ -29,6 +29,10 @@ class RaidPolicy < BasePolicy
   end
 
   def update?
+    create? || super
+  end
+
+  def toggle?
     create? || super
   end
 

@@ -6,7 +6,7 @@
 class BossPolicy < BasePolicy
   class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
-      if user.admin?
+      if user.rank.try(:>=, 'Officer') || user.raid_moderator? || user.admin?
         scope
       else
         scope
@@ -17,7 +17,8 @@ class BossPolicy < BasePolicy
   end
 
   def show?
-    (record.shown? && Pundit.policy(user, record.raid).show?) || super
+    (record.shown? && Pundit.policy(user, record.raid).show?) ||
+      create? || super
   end
 
   def create?
@@ -25,6 +26,10 @@ class BossPolicy < BasePolicy
   end
 
   def update?
+    create? || super
+  end
+
+  def toggle?
     create? || super
   end
 
