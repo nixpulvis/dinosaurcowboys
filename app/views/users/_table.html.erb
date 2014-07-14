@@ -10,7 +10,8 @@
   </thead>
   <tbody>
     <% users.each do |user| %>
-      <tr>
+      <% options = { class: 'toggle-hidden' } if user.hidden? %>
+      <%= content_tag :tr, options do %>
         <td><%= avatar_tag(user, size: "35x35") %></td>
         <td><span class="name">
           <%= user_tag(user) %>
@@ -18,7 +19,7 @@
         <td><span class="email"><%= user.email %></span></td>
         <td><span class="rank"><%= user.main.user.rank %></span></td>
         <td><span class="join"><%= date_tag(user.main.user.created_at, time: false) %></span></td>
-      </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

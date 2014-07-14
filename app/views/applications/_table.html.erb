@@ -13,7 +13,8 @@
   </thead>
   <tbody>
     <% applications.each do |application| %>
-      <tr>
+      <% options = { class: 'toggle-hidden' } if application.hidden? %>
+      <%= content_tag :tr, options do %>
         <td>
           <%= link_to user_application_path(application.user) do %>
             <%= character_tag application.user.main %>
@@ -43,7 +44,7 @@
         <td>
           <%= date_tag application.updated_at, relative: true %>
         </td>
-      </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

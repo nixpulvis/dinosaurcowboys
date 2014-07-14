@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140616201711) do
+ActiveRecord::Schema.define(version: 20140714203626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,12 +52,12 @@ ActiveRecord::Schema.define(version: 20140616201711) do
   add_index "applications", ["user_id"], name: "index_applications_on_user_id", using: :btree
 
   create_table "bosses", force: true do |t|
-    t.string   "name",                       null: false
+    t.string   "name",                      null: false
     t.text     "content"
-    t.integer  "raid_id",                    null: false
+    t.integer  "raid_id",                   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "hidden",     default: false
+    t.boolean  "hidden",     default: true
   end
 
   add_index "bosses", ["raid_id"], name: "index_bosses_on_raid_id", using: :btree
@@ -133,12 +133,12 @@ ActiveRecord::Schema.define(version: 20140616201711) do
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "raids", force: true do |t|
-    t.string   "name",                       null: false
-    t.integer  "tier",                       null: false
+    t.string   "name",                      null: false
+    t.integer  "tier",                      null: false
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "hidden",     default: false
+    t.boolean  "hidden",     default: true
   end
 
   create_table "ranks", force: true do |t|
