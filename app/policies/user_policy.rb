@@ -15,7 +15,7 @@ class UserPolicy < BasePolicy
   end
 
   def show?
-    record.shown? || super
+    record.id == user.id || record.shown? || super
   end
 
   def create?
