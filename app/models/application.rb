@@ -51,6 +51,9 @@ class Application < ActiveRecord::Base
   validates :referer, presence: true
   validates :animal, presence: true
 
+  # Set the number of applications to show per page.
+  paginates_per 15
+
   # Send a creation email.
   after_create :send_email
 
