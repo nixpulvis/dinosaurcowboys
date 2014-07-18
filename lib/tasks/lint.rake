@@ -5,7 +5,7 @@ unless Rails.env.production?
   task lint: ['lint:rails', 'lint:ruby', 'lint:coffee', 'lint:scss']
 
   namespace :lint do
-    Rubocop::RakeTask.new(:rails) do |task|
+    RuboCop::RakeTask.new(:rails) do |task|
       task.options = [
         '-R'
       ]
@@ -14,7 +14,7 @@ unless Rails.env.production?
       ]
     end
 
-    Rubocop::RakeTask.new(:ruby) do |task|
+    RuboCop::RakeTask.new(:ruby) do |task|
       task.patterns = [
         'lib/**/*.rb',
         'lib/**/*.rake'
