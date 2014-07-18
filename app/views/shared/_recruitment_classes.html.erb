@@ -1,5 +1,5 @@
 <div class="recruitment-classes">
-  <% @recruitments ||= policy_scope(RecruitmentClass).select { |rc| rc.needed? } %>
+  <% @recruitments = policy_scope(RecruitmentClass).select { |rc| rc.needed? } %>
 
   <div class="title">
     <h2>Recruitment</h2>
