@@ -101,7 +101,7 @@ $ ->
 
     selection = editor.textrange('get')
     editor.textrange('replace', "~~#{selection.text}~~")
-    editor.textrange('setcursor', selection.end + 1)
+    editor.textrange('setcursor', selection.end + 2)
     last_position = $(this).textrange('get').position
 
     editor.focus()
@@ -112,7 +112,7 @@ $ ->
 
     selection = editor.textrange('get')
     editor.textrange('replace', "==#{selection.text}==")
-    editor.textrange('setcursor', selection.end + 1)
+    editor.textrange('setcursor', selection.end + 2)
     last_position = $(this).textrange('get').position
 
     editor.focus()
