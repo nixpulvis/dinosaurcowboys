@@ -130,7 +130,7 @@ $ ->
 
     editor.focus()
 
-  $('.post-editor .fa-indent').click (e) ->
+  $('.post-editor .fa-quote-left').click (e) ->
     editor = $(this).parent().siblings('.input').children('textarea')
     val = editor.val()
 
