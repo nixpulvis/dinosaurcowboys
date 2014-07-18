@@ -124,8 +124,8 @@ $ ->
     selection = editor.textrange('get')
     line_start = val.lastIndexOf('\n', selection.position - 1) + 1
     editor.textrange('setcursor', line_start)
-    editor.textrange('replace', "#")
-    editor.textrange('setcursor', selection.end + 1)
+    editor.textrange('replace', "# ")
+    editor.textrange('setcursor', selection.end + 2)
     last_position = $(this).textrange('get').position
 
     editor.focus()
@@ -137,8 +137,8 @@ $ ->
     selection = editor.textrange('get')
     line_start = val.lastIndexOf('\n', selection.position - 1) + 1
     editor.textrange('setcursor', line_start)
-    editor.textrange('replace', ">")
-    editor.textrange('setcursor', selection.end + 1)
+    editor.textrange('replace', "> ")
+    editor.textrange('setcursor', selection.end + 2)
     last_position = $(this).textrange('get').position
 
     editor.focus()
