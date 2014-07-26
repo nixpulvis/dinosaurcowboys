@@ -3,22 +3,34 @@
     <h1>Recent Bosses</h1>
   </div>
 
-  <ul class="button-list">
+  <table class="list compact">
+    <thead>
+      <tr>
+        <th>Boss</th>
+        <th>Posts</th>
+        <th>Last Post</th>
+      </tr>
+    </thead>
+    <tbody>
     <% @bosses.each do |boss| %>
-      <li>
-        <%= link_to raid_boss_path(boss.raid, boss) do %>
-          <%= boss %>
-
-          <% if boss.posts.any? %>
-            <span class="pull-right">
+      <% if policy(boss).show? %>
+        <% options = { class: 'toggle-hidden' } if boss.hidden? %>
+        <%= content_tag :tr, options do %>
+          <td><%= link_to boss.name, raid_boss_path(boss.raid, boss) %></td>
+          <td><%= boss.posts.count %></td>
+          <td>
+            <% if boss.last_post %>
+            <%= link_to postable_post_path(boss, boss.last_post) do %>
               <%= character_tag(boss.last_post.user.main) %>
               <%= date_tag(boss.last_post.created_at, relative: true) %>
-            </span>
+            <% end %>
           <% end %>
+          </td>
         <% end %>
-      </li>
+      <% end %>
     <% end %>
-  </ul>
+    </tbody>
+  </table>
 
   <div class="title">
     <h1>Recent Topics</h1>
@@ -40,16 +52,30 @@
     </div>
   </div>
 
-  <ul class="button-list">
-    <% @forums.each do |forum| %>
-      <li>
-        <%= link_to forum_path(forum), class: "button" do %>
-          <%= forum %>
-          <div class="pull-right">
-            <%= pluralize forum.topics.count, "topic" %>
-          </div>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
+  <table class="list compact">
+    <thead>
+      <tr>
+        <th>Forum</th>
+        <th>Topics</th>
+        <th>Freshest</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @forums.each do |forum| %>
+        <tr>
+          <td><%= link_to forum, forum_path(forum) %></td>
+          <td><%= forum.topics.count %></td>
+          <td>
+            <% freshest_topic = forum.freshest_topic %>
+            <% if freshest_topic %>
+            <%= link_to forum_topic_path(forum, freshest_topic) do %>
+              <%= freshest_topic %>
+              <%= date_tag(freshest_topic.last_post.created_at, relative: true) %>
+            <% end %>
+          <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
