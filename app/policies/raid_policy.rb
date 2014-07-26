@@ -49,6 +49,6 @@ class RaidPolicy < BasePolicy
   end
 
   def permitted_attributes
-    [:name, :tier, :content, banner_photo_attributes: [:file]]
+    [:name, :tier, :content, :banner_photo]
   end
 end
