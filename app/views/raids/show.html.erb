@@ -8,6 +8,9 @@
     <ul class="actions">
       <li><%= link_to action_tag(:discussion, @raid), "#discussion" %></li>
 
+      <% if policy(Boss).create? %>
+        <%= link_to action_tag(:create, Boss, text: "New Boss"), new_raid_boss_path(@raid) %>
+      <% end %>
       <% if policy(@raid).update? %>
         <li><%= link_to action_tag(:update, @raid), edit_raid_path(@raid) %></li>
       <% end %>
@@ -21,32 +24,44 @@
   </div>
 
   <div class="bosses">
-    <h3>
-      Bosses
-      <% if policy(Boss).create? %>
-        <%= link_to fa_icon("plus"), new_raid_boss_path(@raid) %>
-      <% end %>
-    </h3>
-    <ul class="button-list">
+    <table class="list compact">
+      <thead>
+        <tr>
+          <th>Boss</th>
+          <th>Posts</th>
+          <th>Last Post</th>
+        </tr>
+      </thead>
+      <tbody>
       <% @bosses.each do |boss| %>
         <% if policy(boss).show? %>
           <% options = { class: 'toggle-hidden' } if boss.hidden? %>
-          <%= content_tag :li, options do %>
-            <%= link_to boss.name, raid_boss_path(@raid, boss) %>
+          <%= content_tag :tr, options do %>
+            <td><%= link_to boss.name, raid_boss_path(@raid, boss) %></td>
+            <td><%= boss.posts.count %></td>
+            <td>
+              <% if boss.last_post %>
+              <%= link_to postable_post_path(boss, boss.last_post) do %>
+                <%= character_tag(boss.last_post.user.main) %>
+                <%= date_tag(boss.last_post.created_at, relative: true) %>
+              <% end %>
+            <% end %>
+            </td>
           <% end %>
         <% end %>
       <% end %>
-    </ul>
+      </tbody>
+    </table>
   </div>
 
   <div class="banner-photo">
-    <%= image_tag @raid.banner_photo.url %>
-
-    <div class="content">
-      <%= raw @raid.markdown(:content) %>
-    </div>
+    <%= image_tag @raid.banner_photo.url, class: "border" %>
   </div>
   <div class="clearfix"></div>
+
+  <div class="content">
+    <%= raw @raid.markdown(:content) %>
+  </div>
 
   <hr id="discussion" />
 
