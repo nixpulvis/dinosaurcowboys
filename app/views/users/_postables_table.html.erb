@@ -3,9 +3,7 @@
 <table class="list compact">
   <thead>
     <tr>
-      <th>Postable</th>
-      <th>Posts by <%= user_tag(@user) %></th>
-      <th>Last Post by <%= user_tag(@user) %></th>
+      <th></th>
       <th>Last Post</th>
     </tr>
   </thead>
@@ -13,9 +11,7 @@
   <tbody>
     <% postables.each do |postable, post, count| %>
       <tr>
-        <td><%= link_to postable, postable_path(postable) %></td>
-        <td><%= count %></td>
-        <td><%= link_to date_tag(post.created_at, relative: true), postable_post_path(postable, post) %></td>
+        <td><%= postable_tag(postable, label: true) %></td>
         <td>
           <% if postable.last_post %>
             <%= link_to postable_post_path(postable, postable.last_post) do %>
