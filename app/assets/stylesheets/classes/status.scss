@@ -23,6 +23,22 @@
   &.rejected {
     background-color: $danger-color;
   }
+
+  &.application {
+    background-color: $application-color;
+  }
+
+  &.boss {
+    background-color: $boss-color;
+  }
+
+  &.raid {
+    background-color: $raid-color;
+  }
+
+  &.topic {
+    background-color: $topic-color;
+  }
 }
 
 h1 .status {
