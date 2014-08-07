@@ -1,0 +1,28 @@
+<table class="list compact">
+  <thead>
+    <tr>
+      <th>Boss</th>
+      <th>Replies</th>
+      <th>Last Post</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% bosses.each do |boss| %>
+    <% if policy(boss).show? %>
+      <% options = { class: 'toggle-hidden' } if boss.hidden? %>
+      <%= content_tag :tr, options do %>
+        <td><%= link_to boss.name, raid_boss_path(boss.raid, boss) %></td>
+        <td><%= boss.posts.count %></td>
+        <td>
+          <% if boss.last_post %>
+          <%= link_to postable_post_path(boss, boss.last_post) do %>
+            <%= character_tag(boss.last_post.user.main) %>
+            <%= date_tag(boss.last_post.created_at, relative: true) %>
+          <% end %>
+        <% end %>
+        </td>
+      <% end %>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
