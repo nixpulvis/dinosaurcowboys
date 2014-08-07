@@ -47,6 +47,6 @@ class BossPolicy < BasePolicy
   end
 
   def permitted_attributes
-    [:name, :content, :row_order]
+    [:name, :content, :updates, :row_order]
   end
 end

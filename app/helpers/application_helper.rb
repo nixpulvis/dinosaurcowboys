@@ -49,7 +49,9 @@ module ApplicationHelper
       text = (options[:text] ? options[:text] : "Delete") + " "
       text.html_safe + fa_icon('trash-o')
     when :discussion
-      'View Discussion '.html_safe + fa_icon('comment')
+      'Discussion '.html_safe + fa_icon('comment')
+    when :updates
+      'Updates '.html_safe + fa_icon('history')
     end
   end
 
