@@ -34,7 +34,7 @@ class TopicsController < ApplicationController
   # Provides the topic, and it's posts.
   #
   def show
-    impressionist @topic, "Topic view", unique: [:session_hash]
+    impressionist @topic, 'Topic view', unique: [:session_hash]
     @posts = Post.for_postable(@topic, params[:page])
     @post  = @topic.posts.build
   end

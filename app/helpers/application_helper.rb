@@ -29,24 +29,25 @@ module ApplicationHelper
   # Returns the appropriate HTML for an icon and text
   # for the given action.
   #
+  # rubocop:disable CyclomaticComplexity, MethodLength
   def action_tag(action, model, options = {})
     case action
     when :new, :create
-      text = (options[:text] ? options[:text] : "New") + " "
+      text = (options[:text] ? options[:text] : 'New') + ' '
       text.html_safe + fa_icon('file-o')
     when :edit, :update
-      text = (options[:text] ? options[:text] : "Edit") + " "
+      text = (options[:text] ? options[:text] : 'Edit') + ' '
       text.html_safe + fa_icon('edit')
     when :toggle
       if model.hidden?
-        text = (options[:text] ? options[:text] : "Show") + " "
-      text.html_safe + fa_icon('eye')
+        text = (options[:text] ? options[:text] : 'Show') + ' '
+        text.html_safe + fa_icon('eye')
       else
-        text = (options[:text] ? options[:text] : "Hide") + " "
-      text.html_safe + fa_icon('eye')
+        text = (options[:text] ? options[:text] : 'Hide') + ' '
+        text.html_safe + fa_icon('eye')
       end
     when :destroy
-      text = (options[:text] ? options[:text] : "Delete") + " "
+      text = (options[:text] ? options[:text] : 'Delete') + ' '
       text.html_safe + fa_icon('trash-o')
     when :discussion
       'Discussion '.html_safe + fa_icon('comment')
