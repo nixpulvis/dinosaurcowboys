@@ -11,8 +11,8 @@
 }
 
 .updates.content {
+  border: $border-size solid $warning-color;
   border-bottom-left-radius: $border-radius-size;
   border-bottom-right-radius: $border-radius-size;
-  border: $border-size solid $warning-color;
   padding: 5px 10px;
 }

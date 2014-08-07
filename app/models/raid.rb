@@ -16,7 +16,8 @@ class Raid < ActiveRecord::Base
 
   # The paperclip banner photo file object itself.
   # TODO: Tweak sizes.
-  has_attached_file :banner_photo, styles: { medium: '300x300>', thumb: '50x50#' }
+  has_attached_file :banner_photo, styles: { medium: '300x300>',
+                                             thumb: '50x50#' }
 
   # Validate that raids have a name and tier.
   validates :name, presence: true

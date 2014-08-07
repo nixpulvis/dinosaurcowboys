@@ -39,7 +39,7 @@ class BossesController < ApplicationController
   # Provides the given boss, raid, and the bosses posts.
   #
   def show
-    impressionist @boss, "Boss view", unique: [:session_hash]
+    impressionist @boss, 'Boss view', unique: [:session_hash]
     @posts = Post.for_postable(@boss, params[:page])
     @post  = @boss.posts.build
   end
