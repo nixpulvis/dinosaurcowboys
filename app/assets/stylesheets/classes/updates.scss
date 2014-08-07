@@ -1,0 +1,18 @@
+// .updates
+// Updates to content.
+//
+.updates.title {
+  background: $warning-color;
+  border-top-left-radius: $border-radius-size;
+  border-top-right-radius: $border-radius-size;
+  color: $background-color;
+  margin-bottom: 0;
+  padding: 5px 10px;
+}
+
+.updates.content {
+  border-bottom-left-radius: $border-radius-size;
+  border-bottom-right-radius: $border-radius-size;
+  border: $border-size solid $warning-color;
+  padding: 5px 10px;
+}

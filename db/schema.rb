@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140726183317) do
+ActiveRecord::Schema.define(version: 20140807185635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20140726183317) do
     t.datetime "updated_at"
     t.boolean  "hidden",     default: true
     t.integer  "row_order",  default: 0,    null: false
+    t.text     "updates"
   end
 
   add_index "bosses", ["raid_id"], name: "index_bosses_on_raid_id", using: :btree
