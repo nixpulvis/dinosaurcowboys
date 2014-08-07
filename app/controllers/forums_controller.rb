@@ -17,7 +17,7 @@ class ForumsController < ApplicationController
                 .where(hidden: false)
                 .includes(:raid, :posts)
                 .order(created_at: :desc)
-                .limit(2)
+                .limit(3)
 
     @topics = load_topics(Topic)
 
