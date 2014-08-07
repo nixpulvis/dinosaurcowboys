@@ -4,12 +4,6 @@
 # Actions: [create, show, edit, update, destroy]
 #
 class TopicsController < ApplicationController
-  # Keep track of views.
-  impressionist actions: [:show],
-                unique: [:impressionable_type,
-                         :impressionable_id,
-                         :session_hash]
-
   before_action only: [:show, :edit, :update, :destroy] do
     forum = Forum.find(params[:forum_id])
     @topic = forum.topics.find(params[:id])
@@ -40,6 +34,7 @@ class TopicsController < ApplicationController
   # Provides the topic, and it's posts.
   #
   def show
+    impressionist @topic, "Topic view", unique: [:session_hash]
     @posts = Post.for_postable(@topic, params[:page])
     @post  = @topic.posts.build
   end

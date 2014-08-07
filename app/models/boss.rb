@@ -15,6 +15,9 @@ class Boss < ActiveRecord::Base
   # A boss is in a raid.
   belongs_to :raid
 
+  # Keeps track of views.
+  is_impressionable
+
   # Validate that raids have a name and tier.
   validates :name, presence: true
 
