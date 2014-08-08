@@ -1,0 +1,18 @@
+@include select-page('raids', 'show') {
+  .bosses {
+    @include span-columns(6);
+
+    h3 {
+      margin-top: 0;
+    }
+  }
+
+  .banner-photo {
+    @include span-columns(6);
+    @include omega;
+
+    img {
+      width: 100%;
+    }
+  }
+}

@@ -38,4 +38,11 @@ class Forum < ActiveRecord::Base
   def to_s
     name
   end
+
+  # -> Topic
+  # Return the topic in this forum with the most recent post.
+  #
+  def freshest_topic
+    topics.select(&:posts_updated_at).max_by(&:posts_updated_at)
+  end
 end

@@ -3,22 +3,7 @@
     <h1>Recent Bosses</h1>
   </div>
 
-  <ul class="button-list">
-    <% @bosses.each do |boss| %>
-      <li>
-        <%= link_to raid_boss_path(boss.raid, boss) do %>
-          <%= boss %>
-
-          <% if boss.posts.any? %>
-            <span class="pull-right">
-              <%= character_tag(boss.last_post.user.main) %>
-              <%= date_tag(boss.last_post.created_at, relative: true) %>
-            </span>
-          <% end %>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
+  <%= render "forums/bosses_table", bosses: @bosses %>
 
   <div class="title">
     <h1>Recent Topics</h1>
@@ -40,16 +25,5 @@
     </div>
   </div>
 
-  <ul class="button-list">
-    <% @forums.each do |forum| %>
-      <li>
-        <%= link_to forum_path(forum), class: "button" do %>
-          <%= forum %>
-          <div class="pull-right">
-            <%= pluralize forum.topics.count, "topic" %>
-          </div>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
+  <%= render "forums/forums_table", forums: @forums %>
 </div>

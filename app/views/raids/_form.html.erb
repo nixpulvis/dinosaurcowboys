@@ -1,6 +1,8 @@
 <%= simple_form_for raid do |f| %>
   <%= f.input :name %>
   <%= f.input :tier %>
+  <%= f.input :banner_photo, label: "Banner Photo" %>
+
   <%= render "shared/editor", f: f, field: :content %>
 
   <%= f.button :submit %>

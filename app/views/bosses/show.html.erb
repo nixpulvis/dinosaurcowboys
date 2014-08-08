@@ -7,6 +7,9 @@
     </h3>
 
     <ul class="actions">
+      <% if @boss.updates.present? %>
+        <li><%= link_to action_tag(:updates, @boss), "#updates" %></li>
+      <% end %>
       <li><%= link_to action_tag(:discussion, @boss), "#discussion" %></li>
       <% if policy(@boss).update? %>
         <li><%= link_to action_tag(:edit, @boss), edit_raid_boss_path(@boss.raid, @boss) %></li>
@@ -23,6 +26,13 @@
   <div class="content">
     <%= raw @boss.markdown(:content) %>
   </div>
+
+  <% if @boss.updates.present? %>
+    <h3 id="updates" class="updates title">Updates</h3>
+    <div class="updates content">
+      <%= raw @boss.markdown(:updates) %>
+    </div>
+  <% end %>
 
   <hr id="discussion" />
 

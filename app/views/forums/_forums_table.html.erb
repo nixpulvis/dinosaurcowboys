@@ -1,0 +1,26 @@
+<table class="list compact">
+  <thead>
+    <tr>
+      <th>Forum</th>
+      <th>Topics</th>
+      <th>Freshest</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% forums.each do |forum| %>
+      <tr>
+        <td><%= link_to forum, forum_path(forum) %></td>
+        <td><%= forum.topics.count %></td>
+        <td>
+          <% freshest_topic = forum.freshest_topic %>
+          <% if freshest_topic %>
+          <%= link_to forum_topic_path(forum, freshest_topic) do %>
+            <%= freshest_topic %>
+            <%= date_tag(freshest_topic.last_post.created_at, relative: true) %>
+          <% end %>
+        <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
