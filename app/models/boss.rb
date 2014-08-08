@@ -9,13 +9,20 @@
 class Boss < ActiveRecord::Base
   include Markdownable
   include Postable
+  include RankedModel
   include Toggleable
 
   # A boss is in a raid.
   belongs_to :raid
 
+  # Keeps track of views.
+  is_impressionable
+
   # Validate that raids have a name and tier.
   validates :name, presence: true
+
+  # Custom ordering support.
+  ranks :row_order
 
   # Setup the routing to be of the form "/.../bosses/name_of_boss".
   # TODO: Maybe make this functionality into a module.

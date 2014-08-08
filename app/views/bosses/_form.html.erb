@@ -1,6 +1,12 @@
 <%= simple_form_for [boss.raid, boss] do |f| %>
   <%= f.input :name %>
+  <%= f.input :row_order, label: 'Order', hint: 'Lower values come before higher values.' %>
+
+  <label for="boss_content">Content</label>
   <%= render "shared/editor", f: f, field: :content %>
+
+  <label for="boss_updates">Updates</label>
+  <%= render "shared/editor", f: f, field: :updates %>
 
   <%= f.button :submit %>
 <% end %>

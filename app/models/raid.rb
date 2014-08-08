@@ -14,9 +14,16 @@ class Raid < ActiveRecord::Base
   # As we all know, there are bosses in raids.
   has_many :bosses, dependent: :destroy
 
+  # The paperclip banner photo file object itself.
+  # TODO: Tweak sizes.
+  has_attached_file :banner_photo, styles: { medium: '300x300>',
+                                             thumb: '50x50#' }
+
   # Validate that raids have a name and tier.
   validates :name, presence: true
   validates :tier, numericality: true, allow_nil: true
+  validates :banner_photo, presence: true
+  validates_attachment_content_type :banner_photo, content_type: /\Aimage\/.*\Z/
 
   # Setup the routing to be of the form "/raids/name_of_raid".
   # TODO: Maybe make this functionality into a module.

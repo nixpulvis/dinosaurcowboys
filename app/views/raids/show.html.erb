@@ -8,6 +8,9 @@
     <ul class="actions">
       <li><%= link_to action_tag(:discussion, @raid), "#discussion" %></li>
 
+      <% if policy(Boss).create? %>
+        <%= link_to action_tag(:create, Boss, text: "New Boss"), new_raid_boss_path(@raid) %>
+      <% end %>
       <% if policy(@raid).update? %>
         <li><%= link_to action_tag(:update, @raid), edit_raid_path(@raid) %></li>
       <% end %>
@@ -20,22 +23,14 @@
     </ul>
   </div>
 
-  <h3>
-    Bosses
-    <% if policy(Boss).create? %>
-      <%= link_to fa_icon("plus"), new_raid_boss_path(@raid) %>
-    <% end %>
-  </h3>
-  <ul class="button-list">
-    <% @bosses.each do |boss| %>
-      <% if policy(boss).show? %>
-        <% options = { class: 'toggle-hidden' } if boss.hidden? %>
-        <%= content_tag :li, options do %>
-          <%= link_to boss.name, raid_boss_path(@raid, boss) %>
-        <% end %>
-      <% end %>
-    <% end %>
-  </ul>
+  <div class="bosses">
+  <%= render "raids/bosses_table", bosses: @bosses %>
+  </div>
+
+  <div class="banner-photo">
+    <%= image_tag @raid.banner_photo.url, class: "border" %>
+  </div>
+  <div class="clearfix"></div>
 
   <div class="content">
     <%= raw @raid.markdown(:content) %>
