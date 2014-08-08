@@ -111,6 +111,6 @@ class ForumsController < ApplicationController
 
     Kaminari.paginate_array(topics.to_a)
             .page(params[:page])
-            .per(10)
+            .per(15)
   end
 end
