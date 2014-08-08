@@ -15,13 +15,14 @@ class ForumsController < ApplicationController
   def index
     @bosses = policy_scope(Boss)
                 .where(hidden: false)
-                .includes(:raid, :posts)
+                .includes(:raid)
                 .order(created_at: :desc)
                 .limit(3)
 
     @topics = load_topics(Topic)
 
     @forums = policy_scope(Forum)
+                .includes(:topics)
                 .rank(:row_order)
 
     authorize @forums
