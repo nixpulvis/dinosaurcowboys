@@ -1,14 +1,21 @@
 <div class="page">
   <div class="title">
     <h1>Recent Bosses</h1>
-  </div>
 
+    <div class="info">
+      For more raid and boss info visit the <a href="/raids">Raids</a> page.
+    </div>
+  </div>
   <%= render "forums/bosses_table", bosses: @bosses %>
 
   <div class="title">
     <h1>Recent Topics</h1>
-  </div>
 
+    <div class="info">
+      These are the topics with the most recent posts. Note that this does not
+      include raid, boss, or application discussion.
+    </div>
+  </div>
   <%= render "forums/topics_table", topics: @topics %>
 
   <div class="title">
@@ -21,9 +28,10 @@
     </ul>
 
     <div class="info">
-      To create a new topic, click on the forum you wish to create it in, and then click the "Create New Topic" button. This button will only exist if you have access to creating topics in that forum.
+      To create a new topic, click on the forum you wish to create it in, and
+      then click the "Create New Topic" button. This button will only exist if
+      you have access to creating topics in that forum.
     </div>
   </div>
-
   <%= render "forums/forums_table", forums: @forums %>
 </div>
