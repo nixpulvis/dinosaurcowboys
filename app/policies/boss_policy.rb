@@ -7,12 +7,11 @@ class BossPolicy < BasePolicy
   class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
       if user.rank.try(:>=, 'Officer') || user.raid_moderator? || user.admin?
-        scope.rank(:row_order)
+        scope
       else
         scope
           .where(raid_id: Pundit.policy_scope(user, Raid).pluck(:id))
           .where(hidden: false)
-          .rank(:row_order)
       end
     end
   end
@@ -47,6 +46,6 @@ class BossPolicy < BasePolicy
   end
 
   def permitted_attributes
-    [:name, :content, :updates, :row_order]
+    [:name, :sticky, :content, :updates, :row_order]
   end
 end
