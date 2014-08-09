@@ -3,7 +3,8 @@
     <h1>Recent Bosses</h1>
 
     <div class="info">
-      For more raid and boss info visit the <a href="/raids">Raids</a> page.
+      For the complete list of raids and bosses visit the
+      <a href="/raids">raids</a> page.
     </div>
   </div>
   <%= render "forums/bosses_table", bosses: @bosses %>
@@ -12,8 +13,9 @@
     <h1>Recent Topics</h1>
 
     <div class="info">
-      These are the topics with the most recent posts. Note that this does not
-      include raid, boss, or application discussion.
+      These are the topics with the most recent posts. <i>This does not
+      include <a href="/raids">raid, boss</a>, or
+      <a href="/applications">application</a> discussion.</i>
     </div>
   </div>
   <%= render "forums/topics_table", topics: @topics %>
