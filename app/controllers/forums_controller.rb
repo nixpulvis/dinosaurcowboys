@@ -114,7 +114,7 @@ class ForumsController < ApplicationController
   # Scope -> ActiveRecord::Relation
   #
   def load_bosses(scope)
-    bosses = policy_scope(Boss)
+    bosses = policy_scope(scope)
                .where(hidden: false)
                .includes(:raid)
                .order('sticky DESC, updated_at DESC')
