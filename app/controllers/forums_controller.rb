@@ -13,11 +13,7 @@ class ForumsController < ApplicationController
   # Provide all the forums and the recent topics.
   #
   def index
-    @bosses = policy_scope(Boss)
-                .where(hidden: false)
-                .includes(:raid)
-                .order(created_at: :desc)
-                .limit(3)
+    @bosses = load_bosses(Boss)
 
     @topics = load_topics(Topic)
 
@@ -113,5 +109,18 @@ class ForumsController < ApplicationController
     Kaminari.paginate_array(topics.to_a)
             .page(params[:page])
             .per(15)
+  end
+
+  # Scope -> ActiveRecord::Relation
+  #
+  def load_bosses(scope)
+    bosses = policy_scope(Boss)
+               .where(hidden: false)
+               .includes(:raid)
+               .order('sticky DESC, updated_at DESC')
+
+    Kaminari.paginate_array(bosses.to_a)
+            .page(params[:page])
+            .per(5)
   end
 end

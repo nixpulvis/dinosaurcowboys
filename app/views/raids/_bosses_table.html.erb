@@ -9,8 +9,10 @@
   <tbody>
   <% bosses.each do |boss| %>
     <% if policy(boss).show? %>
-      <% options = { class: 'toggle-hidden' } if boss.hidden? %>
-      <%= content_tag :tr, options do %>
+      <% css_klass = "" %>
+      <% css_klass += "toggle-hidden" if boss.hidden? %>
+      <% css_klass += " highlight" if boss.sticky? %>
+      <%= content_tag :tr, class: css_klass do %>
         <td><%= link_to boss.name, raid_boss_path(@raid, boss) %></td>
         <td><%= boss.posts.count %></td>
         <td>
