@@ -32,8 +32,12 @@ class Post < ActiveRecord::Base
   # Returns the page of this post.
   #
   def page
-    position = Post.where('created_at <= ? AND postable_id = ?',
-                          created_at, postable.id).count
+    position = Post.where('created_at <= ? AND
+                           postable_id = ? AND
+                           postable_type = ?',
+                           created_at,
+                           postable.id,
+                           postable.class).count
     (position.to_f / Post.default_per_page).ceil
   end
 end
