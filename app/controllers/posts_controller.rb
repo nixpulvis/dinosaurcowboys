@@ -63,7 +63,7 @@ class PostsController < ApplicationController
     if @postable
       @postable
     else
-      resource, id = request.path.split('/')[1, 2]
+      resource, id = URI.unescape(request.path).split('/')[1, 2]
       @postable = resource.singularize.classify.constantize.find(id)
     end
   end
