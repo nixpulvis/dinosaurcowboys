@@ -12,7 +12,8 @@
         <td><%= link_to forum, forum_path(forum) %></td>
         <td><%= forum.topics.count %></td>
         <td>
-          <% freshest_topic = forum.freshest_topic %>
+          <% # FIXME: this is a hack. %>
+          <% freshest_topic = nil # forum.freshest_topic %>
           <% if freshest_topic %>
           <%= link_to forum_topic_path(forum, freshest_topic) do %>
             <%= freshest_topic %>
