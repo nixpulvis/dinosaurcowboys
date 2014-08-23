@@ -118,9 +118,6 @@ class ForumsController < ApplicationController
                .where(hidden: false)
                .includes(:raid)
                .order('sticky DESC, updated_at DESC')
-
-    Kaminari.paginate_array(bosses.to_a)
-            .page(params[:page])
-            .per(5)
+               .limit(5)
   end
 end
