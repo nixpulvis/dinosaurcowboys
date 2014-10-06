@@ -5,7 +5,7 @@
 //
 .content {
   @include prefixer(font-smoothing, antialiased, webkit moz);
-  font: 20px 'Computer Modern Sans', Helvetica, Arial, sans-serif;
+  font: 18px 'Computer Modern Sans', Helvetica, Arial, sans-serif;
 
   // TODO: May need to select more things?
   h1:first-child,
