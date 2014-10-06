@@ -5,7 +5,7 @@
 //
 .content {
   @include prefixer(font-smoothing, antialiased, webkit moz);
-  font: 16px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font: 20px 'Computer Modern Sans', Helvetica, Arial, sans-serif;
 
   // TODO: May need to select more things?
   h1:first-child,
@@ -21,10 +21,6 @@
   // TODO: May need to select more things.
   p:last-child {
     margin-bottom: 0;
-  }
-
-  p {
-    line-height: 1.6em;
   }
 
   img {
