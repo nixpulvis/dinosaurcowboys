@@ -12,8 +12,8 @@ class Rank < ActiveRecord::Base
     'Officer',
     'Loot Council',
     'Raider',
-    'Part Time',
     'Trial',
+    'Part Time',
     'Friend'
   ]
 
