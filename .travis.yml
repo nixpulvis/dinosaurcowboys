@@ -4,7 +4,7 @@ before_install:
 language: ruby
 cache: bundler
 rvm:
-  - 2.1.2
+  - 2.1.5
 
 deploy:
   app: partyshark-staging
