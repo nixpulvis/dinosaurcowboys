@@ -49,7 +49,7 @@ $ ->
     name = post.find('.name span').html()
     body = post.find('.raw').html()
     qoute = "#{name} said:\n> #{$.trim(body)}"
-             .replace(/\n\n/, '\n\n> ') + '\n\n'
+      .replace(/\n\n/, '\n\n> ') + '\n\n'
     $('.new_post textarea').val(qoute)
     $('.new_post textarea').trigger('autosize.resize')
     $('.new_post textarea').textrange('setcursor', qoute.length)
