@@ -23,9 +23,9 @@ class Post < ActiveRecord::Base
   #
   def self.for_postable(postable, page)
     postable.posts
-            .includes({ user: [:rank, :avatar] }, :postable)
-            .order(created_at: :asc)
-            .page(page)
+      .includes({ user: [:rank, :avatar] }, :postable)
+      .order(created_at: :asc)
+      .page(page)
   end
 
   # page -> Fixnum
@@ -35,9 +35,9 @@ class Post < ActiveRecord::Base
     position = Post.where('created_at <= ? AND
                            postable_id = ? AND
                            postable_type = ?',
-                           created_at,
-                           postable.id,
-                           postable.class).count
+                          created_at,
+                          postable.id,
+                          postable.class).count
     (position.to_f / Post.default_per_page).ceil
   end
 end

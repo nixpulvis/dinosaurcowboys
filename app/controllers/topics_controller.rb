@@ -24,8 +24,8 @@ class TopicsController < ApplicationController
       redirect_to forum_topic_path(@forum, @topic)
     else
       @topics = policy_scope(@forum.topics)
-                  .order(sticky: :desc, updated_at: :desc)
-                  .page(params[:page])
+                .order(sticky: :desc, updated_at: :desc)
+                .page(params[:page])
       render 'forums/show'
     end
   end

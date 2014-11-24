@@ -29,7 +29,7 @@ module ApplicationHelper
   # Returns the appropriate HTML for an icon and text
   # for the given action.
   #
-  # rubocop:disable CyclomaticComplexity, MethodLength
+  # rubocop:disable Metrics/AbcSize, CyclomaticComplexity, MethodLength
   def action_tag(action, model, options = {})
     case action
     when :new, :create

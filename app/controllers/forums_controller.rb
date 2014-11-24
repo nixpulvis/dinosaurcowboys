@@ -18,8 +18,8 @@ class ForumsController < ApplicationController
     @topics = load_topics(Topic)
 
     @forums = policy_scope(Forum)
-                .includes(:topics)
-                .rank(:row_order)
+              .includes(:topics)
+              .rank(:row_order)
 
     authorize @forums
   end
@@ -102,22 +102,19 @@ class ForumsController < ApplicationController
   #
   def load_topics(scope)
     topics = policy_scope(scope)
-                .includes(:forum, :posts, :user)
-                .order('sticky DESC')
-                .order('posts.created_at DESC')
+             .includes(:forum, :posts, :user)
+             .order('sticky DESC')
+             .order('posts.created_at DESC')
 
-    Kaminari.paginate_array(topics.to_a)
-            .page(params[:page])
-            .per(15)
+    Kaminari.paginate_array(topics.to_a).page(params[:page]).per(15)
   end
 
   # Scope -> ActiveRecord::Relation
   #
   def load_bosses(scope)
-    bosses = policy_scope(scope)
-               .where(hidden: false)
-               .includes(:raid)
-               .order('sticky DESC, updated_at DESC')
-               .limit(5)
+    policy_scope(scope).where(hidden: false)
+      .includes(:raid)
+      .order('sticky DESC, updated_at DESC')
+      .limit(5)
   end
 end

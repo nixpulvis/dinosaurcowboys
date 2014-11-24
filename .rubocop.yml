@@ -1,5 +1,11 @@
-MethodLength:
+Metrics/MethodLength:
   Max: 20
 
-CyclomaticComplexity:
+Metrics/CyclomaticComplexity:
+  Max: 8
+
+Metrics/PerceivedComplexity:
   Max: 10
+
+Metrics/AbcSize:
+  Max: 25
