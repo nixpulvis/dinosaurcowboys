@@ -13,8 +13,7 @@ class RaidsController < ApplicationController
   # Provides the raids.
   #
   def index
-    @raids = policy_scope(Raid)
-               .order(tier: :desc)
+    @raids = policy_scope(Raid).order(tier: :desc)
 
     authorize @raids
   end

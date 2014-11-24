@@ -15,9 +15,9 @@ class UsersController < ApplicationController
   #
   def index
     @users = policy_scope(User)
-               .includes(:avatar)
-               .order(created_at: :desc)
-               .page(params[:page])
+             .includes(:avatar)
+             .order(created_at: :desc)
+             .page(params[:page])
 
     @users = @users.where(hidden: false) unless params[:hidden]
 
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
   #
   def show
     posts = policy_scope(@user.posts)
-    postables = posts.map { |post| post.postable }.uniq
+    postables = posts.map(&:postable).uniq
 
     @postables = postables.map do |p|
       [p, p.posts.where(user: @user).last, p.posts.where(user: @user).count]
@@ -67,8 +67,8 @@ class UsersController < ApplicationController
     end
 
     @postables = Kaminari.paginate_array(@postables)
-                         .page(params[:page])
-                         .per(15)
+                 .page(params[:page])
+                 .per(15)
   end
 
   # GET /users/:id/edit
@@ -80,6 +80,7 @@ class UsersController < ApplicationController
   # PATCH or PUT /users/:id
   # Allows for users to update their attributes.
   #
+  # rubocop:disable Metrics/AbcSize
   def update
     # Assume user is not trying to update password if the password is blank.
     if params[:user][:password].blank?

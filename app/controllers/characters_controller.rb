@@ -75,8 +75,8 @@ class CharactersController < ApplicationController
   #
   def roster
     @characters = policy_scope(Character)
-                    .includes(user: :rank)
-                    .where(main: true)
+                  .includes(user: :rank)
+                  .where(main: true)
     authorize @characters
 
     # Get only the characters over Trial rank and shown.
