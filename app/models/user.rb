@@ -30,6 +30,9 @@ class User < ActiveRecord::Base
   # A user can upload things. :)
   has_many :uploads
 
+  # Users can shout very loudly! Or softly (oxymoron?).
+  has_many :shouts
+
   # A user **must** have an email address, and a character.
   validates :email, presence: true
   validates :characters, presence: true
