@@ -2,7 +2,13 @@
   <thead>
     <tr>
       <th>Boss</th>
+
+      <% if params[:controller] == "forums" %>
+        <th>Raid</th>
+      <% end %>
+
       <th>Replies</th>
+      <th>Views</th>
       <th>Last Post</th>
     </tr>
   </thead>
@@ -13,8 +19,14 @@
       <% css_klass += "toggle-hidden" if boss.hidden? %>
       <% css_klass += " highlight" if boss.sticky? %>
       <%= content_tag :tr, class: css_klass do %>
-        <td><%= link_to boss.name, raid_boss_path(@raid, boss) %></td>
+        <td><%= link_to boss.name, raid_boss_path(boss.raid, boss) %></td>
+
+        <% if params[:controller] == "forums" %>
+          <td><%= link_to boss.raid, raid_path(boss.raid) %></td>
+        <% end %>
+
         <td><%= boss.posts.count %></td>
+        <td><%= boss.impressionist_count %></td>
         <td>
           <% if boss.last_post %>
           <%= link_to postable_post_path(boss, boss.last_post) do %>
