@@ -30,10 +30,6 @@
       font-size: 18px;
     }
   }
-
-  .posts {
-    @include span-columns(6);
-  }
 }
 
 @include select-page('users', 'edit' 'update') {
