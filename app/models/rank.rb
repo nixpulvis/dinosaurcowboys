@@ -10,6 +10,7 @@ class Rank < ActiveRecord::Base
   DEFAULTS = [
     'Guild Master',
     'Officer',
+    'Captain',
     'Loot Council',
     'Raider',
     'Trial',
