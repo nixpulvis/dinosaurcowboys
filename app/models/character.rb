@@ -65,7 +65,7 @@ class Character < ActiveRecord::Base
   private
 
   def dashed_server
-    server.split(' ').join('-')
+    server.gsub(/ /, '-')
   end
 
   # FIXME: This should be thought through more.
