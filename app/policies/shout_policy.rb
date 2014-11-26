@@ -2,7 +2,7 @@
 # Defines the policy for shouts on this site.
 #
 # The public is not allowed anything.
-# Users can read and write shouts, as well as removing (hiding) their own shouts.
+# Users can read + write shouts, as well as removing (hiding) their own shouts.
 # Admins are allowed to toggle visibility for any given shout.
 #
 class ShoutPolicy < BasePolicy
@@ -10,10 +10,8 @@ class ShoutPolicy < BasePolicy
     def resolve
       if user.admin?
         scope
-      elsif user.try(:rank)
-        scope.where(hidden: false)
       else
-        Shout.none
+        scope.where(hidden: false)
       end
     end
   end
@@ -26,16 +24,8 @@ class ShoutPolicy < BasePolicy
     (user == record.user && user.rank) || super
   end
 
-  def show?
-    if record.hidden?
-      super
-    else
-      user.admin? || super
-    end
-  end
-
-  def hide?
-    user == record.user || user.admin? || super
+  def toggle?
+    user == record.user || super
   end
 
   def destroy?
@@ -43,6 +33,6 @@ class ShoutPolicy < BasePolicy
   end
 
   def permitted_attributes
-    [:shout]
+    [:message]
   end
 end

@@ -8,10 +8,10 @@ class Shout < ActiveRecord::Base
   # the shout.
   belongs_to :user
 
-  # A shout must have a shout (text) associated with it!
-  validates :shout, presence: true, length: { maximum: 255 }
+  # A shout must have a message associated with it!
+  validates :message, presence: true, length: { maximum: 255 }
 
   # Set the number of shouts to show at any given time.
-  paginates_per 50
+  paginates_per 25
 
 end

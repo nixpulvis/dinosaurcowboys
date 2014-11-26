@@ -1,8 +1,8 @@
 # ShoutsController
-# Controller for the polymorphic Shout model. Only defines database
+# Controller for the Shout model. Only defines database
 # actions, this controller doesn't render anything.
 #
-# Actions: [index, new, create, destroy]
+# Actions: [index, create, toggle]
 #
 class ShoutsController < ApplicationController
   before_action do
@@ -10,14 +10,13 @@ class ShoutsController < ApplicationController
   end
 
   # GET /users/:user_id/shouts
-  # Provide all of the shouts that the given user can see (refer to shout_policy.rb).
+  # Provide all of the shouts that the given user can see.
   #
   def index
-    p policy_scope(@user.shouts)
-    @shouts = policy_scope(@user.shouts)
-                  .includes(:user)
-                  .order(created_at: :desc)
-                  .page(params[:page])
+    @shouts = policy_scope(Shout)
+              .includes(:user)
+              .order(created_at: :desc)
+              .page(params[:page])
     authorize @shouts
 
     respond_to do |format|
@@ -45,12 +44,9 @@ class ShoutsController < ApplicationController
   # Hide or show the given shout, setting it's hidden attribute.
   #
   def toggle
+    @shout.toggle
     respond_to do |format|
-      if @shout.toggle
-        format.json { render json: @shout }
-      else
-        format.json { render json: @shout.errors }
-      end
+      format.json { render json: @shout }
     end
   end
 

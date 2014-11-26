@@ -162,7 +162,7 @@ ActiveRecord::Schema.define(version: 20141125163950) do
   end
 
   create_table "shouts", force: true do |t|
-    t.string   "shout",                      null: false
+    t.string   "message",                    null: false
     t.boolean  "hidden",     default: false
     t.integer  "user_id"
     t.datetime "created_at"
