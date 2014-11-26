@@ -37,7 +37,7 @@ class Character < ActiveRecord::Base
   end
 
   def armory_url
-    "http://us.battle.net/wow/en/character/#{server}/#{name}/advanced"
+    "http://us.battle.net/wow/en/character/#{dashed_server}/#{name}/advanced"
   end
 
   # -> WoW::Character
@@ -45,7 +45,7 @@ class Character < ActiveRecord::Base
   #
   def api
     fields = [:items, :talents, :guild]
-    @api ||= WoW::Character.new(server, name, fields)
+    @api ||= WoW::Character.new(dashed_server, name, fields)
   end
 
   # -> NA
@@ -63,6 +63,10 @@ class Character < ActiveRecord::Base
   end
 
   private
+
+  def dashed_server
+    server.gsub(/ /, '-')
+  end
 
   # FIXME: This should be thought through more.
   def reconcile
