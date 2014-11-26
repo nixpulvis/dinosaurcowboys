@@ -37,7 +37,7 @@ class Character < ActiveRecord::Base
   end
 
   def armory_url
-    "http://us.battle.net/wow/en/character/#{normalized_server}/#{name}/advanced"
+    "http://us.battle.net/wow/en/character/#{dashed_server}/#{name}/advanced"
   end
 
   # -> WoW::Character
@@ -45,7 +45,7 @@ class Character < ActiveRecord::Base
   #
   def api
     fields = [:items, :talents, :guild]
-    @api ||= WoW::Character.new(normalized_server, name, fields)
+    @api ||= WoW::Character.new(dashed_server, name, fields)
   end
 
   # -> NA
@@ -64,7 +64,7 @@ class Character < ActiveRecord::Base
 
   private
 
-  def normalized_server
+  def dashed_server
     server.split(' ').join('-')
   end
 
