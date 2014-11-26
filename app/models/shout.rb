@@ -13,5 +13,4 @@ class Shout < ActiveRecord::Base
 
   # Set the number of shouts to show at any given time.
   paginates_per 25
-
 end
