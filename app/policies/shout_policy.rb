@@ -17,7 +17,7 @@ class ShoutPolicy < BasePolicy
   end
 
   def index?
-    user.try(:rank) || super
+    true
   end
 
   def create?
