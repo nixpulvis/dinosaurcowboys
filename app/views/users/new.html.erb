@@ -6,7 +6,7 @@
   <%= simple_form_for @user do |f| %>
     <%= f.simple_fields_for :characters, @character do |c| %>
       <%= c.input :name, label: "Character Name" %>
-      <%= c.input :server, label: "Character Server", hint: "Use dashes instead of spaces" %>
+      <%= c.input :server, label: "Character Server" %>
     <% end %>
 
     <%= f.input :email %>
