@@ -5,7 +5,7 @@
 
   <%= simple_form_for [@character.user, @character] do |f| %>
     <%= f.input :name %>
-    <%= f.input :server, hint: "Use dashes instead of spaces" %>
+    <%= f.input :server %>
 
     <%= f.button :submit %>
   <% end %>
