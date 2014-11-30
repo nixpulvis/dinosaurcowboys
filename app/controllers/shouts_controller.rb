@@ -54,9 +54,9 @@ class ShoutsController < ApplicationController
   #
   def shout_params
     base_params = params
-                   .require(:shout)
-                   .permit(*policy(@shout || Shout)
-                   .permitted_attributes)
+                  .require(:shout)
+                  .permit(*policy(@shout || Shout)
+                  .permitted_attributes)
     # Extend shout with user's main character and color
     # (We can't do this with .include since 'main' is a helper)
     base_params['name'] = current_user.main.name
