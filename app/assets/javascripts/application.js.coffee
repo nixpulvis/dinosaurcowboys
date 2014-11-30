@@ -17,6 +17,7 @@ $ ->
   PS.ImageFallback.activate()
 
   new PS.MumbleBrowser('.party-shark-mumble', 'partyshark.typefrag.com', 7675)
+  new PS.Shoutbox('.shoutbox')
 
   # TODO: Refactor this.
   $('.js-show-new-topic-button').click (e) ->

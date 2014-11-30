@@ -6,7 +6,7 @@
 #
 class ShoutsController < ApplicationController
   before_action do
-    @user = User.find(params[:user_id])
+    @user = params[:user_id] ? User.find(params[:user_id]) : nil
   end
 
   # GET /users/:user_id/shouts
@@ -14,7 +14,6 @@ class ShoutsController < ApplicationController
   #
   def index
     @shouts = policy_scope(Shout)
-              .includes(:user)
               .order(created_at: :desc)
               .page(params[:page])
     authorize @shouts
@@ -56,6 +55,14 @@ class ShoutsController < ApplicationController
   # Permits the shout fields for assignment.
   #
   def shout_params
-    params.require(:shout).permit(*policy(@shout || Shout).permitted_attributes)
+    @base_params = params
+                   .require(:shout)
+                   .permit(*policy(@shout || Shout)
+                   .permitted_attributes)
+    # Extend shout with user's main character and color
+    # (We can't do this with .include since 'main' is a helper)
+    @base_params['name'] = @user.main.name
+    @base_params['klass'] = @user.main.klass
+    @base_params
   end
 end
