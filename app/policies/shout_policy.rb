@@ -25,7 +25,7 @@ class ShoutPolicy < BasePolicy
   end
 
   def toggle?
-    user == record.user || super
+    super
   end
 
   def destroy?

@@ -5,11 +5,12 @@
 # Actions: [index, create, toggle]
 #
 class ShoutsController < ApplicationController
-  before_action do
-    @user = params[:user_id] ? User.find(params[:user_id]) : nil
+  before_action only: [:toggle] do
+    @shout = Shout.find(params[:id])
+    authorize @shout
   end
 
-  # GET /users/:user_id/shouts
+  # GET /shouts
   # Provide all of the shouts that the given user can see.
   #
   def index
@@ -23,11 +24,11 @@ class ShoutsController < ApplicationController
     end
   end
 
-  # POST /users/:user_id/shouts
+  # POST /shouts
   # Create a shout for the given user.
   #
   def create
-    @shout = @user.shouts.build(shout_params)
+    @shout = current_user.shouts.build(shout_params)
     authorize @shout
 
     respond_to do |format|
@@ -61,8 +62,8 @@ class ShoutsController < ApplicationController
                    .permitted_attributes)
     # Extend shout with user's main character and color
     # (We can't do this with .include since 'main' is a helper)
-    @base_params['name'] = @user.main.name
-    @base_params['klass'] = @user.main.klass
+    @base_params['name'] = current_user.main.name
+    @base_params['klass'] = current_user.main.klass
     @base_params
   end
 end

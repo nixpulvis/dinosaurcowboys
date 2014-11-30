@@ -12,11 +12,31 @@
     word-wrap: break-word;
 
     li {
-      padding: 0 0 4px 10px;
+      position: relative;
+      padding: 0 0 4px 8px;
       text-indent: -10px;
 
       &:last-child {
         padding-bottom: 0;
+      }
+
+      &.admin {
+        padding-left: 15px;
+      }
+
+      &.off {
+        color: #999;
+        font-style: italic;
+
+        .shout-toggle {
+          display: none;
+        }
+      }
+
+      .shout-toggle {
+        position: absolute;
+        top: 0;
+        left: 10px;
       }
     }
   }

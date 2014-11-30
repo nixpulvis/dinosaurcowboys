@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   resources :features, except: [:index, :show]
 
   # Shouts
-  resources :shouts, only: [:index]
+  resources :shouts, only: [:index, :create] do
+    member { patch 'toggle' }
+  end
 
   # Users, characters and applications.
   get '/roster', to: 'characters#roster'
@@ -20,7 +22,6 @@ Rails.application.routes.draw do
     member { patch 'toggle' }
     resources :characters, except: :index
     resources :uploads, except: [:show, :edit, :update]
-    resources :shouts, only: [:index, :create, :toggle]
     resource :application do
       member { match 'decide', via: [:put, :patch] }
       member { patch 'toggle' }
