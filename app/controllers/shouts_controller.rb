@@ -5,11 +5,6 @@
 # Actions: [index, create, toggle]
 #
 class ShoutsController < ApplicationController
-  before_action only: [:toggle] do
-    @shout = Shout.find(params[:id])
-    authorize @shout
-  end
-
   # GET /shouts
   # Provide all of the shouts that the given user can see.
   #
@@ -40,13 +35,15 @@ class ShoutsController < ApplicationController
     end
   end
 
-  # PATCH /shouts/:id/toggle
-  # Hide or show the given shout, setting it's hidden attribute.
+  # DELETE /shouts/:id
+  # Delete a shout.
   #
-  def toggle
-    @shout.toggle
+  def destroy
+    @shout = Shout.find(params[:id])
+    authorize @shout
+    @shout.delete
     respond_to do |format|
-      format.json { render json: @shout }
+      format.json { render json: { success: true } }
     end
   end
 

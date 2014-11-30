@@ -24,12 +24,8 @@ class ShoutPolicy < BasePolicy
     (user == record.user && user.rank) || super
   end
 
-  def toggle?
-    super
-  end
-
   def destroy?
-    false
+    user == record.user || super
   end
 
   def permitted_attributes
