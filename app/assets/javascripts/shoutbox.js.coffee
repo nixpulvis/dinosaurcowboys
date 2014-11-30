@@ -4,7 +4,8 @@ PS = window.PartyShark ||= {}
 class PS.Shoutbox
   constructor: (element) ->
     @element = $(element)
-    @currUserId = @element.data('current-user-id')
+    @currUserId = @element.data('user-id')
+    @currUserRank = @element.data('user-rank')
     @isAdmin = @element.data('toggle')
 
     if @element.length
@@ -17,12 +18,11 @@ class PS.Shoutbox
           @create text, (data) => @update()
           $(e.target).val('')
 
-      @element.on('click', '.shout-toggle', (e) =>
+      @element.on('click', '.shout-delete', (e) =>
         e.preventDefault()
-        @toggle $(e.target).closest('a').data('id'), (data) => @update()
-      );
+        @delete $(e.target).closest('a').data('id'), (data) => @update())
 
-    if !@currUserId
+    if !@currUserId || !@currUserRank
       @element.find('.shout-input').remove()
 
   shouts: (callback) ->
@@ -36,9 +36,9 @@ class PS.Shoutbox
       shout: { message: msg }
       (data) -> callback(data)
 
-  toggle: (id, callback) ->
-    url = '/shouts/' + id + '/toggle'
-    $.ajax(method: 'PATCH', url: url).done (data) ->
+  delete: (id, callback) ->
+    url = "/shouts/#{id}"
+    $.ajax(method: 'DELETE', url: url).done (data) ->
       callback(data)
 
   update: ->
@@ -64,16 +64,14 @@ class PS.Shoutbox
       shouts.scrollTop(99999)
 
   shoutMarkup: (shout) ->
-    return '<li class="' +
-        (if @isAdmin then ' admin' else '') +
-        (if shout.hidden then ' off' else '') +
-        '">' +
-        (if @isAdmin then @shoutToggle(shout) else '') +
-        '[<span class="character '+
-        shout.klass+'">'+shout.name+'</span>]: <span class="message">' +
-        shout.message + '</span>' +
-        '</li>'
+    canDelete = @isAdmin || (@currUserId == shout.user_id)
+    shoutClass = if canDelete then 'can-delete' else ''
+    return "<li class='#{shoutClass}'>" +
+        (if canDelete then @deleteMarkup(shout) else '') +
+        "[<span class='character #{shout.klass}'>#{shout.name}</span>" +
+        "] <span class='message'>#{shout.message}</span>" +
+      "</li>"
 
-  shoutToggle: (shout) ->
-    return '<a href="#" data-id="' + shout.id +
-        '" class="shout-toggle"><i class="fa fa-times"></i></a>'
+  deleteMarkup: (shout) ->
+    return "<a href='#' data-id='#{shout.id}' class='shout-delete'>" +
+        "<i class='fa fa-times'></i></a>"

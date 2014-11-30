@@ -1,5 +1,6 @@
 <div class="shoutbox"
-     data-current-user-id="<%= current_user ? current_user.id : '' %>"
+     data-user-id="<%= current_user ? current_user.id : '' %>"
+     data-user-rank="<%= current_user ? current_user.rank : '' %>"
      data-toggle="<%= current_user && current_user.admin ? 'true' : '' %>">
   <ul class="shouts">
     Loading...

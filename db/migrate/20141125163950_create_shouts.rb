@@ -4,7 +4,6 @@ class CreateShouts < ActiveRecord::Migration
       t.string      :message, null: false
       t.string      :name, null: false
       t.string      :klass, null: false
-      t.boolean     :hidden,  default: false
       t.belongs_to  :user
 
       t.timestamps
