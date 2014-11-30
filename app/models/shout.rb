@@ -8,6 +8,10 @@ class Shout < ActiveRecord::Base
   # the shout.
   belongs_to :user
 
+  # A shout must have convenient information on who made it.
+  validates :name, presence: true
+  validates :klass, presence: true
+
   # A shout must have a message associated with it!
   validates :message, presence: true, length: { maximum: 255 }
 

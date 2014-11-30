@@ -36,4 +36,13 @@
       <%= render "shared/mumble" %>
     </aside>
   <% end %>
+
+  <aside class="panel">
+    <div class="shoutbox" data-current-user-id="<%= current_user ? current_user.id : '' %>">
+      <div class="title">
+        <h2>Shoutbox</h2>
+      </div>
+      <%= render "shared/shoutbox" %>
+    </div>
+  </aside>
 </div>
