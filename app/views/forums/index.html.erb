@@ -1,14 +1,23 @@
 <div class="page">
-  <div class="title">
-    <h1>Recent Bosses</h1>
+  <div class="clearfix">
+    <div class="half-width">
+      <div class="title">
+        <h1>Recent Bosses</h1>
 
-    <div class="info">
-      For the complete list of raids and bosses visit the
-      <a href="/raids">raids</a> page.
+        <div class="info">
+          For the complete list of raids and bosses visit the
+          <a href="/raids">raids</a> page.
+        </div>
+      </div>
+      <%= render "forums/bosses_table", bosses: @bosses %>
+    </div>
+    <div class="half-width">
+      <div class="title">
+        <h1>Shoutbox</h1>
+      </div>
+      <%= render "shared/shoutbox" %>
     </div>
   </div>
-  <%= render "forums/bosses_table", bosses: @bosses %>
-
   <div class="title">
     <h1>Recent Topics</h1>
 
@@ -20,30 +29,20 @@
   </div>
   <%= render "forums/topics_table", topics: @topics %>
 
-  <div class="clearfix">
-    <div class="half-width">
-      <div class="title">
-        <h1>Forums</h1>
+  <div class="title">
+    <h1>Forums</h1>
 
-        <ul class="actions">
-          <% if policy(Forum).create? %>
-            <li><%= link_to action_tag(:create, Forum), new_forum_path %></li>
-          <% end %>
-        </ul>
+    <ul class="actions">
+      <% if policy(Forum).create? %>
+        <li><%= link_to action_tag(:create, Forum), new_forum_path %></li>
+      <% end %>
+    </ul>
 
-        <div class="info">
-          To create a new topic, click on the forum you wish to create it in, and
-          then click the "Create New Topic" button. This button will only exist if
-          you have access to creating topics in that forum.
-        </div>
-      </div>
-      <%= render "forums/forums_table", forums: @forums %>
-    </div>
-    <div class="half-width">
-      <div class="title">
-        <h1>Shoutbox</h1>
-      </div>
-      <%= render "shared/shoutbox" %>
+    <div class="info">
+      To create a new topic, click on the forum you wish to create it in, and
+      then click the "Create New Topic" button. This button will only exist if
+      you have access to creating topics in that forum.
     </div>
   </div>
+  <%= render "forums/forums_table", forums: @forums %>
 </div>

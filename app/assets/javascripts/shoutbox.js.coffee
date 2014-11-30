@@ -5,7 +5,6 @@ class PS.Shoutbox
   constructor: (element) ->
     @element = $(element)
     @currUserId = @element.data('user-id')
-    @currUserRank = @element.data('user-rank')
     @isAdmin = @element.data('toggle')
 
     if @element.length
@@ -21,9 +20,6 @@ class PS.Shoutbox
       @element.on('click', '.shout-delete', (e) =>
         e.preventDefault()
         @delete $(e.target).closest('a').data('id'), (data) => @update())
-
-    if !@currUserId || !@currUserRank
-      @element.find('.shout-input').remove()
 
   shouts: (callback) ->
     url = '/shouts'
