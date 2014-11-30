@@ -18,4 +18,8 @@
   .half-width {
     @include span-columns(6);
   }
+
+  .shoutbox {
+    margin-top: 36px;
+  }
 }

@@ -53,14 +53,14 @@ class ShoutsController < ApplicationController
   # Permits the shout fields for assignment.
   #
   def shout_params
-    @base_params = params
+    base_params = params
                    .require(:shout)
                    .permit(*policy(@shout || Shout)
                    .permitted_attributes)
     # Extend shout with user's main character and color
     # (We can't do this with .include since 'main' is a helper)
-    @base_params['name'] = current_user.main.name
-    @base_params['klass'] = current_user.main.klass
-    @base_params
+    base_params['name'] = current_user.main.name
+    base_params['klass'] = current_user.main.klass
+    base_params
   end
 end
