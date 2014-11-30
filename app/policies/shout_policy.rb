@@ -8,11 +8,7 @@
 class ShoutPolicy < BasePolicy
   class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
-      if user.admin?
-        scope
-      else
-        scope.where(hidden: false)
-      end
+      scope
     end
   end
 
