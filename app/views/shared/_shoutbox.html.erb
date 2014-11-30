@@ -1,9 +1,10 @@
 <div class="shoutbox"
      data-user-id="<%= current_user ? current_user.id : '' %>"
-     data-user-rank="<%= current_user ? current_user.rank : '' %>"
      data-toggle="<%= current_user && current_user.admin ? 'true' : '' %>">
   <ul class="shouts">
     Loading...
   </ul>
-  <input type="text" class="shout-input" placeholder="Send a message here...">
+  <% if current_user && current_user.id && current_user.rank %>
+    <input type="text" class="shout-input" placeholder="Send a message here...">
+  <% end %>
 </div>
