@@ -13,3 +13,9 @@
     margin-top: 0;
   }
 }
+
+@include select-page('forums') {
+  .half-width {
+    @include span-columns(6);
+  }
+}

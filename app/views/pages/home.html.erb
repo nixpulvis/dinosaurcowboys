@@ -31,6 +31,13 @@
     <%= render "shared/recruitment_classes" %>
   </aside>
 
+  <aside class="panel">
+    <div class="title">
+      <h2>Shoutbox</h2>
+    </div>
+    <%= render "shared/shoutbox" %>
+  </aside>
+
   <% if current_user.try(:rank) %>
     <aside class="panel">
       <%= render "shared/mumble" %>

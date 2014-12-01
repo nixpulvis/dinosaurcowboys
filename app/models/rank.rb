@@ -21,7 +21,7 @@ class Rank < ActiveRecord::Base
   # A rank has a bunch of users of that rank.
   has_many :users
 
-  # Accesses are given out on a forum to fourm basis,
+  # Accesses are given out on a forum to forum basis,
   # and grant access to either read / write permissions.
   has_many :read_accesses,  -> { where permission: 'read' },
            class_name: 'Access'

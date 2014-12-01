@@ -23,3 +23,9 @@
 
 # Ignore public/system these are images uploaded in development.
 public/system
+
+# Ingore IntelliJ-related local project patterns
+*.iml
+.idea/
+*.ipr
+*.iws
