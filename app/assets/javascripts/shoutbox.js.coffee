@@ -63,10 +63,11 @@ class PS.Shoutbox
   shoutMarkup: (shout) ->
     canDelete = @isAdmin || (@currUserId == shout.user_id)
     shoutClass = if canDelete then 'can-delete' else ''
+    messageText = Autolinker.link(shout.message)
     return "<li class='#{shoutClass}'>" +
         (if canDelete then @deleteMarkup(shout) else '') +
         "[<span class='character #{shout.klass}'>#{shout.name}</span>" +
-        "] <span class='message'>#{shout.message}</span>" +
+        "] <span class='message'>#{messageText}</span>" +
       "</li>"
 
   deleteMarkup: (shout) ->
