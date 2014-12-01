@@ -10,12 +10,12 @@
     word-wrap: break-word;
 
     li {
-      position: relative;
       padding: 2px 15px 2px 0;
+      position: relative;
 
       .shout-delete {
-        right: 3px;
         position: absolute;
+        right: 3px;
         visibility: hidden;
       }
     }

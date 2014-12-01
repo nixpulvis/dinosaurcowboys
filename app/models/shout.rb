@@ -3,7 +3,7 @@
 #
 class Shout < ActiveRecord::Base
   before_save do
-    self.message = Sanitize.clean(self.message)
+    self.message = Sanitize.clean(message)
   end
 
   # A user creates a shout, we save this relationship to show who made
