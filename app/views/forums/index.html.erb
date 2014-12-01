@@ -1,13 +1,24 @@
 <div class="page">
-  <div class="title">
-    <h1>Recent Bosses</h1>
+  <div class="clearfix">
+    <div class="half-width">
+      <div class="title">
+        <h1>Recent Bosses</h1>
 
-    <div class="info">
-      For the complete list of raids and bosses visit the
-      <a href="/raids">raids</a> page.
+        <div class="info">
+          For the complete list of raids and bosses visit the
+          <a href="/raids">raids</a> page.
+        </div>
+      </div>
+      <%= render "raids/bosses_table", bosses: @bosses %>
+    </div>
+    <div class="half-width">
+      <div class="title">
+        <h1>Shoutbox</h1>
+        <div class="info">Party Shark's public chatroom.</div>
+      </div>
+      <%= render "shared/shoutbox" %>
     </div>
   </div>
-  <%= render "raids/bosses_table", bosses: @bosses %>
 
   <div class="title">
     <h1>Recent Topics</h1>

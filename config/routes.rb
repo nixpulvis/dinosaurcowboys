@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   # Features.
   resources :features, except: [:index, :show]
 
+  # Shouts
+  resources :shouts, only: [:index, :create, :destroy]
+
   # Users, characters and applications.
   get '/roster', to: 'characters#roster'
   resources :users do
