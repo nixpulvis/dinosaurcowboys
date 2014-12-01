@@ -1,6 +1,6 @@
 .shoutbox {
   .shouts {
-    background: $dark-background-color;
+    background-color: $dark-background-color;
     font-size: 14px;
     height: 172px;
     list-style: none;
@@ -11,16 +11,17 @@
 
     li {
       position: relative;
+      padding-right: 15px;
 
       .shout-delete {
-        left: 0;
+        right: 0;
         position: absolute;
         visibility: hidden;
       }
     }
 
     li.can-delete:hover {
-      padding-left: 15px;
+      background-color: lighten($dark-background-color, 8);
 
       .shout-delete {
         visibility: visible;
@@ -29,7 +30,7 @@
   }
 
   .shout-input {
-    background: $dark-background-color;
+    background-color: $dark-background-color;
     border: 0;
     border-top: $border-size solid $background-color;
     color: $text-color;

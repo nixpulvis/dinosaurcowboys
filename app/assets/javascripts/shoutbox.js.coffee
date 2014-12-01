@@ -33,9 +33,10 @@ class PS.Shoutbox
       (data) -> callback(data)
 
   delete: (id, callback) ->
-    url = "/shouts/#{id}"
-    $.ajax(method: 'DELETE', url: url).done (data) ->
-      callback(data)
+    if confirm("Are you sure you want to delete this shout?")
+      url = "/shouts/#{id}"
+      $.ajax(method: 'DELETE', url: url).done (data) ->
+        callback(data)
 
   update: ->
     xhr = @shouts (data) =>
