@@ -45,7 +45,7 @@ class RaidPolicy < BasePolicy
   end
 
   def create_posts?
-    user.rank.try(:>=, 'Trial') || user.admin?
+    user.rank.try(:>=, 'Part Time') || user.admin?
   end
 
   def permitted_attributes
