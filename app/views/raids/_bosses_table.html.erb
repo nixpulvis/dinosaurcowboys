@@ -5,10 +5,12 @@
 
       <% if params[:controller] == "forums" %>
         <th>Raid</th>
+      <% else %>
+        <th>Replies</th>
+        <th>Views</th>
       <% end %>
 
-      <th>Replies</th>
-      <th>Views</th>
+      <th>Last Post</th>
     </tr>
   </thead>
   <tbody>
@@ -22,10 +24,19 @@
 
         <% if params[:controller] == "forums" %>
           <td><%= link_to boss.raid, raid_path(boss.raid) %></td>
+        <% else %>
+          <td><%= boss.posts.count %></td>
+          <td><%= boss.impressionist_count %></td>
         <% end %>
 
-        <td><%= boss.posts.count %></td>
-        <td><%= boss.impressionist_count %></td>
+        <td>
+          <% if boss.last_post %>
+            <%= link_to postable_post_path(boss, boss.last_post) do %>
+              <%= character_tag(boss.last_post.user.main) %>
+              <%= date_tag(boss.last_post.created_at, relative: true) %>
+            <% end %>
+          <% end %>
+        </td>
       <% end %>
     <% end %>
   <% end %>
