@@ -3,7 +3,7 @@
     <%= avatar_tag post.user, class: "avatar" %>
     <div class="info">
       <p class="rank"><%= post.user.rank %></p>
-      <p class="count"><%= user_post_count(post.user) %></p>
+      <p class="count"><%= user_post_size(post.user) %></p>
     </div>
     <p class="name"><%= user_tag(post.user) %></p>
   </div>

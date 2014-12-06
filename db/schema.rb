@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125163950) do
+ActiveRecord::Schema.define(version: 20141205235730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,20 +47,22 @@ ActiveRecord::Schema.define(version: 20141125163950) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "hidden",          default: false
+    t.integer  "posts_count",     default: 0
   end
 
   add_index "applications", ["user_id"], name: "index_applications_on_user_id", using: :btree
 
   create_table "bosses", force: true do |t|
-    t.string   "name",                       null: false
+    t.string   "name",                        null: false
     t.text     "content"
-    t.integer  "raid_id",                    null: false
+    t.integer  "raid_id",                     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "hidden",     default: true
-    t.integer  "row_order",  default: 0,     null: false
+    t.boolean  "hidden",      default: true
+    t.integer  "row_order",   default: 0,     null: false
     t.text     "updates"
-    t.boolean  "sticky",     default: false
+    t.boolean  "sticky",      default: false
+    t.integer  "posts_count", default: 0
   end
 
   add_index "bosses", ["raid_id"], name: "index_bosses_on_raid_id", using: :btree
@@ -146,6 +148,7 @@ ActiveRecord::Schema.define(version: 20141125163950) do
     t.string   "banner_photo_content_type"
     t.integer  "banner_photo_file_size"
     t.datetime "banner_photo_updated_at"
+    t.integer  "posts_count",               default: 0
   end
 
   create_table "ranks", force: true do |t|
@@ -162,22 +165,22 @@ ActiveRecord::Schema.define(version: 20141125163950) do
   end
 
   create_table "shouts", force: true do |t|
-    t.string   "message",                    null: false
-    t.string   "name",                       null: false
-    t.string   "klass",                      null: false
-    t.boolean  "hidden",     default: false
+    t.string   "message",    null: false
+    t.string   "name",       null: false
+    t.string   "klass",      null: false
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "topics", force: true do |t|
-    t.string   "title",                      null: false
-    t.integer  "forum_id",                   null: false
+    t.string   "title",                       null: false
+    t.integer  "forum_id",                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",                    null: false
-    t.boolean  "sticky",     default: false, null: false
+    t.integer  "user_id",                     null: false
+    t.boolean  "sticky",      default: false, null: false
+    t.integer  "posts_count", default: 0
   end
 
   add_index "topics", ["forum_id"], name: "index_topics_on_forum_id", using: :btree
@@ -208,8 +211,8 @@ ActiveRecord::Schema.define(version: 20141125163950) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "admin",                  default: false, null: false
-    t.integer  "avatar_id"
     t.boolean  "raid_moderator"
+    t.integer  "avatar_id"
     t.boolean  "hidden",                 default: false
   end
 
