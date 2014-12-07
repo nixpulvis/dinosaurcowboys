@@ -69,7 +69,7 @@ class PS.Shoutbox
         (if canDelete then @deleteMarkup(shout) else '') +
         "[<span class='character #{shout.klass}'>#{shout.name}</span>" +
         "] <span class='message'>#{messageText}</span> " +
-        "<span class='shout-timestamp'>Sent " + shoutDateTimeStamp + "</span>" +
+        "<span class='shout-timestamp'> " + shoutDateTimeStamp + "</span>" +
       "</li>"
 
   deleteMarkup: (shout) ->
