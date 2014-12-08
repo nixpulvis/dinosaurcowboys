@@ -27,7 +27,7 @@ module UsersHelper
   # User -> String
   # Returns the formatted string for the users posts count.
   #
-  def user_post_count(user)
-    pluralize(number_with_delimiter(user.posts.count), 'post')
+  def user_post_size(user)
+    pluralize(number_with_delimiter(user.posts.size), 'post')
   end
 end
