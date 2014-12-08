@@ -28,14 +28,13 @@ class Raid < ActiveRecord::Base
   # Setup the routing to be of the form "/raids/name_of_raid".
   # TODO: Maybe make this functionality into a module.
   class << self
-    def find_by_param(string)
-      where('lower(name) = ?', string.gsub('_', ' ')).first
-    end
-    alias_method :find, :find_by_param
+    alias_method :_find, :find
 
-    def find_by_param!(string)
-      find_by_param(string).tap do |obj|
-        fail ActiveRecord::RecordNotFound unless obj
+    def find(value)
+      if value.is_a?(String)
+        where('lower(name) = ?', value.gsub('_', ' ')).first
+      else
+        _find(value)
       end
     end
   end

@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
 
   # A post belongs to what it was posted on, and updating the post updates
   # that model too.
-  belongs_to :postable, polymorphic: true, touch: true
+  belongs_to :postable, polymorphic: true, touch: true, counter_cache: true
 
   # A user creates a post.
   belongs_to :user
@@ -37,7 +37,7 @@ class Post < ActiveRecord::Base
                            postable_type = ?',
                           created_at,
                           postable.id,
-                          postable.class).count
+                          postable.class).size
     (position.to_f / Post.default_per_page).ceil
   end
 end
