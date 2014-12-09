@@ -94,24 +94,23 @@ class ForumsController < ApplicationController
 
   # Scope -> ActiveRecord::Relation
   #
-  # FIXME: This is kinda shitty...
-  # Look into doing this with sql, this is going to be
-  # very slow when there are a lot of topics.
-  #
   def load_topics(scope)
-    topics = policy_scope(scope)
-             .includes(:forum, :last_post, user: :main)
-             .order('sticky DESC')
-             .order('posts.created_at DESC')
-
-    Kaminari.paginate_array(topics.to_a).page(params[:page]).per(15)
+    eager = [:forum, user: :main, last_post: [:postable, { user: :main }]]
+    policy_scope(scope)
+      .joins(:last_post)
+      .includes(eager)
+      .group('topics.id')
+      .order('sticky DESC, MAX(posts.created_at) DESC')
+      .page(params[:page]).per(15)
   end
 
   # Scope -> ActiveRecord::Relation
   #
   def load_bosses(scope)
-    policy_scope(scope).where(hidden: false)
-      .includes(:raid, :last_post)
+    eager = [:raid, last_post: [:postable, { user: :main }]]
+    policy_scope(scope)
+      .includes(eager)
+      .where(hidden: false)
       .order('sticky DESC, updated_at DESC')
       .limit(5)
   end

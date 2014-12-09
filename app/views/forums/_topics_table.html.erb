@@ -37,6 +37,7 @@
     </td>
 
     <td class="views">
+      <%# FIXME: This is causing a 1+N query.  %>
       <%= topic.impressionist_count %>
     </td>
     <td class="last-post">

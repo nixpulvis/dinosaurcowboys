@@ -10,8 +10,8 @@ module Postable
     has_many :posts, as: :postable, dependent: :destroy
 
     # The last post.
-    has_one :last_post, -> { order 'created_at' }, as: :postable,
-                                                   class_name: 'Post'
+    has_one :last_post, -> { order 'created_at DESC' }, as: :postable,
+                                                        class_name: 'Post'
 
     # Allow topics forms to create posts.
     accepts_nested_attributes_for :posts
