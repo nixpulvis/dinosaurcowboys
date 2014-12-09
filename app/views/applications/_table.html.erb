@@ -36,8 +36,8 @@
         </td>
 
         <td>
-          <% if application.posts.last %>
-            <%= user_tag(application.posts.last.user) %>
+          <% if application.last_post %>
+            <%= user_tag(application.last_post.user) %>
           <% end %>
         </td>
 

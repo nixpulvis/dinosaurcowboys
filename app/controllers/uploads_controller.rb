@@ -12,7 +12,7 @@ class UploadsController < ApplicationController
   # Provide all of the uploads for the given user.
   #
   def index
-    @uploads = policy_scope(@user.uploads).includes(:user)
+    @uploads = policy_scope(@user.uploads)
     authorize @uploads
   end
 

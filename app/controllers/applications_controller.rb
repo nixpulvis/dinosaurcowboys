@@ -14,7 +14,7 @@ class ApplicationsController < ApplicationController
   #
   def index
     @applications = policy_scope(Application)
-                    .includes(:user)
+                    .includes(user: :main, last_post: { user: :main })
                     .order(created_at: :desc)
                     .page(params[:page])
 

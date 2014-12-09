@@ -23,7 +23,7 @@ class Post < ActiveRecord::Base
   #
   def self.for_postable(postable, page)
     postable.posts
-      .includes({ user: [:rank, :avatar] }, :postable)
+      .includes({ user: [:rank, :avatar, :main] }, :postable)
       .order(created_at: :asc)
       .page(page)
   end

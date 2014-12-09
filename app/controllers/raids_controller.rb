@@ -45,7 +45,9 @@ class RaidsController < ApplicationController
   # Provides the given raid, and it's posts.
   #
   def show
-    @bosses = policy_scope(@raid.bosses).order(:row_order)
+    @bosses = policy_scope(@raid.bosses)
+                .includes(last_post: [{ user: :main }, :postable])
+                .order(:row_order)
 
     @posts = Post.for_postable(@raid, params[:page])
     @post  = @raid.posts.build
