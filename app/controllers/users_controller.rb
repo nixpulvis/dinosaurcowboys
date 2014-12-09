@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   #
   def new
     @user = User.new
-    @character = @user.characters.build
+    @main = @user.characters.build
     authorize @user
   end
 
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   #
   def create
     @user = User.new(user_params)
-    @character = @user.characters.first
+    @main = @user.main
     authorize @user
 
     if @user.save
