@@ -66,7 +66,13 @@ class CharactersController < ApplicationController
   # Deletes the character.
   #
   def destroy
-    @character.destroy
+    begin
+      @character.destroy
+    rescue Character::DestoryError => e
+      redirect_to :back, alert: e.message
+      return
+    end
+
     redirect_to user_path(@character.user)
   end
 

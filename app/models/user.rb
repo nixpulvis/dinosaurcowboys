@@ -14,8 +14,11 @@ class User < ActiveRecord::Base
   # a rank are assumed to be not invited yet.
   belongs_to :rank
 
-  # Allowed to have many characters, but one **must** be the main.
+  # Allowed to have many characters.
   has_many :characters, dependent: :delete_all
+
+  # Has a main character.
+  has_one :main, -> { where main: true }, class_name: 'Character'
 
   # Users make posts.
   has_many :posts, dependent: :destroy
@@ -33,23 +36,16 @@ class User < ActiveRecord::Base
   # Users can shout very loudly! Or softly (oxymoron?).
   has_many :shouts
 
-  # A user **must** have an email address, and a character.
+  # A user **must** have an email address, and a main character.
   validates :email, presence: true
-  validates :characters, presence: true
+  validates :main, presence: true
 
   # Set the number of users to show per page.
   paginates_per 20
 
-  # Allow users forms to create characters.
-  accepts_nested_attributes_for :characters, :avatar
+  # Allow users forms to create mains and avatars.
+  accepts_nested_attributes_for :main, :avatar
 
   # The name of this user is defined to be the name of their main.
   delegate :to_s, to: :main
-
-  # -> Character
-  # The users main character.
-  #
-  def main
-    characters.where(main: true).first
-  end
 end
