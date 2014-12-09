@@ -102,7 +102,7 @@ class ForumsController < ApplicationController
   #
   def load_topics(scope)
     topics = policy_scope(scope)
-             .includes(:forum, :posts, :user)
+             .includes(:forum, :user, :last_post)
              .order('sticky DESC')
              .order('posts.created_at DESC')
 
@@ -113,7 +113,7 @@ class ForumsController < ApplicationController
   #
   def load_bosses(scope)
     policy_scope(scope).where(hidden: false)
-      .includes(:raid)
+      .includes(:raid, :last_post)
       .order('sticky DESC, updated_at DESC')
       .limit(5)
   end

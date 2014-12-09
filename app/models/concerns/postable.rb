@@ -9,6 +9,10 @@ module Postable
     # All the posts!
     has_many :posts, as: :postable, dependent: :destroy
 
+    # The last post.
+    has_one :last_post, -> { order 'created_at' }, as: :postable,
+                                                   class_name: 'Post'
+
     # Allow topics forms to create posts.
     accepts_nested_attributes_for :posts
   end
@@ -18,13 +22,6 @@ module Postable
   #
   def posts_updated_at
     posts.maximum(:updated_at)
-  end
-
-  # -> Post
-  # Returns the post that was created the most recently.
-  #
-  def last_post
-    @last_post ||= posts.order(:created_at).last
   end
 
   # last_page -> Fixnum
