@@ -49,7 +49,9 @@
         <li>
           <%= character.main? ? fa_icon("star") : fa_icon("star-o") %>
           <%= character_tag(character) %>
-          <%= button_to "x", [@user, character], method: :delete %>
+          <% unless character.main? %>
+            <%= button_to "Delete", [@user, character], method: :delete %>
+          <% end %>
         </li>
       <% end %>
     </ul>
