@@ -17,8 +17,8 @@
           <%= user_tag(user) %>
         </span></td>
         <td><span class="email"><%= user.email %></span></td>
-        <td><span class="rank"><%= user.main.user.rank %></span></td>
-        <td><span class="join"><%= date_tag(user.main.user.created_at, time: false) %></span></td>
+        <td><span class="rank"><%= user.rank %></span></td>
+        <td><span class="join"><%= date_tag(user.created_at, time: false) %></span></td>
       <% end %>
     <% end %>
   </tbody>

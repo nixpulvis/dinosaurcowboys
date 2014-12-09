@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   #
   def index
     @users = policy_scope(User)
-             .includes(:avatar)
+             .includes(:avatar, :main, :rank)
              .order(created_at: :desc)
              .page(params[:page])
 
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   # GET /users/:id
   # Provides the user, and it's posts.
   #
-  # TODO: This is kinda gross.
+  # FIXME: This is incredibly inefficient. Please god fix me.
   #
   def show
     posts = policy_scope(@user.posts)
