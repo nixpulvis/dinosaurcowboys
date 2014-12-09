@@ -17,9 +17,7 @@ class ForumsController < ApplicationController
 
     @topics = load_topics(Topic)
 
-    @forums = policy_scope(Forum)
-              .includes(:topics)
-              .rank(:row_order)
+    @forums = policy_scope(Forum).rank(:row_order)
 
     authorize @forums
   end
@@ -102,7 +100,7 @@ class ForumsController < ApplicationController
   #
   def load_topics(scope)
     topics = policy_scope(scope)
-             .includes(:forum, :user, :last_post)
+             .includes(:forum, :last_post, user: :main)
              .order('sticky DESC')
              .order('posts.created_at DESC')
 

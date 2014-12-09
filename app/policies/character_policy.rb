@@ -32,6 +32,6 @@ class CharacterPolicy < BasePolicy
   end
 
   def permitted_attributes
-    [:name, :server, :main]
+    [:name, :server]
   end
 end
