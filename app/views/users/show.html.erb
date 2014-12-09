@@ -48,7 +48,8 @@
       <% @user.characters.each do |character| %>
         <li>
           <%= character.main? ? fa_icon("star") : fa_icon("star-o") %>
-          <%= link_to character_tag(character), user_character_path(@user, character) %>
+          <%= character_tag(character) %>
+          <%= button_to "x", [@user, character], method: :delete %>
         </li>
       <% end %>
     </ul>

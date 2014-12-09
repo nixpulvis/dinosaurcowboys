@@ -39,29 +39,6 @@ class CharactersController < ApplicationController
     end
   end
 
-  # GET /users/:user_id/character/:id
-  # Provides the given character of a given user.
-  #
-  def show
-  end
-
-  # GET /users/:user_id/character/:id/edit
-  # Provides the user and character for editing.
-  #
-  def edit
-  end
-
-  # PATCH or PUT /users/:user_id/character/:id
-  # Allows user to update the character.
-  #
-  def update
-    if @character.update_attributes(character_params)
-      redirect_to user_character_path(@character.user, @character)
-    else
-      render :edit
-    end
-  end
-
   # DELETE /users/:user_id/character/:id
   # Deletes the character.
   #
