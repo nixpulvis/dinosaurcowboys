@@ -70,8 +70,8 @@
 // in https://github.com/partyshark/website/issues/126. Further this selects
 // way more that it probably should, but *fuck it*.
 .button_to {
-  float: right;
   display: inline-block;
+  float: right;
 
   input[type="submit"] {
     margin: 0;

@@ -28,7 +28,7 @@ class Character < ActiveRecord::Base
 
   # Users cannot delete their main.
   before_destroy do
-    fail DestoryError, "Cannot destroy main character" if main?
+    fail DestoryError, 'Cannot destroy main character' if main?
   end
 
   # -> String
@@ -53,6 +53,7 @@ class Character < ActiveRecord::Base
   # -> NA
   # Sync the data from blizz api with our data model.
   #
+  # rubocop:disable Metrics/AbcSize
   def sync
     self.klass = api.get('class')
     self.level = api['level']
