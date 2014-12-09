@@ -7,7 +7,8 @@ namespace :characters do
 
     characters.each do |character|
       begin
-        character.sync!
+        character.sync
+        character.save
         puts "SYNC #{character}"
       rescue
         puts "ERROR #{character}"

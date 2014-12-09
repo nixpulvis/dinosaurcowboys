@@ -13,6 +13,8 @@
 # - Guild Name
 #
 class Character < ActiveRecord::Base
+  DestoryError = Class.new(StandardError)
+
   # A user must own the character.
   belongs_to :user
 
@@ -22,12 +24,12 @@ class Character < ActiveRecord::Base
   validates :server, presence: true
   validates_with CharacterValidator
 
-  # FIXME: This should be rethought.
-  after_save :reconcile
+  before_save :sync
 
-  # Make sure we assign a new main, if there are no
-  # other characters, fail.
-  before_destroy :reassign
+  # Users cannot delete their main.
+  before_destroy do
+    fail DestoryError, "Cannot destroy main character" if main?
+  end
 
   # -> String
   # A character is displayed by it's name.
@@ -51,43 +53,20 @@ class Character < ActiveRecord::Base
   # -> NA
   # Sync the data from blizz api with our data model.
   #
-  def sync!
-    update_columns klass: api.get('class'),
-                   level: api['level'],
-                   achievement_points: api['achievementPoints'],
-                   average_item_level_equiped: api['items']['averageItemLevelEquipped'],  # rubocop:disable LineLength
-                   spec: api.get('active_spec')['spec'].try(:[], 'name'),
-                   role: api.get('active_spec')['spec'].try(:[], 'role'),
-                   thumbnail: api.get('thumbnail'),
-                   guild_name: api['guild'].try(:[], 'name')
+  def sync
+    self.klass = api.get('class')
+    self.level = api['level']
+    self.achievement_points = api['achievementPoints']
+    self.average_item_level_equiped = api['items']['averageItemLevelEquipped']
+    self.spec = api.get('active_spec')['spec'].try(:[], 'name')
+    self.role = api.get('active_spec')['spec'].try(:[], 'role')
+    self.thumbnail = api.get('thumbnail')
+    self.guild_name = api['guild'].try(:[], 'name')
   end
 
   private
 
   def dashed_server
     server.gsub(/ /, '-')
-  end
-
-  # FIXME: This should be thought through more.
-  def reconcile
-    sync!
-
-    if self.main?
-      user.characters.where.not(id: id).update_all(main: false)
-    else
-      user.characters.first.update_column(:main, true)
-    end
-  end
-
-  def reassign
-    return unless self.main?
-
-    characters = user.characters
-    if characters.reject(&:marked_for_destruction?).count <= 1
-      errors.add(:base, 'Cannot destroy only character')
-      return false
-    else
-      characters.where.not(id: id).first.update_attribute(:main, true)
-    end
   end
 end
