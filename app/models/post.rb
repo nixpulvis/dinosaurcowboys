@@ -31,6 +31,8 @@ class Post < ActiveRecord::Base
   # page -> Fixnum
   # Returns the page of this post.
   #
+  # FIXME: This is causing 1+N queries everywhere.
+  #
   def page
     position = Post.where('created_at <= ? AND
                            postable_id = ? AND
