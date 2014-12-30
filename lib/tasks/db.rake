@@ -1,5 +1,4 @@
 namespace :db do
-
   desc 'Pull database contents from pgbackups'
   task pull: [:download, :reset] do
     system 'pg_restore --verbose --clean --no-acl --no-owner -h localhost -U \
@@ -15,5 +14,4 @@ namespace :db do
   task :capture do
     system 'heroku pgbackups:capture --remote production'
   end
-
 end
