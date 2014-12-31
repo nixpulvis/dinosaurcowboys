@@ -10,10 +10,6 @@ class ContentPolicy < BasePolicy
     end
   end
 
-  def show?
-    true
-  end
-
   def create?
     user.rank.try(:>=, 'Officer') || super
   end
