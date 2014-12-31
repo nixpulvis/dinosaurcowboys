@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   devise_for :users, skip: :registration
 
   # Contents.
-  resources :contents, except: [:index, :show, :destroy]
+  resources :contents, only: [:create, :update]
 
   # Shouts
   resources :shouts, only: [:index, :create, :destroy]
