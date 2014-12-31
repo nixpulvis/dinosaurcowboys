@@ -24,12 +24,8 @@ class ContentsController < ApplicationController
   def create
     @content = Content.new(content_params)
     authorize @content
-
-    if @content.save
-      redirect_to :back
-    else
-      render :new
-    end
+    @content.save
+    redirect_to :back
   end
 
   # GET /contents/:id/edit
@@ -42,11 +38,8 @@ class ContentsController < ApplicationController
   # Allows the content to be updated.
   #
   def update
-    if @content.update_attributes(content_params)
-      redirect_to :back
-    else
-      render :edit
-    end
+    @content.update_attributes(content_params)
+    redirect_to :back
   end
 
   protected
