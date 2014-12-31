@@ -12,7 +12,6 @@ class Content < ActiveRecord::Base
   validates :label, uniqueness: true
 
   def self.for(label)
-    where(label: label).first ||
-    new(label: label)
+    where(label: label).first || new(label: label)
   end
 end
