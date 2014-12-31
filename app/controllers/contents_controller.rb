@@ -4,16 +4,8 @@
 # Actions: [new, create, edit, update, destroy]
 #
 class ContentsController < ApplicationController
-  before_action only: [:edit, :update] do
+  before_action only: :update do
     @content = Content.find(params[:id])
-    authorize @content
-  end
-
-  # GET /contents/new
-  # Build a new content to create.
-  #
-  def new
-    @content = Content.new
     authorize @content
   end
 
@@ -26,12 +18,6 @@ class ContentsController < ApplicationController
     authorize @content
     @content.save
     redirect_to :back
-  end
-
-  # GET /contents/:id/edit
-  # Provides the given content to be updated.
-  #
-  def edit
   end
 
   # PATCH or PUT /contents/:id
