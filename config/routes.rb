@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   # Devise user authentication.
   devise_for :users, skip: :registration
 
-  # Features.
-  resources :features, except: [:index, :show]
+  # Contents.
+  resources :contents, only: [:create, :update]
 
   # Shouts
   resources :shouts, only: [:index, :create, :destroy]

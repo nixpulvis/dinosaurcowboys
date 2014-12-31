@@ -1,21 +1,13 @@
-# FeaturePolicy
+# ContentPolicy
 # Defines the policy for viewing and making features.
 #
 # Everyone can see features, and Officers and higher can create them.
 #
-class FeaturePolicy < BasePolicy
+class ContentPolicy < BasePolicy
   class Scope < BaseScope  # rubocop:disable Documentation
     def resolve
       scope
     end
-  end
-
-  def index?
-    true
-  end
-
-  def show?
-    true
   end
 
   def create?
@@ -26,11 +18,7 @@ class FeaturePolicy < BasePolicy
     create?
   end
 
-  def destroy?
-    create?
-  end
-
   def permitted_attributes
-    [:title, :body]
+    [:label, :title, :body]
   end
 end

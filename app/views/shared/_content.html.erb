@@ -1,0 +1,51 @@
+<% if content.persisted? %>
+  <div class="content">
+    <div class="title">
+      <h2><%= content.title %></h2>
+
+      <ul class="actions">
+        <% if policy(content).update? %>
+          <li><a class="edit-button" href="#">Edit</a></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="noedit">
+      <%= raw content.markdown(:body) %>
+    </div>
+
+    <% if policy(content).update? %>
+      <%= simple_form_for @content, html: {class: "edit hidden"} do |f| %>
+        <%= f.input :title %>
+        <%= render "shared/editor", f: f, field: :body %>
+
+        <%= f.button :submit %>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+
+  <div class="content">
+
+    <div class="title">
+      <h2>Nothing to See Here</h2>
+    </div>
+
+    <p>Pardon our dust. Please check back later.</p>
+
+    <% if policy(Content).create? %>
+      <hr />
+      <h2>Create Content</h2>
+
+      <%= simple_form_for @content do |f| %>
+        <%= f.input :title %>
+        <%= f.hidden_field :label, value: content.label %>
+        <%= render "shared/editor", f: f, field: :body %>
+
+        <%= f.button :submit %>
+      <% end %>
+    <% end %>
+
+  </div>
+
+<% end %>
