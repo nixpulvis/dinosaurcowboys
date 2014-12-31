@@ -48,7 +48,7 @@
       <% @user.characters.each do |character| %>
         <li>
           <%= character.main? ? fa_icon("star") : fa_icon("star-o") %>
-          <%= character_tag(character) %>
+          <%= armory_tag(character) %>
           <% unless character.main? %>
             <%= button_to "Delete", [@user, character], method: :delete %>
           <% end %>
