@@ -1,24 +1,8 @@
 <img class="border banner" src="images/m_twins.jpg">
 
 <div class="large-column">
-  <section class="panel content">
-    <div class="title">
-      <h2><%= @feature.title %></h2>
-
-      <ul class="actions">
-        <% if policy(Feature).create? %>
-          <li><%= link_to action_tag(:create, Feature), new_feature_path %></li>
-        <% end %>
-        <% if policy(@feature).update? %>
-          <li><%= link_to action_tag(:update, @feature), edit_feature_path(@feature) %></li>
-        <% end %>
-        <% if policy(@feature).destroy? %>
-          <li><%= link_to action_tag(:destroy, @feature), feature_path(@feature), method: :delete, data: { confirm: "Are you sure?" } %></li>
-        <% end %>
-      </ul>
-    </div>
-
-    <%= raw @feature.markdown(:body) %>
+  <section class="panel">
+    <%= render "shared/content", content: @content %>
   </section>
 </div>
 

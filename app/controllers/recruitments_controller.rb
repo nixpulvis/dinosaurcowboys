@@ -9,6 +9,8 @@ class RecruitmentsController < ApplicationController
   #
   def show
     authorize RecruitmentClass
+
+    @content = Content.for(:recruitment)
   end
 
   # GET /recruitment/edit
