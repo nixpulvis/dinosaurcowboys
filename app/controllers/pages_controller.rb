@@ -7,11 +7,13 @@ class PagesController < ApplicationController
   def home
     authorize self
 
-    @feature = Feature.order(created_at: :desc).first
+    @content = Content.for(:home_feature)
   end
 
   def charter
     authorize self
+
+    @content = Content.for(:charter)
   end
 
   def logs

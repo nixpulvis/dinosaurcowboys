@@ -20,6 +20,14 @@ $ ->
   new PS.MumbleBrowser('.party-shark-mumble', 'partyshark.typefrag.com', 7675)
   new PS.Shoutbox('.shoutbox')
 
+  # Content edit button.
+  $('.content .edit-button').click (e) ->
+    e.preventDefault()
+    content = $(e.target).closest('.content')
+    content.find('.noedit').toggle()
+    content.find('form').toggle()
+    content.find('form textarea').trigger('autosize.resize')
+
   # TODO: Refactor this.
   $('.js-show-new-topic-button').click (e) ->
     e.preventDefault()
