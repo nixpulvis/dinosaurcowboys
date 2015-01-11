@@ -4,7 +4,7 @@ class FeaturesToContent < ActiveRecord::Migration
     add_column :contents, :label, :string
 
     Content.reset_column_information
-    Content.order(created_at: :desc).first.update_column(:label, :home_feature)
+    Content.order(created_at: :desc).first.try(:update_column, :label, :home_feature)
     Content.where(label: nil).destroy_all
   end
 end
