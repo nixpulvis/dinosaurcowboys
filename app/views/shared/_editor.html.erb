@@ -12,14 +12,14 @@
 
     <%= fa_icon "link", class: "button-small", title: "Link" %>
     <div class="popup link">
-      <input type="text" name="text" placeholder="Text">
-      <input type="text" name="url" value="http://">
-      <input type="submit" value="Add">
+      <input class="text" type="text" name="text" placeholder="Text">
+      <input class="text" type="text" name="url" value="http://">
+      <input class="submit" type="submit" value="Add">
     </div>
     <%= fa_icon "picture-o", class: "button-small", title: "Image" %>
     <div class="popup picture-o">
-      <input type="text" name="url" value="http://">
-      <input type="submit" value="Add">
+      <input class="text" type="text" name="url" value="http://">
+      <input class="submit" type="submit" value="Add">
     </div>
 
     <%= link_to "http://daringfireball.net/projects/markdown/syntax", target: "_blank" do %>

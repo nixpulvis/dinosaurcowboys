@@ -1,7 +1,7 @@
 // .container
 // Everything lives inside this.
 //
-div.container {
+.container {
   @include outer-container;
   padding: 0 20px 10px;
   position: relative;

@@ -29,6 +29,16 @@
     li {
       font-size: 18px;
     }
+
+    .button_to { // scss-lint:disable SelectorFormat
+      display: inline-block;
+      float: right;
+
+      input {
+        margin: 0;
+        padding: 0 5px;
+      }
+    }
   }
 }
 

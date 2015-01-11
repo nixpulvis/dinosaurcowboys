@@ -1,8 +1,9 @@
 $input-margin-bottom: 15px;
 
+// scss-lint:disable NestingDepth
 form {
   .input {
-    &.field_with_hint {
+    &.field-with-hint {
       input,
       textarea,
       select {
@@ -11,22 +12,24 @@ form {
         margin-bottom: 0;
       }
 
+      // scss-lint:disable QualifyingElement
       input[type="checkbox"],
       input[type="radio"] {
         margin-bottom: 5px;
       }
 
+      // scss-lint:disable SelectorFormat
       &.radio_buttons,
       &.check_boxes,
       &.boolean {
-        &:not(.field_with_errors) p.hint {
+        &:not(.field-with-errors) p.hint {
           border-top-left-radius: $border-radius-size;
           border-top-right-radius: $border-radius-size;
           margin-top: 5px;
         }
       }
 
-      p.hint {
+      .hint {
         background-color: $success-color;
         border-bottom-left-radius: $border-radius-size;
         border-bottom-right-radius: $border-radius-size;
@@ -36,7 +39,7 @@ form {
       }
     }
 
-    &.field_with_errors {
+    &.field-with-errors {
       input,
       textarea,
       select {
@@ -46,6 +49,7 @@ form {
         margin-bottom: 0;
       }
 
+      // scss-lint:disable QualifyingElement
       input[type="checkbox"],
       input[type="radio"] {
         border-bottom-left-radius: $border-radius-size;
@@ -53,6 +57,7 @@ form {
         margin-bottom: 5px;
       }
 
+      // scss-lint:disable SelectorFormat
       &.radio_buttons,
       &.check_boxes,
       &.boolean {
@@ -76,7 +81,7 @@ form {
         }
       }
 
-      &.field_with_hint p.error {
+      &.field-with-hint p.error {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
         margin-bottom: 0;
@@ -118,6 +123,7 @@ form {
     resize: vertical;
   }
 
+  // scss-lint:disable QualifyingElement
   input[type=checkbox],
   input[type=radio] {
     height: 1.25em;

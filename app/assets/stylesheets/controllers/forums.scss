@@ -1,9 +1,9 @@
 @include select-page('forums', 'new' 'create' 'edit' 'update') {
-  .forum_readable_ranks {
+  .forum_readable_ranks { // scss-lint:disable SelectorFormat
     @include span-columns(6);
   }
 
-  .forum_writeable_ranks {
+  .forum_writeable_ranks { // scss-lint:disable SelectorFormat
     @include span-columns(6);
   }
 }

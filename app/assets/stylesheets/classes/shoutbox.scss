@@ -13,25 +13,21 @@
     li {
       padding: 2px 15px 2px 0;
       position: relative;
-
-      .shout-timestamp {
-        color: $faded-text-color;
-        font-size: 80%;
-      }
-
-      .shout-delete {
-        position: absolute;
-        right: 3px;
-        visibility: hidden;
-      }
     }
 
-    li.can-delete:hover {
-      background-color: lighten($dark-background-color, 8);
+    .shout-timestamp {
+      color: $faded-text-color;
+      font-size: 80%;
+    }
 
-      .shout-delete {
-        visibility: visible;
-      }
+    .shout-delete {
+      position: absolute;
+      right: 3px;
+      visibility: hidden;
+    }
+
+    .can-delete:hover {
+      background-color: lighten($dark-background-color, 8);
     }
   }
 

@@ -63,17 +63,3 @@
 @import 'controllers/recruitment';
 @import 'controllers/uploads';
 @import 'controllers/users';
-
-// HACK: I'm hacking this in here because I need to put it somewhere, and
-// it's going to be deleted as part of the work being done by @tonybaronee
-// in https://github.com/partyshark/website/issues/126. Further this selects
-// way more that it probably should, but *fuck it*.
-.button_to {
-  display: inline-block;
-  float: right;
-
-  input[type="submit"] {
-    margin: 0;
-    padding: 0 5px;
-  }
-}

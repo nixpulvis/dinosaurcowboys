@@ -19,8 +19,8 @@
     @extend .button-small;
   }
 
-  span.current,
-  span.gap {
+  .current,
+  .gap {
     &:hover {
       background: $border-color;
       color: $text-color;
