@@ -3,12 +3,12 @@ source 'https://rubygems.org'
 
 gem 'aws-sdk'
 gem 'bourbon'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 gem 'devise'
 gem 'font-awesome-rails'
 gem 'foreman'
 gem 'impressionist'
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'lograge'
@@ -19,14 +19,14 @@ gem 'paperclip'
 gem 'pg'
 gem 'pundit'
 gem 'rack-rewrite'
-gem 'rails', '~> 4.1.0'
+gem 'rails'
 gem 'ranked-model'
 gem 'redcarpet'
 gem 'sanitize'
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails'
 gem 'simple_form'
-gem 'sprockets', '= 2.11.0'  # http://stackoverflow.com/questions/22392862/undefined-method-environment-for-nilnilclass-when-importing-bootstrap
-gem 'uglifier', '>= 1.3.0'
+gem 'sprockets'
+gem 'uglifier'
 gem 'unicorn'
 gem 'wow'
 
@@ -41,8 +41,8 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rubocop', github: 'bbatsov/rubocop'
-  gem 'scss-lint', '= 0.17.1'
+  gem 'rubocop'
+  gem 'scss-lint'
 end
 
 group :production do
