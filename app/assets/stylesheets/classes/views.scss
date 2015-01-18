@@ -1,0 +1,17 @@
+// .views
+// Views of content.
+//
+.views.title {
+  background: $border-color;
+  border-top-left-radius: $border-radius-size;
+  border-top-right-radius: $border-radius-size;
+  margin-bottom: 0;
+  padding: 5px 10px;
+}
+
+.views.content {
+  border: $border-size solid $border-color;
+  border-bottom-left-radius: $border-radius-size;
+  border-bottom-right-radius: $border-radius-size;
+  padding: 5px 10px;
+}

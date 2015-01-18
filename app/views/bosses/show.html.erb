@@ -34,6 +34,13 @@
     </div>
   <% end %>
 
+  <h3 id="views" class="views title">Views</h3>
+  <div class="views content">
+    <% @counts.each do |user_id, count| %>
+      <%= character_tag(User.find(user_id).main) %> <%= count %>
+    <% end %>
+  </div>
+
   <hr id="discussion" />
 
   <%= render "shared/posts/index", posts: @posts, anchor: true %>

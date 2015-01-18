@@ -40,6 +40,12 @@ class BossesController < ApplicationController
   #
   def show
     impressionist @boss, 'Boss view', unique: [:session_hash]
+
+    # Get the impressions for each user.
+    @counts = @boss.impressions.group(:user_id).count.sort do |(_, v1), (_, v2)|
+      v2 <=> v1
+    end
+
     @posts = Post.for_postable(@boss, params[:page])
     @post  = @boss.posts.build
   end
