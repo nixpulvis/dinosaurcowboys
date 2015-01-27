@@ -8,12 +8,6 @@ class Application < ActiveRecord::Base
   include Markdownable
   include Toggleable
 
-  # STATES = [
-  #   :pending,
-  #   :trial,
-  #   :accepted,
-  #   :rejected
-  # ]
   enum status: [
     :pending,
     :trial,
