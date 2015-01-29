@@ -30,12 +30,12 @@ class UserPolicy < BasePolicy
     false
   end
 
-  def show_email?
+  def show_personal_info?
     (record.shown? && user.id == record.id) || user.admin?
   end
 
   def permitted_attributes
-    permitted = [:email, :password, :password_confirmation,
+    permitted = [:email, :password, :password_confirmation, :battlenet,
                  avatar_attributes: [:file, :user_id],
                  main_attributes: [:name, :server]]
 

@@ -21,9 +21,12 @@
       Joined on <%= date_tag(@user.created_at, time: false) %>
     </p>
 
-    <% if policy(@user).show_email? %>
+    <% if policy(@user).show_personal_info? %>
       <p class="email">
         <%= fa_icon("envelope") %> <%= @user.email %>
+      </p>
+      <p class="battlenet">
+        <%= fa_icon("user") %> <%= @user.battlenet %>
       </p>
     <% end %>
 

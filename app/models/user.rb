@@ -36,8 +36,9 @@ class User < ActiveRecord::Base
   # Users can shout very loudly! Or softly (oxymoron?).
   has_many :shouts
 
-  # A user **must** have an email address, and a main character.
+  # A user **must** have an email address, battlenet, and a main character.
   validates :email, presence: true
+  validates :battlenet, presence: true
   validates :main, presence: true
 
   # Set the number of users to show per page.
