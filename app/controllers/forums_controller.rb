@@ -109,9 +109,11 @@ class ForumsController < ApplicationController
   def load_bosses(scope)
     eager = [:raid, last_post: [:postable, { user: :main }]]
     policy_scope(scope)
+      .joins(:last_post)
       .includes(eager)
+      .group('bosses.id')
       .where(hidden: false)
-      .order('sticky DESC, updated_at DESC')
+      .order('sticky DESC, MAX(posts.created_at) DESC')
       .limit(5)
   end
 end
