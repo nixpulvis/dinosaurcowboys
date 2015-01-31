@@ -24,7 +24,7 @@ class Character < ActiveRecord::Base
   validates :server, presence: true
   validates_with CharacterValidator
 
-  before_save :sync
+  before_create :sync
 
   # Users cannot delete their main.
   before_destroy do
