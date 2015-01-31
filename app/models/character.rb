@@ -22,7 +22,7 @@ class Character < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 12 },
                    uniqueness: { scope: :server }
   validates :server, presence: true
-  validates_with CharacterValidator
+  validates_with CharacterValidator, on: :create
 
   before_create :sync
 
