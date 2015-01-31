@@ -18,7 +18,9 @@ Rails.application.routes.draw do
   get '/roster', to: 'characters#roster'
   resources :users do
     member { patch 'toggle' }
-    resources :characters, only: [:new, :create, :destroy]
+    resources :characters, only: [:new, :create, :destroy] do
+      patch :promote
+    end
     resources :uploads, except: [:show, :edit, :update]
     resource :application do
       member { match 'decide', via: [:put, :patch] }

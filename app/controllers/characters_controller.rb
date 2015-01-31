@@ -5,9 +5,9 @@
 # Actions: [new, create, show, edit, update, destroy, roster]
 #
 class CharactersController < ApplicationController
-  before_action only: [:show, :edit, :update, :destroy] do
+  before_action only: [:show, :edit, :update, :promote, :destroy] do
     user = User.find(params[:user_id])
-    @character = user.characters.find(params[:id])
+    @character = user.characters.find(params[:id] || params[:character_id])
     authorize @character
   end
 
@@ -37,6 +37,16 @@ class CharactersController < ApplicationController
     else
       render :new
     end
+  end
+
+  # POST /users/:user_id/character/:id/promote
+  # Makes the given character the "main" for it's user and
+  # sets all the other characters to "not main".
+  #
+  def promote
+    @character.user.main.update_attribute(:main, false)
+    @character.update_attribute(:main, true)
+    redirect_to :back
   end
 
   # DELETE /users/:user_id/character/:id

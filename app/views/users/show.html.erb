@@ -50,7 +50,11 @@
     <ul>
       <% @user.characters.each do |character| %>
         <li>
-          <%= character.main? ? fa_icon("star") : fa_icon("star-o") %>
+          <% if character.main? %>
+            <%= fa_icon("star") %>
+          <% else %>
+            <%= link_to(fa_icon("star-o"), user_character_promote_path(@user, character), method: :patch) %>
+          <% end %>
           <%= armory_tag(character) %>
           <% unless character.main? %>
             <%= button_to "Delete", [@user, character], method: :delete %>

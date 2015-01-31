@@ -23,6 +23,10 @@ class CharacterPolicy < BasePolicy
     user == record.user || super
   end
 
+  def promote?
+    user == record.user || super
+  end
+
   def destroy?
     user == record.user || super
   end
