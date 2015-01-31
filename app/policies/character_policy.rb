@@ -24,7 +24,7 @@ class CharacterPolicy < BasePolicy
   end
 
   def promote?
-    user == record.user || super
+    user == record.user || user.admin?
   end
 
   def destroy?
