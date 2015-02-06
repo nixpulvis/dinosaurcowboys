@@ -170,6 +170,8 @@ GEM
     pundit (0.3.0)
       activesupport (>= 3.0.0)
     rack (1.6.0)
+    rack-attack (4.2.0)
+      rack
     rack-rewrite (1.5.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -300,6 +302,7 @@ DEPENDENCIES
   pry
   pry-rails
   pundit
+  rack-attack
   rack-rewrite
   rails
   rails_12factor
