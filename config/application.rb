@@ -10,8 +10,9 @@ module PartyShark
 
     config.middleware.use(Rack::Attack)
 
-    Rack::Attack.blacklist('block 98.238.22.33') do |req|
-      '98.238.22.33' == req.ip
+    # Usage: `Rails.cache.write('block 1.2.3.4', true, expires_in: 5.days)`
+    Rack::Attack.blacklist('block <ip>') do |req|
+      Rails.cache.fetch("block #{req.ip}").present?
     end
 
     # Redirect requests to partyshark.herokuapp.com to our domain.
