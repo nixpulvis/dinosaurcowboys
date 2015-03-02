@@ -6,6 +6,7 @@
 .content {
   @include prefixer(font-smoothing, antialiased, webkit moz);
   font: 18px 'Computer Modern Sans', Helvetica, Arial, sans-serif;
+  position: relative;
 
   // TODO: May need to select more things?
   h1:first-child,
@@ -36,5 +37,18 @@
   iframe {
     max-height: 100%;
     max-width: 100%;
+  }
+
+  &:hover .edit-button {
+    visibility: visible;
+  }
+
+  .edit-button {
+    @extend .button;
+    visibility: hidden;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    // bottom: 0;
   }
 }

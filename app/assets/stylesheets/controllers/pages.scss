@@ -1,9 +1,18 @@
 @include select-page('pages', 'home') {
-  .banner {
-    border-top: 0;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+  .image {
     margin-bottom: $gutter;
+
+    .content img {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-top: 0;
+    }
+
+    .post-editor .controls {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      background-color: $background-color;
+    }
   }
 
   .large-column {

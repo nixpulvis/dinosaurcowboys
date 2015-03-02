@@ -1,4 +1,6 @@
-<img class="border banner" src="images/m_beastlord.jpg">
+<div class="image">
+  <%= render "shared/content", content: @image %>
+</div>
 
 <div class="large-column">
   <section class="panel">
@@ -18,7 +20,6 @@
     <%= render "shared/shoutbox" %>
   </aside>
 
-<% if 1 %>
   <aside class="panel">
     <object type="application/x-shockwave-flash" data="http://cloud.nixpulvis.com/0Z3U2C0o470i/psboard.swf" width="100%" height="485" id="psboard" style="float: none; vertical-align:middle">
       <param name="movie" value="http://cloud.nixpulvis.com/0Z3U2C0o470i/psboard.swf" />
@@ -37,7 +38,6 @@
       </a>
     </object>
   </aside>
-<% end %>
 
   <% if current_user.try(:rank) %>
     <aside class="panel">

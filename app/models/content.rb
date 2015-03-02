@@ -5,8 +5,8 @@
 class Content < ActiveRecord::Base
   include Markdownable
 
-  # Content must have a label, title, and body.
-  validates :label, :title, :body, presence: true
+  # Content must have a label and body.
+  validates :label, :body, presence: true
 
   # Contents label must be unique.
   validates :label, uniqueness: true

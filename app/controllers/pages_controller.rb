@@ -7,6 +7,7 @@ class PagesController < ApplicationController
   def home
     authorize self
 
+    @image = Content.for(:home_image)
     @content = Content.for(:home_feature)
   end
 
