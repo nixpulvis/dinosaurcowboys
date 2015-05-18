@@ -3,7 +3,7 @@
 # and it's status.
 #
 class ApplicationMailer < ActionMailer::Base
-  default from: 'no-reply@partyshark.org'
+  default from: 'no-reply@vintage-guild.org'
 
   (Application.statuses.keys << 'created').each do |status|
     define_method("#{status}_email") do |application|

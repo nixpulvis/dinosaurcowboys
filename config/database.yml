@@ -7,8 +7,8 @@ common: &common
 
 development:
   <<: *common
-  database: party_shark_development
+  database: vintage_development
 
 test:
   <<: *common
-  database: party_shark_test
+  database: vintage_test
