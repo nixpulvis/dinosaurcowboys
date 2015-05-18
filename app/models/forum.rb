@@ -29,7 +29,9 @@ class Forum < ActiveRecord::Base
 
   # New forums should be last in the row order.
   after_initialize do
-    self.row_order = Forum.maximum(:row_order) + 1 unless self.persisted?
+    if max = Forum.maximum(:row_order) && !self.persisted?
+      self.row_order = max + 1
+    end
   end
 
   # -> String
