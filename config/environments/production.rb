@@ -34,11 +34,4 @@ Rails.application.configure do
       secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
     }
   }
-
-  if defined? NewRelic::Rack::BrowserMonitoring
-    config.after_initialize do
-      config.middleware.delete "Rack::ETag"
-      config.middleware.insert_after "NewRelic::Rack::BrowserMonitoring", "Rack::ETag"
-    end
-  end
 end
