@@ -60,13 +60,13 @@ module ApplicationHelper
   # Given a param to toggle and the symbol of the path method to
   # the path returns a link that toggles the given param.
   #
-  def toggle_param_tag(param, path)
+  def toggle_param_tag(param, path, options = {})
     if params[param]
       toggled_params = params.reject { |k, _| k == param.to_s }
-      link_to "Excluding #{param.to_s.titleize}", send(path, toggled_params)
+      link_to "Excluding #{param.to_s.titleize}", send(path, toggled_params), options
     else
       toggled_params = params.merge(param => true)
-      link_to "Including #{param.to_s.titleize}", send(path, toggled_params)
+      link_to "Including #{param.to_s.titleize}", send(path, toggled_params), options
     end
   end
 end

@@ -1,0 +1,31 @@
+.panel.panel-default
+  .panel-heading
+    - @recruitments = policy_scope(RecruitmentClass).select { |rc| rc.needed? }
+    .title
+      %h3.panel-title Recruitment
+      .pull-right
+        - if policy(RecruitmentClass).update?
+          = link_to action_tag(:update, RecruitmentClass), edit_recruitment_path
+        - if user_signed_in? && current_user.rank.nil? && current_user.application.nil?
+          = link_to "Apply", new_user_application_path(current_user)
+        - elsif !user_signed_in?
+          = link_to "Sign Up", new_user_path
+      .small
+        - if updated_at = RecruitmentClass.updated_at
+          Updated
+          = date_tag updated_at, relative: true
+  .panel-body
+    - if @recruitments.any?
+      %ul.classes
+        - @recruitments.each do |rc|
+          %li
+            .class{title: rc.class_name}
+              = image_tag rc.class_icon_path, size: '40x40', class: 'border'
+            - rc.needs.each do |k, v|
+              .spec{title: k}
+                = image_tag rc.spec_icon_path(k), size: '25x25', class: 'border'
+                %br
+                = v
+          .clearfix
+    - else
+      %p We are not currently recruiting, please check back later.
