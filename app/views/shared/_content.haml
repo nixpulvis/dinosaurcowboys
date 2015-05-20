@@ -1,0 +1,20 @@
+- if content.persisted?
+  .panel.panel-default
+    .panel-heading
+      - if policy(content).update?
+        %a.edit-button{href: "#"} Edit
+    .panel-body
+      .noedit= raw content.markdown(:body)
+      - if policy(content).update?
+        = simple_form_for content, html: {class: "edit hidden"} do |f|
+          = render "shared/editor", f: f, field: :body
+          = f.button :submit
+- else
+  .panel.panel-default
+    .panel-body
+      %p Pardon our dust. Please check back later.
+      - if policy(Content).create?
+        = simple_form_for content do |f|
+          = f.hidden_field :label, value: content.label
+          = render "shared/editor", f: f, field: :body
+          = f.button :submit

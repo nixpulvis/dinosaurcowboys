@@ -1,0 +1,11 @@
+.row
+  .col-md-8
+    %section.panel= render "shared/content", content: @content
+  .col-md-4
+    %aside.panel= render "shared/recruitment_classes"
+    %aside.panel
+      .title
+        h2 Shoutbox
+      = render "shared/shoutbox"
+    - if current_user.try(:rank)
+      %aside.panel= render "shared/mumble"

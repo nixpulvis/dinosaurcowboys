@@ -41,6 +41,9 @@ GEM
     ast (2.0.0)
     astrolabe (1.3.0)
       parser (>= 2.2.0.pre.3, < 3.0)
+    autoprefixer-rails (5.1.7)
+      execjs
+      json
     aws-sdk (2.0.44)
       aws-sdk-resources (= 2.0.44)
     aws-sdk-core (2.0.44)
@@ -56,6 +59,9 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.3.3)
+      autoprefixer-rails (>= 5.0.0.1)
+      sass (>= 3.2.19)
     bourbon (4.2.3)
       sass (~> 3.4)
       thor
@@ -95,6 +101,8 @@ GEM
       thor (~> 0.19.1)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
+    haml (4.0.6)
+      tilt
     heroku (3.37.1)
       heroku-api (>= 0.3.19)
       launchy (>= 0.3.2)
@@ -286,12 +294,14 @@ DEPENDENCIES
   aws-sdk
   better_errors
   binding_of_caller
+  bootstrap-sass
   bourbon
   bullet
   coffee-rails
   devise
   font-awesome-rails
   foreman
+  haml
   heroku
   impressionist
   jbuilder

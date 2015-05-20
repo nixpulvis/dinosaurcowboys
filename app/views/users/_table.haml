@@ -1,0 +1,17 @@
+%table.table
+  %thead
+    %tr
+      %th
+      %th
+      %th Email
+      %th Rank
+      %th Join Date
+  %tbody
+    - users.each do |user|
+      %tr
+        %td= avatar_tag(user, size: "35x35")
+        %td= user_tag(user)
+        %td= user.email
+        %td= user.rank
+        %td= date_tag(user.created_at, time: false)
+= paginate users

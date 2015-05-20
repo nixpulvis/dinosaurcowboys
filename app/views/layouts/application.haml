@@ -1,0 +1,21 @@
+!!!
+%html{lang: "en"}
+  %head
+    %title Vintage - Sargeras
+    %link{rel: "icon", type: "image/png", href: "/images/icon.png"}
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+    = render "layouts/mathjax"
+    = csrf_meta_tags
+  %body{class: "#{controller_name} #{action_name}"}
+    .container
+      .flash
+        - if notice
+          %p.notice= notice
+        - if alert
+          %p.alert= alert
+      %header{style: "margin:20px 0"}
+        = link_to root_path, style: "display:block;text-align:center" do
+          = image_tag 'logo_banner.gif'
+      = render "layouts/nav"
+      = yield

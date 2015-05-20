@@ -1,0 +1,4 @@
+- if page.current?
+  %li.active= content_tag(:a, page, rel: (page.next? ? 'next' : (page.prev? ? 'prev' : nil)))
+- else
+  %li= link_to(page, url, rel: (page.next? ? 'next' : (page.prev? ? 'prev' : nil)))

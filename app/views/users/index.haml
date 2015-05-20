@@ -1,0 +1,6 @@
+.page-header
+  %h1
+    Users
+    - if current_user.try(:admin?)
+      %span.small.pull-right= toggle_param_tag(:hidden, :users_path)
+  = render 'users/table', users: @users

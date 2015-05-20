@@ -1,66 +1,72 @@
 //= require_self
-//= require normalize-rails
-//
-
-// Fonts.
-@import '../fonts/computer_modern_sans/cmun-sans';
 
 // Vendor libraries.
-@import 'bourbon';
-@import 'neat';
-@import 'font-awesome';
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
-// Our libraries.
-@import 'lib/variables';
-@import 'lib/mixins';
+.content img {
+  max-width: 100%;
+}
 
-// Tag styles.
-@import 'tags/a';
-@import 'tags/blockquote';
-@import 'tags/body';
-@import 'tags/form';
-@import 'tags/header';
-@import 'tags/hr';
-@import 'tags/iframe';
-@import 'tags/star';
+// // Fonts.
+// @import '../fonts/computer_modern_sans/cmun-sans';
 
-// Class styles.
-@import 'classes/avatar';
-@import 'classes/banner';
-@import 'classes/border';
-@import 'classes/button';
-@import 'classes/character';
-@import 'classes/character_tiles';
-@import 'classes/clearfix';
-@import 'classes/container';
-@import 'classes/content';
-@import 'classes/flash';
-@import 'classes/github';
-@import 'classes/hidden';
-@import 'classes/list';
-@import 'classes/mumble_browser';
-@import 'classes/page';
-@import 'classes/pagination';
-@import 'classes/panel';
-@import 'classes/post';
-@import 'classes/post_editor';
-@import 'classes/raid_list';
-@import 'classes/recruitment_classes';
-@import 'classes/shoutbox';
-@import 'classes/status';
-@import 'classes/title';
-@import 'classes/toggle_hidden';
-@import 'classes/topnav';
-@import 'classes/updates';
-@import 'classes/views';
+// // Vendor libraries.
+// @import 'bourbon';
+// @import 'neat';
+// @import 'font-awesome';
 
-// Controller action styles.
-@import 'controllers/applications';
-@import 'controllers/characters';
-@import 'controllers/exceptions';
-@import 'controllers/forums';
-@import 'controllers/pages';
-@import 'controllers/raids';
-@import 'controllers/recruitment';
-@import 'controllers/uploads';
-@import 'controllers/users';
+// // Our libraries.
+// @import 'lib/variables';
+// @import 'lib/mixins';
+
+// // Tag styles.
+// @import 'tags/a';
+// @import 'tags/blockquote';
+// @import 'tags/body';
+// @import 'tags/form';
+// @import 'tags/header';
+// @import 'tags/hr';
+// @import 'tags/iframe';
+// @import 'tags/star';
+
+// // Class styles.
+// @import 'classes/avatar';
+// @import 'classes/banner';
+// @import 'classes/border';
+// @import 'classes/button';
+// @import 'classes/character';
+// @import 'classes/character_tiles';
+// @import 'classes/clearfix';
+// @import 'classes/container';
+// @import 'classes/content';
+// @import 'classes/flash';
+// @import 'classes/github';
+// @import 'classes/hidden';
+// @import 'classes/list';
+// @import 'classes/mumble_browser';
+// @import 'classes/page';
+// @import 'classes/pagination';
+// @import 'classes/panel';
+// @import 'classes/post';
+// @import 'classes/post_editor';
+// @import 'classes/raid_list';
+// @import 'classes/recruitment_classes';
+// @import 'classes/shoutbox';
+// @import 'classes/status';
+// @import 'classes/title';
+// @import 'classes/toggle_hidden';
+// @import 'classes/topnav';
+// @import 'classes/updates';
+// @import 'classes/views';
+
+// // Controller action styles.
+// @import 'controllers/applications';
+// @import 'controllers/characters';
+// @import 'controllers/exceptions';
+// @import 'controllers/forums';
+// @import 'controllers/pages';
+// @import 'controllers/raids';
+// @import 'controllers/recruitment';
+// @import 'controllers/uploads';
+// @import 'controllers/users';

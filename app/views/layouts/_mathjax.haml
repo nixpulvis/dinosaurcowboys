@@ -1,0 +1,12 @@
+%script{type: "text/x-mathjax-config"}
+  :plain
+    MathJax.Hub.Config({
+      messageStyle: "none",
+      tex2jax: {
+        inlineMath: [ ['$','$'] ],
+        displayMath: [ ['$$','$$'] ],
+      }
+    });
+
+
+= javascript_include_tag "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"
