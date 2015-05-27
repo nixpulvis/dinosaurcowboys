@@ -1,7 +1,7 @@
-# Party Shark Namespace.
-PS = window.PartyShark ||= {}
+# Dinosaur Cowboys Namespace.
+NS = window.DinosaurCowboys ||= {}
 
-class PS.MumbleBrowser
+class NS.MumbleBrowser
   constructor: (element, @host, @port) ->
     @element = $(element)
 
@@ -11,7 +11,7 @@ class PS.MumbleBrowser
 
     if @element.length
       interval = 10  # Seconds.
-      PS.setIntervalAndExecute(interval * 1000, => @update())
+      NS.setIntervalAndExecute(interval * 1000, => @update())
 
   populate: (data) ->
     @element.find('ul.channels').empty()
@@ -43,7 +43,7 @@ class PS.MumbleBrowser
     @element.find('.title ul li a i').addClass('fa-refresh')
     @element.find('.title ul li a i').addClass('fa-spin')
     xhr = @typefrag (data) =>
-      PS.setTimeout 500, =>  # UX
+      NS.setTimeout 500, =>  # UX
         @populate(data)
         @element.find('.title ul li a i').removeClass('fa-spin')
     xhr.fail =>

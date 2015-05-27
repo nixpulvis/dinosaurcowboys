@@ -1,7 +1,7 @@
-# Party Shark Namespace.
-PS = window.PartyShark ||= {}
+# Dinosaur Cowboys Namespace.
+NS = window.DinosaurCowboys ||= {}
 
-class PS.Youtube
+class NS.Youtube
   @activate: (element) ->
     @element = $(element)
     regex = /https?:\/\/www.youtu[be\.com|\.be]*\/watch\?v=(.*)/

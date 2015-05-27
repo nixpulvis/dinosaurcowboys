@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-PartyShark::Application.load_tasks
+DinosaurCowboys::Application.load_tasks

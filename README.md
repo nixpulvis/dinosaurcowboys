@@ -1,4 +1,4 @@
-# Party Shark [![Build Status](https://travis-ci.org/partyshark/website.svg?branch=master)](https://travis-ci.org/partyshark/website)
+# Dinosaur Cowboys [![Build Status](https://travis-ci.org/nixpulvis/website.svg?branch=master)](https://travis-ci.org/nixpulvis/website)
 
 This is the website for Party Shark, we are a World of Warcraft raiding guild on Stormreaver Horde.
 
@@ -8,7 +8,7 @@ This application is build under the assumption the following dependencies are in
 
 To run locally:
 ```
-git clone https://github.com/party-shark/website.git
+git clone https://github.com/nixpulvis/website.git
 cd website
 bundle install
 rake db:create && rake db:migrate && rake db:seed
@@ -17,9 +17,8 @@ foreman start
 
 Adding heroku:
 ```
-git remote add staging git@heroku.com:partyshark-staging.git
-git remote add production git@heroku.com:partyshark.git
-git config heroku.remote staging  # Allows for `heroku` command to default to staging.
+git remote add production git@heroku.com:dinosaurcowboys.git
+git config heroku.remote production  # Allows for `heroku` command to default to production.
 ```
 
 ## Database

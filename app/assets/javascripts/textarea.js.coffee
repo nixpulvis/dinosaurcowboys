@@ -1,6 +1,6 @@
-# Party Shark Namespace.
-PS = window.PartyShark ||= {}
+# Dinosaur Cowboys Namespace.
+NS = window.DinosaurCowboys ||= {}
 
-class PS.Textarea
+class NS.Textarea
   @activate: ->
     $('textarea').autosize()

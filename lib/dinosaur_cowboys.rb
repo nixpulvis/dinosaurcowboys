@@ -1,5 +1,5 @@
-# PartyShark
+# DinosaurCowboys
 # The module for this application :)
 #
-module PartyShark
+module DinosaurCowboys
 end

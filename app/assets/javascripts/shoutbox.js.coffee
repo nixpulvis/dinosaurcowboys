@@ -1,7 +1,7 @@
-# Party Shark Namespace.
-PS = window.PartyShark ||= {}
+# Dinosaur Cowboys Namespace.
+NS = window.DinosaurCowboys ||= {}
 
-class PS.Shoutbox
+class NS.Shoutbox
   constructor: (element) ->
     @element = $(element)
     @currUserId = @element.data('user-id')
@@ -9,7 +9,7 @@ class PS.Shoutbox
 
     if @element.length
       interval = 2  # Seconds.
-      PS.setIntervalAndExecute(interval * 1000, => @update())
+      NS.setIntervalAndExecute(interval * 1000, => @update())
 
       @element.find('.shout-input').keypress (e) =>
         text = $.trim($(e.target).val())

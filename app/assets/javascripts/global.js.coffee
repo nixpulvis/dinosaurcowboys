@@ -1,14 +1,14 @@
-# Party Shark Namespace.
-PS = window.PartyShark ||= {}
+# Dinosaur Cowboys Namespace.
+NS = window.DinosaurCowboys ||= {}
 
 # Global Functions.
 
-PS.setTimeout = (t, func) ->
+NS.setTimeout = (t, func) ->
   return setTimeout(func, t)
 
-PS.setInterval = (t, func) ->
+NS.setInterval = (t, func) ->
   return setInterval(func, t)
 
-PS.setIntervalAndExecute = (t, func) ->
+NS.setIntervalAndExecute = (t, func) ->
   func()
   return setInterval(func, t)

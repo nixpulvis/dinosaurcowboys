@@ -9,7 +9,7 @@ Rails.application.configure do
   config.assets.digest = true
   config.assets.version = '1.0'
   config.log_level = :info
-  config.action_mailer.default_url_options = { host: 'www.partyshark.org' }
+  config.action_mailer.default_url_options = { host: 'www.dinosaurcowboys.rodeo' }
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify
   config.lograge.enabled = true

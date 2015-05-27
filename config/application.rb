@@ -4,9 +4,9 @@ require 'rails/all'
 
 Bundler.require(*Rails.groups)
 
-module PartyShark
+module DinosaurCowboys
   class Application < Rails::Application
-    require 'party_shark'
+    require 'dinosaur_cowboys'
 
     config.middleware.use(Rack::Attack)
 
@@ -15,10 +15,10 @@ module PartyShark
       Rails.cache.fetch("block #{req.ip}").present?
     end
 
-    # Redirect requests to partyshark.herokuapp.com to our domain.
+    # Redirect requests to dinosaurcowboys.herokuapp.com to our domain.
     config.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
-      r301 %r{.*}, 'http://www.partyshark.org$&', :if => Proc.new { |env|
-        env['SERVER_NAME'] == 'partyshark.herokuapp.com'
+      r301 %r{.*}, 'http://www.dinosaurcowboys.rodeo$&', :if => Proc.new { |env|
+        env['SERVER_NAME'] == 'dinosaurcowboys.herokuapp.com'
       }
     end
 

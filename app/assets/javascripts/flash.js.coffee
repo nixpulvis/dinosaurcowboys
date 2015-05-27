@@ -1,7 +1,7 @@
-# Party Shark Namespace.
-PS = window.PartyShark ||= {}
+# Dinosaur Cowboys Namespace.
+NS = window.DinosaurCowboys ||= {}
 
-class PS.Flash
+class NS.Flash
   @activate: (element) ->
     @element = $(element)
     @element.delay(3000).slideUp("fast")

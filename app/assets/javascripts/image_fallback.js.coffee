@@ -1,7 +1,7 @@
-# Party Shark Namespace.
-PS = window.PartyShark ||= {}
+# Dinosaur Cowboys Namespace.
+NS = window.DinosaurCowboys ||= {}
 
-class PS.ImageFallback
+class NS.ImageFallback
   @activate: ->
     $("img[data-fallback]").error ->
       fallback = $(this).data('fallback')

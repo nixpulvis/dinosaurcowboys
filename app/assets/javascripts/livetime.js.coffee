@@ -1,7 +1,7 @@
-# Party Shark Namespace.
-PS = window.PartyShark ||= {}
+# Dinosaur Cowboys Namespace.
+NS = window.DinosaurCowboys ||= {}
 
-class PS.LiveTime
+class NS.LiveTime
   @activate: (element) ->
     @element = $(element)
     @element.each ->
@@ -17,7 +17,7 @@ class PS.LiveTime
   # Private
 
   relative = (element, utc_time) ->
-    PS.setIntervalAndExecute 1000, ->
+    NS.setIntervalAndExecute 1000, ->
       display_time = moment(utc_time).fromNow()
       $(element).html(display_time)
 

@@ -7,18 +7,19 @@
 #= require power
 #= require_tree .
 
-# Party Shark Namespace.
-PS = window.PartyShark ||= {}
+# Dinosaur Cowboys Namespace.
+NS = window.DinosaurCowboys ||= {}
 
 $ ->
-  PS.Textarea.activate()
-  PS.Flash.activate('.flash')
-  PS.LiveTime.activate('.live-time')
-  PS.Youtube.activate('.content')
-  PS.ImageFallback.activate()
+  NS.Textarea.activate()
+  NS.Flash.activate('.flash')
+  NS.LiveTime.activate('.live-time')
+  NS.Youtube.activate('.content')
+  NS.ImageFallback.activate()
 
-  new PS.MumbleBrowser('.party-shark-mumble', 'partyshark.typefrag.com', 7675)
-  new PS.Shoutbox('.shoutbox')
+  # TODO: Update this.
+  new NS.MumbleBrowser('.dinosaur-cowboys-mumble', 'mumble.dinosaur-cowboys.rodeo', 7675)
+  new NS.Shoutbox('.shoutbox')
 
   # Content edit button.
   $('.content .edit-button').click (e) ->

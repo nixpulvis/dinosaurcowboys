@@ -2,7 +2,7 @@ Devise.setup do |config|
   require 'devise/orm/active_record'
 
   config.secret_key = Rails.application.secrets.devise_secret_key
-  config.mailer_sender = 'no-reply@partyshark.org'
+  config.mailer_sender = 'no-reply@dinosaurcowboys.rodeo'
   config.case_insensitive_keys = [:email]
   config.strip_whitespace_keys = [:email]
   config.skip_session_storage = [:http_auth]
