@@ -1,7 +1,7 @@
 ruby '2.2.2'
 source 'https://rubygems.org'
 
-gem 'aws-sdk'
+gem 'aws-sdk-v1'
 gem 'bourbon'
 gem 'coffee-rails'
 gem 'devise'
