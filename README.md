@@ -1,6 +1,6 @@
 # Dinosaur Cowboys [![Build Status](https://travis-ci.org/nixpulvis/website.svg?branch=master)](https://travis-ci.org/nixpulvis/website)
 
-This is the website for Party Shark, we are a World of Warcraft raiding guild on Stormreaver Horde.
+This is the website for Dinosaur Cowboys, we are a World of Warcraft raiding guild on Sargeras Alliance.
 
 ## Setup
 
