@@ -18,7 +18,7 @@ $ ->
   NS.ImageFallback.activate()
 
   # TODO: Update this.
-  new NS.MumbleBrowser('.dinosaur-cowboys-mumble', 'mumble.dinosaur-cowboys.rodeo', 7675)
+  new NS.MumbleBrowser('.dinosaur-cowboys-mumble', 'dinosaurcowboys.typefrag.com', 6885)
   new NS.Shoutbox('.shoutbox')
 
   # Content edit button.
